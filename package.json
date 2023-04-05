@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --color"
+    "lint": "eslint ./Client/node_modules",
+    "lint:fix": "eslint ./Client/node_modules --color"
   },
   "repository": {
     "type": "git",
