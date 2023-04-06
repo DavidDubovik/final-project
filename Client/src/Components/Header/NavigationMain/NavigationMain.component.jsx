@@ -8,7 +8,7 @@ const NavigationMain = ({navList}) => {
 
     return(
         <>
-            <Box sx={{ display: 'flex', alignItems: 'left', textAlign: 'center' ,fontFamily:'Open Sans'}}>
+            <Box sx={{ display: 'flex', alignItems: 'left', textAlign: 'center' ,fontFamily:'Open Sans',maxWidth: 'md',mx:'auto'}}>
 
                 {navList.map(mitem=>(
                     <MenuItem 
@@ -21,7 +21,7 @@ const NavigationMain = ({navList}) => {
                     {mitem.title}
                     </MenuItem>
                 ))}
-
+                <MenuItem sx={{ ml: 'auto', textAlign: 'center' ,fontFamily:'Open Sans'}} >Укр | Рус</MenuItem>
             </Box>
         </>
     );

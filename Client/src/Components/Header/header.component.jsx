@@ -1,5 +1,8 @@
 import React from "react";
 import NavigationMain from "./NavigationMain/NavigationMain.component";
+import Box from '@mui/material/Box';
+
+import MidleMenu from "./MidleMenu/menu.component";
 
 const navList =[
     {
@@ -28,8 +31,13 @@ const Header = (props) => {
 
     return(
         <>
-        <NavigationMain navList={navList}/>
-        <h1>Header block</h1>
+   
+            <Box sx={{fontFamily:'Open Sans',maxWidth: 'md',mx:'auto'}}>
+                <NavigationMain navList={navList}/>
+                <MidleMenu/>
+                <h1>Header block</h1>
+            </Box>
+
     </>);
     }
 export default Header;
