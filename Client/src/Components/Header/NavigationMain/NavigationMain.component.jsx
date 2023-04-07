@@ -8,7 +8,7 @@ const NavigationMain = ({navList}) => {
 
     return(
         <>
-            <Box sx={{ display: 'flex', alignItems: 'left', textAlign: 'center' ,fontFamily:'Open Sans',maxWidth: 'md',mx:'auto'}}>
+            <Box sx={{ display: 'flex', alignItems: 'left', textAlign: 'center' ,fontFamily:'Open Sans',mx:'auto'}}>
 
                 {navList.map(mitem=>(
                     <MenuItem 

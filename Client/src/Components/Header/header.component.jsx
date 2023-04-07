@@ -32,7 +32,7 @@ const Header = (props) => {
     return(
         <>
    
-            <Box sx={{fontFamily:'Open Sans',maxWidth: 'md',mx:'auto'}}>
+            <Box sx={{fontFamily:'Open Sans',maxWidth: 'lg',mx:'auto'}}>
                 <NavigationMain navList={navList}/>
                 <MidleMenu/>
                 <h1>Header block</h1>
