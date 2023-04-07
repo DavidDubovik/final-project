@@ -3,7 +3,7 @@ import NavigationMain from "./NavigationMain/NavigationMain.component";
 import Box from '@mui/material/Box';
 
 import MidleMenu from "./MidleMenu/menu.component";
-
+import CatMenu from "./CategoryMenu/categoryMenu.component";
 const navList =[
     {
         title: "Головна",
@@ -32,10 +32,10 @@ const Header = (props) => {
     return(
         <>
    
-            <Box sx={{fontFamily:'Open Sans',maxWidth: 'lg',mx:'auto'}}>
+            <Box sx={{fontFamily:'Open Sans',mx:'auto'}}>
                 <NavigationMain navList={navList}/>
                 <MidleMenu/>
-                <h1>Header block</h1>
+                <CatMenu/>
             </Box>
 
     </>);
