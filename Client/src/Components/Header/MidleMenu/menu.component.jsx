@@ -2,8 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LoginButton from "./LoginBotton/loginBotton.component";
 import Logo from "./Logo/logo.component";
 import SearchBar from "./SearchBar/searchbar.component";
@@ -17,7 +16,7 @@ const MidleMenu = () => {
                 <p>(093) 170-83-23</p>
                 <SearchBar/>
                 <LoginButton/>
-                <LocalGroceryStoreIcon fontSize='large'/>
+                <ShoppingCartOutlinedIcon  fontSize='large' />
             </Box>
         </>
     );
