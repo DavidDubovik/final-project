@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 
 import MidleMenu from "./MidleMenu/menu.component";
 import CatMenu from "./CategoryMenu/categoryMenu.component";
+import ButtomMenu from "./ButtomMenu/ButtomMenu.component";
 const navList =[
     {
         title: "Головна",
@@ -27,6 +28,73 @@ const navList =[
         path: "/disconts",
     }
 ]
+const menuList =[
+    {
+        title: "Столи",
+        path: "/table",
+        submenu:
+            [{"title":"Круглі столи",
+            "path" :"/table/round"},{
+            "title":"Квадратні столи",
+            "path" :"/table/square"
+            }]
+    },
+    {
+        title: "Стільці",
+        path: "/chairs",
+        submenu:
+            [{"title":"Круглі Стільці",
+            "path" :"/chairs/round"},{
+            "title":"Квадратні Стільці",
+            "path" :"/chairs/square"
+            }]
+    },    {
+        title: "Лавки",
+        path: "/bench",
+        submenu:
+            [{"title":"Лавки столи",
+            "path" :"/bench/round"},{
+            "title":"Лавки столи",
+            "path" :"/bench/square"
+            }]
+    },    {
+        title: "Корпусні меблі",
+        path: "/corpusni",
+        submenu:
+            [{"title":"Вбудовані",
+            "path" :"/corpusni/round"},{
+            "title":"Летучі",
+            "path" :"/corpusni/square"
+            }]
+    } ,{
+        title: "Ліжка",
+        path: "/beds",
+        submenu:
+            [{"title":"Ортопедичні",
+            "path" :"/beds/round"},{
+            "title":"Круглі ліжка",
+            "path" :"/beds/square"
+            }]
+    },{
+        title: "Аксесуари",
+        path: "/acsesuaries",
+        submenu:
+            [{"title":"Постіль",
+            "path" :"/acsesuaries/round"},{
+            "title":"Лампи",
+            "path" :"/acsesuaries/square"
+            }]
+    },{
+        title: "Вироби з металу",
+        path: "/metal",
+        submenu:
+            [{"title":"Ліжка",
+            "path" :"/metal/round"},{
+            "title":"Стільці",
+            "path" :"/metal/square"
+            }]
+    }
+]
 const Header = (props) => {
 
     return(
@@ -35,7 +103,7 @@ const Header = (props) => {
             <Box sx={{fontFamily:'Open Sans',mx:'auto'}}>
                 <NavigationMain navList={navList}/>
                 <MidleMenu/>
-                <CatMenu/>
+                <ButtomMenu menuList={menuList}/>
             </Box>
 
     </>);

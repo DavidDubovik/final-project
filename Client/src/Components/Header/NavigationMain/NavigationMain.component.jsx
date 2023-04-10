@@ -21,7 +21,6 @@ const NavigationMain = ({navList}) => {
                     {mitem.title}
                     </MenuItem>
                 ))}
-                <MenuItem sx={{ ml: 'auto', textAlign: 'center' ,fontFamily:'Open Sans'}} >Укр | Рус</MenuItem>
             </Box>
         </>
     );
