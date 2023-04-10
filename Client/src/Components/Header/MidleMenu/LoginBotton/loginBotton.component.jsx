@@ -2,8 +2,6 @@ import Box from '@mui/material/Box';
 import React from 'react';
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Logout from '@mui/icons-material/Logout';
 import Typography from '@mui/material/Typography';
 
 const LoginButton =()=>{
