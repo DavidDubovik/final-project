@@ -29,7 +29,7 @@ const MenuDrop = ({mList}) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
-          ><Typography sx={{color:"white",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
+          ><Typography sx={{fontWeight:"700",color:"white",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
          
           </Button>
           <Menu
