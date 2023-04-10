@@ -8,7 +8,7 @@ const ButtomMenu = ({menuList}) => {
 
     return (
         <Box sx={{background:"#57646E"}}>
-            <Box display="flex" sx={{maxWidth: 'lg',mx:'auto',height:"45px",alignItems: "center",justifyContent:"space-around"}}>
+            <Box display="flex" sx={{maxWidth: 'lg',mx:'auto',height:"45px",alignItems: "center",justifyContent:"center"}}>
             {menuList.map(el=><MenuDrop key={el.title} mList={el}/>)}
             </Box>
         </Box>

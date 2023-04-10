@@ -15,7 +15,7 @@ const LoginButton =()=>{
                  width: 122,justifyItems: "center"
                }} alignItems="stretch">
                 
-                  <Avatar sx={{ width: 32, height: 32 }}>Ava</Avatar>
+                  <Avatar sx={{ width: 36, height: 36 }}></Avatar>
                   <Typography sx={{ minWidth: 100 }}>Увійти</Typography>
 
                </Box>
