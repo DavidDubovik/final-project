@@ -28,7 +28,7 @@ const MidleMenu = () => {
                 }}>(093) 170-83-23</Typography>
                 <SearchBar/>
                 <LoginButton/>
-                <ShoppingCartOutlinedIcon  fontSize='large' />
+                <ShoppingCartOutlinedIcon  fontSize='large' sx={{color:"#57646E"}} />
             </Box>
         </>
     );

@@ -15,8 +15,8 @@ const Logo =()=>{
                }}>
                 <img src="../../img/LORI_LOGO1.png"
                  alt="Lori_shop"
-                 width="100%"
-                  height="100%"
+                 width="122px"
+                  height="57px"
                  sx={{ objectFit: 'contain' }}/>
                </Box>
     

@@ -12,14 +12,14 @@ const SearchBar =()=>{
     return(
         <Paper
         component="form" variant="outlined"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:0,height:40 }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,borderRadius:1,height:40 }}
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder="Пошук меблів"
           inputProps={{ 'aria-label': 'search google maps' }}
         />
-             <IconButton type="submit" aria-label="search" sx={{ mr:"-5px",p:"11px",border: "0",backgroundColor: "#A0A9AF", borderRadius: 0,
+             <IconButton type="submit" aria-label="search" sx={{ mr:"-5px",p:"11px",border: "0",backgroundColor: "#A0A9AF", borderRadius: "0 3px 3px 0",
                 '&:hover, active':{
                 backgroundColor: '#007042'}
                 }}>
