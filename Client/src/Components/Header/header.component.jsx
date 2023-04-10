@@ -36,7 +36,13 @@ const menuList =[
             "path" :"/table/round"},{
             "title":"Квадратні столи",
             "path" :"/table/square"
-            }]
+            },{
+                "title":"Ексклюзивні",
+                "path" :"/table/ekslkuzivni"
+                },{
+                    "title":"Люкс",
+                    "path" :"/table/luxuries"
+                    }]
     },
     {
         title: "Стільці",
@@ -46,7 +52,10 @@ const menuList =[
             "path" :"/chairs/round"},{
             "title":"Квадратні Стільці",
             "path" :"/chairs/square"
-            }]
+            },{
+                "title":"Металеві Стільці",
+                "path" :"/chairs/metal"
+                }]
     },    {
         title: "Лавки",
         path: "/bench",
