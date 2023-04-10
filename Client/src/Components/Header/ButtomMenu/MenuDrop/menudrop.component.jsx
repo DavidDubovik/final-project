@@ -42,7 +42,7 @@ const MenuDrop = ({mList}) => {
             onClose={handleClose}
             TransitionComponent={Fade}
           >
-          {submenues.map(el=><MenuItem key={el.title} component={NavLink} to={el.path} onClick={handleClose}>{el.title}</MenuItem>)}
+          {submenues.map(el=><MenuItem key={el.title+el.path} component={NavLink} to={el.path} onClick={handleClose}>{el.title}</MenuItem>)}
          
           </Menu>
 

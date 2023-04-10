@@ -3,7 +3,6 @@ import NavigationMain from "./NavigationMain/NavigationMain.component";
 import Box from '@mui/material/Box';
 
 import MidleMenu from "./MidleMenu/menu.component";
-import CatMenu from "./CategoryMenu/categoryMenu.component";
 import ButtomMenu from "./ButtomMenu/ButtomMenu.component";
 const navList =[
     {
