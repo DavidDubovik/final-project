@@ -14,7 +14,7 @@ const LoginButton =()=>{
                component={Link}  to='/'
                sx={{display:"flex",
                  height: 57,
-                 width: 122
+                 width: 122,justifyItems: "center"
                }} alignItems="stretch">
                 
                   <Avatar sx={{ width: 32, height: 32 }}>Ava</Avatar>
