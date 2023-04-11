@@ -3,7 +3,7 @@ import Layout from './Components/Layout/layout.component';
 import Home from './Pages/Home/home.page';
 import PageNotFound from './Pages/NotFoundPage/pageNotFound.page';
 import { Routes, Route} from 'react-router-dom';
-
+import './App.css';
 function App() {
   return (
     <div className="App">
