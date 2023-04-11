@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./slider.scss";
 
-export default function slider() {
+export default function Slider() {
   return (
     <div>
       <>
