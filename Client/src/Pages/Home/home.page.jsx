@@ -1,13 +1,13 @@
 import React from 'react';
+import Slider from '../../Components/Slider/slider';
 
 
-
-function Home(props) {
+function Home() {
 
     return (
-        <main>
-                ddd
-        </main>
+        <>
+                <Slider/>
+        </>
     );
 
 }

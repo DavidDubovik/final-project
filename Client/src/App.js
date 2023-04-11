@@ -3,7 +3,7 @@ import Layout from './Components/Layout/layout.component';
 import Home from './Pages/Home/home.page';
 import PageNotFound from './Pages/NotFoundPage/pageNotFound.page';
 import { Routes, Route} from 'react-router-dom';
-import Footer from "./Components/Footer/footer";
+import './App.css';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="*" element={<PageNotFound />} />
-         
+  
         </Route>
       </Routes>
       <Footer />
