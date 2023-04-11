@@ -7,7 +7,7 @@ import arrow from "./img/arrow.png"
 import insta from "./img/insta.png"
 import facebook from "./img/facebook.png"
 
-export default function footer() {
+export default function Footer() {
     return (
         <div>
             <>
