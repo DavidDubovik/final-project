@@ -1,17 +1,69 @@
-import React from 'react';
+// import React from 'react';
 
 
 
-function Home(props) {
+// function Home(props) {
 
-    return (
-        <main>
-                ddd
-        </main>
-    );
+//     return (
+//         <main>
+//                 ddd
+//         </main>
+//     );
 
-}
+// }
 
 
 
-export default Home;
+// export default Home;
+
+import React, { Component } from 'react'
+import Items from '../../Components/Items/Items'
+import './home.scss'
+
+export default class Home extends Component {
+
+    constructor(props) {
+      super(props)
+  
+      this.state = {
+        items: [
+          {
+            id: 1,
+            title: "Столи",
+            desc: "Вирізняються міцною та надійною конструкцією. Матеріал – дуб.",
+            info: "Детальніше",
+            img: "1.png"
+          },
+          {
+            id: 2,
+            title: "Ліжка",
+            desc: "Матеріал – масив дуба. Комплектуються ортопедичною основою під матрац.",
+            info: "Детальніше",
+            img: "2.png"
+          },
+          {
+            id: 3,
+            title: "Корпусні меблі",
+            desc: "Дубові етажерки, комоди, серванти на будь-який смак.",
+            info: "Детальніше",
+            img: "3.png"
+          },
+          {
+            id: 4,
+            title: "Стільці",
+            desc: "Виготовлені з високоякісного масиву дуба. Комплектуються твердим або м’яким сидінням.",
+            info: "Детальніше",
+            img: "4.png"
+          }
+        ]
+      }
+    }
+  
+    render() {
+      return (
+        <div className='wrapper'>
+          <Items items={this.state.items}/>
+        </div>
+      )
+    }
+  }
