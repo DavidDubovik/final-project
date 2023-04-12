@@ -51,6 +51,7 @@ export default function ImgMediaCard() {
         return (
 
             <Card style={useStyles.root}>
+
                 {newProduct ? <p style={useStyles.new}> Новинка</p> : ''}
                 <CardActionArea style={{height: '100%'}}>
                     <CardMedia
@@ -75,7 +76,8 @@ export default function ImgMediaCard() {
         )
     })
     return (
-        <div>
+        <div style={{marginTop:50, marginBottom: 80}}>
+            <h1 style={useStyles.p}>Популярні товари</h1>
             <div style={{
                 display: "grid",
                 justifyContent: 'center',

@@ -15,7 +15,7 @@ const useStyles = {
         padding: '5px 20px',
         position: 'absolute',
         right: -14,
-        top: -24
+        top: -7
     },
     imgProduct: {
         width: 280,
@@ -42,9 +42,16 @@ const useStyles = {
         lineHeight: '96.5%',
         letterSpacing: '0.02em',
         color: '#007042',
-
+    },
+    p: {
+        fontFamily: 'Montserrat',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        fontSize: 30,
+        lineHeight: '96.5%',
+        letterSpacing: '0.02em',
+        color: '#2E3438',
+        textAlign:'center'
     }
-
-
 };
 export default useStyles
