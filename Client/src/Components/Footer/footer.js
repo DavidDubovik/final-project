@@ -6,12 +6,14 @@ import gmail from "./img/gmail.png"
 import arrow from "./img/arrow.png"
 import insta from "./img/insta.png"
 import facebook from "./img/facebook.png"
+import Box from '@mui/material/Box';
 
 export default function Footer() {
     return (
-        <div>
+        
             <>
                 <footer className="footer">
+                    <Box sx={{mx:'auto',maxWidth: 'lg'}}>
                     <div className="footer-information">
                         <div className="row">
                             <img src={logo} alt=""/>
@@ -63,8 +65,9 @@ export default function Footer() {
                     <div className="strop"></div>
 
                     <p className="footer-row-text">© 1997-2020 Меблева фабрика «LORI».  Усі права захищені. </p>
+                    </Box>
                 </footer>
             </>
-        </div>
+        
     )
 }

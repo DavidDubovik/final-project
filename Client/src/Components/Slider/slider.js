@@ -1,6 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+import Box from '@mui/material/Box';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,7 +10,7 @@ import "./slider.scss";
 
 export default function Slider() {
   return (
-    <div>
+    <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <>
       <Swiper
         cssMode={true}
@@ -35,7 +36,7 @@ export default function Slider() {
         <SwiperSlide><img src="https://wowin.ua/image/cache/catalog/easyphoto/334/_MG_1138-702x467.jpg" alt="" /></SwiperSlide>
       </Swiper>
       </>
-    </div>
+    </Box>
   )
 }
 
