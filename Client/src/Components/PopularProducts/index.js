@@ -31,9 +31,11 @@ export default function ImgMediaCard() {
                 "name": "Лейзі лежанка для тварин",
                 "decription": "бла-бла-бла-бла",
                 "price": '1834',
+                'newPrice': '1000',
                 "img_url": "https://wowin.ua/image/cache/catalog/easyphoto/212/P2/california_flamingo-702x467.jpg",
                 "id": "110011",
                 "category": "tires",
+                'discount': true
 
             },
             {
@@ -47,10 +49,11 @@ export default function ImgMediaCard() {
             }
         ]
     })
-    const product = state.products.map(({name, img_url, price, newProduct}) => {
+    const product = state.products.map(({name, img_url, price, newProduct, discount, newPrice}) => {
         return (
 
             <Card style={useStyles.root}>
+                {discount ? <p style={useStyles.discount}>Знижка</p> : ''}
                 {newProduct ? <p style={useStyles.new}> Новинка</p> : ''}
                 <CardActionArea style={{height: '100%'}}>
                     <CardMedia
@@ -65,8 +68,16 @@ export default function ImgMediaCard() {
                             {name}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p" style={useStyles.price}>
-                            <p style={{margin: 0, position: 'absolute', bottom: 3}}> {price} <span
-                                style={{fontSize: 18}}>₴</span></p>
+                            {discount ? <div style={{bottom: 3,position: 'absolute', display: "flex",alignItems:"center"}}>
+                                    <p style={{margin: 0}}> {newPrice} <span
+                                        style={{fontSize: 18}}>грн</span></p>
+                                    <p style={{margin: '0 0 0 13px', color:'#A0A9AF',textDecoration: "line-through", fontSize:22 }}> {price} <span
+                                        style={{fontSize: 18}}>грн</span></p>
+
+                                </div>
+
+                                : <p style={{margin: 0, position: 'absolute', bottom: 3}}> {price} <span
+                                    style={{fontSize: 18}}>грн</span></p>}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -80,8 +91,8 @@ export default function ImgMediaCard() {
                 display: "grid",
                 justifyContent: 'center',
                 gridTemplateColumns: 'repeat(auto-fill, 300px)',
-                maxWidth:1499,
-                margin:'0 auto'
+                maxWidth: 1499,
+                margin: '0 auto'
             }}>
                 {product}
             </div>
