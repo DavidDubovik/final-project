@@ -1,3 +1,4 @@
+import ImgMediaCard from "./Components/PopularProducts";
 import React from 'react';
 import Layout from './Components/Layout/layout.component';
 import Home from './Pages/Home/home.page';
@@ -16,5 +17,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
