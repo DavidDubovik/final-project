@@ -1,0 +1,76 @@
+.footer {
+  background-color: #57646E;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+
+}
+
+.footer-information {
+  display: flex;
+  justify-content: space-between;
+  padding: 54px 120px 64px 120px;
+}
+
+.row {
+  width: 150px;
+}
+
+.row-info {
+  padding-bottom: 17px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.gmail-img {
+  padding-left: 18px;
+  width: 19px;
+  height: 12px;
+  text-align: center;
+}
+
+.input-button {
+  display: flex;
+}
+
+.input {
+  border-radius: 3px;
+  width: 272.67px;
+  height: 32px;
+  border: none;
+  position: relative;
+}
+
+.input::placeholder {
+  color: #57646E;
+}
+
+.button-arr {
+  position: absolute;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 0 3px 3px 0;
+  right: 120px;
+  background-color: #B0B6C0;
+}
+
+.img-insta {
+  padding: 0 17px;
+}
+
+  .strop {
+    width: 1200px;
+    height: 0.5px;
+    margin: 0 120px 23px 120px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+.footer-row-text {
+  padding-bottom: 80px;
+  text-align: center;
+}
