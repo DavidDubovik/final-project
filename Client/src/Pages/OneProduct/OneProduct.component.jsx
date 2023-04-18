@@ -15,6 +15,7 @@ const OneProduct = () => {
           mx: "auto",
           maxWidth: "lg",
         }}
+       
       >
         <Typography
           sx={{
@@ -33,9 +34,10 @@ const OneProduct = () => {
           container
           columnGap={5}
           sx={{ "border-bottom": "1px solid #D3D7DA", pb: "40px" }}
+          
         >
-          <Grid xs={3} sm={3} md={1} lg={1} xl={1}>
-            <Box sx={{display:"flex","flexDirection":"column", "rowGap":"22px"}}>ImgList</Box>
+          <Grid xs={12} sm={12} md={1} lg={1} xl={1}>
+            <Box  sx={{display:"flex",flexDirection:{lg:"column",md:"column",sm:"row",xs:"row",}, "rowGap":"22px"}}  ><div>1</div><div>2</div><div>3</div></Box>
           </Grid>
           <Grid
             container
