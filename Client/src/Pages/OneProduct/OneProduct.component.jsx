@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ImgMediaCard from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
+import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
 const OneProduct = () => {
   return (
     <>
@@ -15,7 +16,6 @@ const OneProduct = () => {
           mx: "auto",
           maxWidth: "lg",
         }}
-       
       >
         <Typography
           sx={{
@@ -34,15 +34,14 @@ const OneProduct = () => {
           container
           columnGap={5}
           sx={{ "border-bottom": "1px solid #D3D7DA", pb: "40px" }}
-          
         >
           <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
-            <VerticalTabs/>
+            <VerticalTabs />
           </Grid>
 
-            <Grid xs={6} sm={6} md={5} lg={5} xl={5}>
-              <Box>Description</Box>
-            </Grid>
+          <Grid xs={6} sm={6} md={5} lg={5} xl={5}>
+            <ProductControll />
+          </Grid>
 
           <Grid xs={6} sm={6} md={6} lg={6} xl={6}>
             <Typography
