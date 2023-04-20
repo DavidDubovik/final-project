@@ -10,7 +10,7 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <Box sx={{ml:"auto",mr:"auto", backgroundColor:"#F5F5F5"
+    <Box sx={{ml:"auto",mr:"auto"
   }}
       role="tabpanel"
       hidden={value !== index}
@@ -65,14 +65,14 @@ export default function VerticalTabs(imgArray) {
         sx={{ mr: 5, borderColor: "white" }}
       >
         {myTestA.map((el, index) => (
-          <Tab
+          <Tab 
             icon={
               <Avatar
                 variant="square"
-                sx={{ bgcolor: "#FFFFF", height: "78px", width: "78px"}}
+                sx={{  height: "78px", width: "78px",bgcolor:"#F5F5F5"}}
                 alt="product img"
                 src={el}
-                imgProps={{sx:{ objectFit: "contain"}}}
+                imgProps={{sx:{objectFit: "contain"}}}
               />
             }
             {...a11yProps(index)}
@@ -81,7 +81,7 @@ export default function VerticalTabs(imgArray) {
       </Tabs>
       {myTestA.map((el, index) => {
         return (
-          <TabPanel value={value} index={index} >
+          <TabPanel value={value} index={index}  >
           <Box component="img" src={el} sx={{maxHeight:"485px"}} />
           </TabPanel>
         );
