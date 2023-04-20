@@ -3,7 +3,7 @@ import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ImgMediaCard from "../../Components/PopularProducts";
-
+import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 const OneProduct = () => {
   return (
     <>
@@ -36,25 +36,14 @@ const OneProduct = () => {
           sx={{ "border-bottom": "1px solid #D3D7DA", pb: "40px" }}
           
         >
-          <Grid xs={12} sm={12} md={1} lg={1} xl={1}>
-            <Box  sx={{display:"flex",flexDirection:{lg:"column",md:"column",sm:"row",xs:"row",}, "rowGap":"22px"}}  ><div>1</div><div>2</div><div>3</div></Box>
+          <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
+            <VerticalTabs/>
           </Grid>
-          <Grid
-            container
-            sx={{ "column-gap": "120px" }}
-            xs={7}
-            sm={7}
-            md={10}
-            lg={10}
-            xl={10}
-          >
-            <Grid xs={6} sm={6} md={5} lg={5} xl={5}>
-              <Box sx={{ background: "#F5F5F5" }}>Main img</Box>
-            </Grid>
+
             <Grid xs={6} sm={6} md={5} lg={5} xl={5}>
               <Box>Description</Box>
             </Grid>
-          </Grid>
+
           <Grid xs={6} sm={6} md={6} lg={6} xl={6}>
             <Typography
               sx={{
