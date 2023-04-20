@@ -20,9 +20,15 @@ const ProductControll = (props) => {
           мм
         </Box>
         <Box>Color</Box>
-        <Box>Counter</Box>
-        <Box>
-          <Button variant="contained" color="primary" href="#contained-buttons" sx={{p:"12px 50px 12px 50px", borderRadius:"3px"}}>
+
+        <Box display="flex" justifyContent={"space-between"} mt={6}>
+          <Box>Counter</Box>
+          <Button
+            variant="contained"
+            color="primary"
+            href="#contained-buttons"
+            sx={{ p: "12px 50px 12px 50px", borderRadius: "3px" }}
+          >
             У кошик
           </Button>
         </Box>
