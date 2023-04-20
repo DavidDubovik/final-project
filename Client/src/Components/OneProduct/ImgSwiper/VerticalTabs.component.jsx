@@ -4,13 +4,9 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 // Небходимо в пропсы пеедать масив
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
 
-function TabPanel(props: TabPanelProps) {
+
+function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
