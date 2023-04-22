@@ -16,6 +16,7 @@ const useStyles = {
         position: 'absolute',
         right: -14,
         top: -10
+        top: -7
     },
     discount: {
         color: '#FFFFFF',
@@ -53,9 +54,16 @@ const useStyles = {
         lineHeight: '96.5%',
         letterSpacing: '0.02em',
         color: '#007042',
-
+    },
+    p: {
+        fontFamily: 'Montserrat',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        fontSize: 30,
+        lineHeight: '96.5%',
+        letterSpacing: '0.02em',
+        color: '#2E3438',
+        textAlign:'center'
     }
-
-
 };
 export default useStyles
