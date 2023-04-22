@@ -1,9 +1,13 @@
-import ImgMediaCard from "./Components/PopularProducts";
+
+import {KeepMountedModal} from "./Components/ModalWindowBasket";
+
+// import { PopularProducts } from "./Components/PopularProducts";
 
 function App() {
   return (
     <div className="App">
-      <ImgMediaCard />
+      <KeepMountedModal />
+      {/* <PopularProducts/> */}
     </div>
   );
 }
