@@ -39,7 +39,7 @@ const OneProduct = () => {
             <VerticalTabs />
           </Grid>
 
-          <Grid xs={6} sm={6} md={5} lg={5} xl={5}>
+          <Grid xs={9} sm={9} md={5} lg={5} xl={5}>
             <ProductControll />
           </Grid>
 

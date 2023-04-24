@@ -7,11 +7,11 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 const OneProdCounter = (props) => {
-  const [counter, setCounter] = React.useState("1");
+  const [counter, setCounter] = React.useState(1);
 
   const increase = () => {
     setCounter((count) => count + 1);
-    console.log(counter);
+  
   };
   const decrease = () => {
     if (counter > 0) {
@@ -22,22 +22,22 @@ const OneProdCounter = (props) => {
     <>
       <Box
         ml="17px"
-        borderRadius={"3px"}
+        borderRadius={"5px"}
         sx={{ backgroundColor: "secondary.lightest" }}
         display={"flex"}
       >
         <Button
-          onClick={increase}
-          sx={{ fontSize: "25px", color: "secondaty.dark" }}
+          onClick={increase} size="small"
+          sx={{ fontSize: "25px", color: "secondaty.dark",p:"0"}}
         >
           +
         </Button>
         <Box backgroundColor="white" display={"flex"} >
-          <Typography alignCenter pl={"18px"} sx={{ fontWeight: "600", fontSize: "23px",mt:"auto",mb:"auto",pr:"5px" }}>
-            {counter}{" "}
+          <Typography alignCenter pl={"18px"} sx={{ fontWeight: "600", fontSize: "20px",mt:"auto",mb:"auto",pr:"5px" }}>
+            {counter}
           </Typography>
           <Typography alignCenter
-            pr={"16px"}
+            pr={"10px"}
             sx={{
               fontWeight: "600",
               fontSize: "15px",
@@ -48,7 +48,7 @@ const OneProdCounter = (props) => {
           </Typography>
         </Box>
 
-        <Button
+        <Button size="small"
           onClick={decrease}
           sx={{ fontSize: "25px", color: "secondaty.dark" }}
         >
