@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-
+import DropMenu01 from "../dropMenu01/dropMenu01.component";
 const ProductControll = (props) => {
   return (
     <>
@@ -46,7 +46,7 @@ const ProductControll = (props) => {
             чистого масиву дуба. Гарантія від виробника – 2 роки.
           </Typography>
         </Box>
-        <Box>
+        <Box mb="25px">
           <Typography
             sx={{
               "font-family": "Open Sans",
@@ -71,7 +71,7 @@ const ProductControll = (props) => {
             Висота 810 мм; розмір сидіння 450х450 мм; висота сидіння 450 мм
           </Typography>
         </Box>
-        <Box>Color</Box>
+        <DropMenu01/>
 
         <Box display="flex" justifyContent={"space-between"} mt={6}>
           <Box>Counter</Box>
