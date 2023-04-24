@@ -4,6 +4,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 // Небходимо в пропсы пеедать масив
+import { v4 as uuidv4 } from 'uuid';
 
 
 function TabPanel(props) {
@@ -65,7 +66,7 @@ export default function VerticalTabs(imgArray) {
         sx={{ mr: 5, borderColor: "white" }}
       >
         {myTestA.map((el, index) => (
-          <Tab 
+          <Tab key={uuidv4()}
             icon={
               <Avatar
                 variant="square"
@@ -81,7 +82,7 @@ export default function VerticalTabs(imgArray) {
       </Tabs>
       {myTestA.map((el, index) => {
         return (
-          <TabPanel value={value} index={index}  >
+          <TabPanel key={uuidv4()} value={value} index={index}  >
           <Box component="img" src={el} sx={{maxHeight:"485px"}} />
           </TabPanel>
         );

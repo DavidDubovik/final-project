@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
+
+
 const DropMenu01 = (props) => {
-  const [color, setColor] = React.useState("Виберіть");
+  const [color, setColor] = React.useState("Синій");
 
   const handleChange = (event: SelectChangeEvent) => {
     setColor(event.target.value);
@@ -31,7 +33,6 @@ const DropMenu01 = (props) => {
           onChange={handleChange}
           sx={{ maxWidth: "150px" }} 
         >
-          
           <MenuItem value={"Синій"}>Синій</MenuItem>
           <MenuItem value={"Блакитний"}>Блакитний</MenuItem>
           <MenuItem value={"Жовтий"}>Жовтий</MenuItem>

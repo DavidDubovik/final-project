@@ -5,7 +5,18 @@ import { Typography } from "@mui/material";
 import ImgMediaCard from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
+import { BASE_URL } from "../../constants/api";
 const OneProduct = () => {
+  const [product, setProduct] = useState(null);
+  useEffect(() => {
+    async function getProduct() {
+      const res = await fetch(`${BASE_URL}/products/`+`467294`);
+      const data = await res.json();
+      setProduct(data);
+    }
+    getProduct();
+  });
+  console.log(product);
   return (
     <>
       <Box
