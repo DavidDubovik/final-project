@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+
+import OneProdCounter from "../OneProdCounter/OneProdCounter.component";
 import DropMenu01 from "../dropMenu01/dropMenu01.component";
 const ProductControll = (props) => {
   return (
@@ -54,7 +58,7 @@ const ProductControll = (props) => {
               "font-size": "20px",
               color: "secondary.dark",
               "line-height": "1",
-              "mb":"14px"
+              mb: "14px",
             }}
           >
             Габарити
@@ -71,17 +75,44 @@ const ProductControll = (props) => {
             Висота 810 мм; розмір сидіння 450х450 мм; висота сидіння 450 мм
           </Typography>
         </Box>
-        <DropMenu01/>
+        <DropMenu01 />
 
         <Box display="flex" justifyContent={"space-between"} mt={6}>
-          <Box>Counter</Box>
+          <Box display="flex" justifyContent={"space-between"}>
+
+            <Typography
+              sx={{
+                fontFamily: "Open Sans",
+                fontWeight: "400",
+                "font-size": "14px",
+                "line-height": "160%",
+                mt: "18px",
+              }}
+            >
+              Кількість
+            </Typography>
+            <OneProdCounter />
+          </Box>
           <Button
             variant="contained"
             color="primary"
             href="#contained-buttons"
-            sx={{ p: "12px 50px 12px 50px", borderRadius: "3px" }}
+            sx={{ p: "12px 25px 12px 25px", borderRadius: "3px" }}
           >
-            У кошик
+            <Typography
+              sx={{
+                fontFamily: "Open Sans",
+                fontWeight: "700",
+                "font-size": "20px",
+              }}
+            >
+              У кошик
+            </Typography>
+
+            <ShoppingCartOutlinedIcon
+              fontSize="large"
+              sx={{ color: "primary", pl: "20px" }}
+            />
           </Button>
         </Box>
       </Box>
