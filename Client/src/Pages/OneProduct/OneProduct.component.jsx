@@ -8,32 +8,14 @@ import ProductControll from "../../Components/OneProduct/ProductControll/Product
 import { BASE_URL } from "../../constants/api";
 const OneProduct = () => {
   const [product, setProduct] = useState(null);
-  const myConfi={ method: "GET",headers: {'accept': 'application/json',
-  'Access-Control-Allow-Origin': "http://localhost:3000",
-  'content-type': 'application/x-www-form-urlencoded',
-  'Access-Control-Allow-Credentials': 'true',
-  "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-  'Access-Control-Allow-Headers': "*"
 
-  }}
   useEffect(() => {
-    fetch(`${BASE_URL}/api/products/467294`,{
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': "*",
-          "Access-Control-Allow-Credentials" :"true"
-      }
-  }).then(res=>console.log(res))
-    // async function getProduct() {
-    //   const res = await fetch(`http://localhost:3030/api/products/467294`,myConfi);
-    //   const data = await res.json();
-    //   setProduct(data);
-    // }
-    // getProduct();
+    fetch(`/api/products/467294`).then(res=>res.json()).then(data=>setProduct(data))
+
   });
- 
+  if (!product) {
+    return <div>Loading</div>;
+  }
   return (
     <>
       <Box
@@ -56,7 +38,7 @@ const OneProduct = () => {
             color: "#2E3438",
           }}
         >
-          Стілець УРБАНО
+          {product.name}
         </Typography>
         <Grid
           container
@@ -88,15 +70,11 @@ const OneProduct = () => {
                 "font-size": "14px",
               }}
             >
-              Більше 20 варіантів фарбування (лляна олія, олія-віск, безбарвний
-              лак, тонований лак, RAL) Дерев'яне або м'яке Тканина або шкірзам
-              на вибір наступних торгових марок: «ЕксімТекстіль», «Аппарель»
-              Картонна коробка: 2шт. в 1 коробці;Вага брутто коробки – 16
-              кг;Об'єм коробки – 0,33м3;Розмір коробки – 62х68х120см
+              {product.shortDescription}
             </Typography>
           </Grid>
         </Grid>
-        <ImgMediaCard />
+        <ImgMediaCard images={product.imagesUrls} />
       </Box>
     </>
   );

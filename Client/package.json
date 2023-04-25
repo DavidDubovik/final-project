@@ -58,5 +58,6 @@
       "npm run lint:fix",
       "git add"
     ]
-  }
+  },
+  "proxy": "http://localhost:4000"
 }
