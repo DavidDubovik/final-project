@@ -23,7 +23,7 @@ export default function Footer() {
                             <p className="row-text">Фабрика «LORI» – український виробник, європейська якість!</p>
                         </div>
                         <div className="row row_none">
-                            <h4 className="row-info qewq">Інформація</h4>
+                            <h4 className="row-info row-info-media">Інформація</h4>
                             <ul className="row-list">
                                 <li><Link to="#">Про нас</Link></li>
                                 <li><Link to="#">Партнерам</Link></li>
@@ -44,7 +44,7 @@ export default function Footer() {
                             <p className="row-text">м. Полтава, вул. Визволення, 26 info@lori.com.ua</p>
                         </div>
                         <div className="">
-                            <div className="row-info lremrs">
+                            <div className="row-info row-media">
                                 <h4 className="row-info-text">Підписка на розсилку</h4>
                                 <div className="gmail-img"><img src={gmail} alt=""/></div>
                             </div>
