@@ -8,15 +8,32 @@ import ProductControll from "../../Components/OneProduct/ProductControll/Product
 import { BASE_URL } from "../../constants/api";
 const OneProduct = () => {
   const [product, setProduct] = useState(null);
-  useEffect(() => {
-    async function getProduct() {
-      const res = await fetch(`${BASE_URL}/products/`+`467294`);
-      const data = await res.json();
-      setProduct(data);
-    }
-    getProduct();
-  });
-  console.log(product);
+  const myConfi={ method: "GET",headers: {'accept': 'application/json',
+  'Access-Control-Allow-Origin': "http://localhost:3000",
+  'content-type': 'application/x-www-form-urlencoded',
+  'Access-Control-Allow-Credentials': 'true',
+  "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
+  'Access-Control-Allow-Headers': "*"
+
+  }}
+  // useEffect(() => {
+  //   fetch("http://localhost:400/api/products/467294",{
+  //     method: "GET",
+  //     headers: {
+  //       "Access-Control-Allow-Headers": "Content-Type",
+  //       "Content-Type": "application/json",
+  //         'Access-Control-Allow-Origin': "*",
+  //         "Access-Control-Allow-Credentials" :"true"
+  //     }
+  // }).then(res=>console.log(res))
+  //   // async function getProduct() {
+  //   //   const res = await fetch(`http://localhost:3030/api/products/467294`,myConfi);
+  //   //   const data = await res.json();
+  //   //   setProduct(data);
+  //   // }
+  //   // getProduct();
+  // });
+ 
   return (
     <>
       <Box
