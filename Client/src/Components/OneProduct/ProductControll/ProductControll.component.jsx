@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
-import OneProdCounter from "../OneProdCounter/OneProdCounter.component";
+import OneProdCounter from "../OneProductCounter/OneProdCounter.component";
 import DropMenu01 from "../dropMenu01/dropMenu01.component";
 const ProductControll = (props) => {
   return (

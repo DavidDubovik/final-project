@@ -16,23 +16,23 @@ const OneProduct = () => {
   'Access-Control-Allow-Headers': "*"
 
   }}
-  // useEffect(() => {
-  //   fetch("http://localhost:400/api/products/467294",{
-  //     method: "GET",
-  //     headers: {
-  //       "Access-Control-Allow-Headers": "Content-Type",
-  //       "Content-Type": "application/json",
-  //         'Access-Control-Allow-Origin': "*",
-  //         "Access-Control-Allow-Credentials" :"true"
-  //     }
-  // }).then(res=>console.log(res))
-  //   // async function getProduct() {
-  //   //   const res = await fetch(`http://localhost:3030/api/products/467294`,myConfi);
-  //   //   const data = await res.json();
-  //   //   setProduct(data);
-  //   // }
-  //   // getProduct();
-  // });
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/products/467294`,{
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': "*",
+          "Access-Control-Allow-Credentials" :"true"
+      }
+  }).then(res=>console.log(res))
+    // async function getProduct() {
+    //   const res = await fetch(`http://localhost:3030/api/products/467294`,myConfi);
+    //   const data = await res.json();
+    //   setProduct(data);
+    // }
+    // getProduct();
+  });
  
   return (
     <>
