@@ -7,7 +7,6 @@ import Fade from '@mui/material/Fade';
 import { NavLink } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { v4 as uuidv4 } from 'uuid';
 
 const MenuDrop = ({mList}) => {
     const submenues=mList.submenu
@@ -45,8 +44,8 @@ const MenuDrop = ({mList}) => {
             onClose={handleClose}
             TransitionComponent={Fade} 
           >
-          {submenues.map(el=><MenuItem key={uuidv4()}  sx={{'&:hover, active':{
-            color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} component={NavLink} to={el.path} onClick={handleClose}>{el.title}</MenuItem>)}
+          {submenues.map(el=><MenuItem sx={{'&:hover, active':{
+            color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} key={el.title+el.path} component={NavLink} to={el.path} onClick={handleClose}>{el.title}</MenuItem>)}
          
           </Menu>
 
