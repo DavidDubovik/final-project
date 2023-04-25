@@ -6,8 +6,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 
 
-const DropMenu01 = (props) => {
-  const [color, setColor] = React.useState("Синій");
+const DropMenu01 = ({props}) => {
+  const [color, setColor] = React.useState(props[0]);
 
   const handleChange = (event: SelectChangeEvent) => {
     setColor(event.target.value);
@@ -16,13 +16,13 @@ const DropMenu01 = (props) => {
     <>
       <Typography
         sx={{
-          "font-family": "Open Sans",
+          "fontFamily": "Open Sans",
           fontWeight: "700",
           fontSize: "20px",
           pb: "21px",
         }}
       >
-        Обрати колір
+        Обрати колір 
       </Typography>
       <FormControl >
         <Select
@@ -33,9 +33,8 @@ const DropMenu01 = (props) => {
           onChange={handleChange}
           sx={{ maxWidth: "150px" }} 
         >
-          <MenuItem value={"Синій"}>Синій</MenuItem>
-          <MenuItem value={"Блакитний"}>Блакитний</MenuItem>
-          <MenuItem value={"Жовтий"}>Жовтий</MenuItem>
+        {props.map(el=><MenuItem value={el}>{el}</MenuItem>)}
+          
         </Select>
       </FormControl>
     </>
