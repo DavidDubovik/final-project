@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 const DropMenu01 = ({props}) => {
@@ -33,7 +33,7 @@ const DropMenu01 = ({props}) => {
           onChange={handleChange}
           sx={{ maxWidth: "150px" }} 
         >
-        {props.map(el=><MenuItem value={el}>{el}</MenuItem>)}
+        {props.map(el=><MenuItem key={uuidv4()} value={el}>{el}</MenuItem>)}
           
         </Select>
       </FormControl>

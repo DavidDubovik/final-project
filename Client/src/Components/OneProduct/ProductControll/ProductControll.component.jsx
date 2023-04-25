@@ -62,9 +62,9 @@ const ProductControll = ({myProps}) => {
           </Typography>
           <Typography
             sx={{
-              "font-family": "Open Sans",
-              "font-weight": "400",
-              "font-size": "20px",
+              "fontFamily": "Open Sans",
+              "fontWeight": "400",
+              "fontSize": "20px",
               color: "secondary.dark",
               "lineHeight": "1.4",
             }}

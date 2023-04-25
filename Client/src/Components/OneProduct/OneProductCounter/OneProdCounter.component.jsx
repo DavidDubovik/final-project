@@ -31,10 +31,10 @@ const OneProdCounter = (props) => {
           +
         </Button>
         <Box backgroundColor="white" display={"flex"} >
-          <Typography alignCenter pl={"18px"} sx={{ fontWeight: "600", fontSize: "20px",mt:"auto",mb:"auto",pr:"5px" }}>
+          <Typography pl={"18px"} sx={{ fontWeight: "600", fontSize: "20px",mt:"auto",mb:"auto",pr:"5px" }}>
             {counter}
           </Typography>
-          <Typography alignCenter
+          <Typography 
             pr={"10px"}
             sx={{
               fontWeight: "600",
