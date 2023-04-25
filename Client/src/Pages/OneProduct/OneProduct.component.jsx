@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 import ImgMediaCard from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
-
+import LoadingSpinner from "../../Components/LoadingSpiner/LoadingSpiner.component";
 const OneProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -16,7 +16,7 @@ const OneProduct = () => {
 
   },[id]);
   if (!product) {
-    return <div>Loading</div>;
+    return <LoadingSpinner />;
   }
   return (
     <>
