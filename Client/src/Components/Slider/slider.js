@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { Swiper, SwiperSlide } from "swiper/react";
 import {Autoplay, Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+import Box from '@mui/material/Box';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -156,6 +157,7 @@ const Style = {
 
 export default function Slider() {
   return (
+    <Box sx={{fontFamily:'Open Sans',mx:'auto',maxWidth: 'lg'}}>
     <div>
       <>
       <Swiper
@@ -233,6 +235,6 @@ export default function Slider() {
 
       </Swiper>
       </>
-    </div>
+    </div></Box>
   )
 }
