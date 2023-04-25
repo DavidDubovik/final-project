@@ -6,7 +6,6 @@ import ImgMediaCard from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
 import { BASE_URL } from "../../constants/api";
-
 const OneProduct = () => {
   const [product, setProduct] = useState(null);
   const myConfi={ method: "GET",headers: {'accept': 'application/json',
@@ -18,15 +17,23 @@ const OneProduct = () => {
 
   }}
   useEffect(() => {
-  
-    async function getProduct() {
-      const res = await fetch(`${BASE_URL}/products/467294`);
-      const data = await res.json();
-      setProduct(data);
-    }
-    getProduct();
+    fetch(`${BASE_URL}/api/products/467294`,{
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': "*",
+          "Access-Control-Allow-Credentials" :"true"
+      }
+  }).then(res=>console.log(res))
+    // async function getProduct() {
+    //   const res = await fetch(`http://localhost:3030/api/products/467294`,myConfi);
+    //   const data = await res.json();
+    //   setProduct(data);
+    // }
+    // getProduct();
   });
- console.log(product)
+ 
   return (
     <>
       <Box

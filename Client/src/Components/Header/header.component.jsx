@@ -10,13 +10,13 @@ const navList =[
         path: "/",
     },
     {
-        title: "Партнерам",
-        path: "/partners",
+        title: "Усі продукти",
+        path: "/products",
     },
 
     {
-        title: "Наші магазини",
-        path: "/shops",
+        title: "Один продукт тест",
+        path: "/products/one",
     },
     {
         title: "Про нас",
