@@ -1,39 +1,24 @@
 import React, { useEffect, useState } from "react";
+import {useParams } from 'react-router-dom';
+
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ImgMediaCard from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
-import { BASE_URL } from "../../constants/api";
-const OneProduct = () => {
-  const [product, setProduct] = useState(null);
-  const myConfi={ method: "GET",headers: {'accept': 'application/json',
-  'Access-Control-Allow-Origin': "http://localhost:3000",
-  'content-type': 'application/x-www-form-urlencoded',
-  'Access-Control-Allow-Credentials': 'true',
-  "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-  'Access-Control-Allow-Headers': "*"
 
-  }}
+const OneProduct = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+
   useEffect(() => {
-    fetch(`${BASE_URL}/api/products/467294`,{
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': "*",
-          "Access-Control-Allow-Credentials" :"true"
-      }
-  }).then(res=>console.log(res))
-    // async function getProduct() {
-    //   const res = await fetch(`http://localhost:3030/api/products/467294`,myConfi);
-    //   const data = await res.json();
-    //   setProduct(data);
-    // }
-    // getProduct();
-  });
- 
+    fetch(`/api/products/`+id).then(res=>res.json()).then(data=>setProduct(data))
+
+  },"");
+  if (!product) {
+    return <div>Loading</div>;
+  }
   return (
     <>
       <Box
@@ -49,26 +34,26 @@ const OneProduct = () => {
           sx={{
             mt: 4,
             mb: 4,
-            "font-family": "Montserrat",
-            "font-weight": 700,
-            "font-size": "30px",
-            "letter-spacing": "0.02em",
+            "fontFamily": "Montserrat",
+            "fontWeight": 700,
+            "fontSize": "30px",
+            "letterSpacing": "0.02em",
             color: "#2E3438",
           }}
         >
-          Стілець УРБАНО
+          {product.name}
         </Typography>
         <Grid
           container
           columnGap={5}
-          sx={{ "border-bottom": "1px solid #D3D7DA", pb: "40px" }}
+          sx={{ "borderBottom": "1px solid #D3D7DA", pb: "40px" }}
         >
           <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
-            <VerticalTabs />
+            <VerticalTabs  imagesProps={product.imageUrls} />
           </Grid>
 
           <Grid xs={9} sm={9} md={5} lg={5} xl={5}>
-            <ProductControll />
+            <ProductControll myProps={product}/>
           </Grid>
 
           <Grid xs={6} sm={6} md={6} lg={6} xl={6}>
@@ -76,27 +61,23 @@ const OneProduct = () => {
               sx={{
                 pt: "40px",
                 pb: "20px",
-                "font-weight": 700,
-                "font-size": "20px",
+                "fontWeight": 700,
+                "fontSize": "20px",
               }}
             >
               Опис
             </Typography>
             <Typography
               sx={{
-                "font-weight": 400,
-                "font-size": "14px",
+                "fontWeight": 400,
+                "fontSize": "14px",
               }}
             >
-              Більше 20 варіантів фарбування (лляна олія, олія-віск, безбарвний
-              лак, тонований лак, RAL) Дерев'яне або м'яке Тканина або шкірзам
-              на вибір наступних торгових марок: «ЕксімТекстіль», «Аппарель»
-              Картонна коробка: 2шт. в 1 коробці;Вага брутто коробки – 16
-              кг;Об'єм коробки – 0,33м3;Розмір коробки – 62х68х120см
+              {product.shortDescription}
             </Typography>
           </Grid>
         </Grid>
-        <ImgMediaCard />
+        <ImgMediaCard/>
       </Box>
     </>
   );

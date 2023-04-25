@@ -16,7 +16,7 @@ const navList =[
 
     {
         title: "Один продукт тест",
-        path: "/products/one",
+        path: "/products/467294",
     },
     {
         title: "Про нас",

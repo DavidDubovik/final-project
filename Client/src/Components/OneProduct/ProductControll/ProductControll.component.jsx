@@ -7,57 +7,54 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 import OneProdCounter from "../OneProductCounter/OneProdCounter.component";
 import DropMenu01 from "../dropMenu01/dropMenu01.component";
-const ProductControll = (props) => {
+const ProductControll = ({myProps}) => {
   return (
     <>
       <Box display="flex" sx={{ flexDirection: "column" }}>
         <Box display="flex" sx={{ justifyContent: " space-between" }}>
           <Typography
             sx={{
-              "font-family": "Montserrat",
-              "font-weight": "800",
-              "font-size": "40px",
+              "fontFamily": "Montserrat",
+              "fontWeight": "800",
+              "fontSize": "40px",
               color: "primary.main",
             }}
           >
-            1 440 грн
+            {myProps.currentPrice} грн
           </Typography>{" "}
           <Typography
             sx={{
-              "font-family": "Open Sans",
-              "font-weight": "400",
-              "font-size": "19px",
+              "fontFamily": "Open Sans",
+              "fontWeight": "400",
+              "fontSize": "19px",
               color: "secondary.main",
-              "line-height": "3.5",
+              "lineHeight": "3.5",
             }}
           >
-            Код: 303025
+            Код: {myProps.itemNo} 
           </Typography>
         </Box>
         <Box pb="40px">
           <Typography
             sx={{
-              "font-family": "Open Sans",
-              "font-weight": "400",
-              "font-size": "14px",
+              "fontFamily": "Open Sans",
+              "fontWeight": "400",
+              "fontSize": "14px",
               color: "secondary.dark",
-              "line-height": "1.6",
+              "lineHeight": "1.6",
             }}
           >
-            Особливістю моделі стільця «Урбано» є його сучасний дизайн, який
-            стане чудовим акцентом у Вашій оселі. Виріб має надійну конструкцію,
-            а також є ергономічним. Стілець «Урбано» виготовлено з екологічно
-            чистого масиву дуба. Гарантія від виробника – 2 роки.
+          {myProps.description} 
           </Typography>
         </Box>
         <Box mb="25px">
           <Typography
             sx={{
-              "font-family": "Open Sans",
-              "font-weight": "800",
-              "font-size": "20px",
+              "fontFamily": "Open Sans",
+              "fontWeight": "800",
+              "fontSize": "20px",
               color: "secondary.dark",
-              "line-height": "1",
+              "lineHeight": "1",
               mb: "14px",
             }}
           >
@@ -69,13 +66,13 @@ const ProductControll = (props) => {
               "font-weight": "400",
               "font-size": "20px",
               color: "secondary.dark",
-              "line-height": "1.4",
+              "lineHeight": "1.4",
             }}
           >
             Висота 810 мм; розмір сидіння 450х450 мм; висота сидіння 450 мм
           </Typography>
         </Box>
-        <DropMenu01 />
+        <DropMenu01 props={myProps.colors}/>
 
         <Box display="flex" justifyContent={"space-between"} mt={6}>
           <Box display="flex" justifyContent={"space-between"}>
@@ -84,8 +81,8 @@ const ProductControll = (props) => {
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "400",
-                "font-size": "14px",
-                "line-height": "160%",
+                "fontSize": "14px",
+                "lineHeight": "160%",
                 mt: "18px",
               }}
             >
@@ -103,7 +100,7 @@ const ProductControll = (props) => {
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "700",
-                "font-size": "20px",
+                "fontSize": "20px",
               }}
             >
               У кошик

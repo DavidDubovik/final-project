@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -45,7 +45,7 @@ const MenuDrop = ({mList}) => {
             TransitionComponent={Fade} 
           >
           {submenues.map(el=><MenuItem sx={{'&:hover, active':{
-            color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} key={el.title+el.path} component={NavLink} to={el.path} onClick={handleClose}>{el.title}</MenuItem>)}
+            color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} key={uuidv4()} component={NavLink} to={el.path} onClick={handleClose}>{el.title}</MenuItem>)}
          
           </Menu>
 

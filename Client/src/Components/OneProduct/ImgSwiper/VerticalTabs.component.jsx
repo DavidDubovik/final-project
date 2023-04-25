@@ -36,18 +36,14 @@ function a11yProps(index) {
   };
 }
 
-export default function VerticalTabs(imgArray) {
+export default function VerticalTabs({imagesProps}) {
+    
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const myTestA = [
-    "https://cdn.27.ua/799/82/22/1409570_3.jpeg",
-    "https://cdn.27.ua/799/82/22/1409570_5.jpeg",
-    "https://cdn.27.ua/799/82/22/1409570_4.jpeg",
-    "https://cdn.27.ua/799/82/22/1409570_2.jpeg",
-  ];
+
   return (
     <Box
       sx={{
@@ -57,6 +53,7 @@ export default function VerticalTabs(imgArray) {
         height: 485,
       }}
     >
+    
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -65,7 +62,7 @@ export default function VerticalTabs(imgArray) {
         aria-label="Vertical tabs example"
         sx={{ mr: 5, borderColor: "white" }}
       >
-        {myTestA.map((el, index) => (
+        {imagesProps.map((el, index) => (
           <Tab key={uuidv4()}
             icon={
               <Avatar
@@ -80,7 +77,7 @@ export default function VerticalTabs(imgArray) {
           />
         ))}
       </Tabs>
-      {myTestA.map((el, index) => {
+      {imagesProps.map((el, index) => {
         return (
           <TabPanel key={uuidv4()} value={value} index={index}  >
           <Box component="img" src={el} sx={{maxHeight:"485px"}} />
