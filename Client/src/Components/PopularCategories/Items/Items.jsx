@@ -6,11 +6,11 @@ export class Items extends Component {
   render() {
     return (
       <>
-        <h1>Популярні категорії</h1>
+        <h2 className='popular-categories__title'>Популярні категорії</h2>
       
         <div className='items'>
-        {this.props.items.map(el => <Item key={el.id} item={el}/>)}
-      </div>
+          {this.props.items.map(el => <Item key={el.id} item={el}/>)}
+        </div>
       </>
     )
   }
