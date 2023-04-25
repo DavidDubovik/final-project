@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import {useParams } from 'react-router-dom';
+
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
@@ -7,10 +9,11 @@ import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.com
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
 
 const OneProduct = () => {
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(`/api/products/467294`).then(res=>res.json()).then(data=>setProduct(data))
+    fetch(`/api/products/`+id).then(res=>res.json()).then(data=>setProduct(data))
 
   },"");
   if (!product) {
