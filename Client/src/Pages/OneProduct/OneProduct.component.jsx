@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {useParams } from 'react-router-dom';
-
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
@@ -15,7 +14,7 @@ const OneProduct = () => {
   useEffect(() => {
     fetch(`/api/products/`+id).then(res=>res.json()).then(data=>setProduct(data))
 
-  },"");
+  },[id]);
   if (!product) {
     return <div>Loading</div>;
   }

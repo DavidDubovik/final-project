@@ -30,7 +30,7 @@ const MenuDrop = ({mList}) => {
             onClick={handleClick}
             
 
-          ><Typography sx={{fontWeight:"700",color:"white",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
+          ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
          
           </Button>
           <Menu
