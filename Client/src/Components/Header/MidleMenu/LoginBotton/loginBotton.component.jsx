@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
+import {
+  Link as RouterLink
+} from 'react-router-dom';
 const LoginButton =()=>{
   
     return(
@@ -16,7 +18,7 @@ const LoginButton =()=>{
                  width: 122,alignItems: 'center'
                }} alignItems="stretch">
                 
-                  <Avatar sx={{ width: 36, height: 36,border:"2px solid #57646E",backgroundColor:"white",color:"#57646E"}}></Avatar>
+                  <Avatar sx={{ width: 36, height: 36,border:"2px solid #57646E",backgroundColor:"white",color:"#57646E"}} component={RouterLink} to="/profile"></Avatar>
                   <Button sx={{'&:hover, active':{
                     color: '#007042'}}}>
                     <Typography sx={{ minWidth: 100,color: "#57646E",fontSize: "14px",textTransform:"capitalize",'&:hover, active':{

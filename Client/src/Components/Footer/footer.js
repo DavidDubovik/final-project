@@ -22,18 +22,18 @@ export default function Footer() {
                         <div className="row">
                             <h4 className="row-info">Інформація</h4>
                             <ul className="row-list">
-                                <li><a href="#">Про нас</a></li>
-                                <li><a href="#">Партнерам</a></li>
-                                <li><a href="#">Вакансії</a></li>
+                                <li><a href="/#">Про нас</a></li>
+                                <li><a href="/#">Партнерам</a></li>
+                                <li><a href="/#">Вакансії</a></li>
                             </ul>
                         </div>
                         <div className="">
                             <h4 className="row-info">Покупцям</h4>
                             <ul className="">
-                                <li><a href="#">Гарантія</a></li>
-                                <li><a href="#">Оплата та доставка</a></li>
-                                <li><a href="#">Обмін та повернення</a></li>
-                                <li><a href="#">Кредит та оплата частинами</a></li>
+                                <li><a href="/#">Гарантія</a></li>
+                                <li><a href="/#">Оплата та доставка</a></li>
+                                <li><a href="/#">Обмін та повернення</a></li>
+                                <li><a href="/#">Кредит та оплата частинами</a></li>
                             </ul>
                         </div>
                         <div className="row">
@@ -55,8 +55,8 @@ export default function Footer() {
                             </div>
                             <div className="row-social row-info">
                                 <h4 className="row-info-text">Стежте за нами</h4>
-                                <a href="#"><img className="img-insta" src={insta} alt=""/></a>
-                                <a href="#"> <img src={facebook} alt=""/></a>
+                                <a href="/#"><img className="img-insta" src={insta} alt=""/></a>
+                                <a href="/#"> <img src={facebook} alt=""/></a>
 
                             </div>
                         </div>
