@@ -33,7 +33,7 @@ export default function Footer() {
                                 <li><a href="#">Гарантія</a></li>
                                 <li><a href="#">Оплата та доставка</a></li>
                                 <li><a href="#">Обмін та повернення</a></li>
-                                <li><a href="#>Кредит та оплата частинами</a></li>
+                                <li><a href="#">Кредит та оплата частинами</a></li>
                             </ul>
                         </div>
                         <div className="row">
