@@ -55,8 +55,8 @@ export default function Footer() {
                             </div>
                             <div className="row-social row-info">
                                 <h4 className="row-info-text">Стежте за нами</h4>
-                                <a href="/home"><img className="img-insta" src={insta} alt=""/></a>
-                                <a href="/home"> <img src={facebook} alt=""/></a>
+                                <a href="#"><img className="img-insta" src={insta} alt=""/></a>
+                                <a href="#"> <img src={facebook} alt=""/></a>
 
                             </div>
                         </div>
