@@ -22,18 +22,18 @@ export default function Footer() {
                         <div className="row">
                             <h4 className="row-info">Інформація</h4>
                             <ul className="row-list">
-                                <li><a href="/home">Про нас</a></li>
-                                <li><a href="/home">Партнерам</a></li>
-                                <li><a href="/home">Вакансії</a></li>
+                                <li><a href="#">Про нас</a></li>
+                                <li><a href="#">Партнерам</a></li>
+                                <li><a href="#">Вакансії</a></li>
                             </ul>
                         </div>
                         <div className="">
                             <h4 className="row-info">Покупцям</h4>
                             <ul className="">
-                                <li><a href="/home">Гарантія</a></li>
-                                <li><a href="/home">Оплата та доставка</a></li>
-                                <li><a href="/home">Обмін та повернення</a></li>
-                                <li><a href="/home">Кредит та оплата частинами</a></li>
+                                <li><a href="#">Гарантія</a></li>
+                                <li><a href="#">Оплата та доставка</a></li>
+                                <li><a href="#">Обмін та повернення</a></li>
+                                <li><a href="#>Кредит та оплата частинами</a></li>
                             </ul>
                         </div>
                         <div className="row">
