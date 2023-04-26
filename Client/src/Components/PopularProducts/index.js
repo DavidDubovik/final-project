@@ -48,10 +48,15 @@ export function PopularProducts() {
         ]
     })
 
+
     const product = useMemo(()=>state.products.map(({name, img_url, price, newProduct, discount, newPrice}) => {
         return (
             <Card classes={{ root: styles.rootCard }} >
                 {discount ? <p style={useStyles.discount}>Знижка</p> : ''}
+
+            <Card style={useStyles.root}>
+
+
                 {newProduct ? <p style={useStyles.new}> Новинка</p> : ''}
                 <CardActionArea style={{height: '100%'}}>
                     <CardMedia
@@ -90,7 +95,8 @@ export function PopularProducts() {
         )
     }),[state])
     return (
-        <div>
+        <div style={{marginTop:50, marginBottom: 80}}>
+            <h1 style={useStyles.p}>Популярні товари</h1>
             <div style={{
                 display: "grid",
                 justifyContent: 'center',
