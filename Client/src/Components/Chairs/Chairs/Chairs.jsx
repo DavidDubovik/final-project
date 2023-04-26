@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ReactSlider from 'react-slider';
+import Slider from '@mui/material/Slider';
 import ChairsItems from '../ChairsItems/ChairsItems';
 
 import './Chairs.scss';
 
-export default class Chairs extends Component {
+export default class AllProducts extends Component {
 
   constructor(props) {
     super(props)
@@ -100,7 +100,7 @@ export default class Chairs extends Component {
               <div className='fiters__item filters__price'>
                 <h3 className='filters-price__price'>Price</h3>
 
-                <ReactSlider
+                <Slider
                   className="horizontal-slider"
                   thumbClassName="example-thumb"
                   trackClassName="example-track"
