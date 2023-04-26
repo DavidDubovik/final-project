@@ -62,7 +62,7 @@
 
   "devDependencies": {
     "husky": "^8.0.3"
-  }
+  },
   "proxy": "http://localhost:4000"
 
 }
