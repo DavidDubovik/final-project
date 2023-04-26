@@ -1,4 +1,4 @@
-.item {
+.popular-categories__item {
     width: 690px;
     height: 400px;
     margin-right: 20px;
@@ -7,13 +7,13 @@
     margin-bottom: 40px;
     position: relative;
     color: white;
-    & > img {
+    &-img {
         z-index: 0;
         width: 100%;
         height: auto;
         position: relative;
     }
-    & > h2 {
+    &-title {
         z-index: 100;
         position: absolute;
         left: 25px;
@@ -24,7 +24,7 @@
         font-size: 30px;
         line-height: 110%;
     }
-    & > p {
+    &-description {
         z-index: 100;
         position: absolute;
         left: 25px;
@@ -36,7 +36,7 @@
         line-height: 140%;
         max-width: 320px;
     }
-    & > button {
+    &-button {
         border: none;
         z-index: 100;
         left: 25px;
