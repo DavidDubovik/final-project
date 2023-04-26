@@ -69,7 +69,7 @@ const ProductControll = ({myProps}) => {
               "lineHeight": "1.4",
             }}
           >
-            Висота 810 мм; розмір сидіння 450х450 мм; висота сидіння 450 мм
+          {myProps.sizez}
           </Typography>
         </Box>
         <DropMenu01 props={myProps.colors}/>
