@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import "./modalWindow.scss"
-import { colors } from '@mui/material';
+import "./modalWindow.scss";
+import Product from './basket';
 
 const styleBox = {
     position: 'absolute',
@@ -65,39 +65,9 @@ export function KeepMountedModal() {
     })
 
 
-    const [basket, setBasket] = useState(state.products)
-    const product = basket.map(({ name, id, price, img_url }) => {
-        return (<div className='cardProduct'>
-            <button className='dagger'>+</button>
-            <img src={img_url} alt="#" width="100" height="100" />
-            <div className='name-product'>
-                <h3>{name.substring(0, 25)}</h3>
-                <span>Код:{id}</span>
-            </div>
-            <div className='select'>
-                <select className='color'>
-                    <option value="all" data-before="&#xf26e">All</option>
-                    <option value="open">Open</option>
-                    <option value="done">Done</option>
-                </select>
-                <select className="Upholstery" >
-                    <option value="all" > Дикий дуб</option>
-                    <option value="open"> Open</option>
-                    <option value="done">Done</option>
-                </select>
-            </div>
-            <div className='container'>
-                <button id='decrement' >-</button>
-                <input type='number' min='0' max='20' id='my-input' value={Number('fe')} step='1' readOnly />
-                <button id='increment' >+</button>
-            </div>
-            <div className='text-price'>
-                <span >
-                    {price} грн
-                </span>
-            </div>
-        </div>)
-    })
+
+
+    const [stateBasket, setBasket] = useState(state.products)
     return (
         <div>
             <Button onClick={handleOpen} >Open modal</Button>
@@ -110,17 +80,18 @@ export function KeepMountedModal() {
             >
                 <Box sx={styleBox}>
 
-                    {basket.length ? <div className='product'>
+                    {stateBasket.length ? <div className='product'>
                         <div className='header'><h1>Товар доданий у кошик</h1> <a href="/">Перейти у кошик</a></div>
                         <div className='main'>
 
                             <div className='basket-product'>
-                                {product}
+
+                                <Product basket={stateBasket} />
                             </div>
 
                             <hr style={{ background: '#007042', height: 2, border: 'none' }}></hr>
                             <div className='sum'>
-                                <p>Всього у кошику {basket.length} товари на суму <span>5000 грн</span></p>
+                                <p>Всього у кошику {stateBasket.length} товари на суму <span>{stateBasket.map(()=>{})} грн</span></p>
 
                             </div>
                         </div>

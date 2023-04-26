@@ -55,6 +55,8 @@
         }
     }
 
+
+
     & h3 {
         flex: 1 1 26.04vw;
         font-family: 'Roboto';
@@ -71,11 +73,12 @@
 .cardProduct {
     display: flex;
     align-items: center;
+    
 }
 
 .basket-product {
     overflow: auto;
-    height: 300px;
+    height: 360px;
 
     &::-webkit-scrollbar-thumb {
         background-color: #7b7d7f;
@@ -86,6 +89,8 @@
     &::-webkit-scrollbar {
         width: 15px;
     }
+
+    
 }
 
 .name-product {
@@ -138,39 +143,11 @@
     outline: none;
     cursor: pointer;
 
-    // appearance: none; // убирає стрілку 
-    & option {
-        padding: 8px;
-        font: 11pt Helvetica;
-        vertical-align: middle;
-    }
+
 }
 
-Upholstery option::before {
-    font-size: 16px;
-    content: attr(data-before);
 
-    margin-right: 8px;
-}
 
-// .select{
-//     position: relative;
-// }
-// .select::before {
-//     content: "▼";
-//     padding: 0 8px;
-//     font-size: 12px;
-//     background: #007042;
-//     // position: absolute;
-//     right: 8px;
-//     top: 4px;
-//     z-index: 1;
-//     text-align: center;
-//     width: 10%;
-//     height: 100%;
-//     pointer-events: none;
-//     box-sizing: border-box;
-// }
 
 .dagger {
     transform: rotate(45deg);
@@ -222,7 +199,7 @@ Upholstery option::before {
     }
 }
 
-input[type="number"] {
+input[type="text"] {
     cursor: auto;
     text-align: center;
     width: 50.37px;
@@ -231,4 +208,9 @@ input[type="number"] {
     background-color: #FFFFFF;
     color: #2E3438;
     outline: none
+}
+
+.select {
+    height: 35px;
+    display: flex;
 }
