@@ -46,6 +46,7 @@ export default class PopularCategories extends Component {
         <div className='popular-categories__wrapper'>
           <PopularCategoriesItems items={this.state.items}/>
         </div>
+        </Box>
       )
     }
   }
