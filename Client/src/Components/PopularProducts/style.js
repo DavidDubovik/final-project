@@ -15,8 +15,8 @@ const useStyles = {
         padding: '5px 20px',
         position: 'absolute',
         right: -14,
-        top: -10
-        top: -7
+        top: -10,
+        top: -7,
 
     },
     discount: {

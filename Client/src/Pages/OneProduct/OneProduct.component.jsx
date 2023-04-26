@@ -3,7 +3,7 @@ import {useParams } from 'react-router-dom';
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import ImgMediaCard from "../../Components/PopularProducts";
+import {ImgMediaCard} from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
 import LoadingSpinner from "../../Components/LoadingSpiner/LoadingSpiner.component";
