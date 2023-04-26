@@ -80,7 +80,7 @@ export default function VerticalTabs({imagesProps}) {
       {imagesProps.map((el, index) => {
         return (
           <TabPanel key={uuidv4()} value={value} index={index}  >
-          <Box component="img" src={el} sx={{maxHeight:"485px"}} />
+          <Box component="img" src={el} sx={{maxHeight:"485px",maxWidth:"485px"}} />
           </TabPanel>
         );
       })}
