@@ -1,7 +1,8 @@
 import React from 'react';
 import Slider from '../../Components/Slider/slider';
 import ImgMediaCard from "../../Components/PopularProducts";
-import PopularCategoriesInfo from '../../Components/PopularCategories/PopularCategoriesInfo/PopularCategoriesInfo';
+import PopularCategories from '../../Components/PopularCategories/PopularCategories/PopularCategories';
+
 
 
 function Home() {
@@ -10,7 +11,9 @@ function Home() {
         <>
             <Slider/>
             <ImgMediaCard />
-            <PopularCategoriesInfo />
+            <PopularCategories />
+  
+           
         </>
     );
 

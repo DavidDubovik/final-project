@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import './PopularCategoriesInfo.scss'
-import Items from '../Items/Items'
-import Box from '@mui/material/Box';
+import './PopularCategories.scss'
+import PopularCategoriesItems from '../PopularCategoriesItems/PopularCategoriesItems'
 
-export default class PopularCategoriesInfo extends Component {
+export default class PopularCategories extends Component {
 
     constructor(props) {
       super(props)
@@ -44,9 +43,8 @@ export default class PopularCategoriesInfo extends Component {
   
     render() {
       return (
-        <Box sx={{fontFamily:'Open Sans',mx:'auto',maxWidth: 'lg'}}>
-        <div className='wrapper'>
-          <Items items={this.state.items}/>
+        <div className='popular-categories__wrapper'>
+          <PopularCategoriesItems items={this.state.items}/>
         </div>
         </Box>
       )
