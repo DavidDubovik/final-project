@@ -31,7 +31,7 @@
 
 }
 
-.footer {
+.button-order {
     display: flex;
     margin-top: 52px;
 
@@ -73,7 +73,7 @@
 .cardProduct {
     display: flex;
     align-items: center;
-    
+
 }
 
 .basket-product {
@@ -90,7 +90,7 @@
         width: 15px;
     }
 
-    
+
 }
 
 .name-product {
@@ -161,7 +161,8 @@
     }
 }
 
-.container {
+.numberProduct {
+    width: 115px;
     display: flex;
     border-radius: 3px;
     height: 31.82px;
@@ -175,6 +176,53 @@
         background: #E0E1E2;
         border: none;
         font-size: 20px;
+    }
+
+    & button:hover {
+        background: #bfbfc0;
+    }
+
+    & input {
+        cursor: auto;
+        text-align: center;
+        width: 25px;
+        font-size: 16px;
+        border: none;
+        background-color: #FFFFFF;
+        color: #2E3438;
+        outline: none;
+        position: relative;
+
+    }
+
+    & lable {
+        display: flex;
+        align-items: center;
+    }
+
+    & span {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 1px;
+        text-align: center;
+        color: #A0A9AF;
+        padding-right: 8px;
+    }
+
+    & input::after {
+        content: 'шт';
+        position: absolute;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 1px;
+        text-align: center;
+        color: #A0A9AF;
+     
+
     }
 }
 
@@ -197,17 +245,6 @@
             line-height: 160%;
         }
     }
-}
-
-input[type="text"] {
-    cursor: auto;
-    text-align: center;
-    width: 50.37px;
-    font-size: 16px;
-    border: none;
-    background-color: #FFFFFF;
-    color: #2E3438;
-    outline: none
 }
 
 .select {

@@ -11,12 +11,21 @@
 }
 
 .default_option {
+    display: flex;
     background: #fff;
     border-radius: 5px;
     cursor: pointer;
 }
 
+.default_option p div {
+    width: 16px;
+    height: 16px;
+    margin-right: 11px;
+    border-radius: 50%;
+}
+
 .default_option p {
+    display: flex;
     margin: 8px;
 }
 
@@ -55,9 +64,17 @@
 }
 
 .select_ul li {
-    padding: 10px 20px;
+    display: flex;
+    padding: 12px 5px;
     border-bottom: 1px solid #D3D7DA;
     cursor: pointer;
+}
+
+.select_ul li div {
+    width: 16px;
+    height: 16px;
+    margin-right: 11px;
+    border-radius: 50%;
 }
 
 .select_ul li:last-child {

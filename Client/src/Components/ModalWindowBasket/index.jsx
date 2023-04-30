@@ -29,13 +29,22 @@ export function KeepMountedModal() {
                 "price": '1000',
                 "img_url": "https://wowin.ua/image/cache/catalog/easyphoto/326/P1/monolith_61-702x467.jpg",
                 "id": "00110010",
+                "color": [
+                    'red',
+                    'black',
+                    'yellow'
+                ],
+                "materials":[
+                    'дуб',
+                    'береза'
+                ],
                 "category": "tires",
 
             },
             {
                 "name": "Ліжко-диван прямий Меблі Прогрес Кельн темно-сірий темно-сірий 1520x920x890 мм",
                 "decription": "бла-бла-бла-бла",
-                "price": '12 246',
+                "price": '12226',
                 "img_url": "https://wowin.ua/image/cache/catalog/easyphoto/492/P2/alabama_light_grey-702x467.jpg",
                 "id": "11001441",
                 "category": "tires",
@@ -68,6 +77,19 @@ export function KeepMountedModal() {
 
 
     const [stateBasket, setBasket] = useState(state.products)
+    const sumTo = () => {
+        let i = []
+        const numArry = stateBasket.map(({ price }) => {
+            let n = Number(price)
+            i.push(n)
+        })
+        let initialValue = 0;
+        const sum = i.reduce((accumulator, currentValue) => accumulator + currentValue,
+            initialValue
+        );
+        return sum
+
+    }
     return (
         <div>
             <Button onClick={handleOpen} >Open modal</Button>
@@ -91,11 +113,11 @@ export function KeepMountedModal() {
 
                             <hr style={{ background: '#007042', height: 2, border: 'none' }}></hr>
                             <div className='sum'>
-                                <p>Всього у кошику {stateBasket.length} товари на суму <span>{stateBasket.map(()=>{})} грн</span></p>
+                                <p>Всього у кошику {stateBasket.length} товари на суму <span>{sumTo()} грн</span></p>
 
                             </div>
                         </div>
-                        <div className='footer'><h3>продовжити покупки</h3> <Button>Оформити замовлення</Button></div>
+                        <div className='button-order'><h3>продовжити покупки</h3> <Button>Оформити замовлення</Button></div>
                     </div> : <h1 style={{ margin: '0 auto', width: 200 }}> товарів немає </h1>}
                 </Box>
             </Modal>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './dropListStyle.css'
-function DropList({ name, color }) {
+function DropList({ nameType, upholstery }) {
+
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState('');
+    const [selectedItem, setSelectedItem] = useState({ text: 'оберіть колір', color: '' });
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -10,21 +11,20 @@ function DropList({ name, color }) {
 
     const handleItemClick = (event) => {
         const clickedItem = event.target.textContent;
-        setSelectedItem(clickedItem);
+        const div = event.target.querySelector('div')
+        setSelectedItem({ text: clickedItem, color: div.style.background });
         setIsOpen(false);
     }
 
     return (
-        <div  className={`dropdown ${isOpen ? 'active' : ''}`} >
+        <div className={`dropdown ${isOpen ? 'active' : ''}`} >
             <div className={`default_option ${isOpen ? 'active' : ''}`} onClick={toggleDropdown}>
-                <p> {selectedItem || 'Select an option'}</p>
+                <p>{selectedItem.color ? <div style={{ background: selectedItem.color }}></div> : ''} {selectedItem.text || selectedItem.text}</p>
 
             </div>
             {isOpen ? <ul className={`select_ul ${isOpen ? 'active' : ''}`}>
-                <li onClick={handleItemClick}>Option 1</li>
-                <li onClick={handleItemClick}>Option 2</li>
-                <li onClick={handleItemClick}>Option 3</li>
-                
+
+                <li onClick={handleItemClick}><div style={{ background: selectedItem.color ? selectedItem.color : 'red' }}></div>option</li>
             </ul> : ''}
 
         </div>

@@ -1,6 +1,5 @@
 const useStyles = {
     root: {
-        margin: '55px 11.5px 77px',
         maxWidth: 282,
         width: 282,
         height: '300px',
