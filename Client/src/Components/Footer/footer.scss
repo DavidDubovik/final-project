@@ -36,6 +36,7 @@
 
 .input-button {
   display: flex;
+  position: relative;
 }
 
 .input {
@@ -43,7 +44,7 @@
   width: 272.67px;
   height: 32px;
   border: none;
-  position: relative;
+  // position: relative;
 }
 
 .input::placeholder {
@@ -56,6 +57,7 @@
   border: none;
   border-radius: 0 3px 3px 0;
   right: 32px;
+  right: 0;
   background-color: #B0B6C0;
 }
 
