@@ -56,19 +56,19 @@ const LoginButton = () => {
       const social = document.querySelector(".social-icons").classList.add("autologin-error");
       errors.passwordLogin = 'Ви повинні заповнити це поле'; 
     } else if (values.passwordLogin.length > 8) { 
-      errors.passwordLogin = 'Пароль може містити максимум вісім символів!'; 
+      errors.passwordLogin = 'Пароль може містити максимум 8 символів!'; 
     }
 
     if (!values.pass) { 
       errors.pass = 'Ви повинні заповнити це поле'; 
     } else if (values.pass.length > 8) { 
-      errors.pass = 'Пароль може містити максимум вісім символів!'; 
+      errors.pass = 'Пароль може містити максимум 8 символів!'; 
     }
 
     if (!values.passConfirm) {
-      errors.password = 'Ви повинні заповнити це поле'; 
+      errors.passConfirm = 'Ви повинні заповнити це поле'; 
     } else if (values.passConfirm !== values.pass) {
-      errors.pass = 'Паролі не співпадають!';
+      errors.passConfirm = 'Паролі не співпадають!';
     }
 
     return errors;
@@ -133,7 +133,7 @@ const LoginButton = () => {
       <>
          
                <Box          
-               component={Link}  to='/'
+               component={Link}  to='#'
                sx={{display:"flex",
                  height: 57,
                  width: 122,alignItems: 'center'
@@ -187,12 +187,14 @@ const LoginButton = () => {
 
                         onChange={formik.handleChange}
 
+                        onBlur={formik.handleBlur}
+
                         value={formik.values.email}
 
                       />
 
                       {formik.errors.email ? <div className='Error'>
-                        <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1682523626/Icons/Group_v1oyxq.png" alt="error" />
+                        <img src="../../img/icons/Error.png" alt="error" />
                         {formik.errors.email}
                       </div> : null}
 
@@ -212,12 +214,14 @@ const LoginButton = () => {
 
                               onChange={formik.handleChange}
 
+                              onBlur={formik.handleBlur}
+
                               value={formik.values.passwordLogin}
 
                             />
 
                             {formik.errors.passwordLogin ? <div className='Error'>
-                              <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1682523626/Icons/Group_v1oyxq.png" alt="error" />
+                              <img src="../../img/icons/Error.png" alt="error" />
                               {formik.errors.passwordLogin}
                             </div> : null}
 
@@ -232,8 +236,8 @@ const LoginButton = () => {
                           <div className='line'></div>
                         </div>
 
-                        <button type='submit' className='facebook social-btn'><img className='picture' src='https://res.cloudinary.com/do1ybce55/image/upload/v1681839032/Social-Icons-Login/facebook_nxlgki.png'></img>Увійти через Facebook</button>
-                        <button type='submit' className='instagram social-btn'><img className='picture' src='https://res.cloudinary.com/do1ybce55/image/upload/v1681839032/Social-Icons-Login/instagram_bqzyzd.png'></img>Увійти через Instagram</button>
+                        <button type='submit' className='facebook social-btn submit-btn'><img className='picture' src='../../img/icons/facebook.png'></img>Увійти через Facebook</button>
+                        <button type='submit' className='instagram social-btn submit-btn'><img className='picture' src='../../img/icons/instagram.png'></img>Увійти через Instagram</button>
                       </div>
                   </form>
                 </div>
@@ -262,7 +266,7 @@ const LoginButton = () => {
                 />
 
                 {formik.errors.firstName ? <div className='Error'>
-                  <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1682523626/Icons/Group_v1oyxq.png" alt="error" />
+                  <img src="../../img/icons/Error.png" alt="error" />
                   {formik.errors.firstName}
                 </div> : null}
 
@@ -287,7 +291,7 @@ const LoginButton = () => {
                 />
 
                 {formik.errors.lastName ? <div className='Error'>
-                  <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1682523626/Icons/Group_v1oyxq.png" alt="error" />
+                  <img src="../../img/icons/Error.png" alt="error" />
                   {formik.errors.lastName}
                 </div> : null}
 
@@ -312,7 +316,7 @@ const LoginButton = () => {
                 />
 
                 {formik.errors.emailConfirm ? <div className='Error'>
-                  <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1682523626/Icons/Group_v1oyxq.png" alt="error" />
+                  <img src="../../img/icons/Error.png" alt="error" />
                   {formik.errors.emailConfirm}
                 </div> : null}
 
@@ -337,7 +341,7 @@ const LoginButton = () => {
                       />
 
                       {formik.errors.pass ? <div className='Error'>
-                        <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1682523626/Icons/Group_v1oyxq.png" alt="error" />
+                        <img src="../../img/icons/Error.png" alt="error" />
                         {formik.errors.pass}
                       </div> : null}
 
@@ -362,7 +366,7 @@ const LoginButton = () => {
                       />
 
                       {formik.errors.passConfirm ? <div className='Error'>
-                        <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1682523626/Icons/Group_v1oyxq.png" alt="error" />
+                        <img src="../../img/icons/Error.png" alt="error" />
                         {formik.errors.passConfirm}
                       </div> : null}
 
