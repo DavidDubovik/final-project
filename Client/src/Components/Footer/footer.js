@@ -28,6 +28,9 @@ export default function Footer() {
                                 <li><Link to="#">Про нас</Link></li>
                                 <li><Link to="#">Партнерам</Link></li>
                                 <li><Link to="#">Вакансії</Link></li>
+                                <li><a href="/#">Про нас</a></li>
+                                <li><a href="/#">Партнерам</a></li>
+                                <li><a href="/#">Вакансії</a></li>
                             </ul>
                         </div>
                         <div className="row">
@@ -37,6 +40,10 @@ export default function Footer() {
                                 <li><Link to="#">Оплата та доставка</Link></li>
                                 <li><Link to="#">Обмін та повернення</Link></li>
                                 <li><Link to="#">Кредит та оплата частинами</Link></li>
+                                <li><a href="/#">Гарантія</a></li>
+                                <li><a href="/#">Оплата та доставка</a></li>
+                                <li><a href="/#">Обмін та повернення</a></li>
+                                <li><a href="/#">Кредит та оплата частинами</a></li>
                             </ul>
                         </div>
                         <div className="row">
@@ -60,7 +67,8 @@ export default function Footer() {
                                 <h4 className="row-info-text">Стежте за нами</h4>
                                 <Link to="#"><img className="img-insta" src={insta} alt=""/></Link>
                                 <Link to="#"> <img src={facebook} alt=""/></Link>
-
+                                <a href="/#"><img className="img-insta" src={insta} alt=""/></a>
+                                <a href="/#"> <img src={facebook} alt=""/></a>
                             </div>
                         </div>
                     </div>

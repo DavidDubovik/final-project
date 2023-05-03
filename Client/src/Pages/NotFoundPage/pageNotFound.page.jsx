@@ -1,11 +1,14 @@
 import React from 'react';
+import { ReactComponent as PageNotFoundSVG } from "./404 Error with a cute animal-bro.svg";
+import Box from '@mui/material/Box';
 
 
 function PageNotFound(props) {
     return (
-         <div>
-            <h1>Page not found</h1>
-        </div>
+         <Box sx={{mx:'auto',maxWidth: 'lg'}}>
+            
+            <PageNotFoundSVG/>
+        </Box>
     );
 }
 

@@ -1,0 +1,57 @@
+.popular-categories__item {
+    width: 690px;
+    height: 400px;
+    margin-right: 20px;
+    &:nth-child(even)
+    {margin-right: 0;}
+    margin-bottom: 40px;
+    position: relative;
+    color: white;
+    &-img {
+        z-index: 0;
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    &-title {
+        z-index: 100;
+        position: absolute;
+        left: 25px;
+        top: 150px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 110%;
+    }
+    &-description {
+        z-index: 100;
+        position: absolute;
+        left: 25px;
+        top: 200px;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 140%;
+        max-width: 320px;
+    }
+    &-button {
+        border: none;
+        z-index: 100;
+        left: 25px;
+        top: 300px;
+        position: absolute;
+        padding: 10px 25px;
+        background: #FFFFFF;
+        border-radius: 3px;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 105.5%;
+        letter-spacing: 0.02em;
+        color: #007042;
+        cursor: pointer;
+    }
+}

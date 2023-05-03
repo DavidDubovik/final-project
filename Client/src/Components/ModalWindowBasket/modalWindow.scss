@@ -1,0 +1,253 @@
+.product {
+    margin-left: 25px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+
+    & a {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.94vw;
+        line-height: 96.5%;
+        text-align: center;
+        margin-left: 3.85vw;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        color: #007042;
+    }
+
+    & h1 {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.35vw;
+        line-height: 180%;
+        text-align: center;
+        color: #2E3438;
+    }
+
+}
+
+.button-order {
+    display: flex;
+    margin-top: 52px;
+
+    & button {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 0.83vw;
+        line-height: 96.5%;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        background: #007042;
+        border-radius: 3px;
+        flex: 1 2 100px;
+
+        // margin-left: 19.38vw;
+        &:hover {
+            background: #007042;
+            opacity: 0.8;
+        }
+    }
+
+
+
+    & h3 {
+        flex: 1 1 26.04vw;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 96.5%;
+        letter-spacing: 0.03em;
+        text-transform: capitalize;
+        color: #007042;
+    }
+}
+
+.cardProduct {
+    display: flex;
+    align-items: center;
+
+}
+
+.basket-product {
+    overflow: auto;
+    height: 360px;
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #7b7d7f;
+        border: 5px solid #fff;
+        border-radius: 10rem;
+    }
+
+    &::-webkit-scrollbar {
+        width: 15px;
+    }
+
+
+}
+
+.name-product {
+    width: 131px;
+
+    & h3 {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 160%;
+        color: #000000;
+        margin: 0;
+    }
+
+    & span {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 160%;
+        color: #57646E;
+    }
+}
+
+.text-price {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 160%;
+    color: #000000;
+    flex: 1 1 100px;
+    text-align: end;
+}
+
+.color,
+.Upholstery {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: #000000;
+    border: 1px solid #D3D7DA;
+    border-radius: 3px;
+    width: 179.1px;
+    height: 31.58px;
+    margin: 0 30px;
+    outline: none;
+    cursor: pointer;
+
+
+}
+
+
+
+
+.dagger {
+    transform: rotate(45deg);
+    background: none;
+    border: none;
+    color: #A0A9AF;
+    font-size: 40px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.numberProduct {
+    width: 115px;
+    display: flex;
+    border-radius: 3px;
+    height: 31.82px;
+    border: 2px solid #E0E1E2;
+    background-color: #FFFFFF;
+
+
+    & button {
+        padding: 5px 11px;
+        color: #57646E;
+        background: #E0E1E2;
+        border: none;
+        font-size: 20px;
+    }
+
+    & button:hover {
+        background: #bfbfc0;
+    }
+
+    & input {
+        cursor: auto;
+        text-align: center;
+        width: 25px;
+        font-size: 16px;
+        border: none;
+        background-color: #FFFFFF;
+        color: #2E3438;
+        outline: none;
+        position: relative;
+
+    }
+
+    & lable {
+        display: flex;
+        align-items: center;
+    }
+
+    & span {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 1px;
+        text-align: center;
+        color: #A0A9AF;
+        padding-right: 8px;
+    }
+
+    & input::after {
+        content: 'шт';
+        position: absolute;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 1px;
+        text-align: center;
+        color: #A0A9AF;
+     
+
+    }
+}
+
+.sum {
+    width: 967px;
+    margin-top: 35px;
+
+    & p {
+        text-align: end;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 160%;
+        color: #000000;
+
+        & span {
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 160%;
+        }
+    }
+}
+
+.select {
+    height: 35px;
+    display: flex;
+}
