@@ -15,7 +15,6 @@ const useStyles = {
         position: 'absolute',
         right: -14,
         top: -10,
-        top: -7,
 
     },
     discount: {
