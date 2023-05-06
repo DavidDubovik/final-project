@@ -13,6 +13,9 @@ import { KeepMountedModal } from "../../ModalWindowBasket";
 
 const MidleMenu = () => {
     const dispatch = useDispatch()
+    const basket = useSelector(state => {
+        return state.products.basket
+    })
     return (
         <>
             <Box sx={{ justifyContent: 'space-between', pt: 2.5, pb: 2.5, display: 'flex', alignItems: 'center', textAlign: 'center', fontFamily: 'Open Sans', mx: 'auto', maxWidth: 'lg', flexWrap: 'wrap' }}>
@@ -32,7 +35,7 @@ const MidleMenu = () => {
                 <SearchBar />
                 <LoginButton />
                 <IconButton aria-label="add to shopping cart"  >
-                    <Badge badgeContent="3" color="primary">
+                    <Badge badgeContent={basket.length} color="primary">
                         <KeepMountedModal />
                         <ShoppingCartOutlinedIcon fontSize='large' sx={{ color: "#57646E" }} onClick={() => { dispatch({ type: 'OPEN_MODAL' }) }} />
                     </Badge>

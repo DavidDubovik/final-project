@@ -3,7 +3,7 @@
     border: 1px solid #D3D7DA;
     border-radius: 3px;
     position: relative;
-    margin: 0 25px;
+    margin: 0 20px;
 }
 
 .dropdown.active {
@@ -51,16 +51,12 @@
 }
 
 .select_ul {
-    /* position: absolute; */
     right: 0;
-    /* width: 100px; */
     list-style: none;
     z-index: 3;
     background: #fff;
     border-radius: 5px;
-    padding: 0 7px;
     margin: 0;
-
 }
 
 .select_ul li {

@@ -33,7 +33,8 @@
 
 .button-order {
     display: flex;
-    margin-top: 52px;
+    margin-top: 50px;
+    align-items: center;
 
     & button {
         font-family: 'Roboto';
@@ -41,6 +42,7 @@
         font-weight: 700;
         font-size: 0.83vw;
         line-height: 96.5%;
+        padding: 15px;
         letter-spacing: 0.03em;
         text-transform: uppercase;
         color: #FFFFFF;
@@ -57,7 +59,7 @@
 
 
 
-    & h3 {
+    & a {
         flex: 1 1 26.04vw;
         font-family: 'Roboto';
         font-style: normal;
@@ -125,6 +127,16 @@
     color: #000000;
     flex: 1 1 100px;
     text-align: end;
+    margin-right: 5px;
+
+    & p {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 160%;
+        color: #A0A9AF;
+    }
 }
 
 .color,
@@ -155,6 +167,7 @@
     border: none;
     color: #A0A9AF;
     font-size: 40px;
+    cursor: pointer;
 
     &:hover {
         opacity: 0.8;
@@ -162,7 +175,7 @@
 }
 
 .numberProduct {
-    width: 115px;
+    width: 111px;
     display: flex;
     border-radius: 3px;
     height: 31.82px;
@@ -221,7 +234,7 @@
         line-height: 1px;
         text-align: center;
         color: #A0A9AF;
-     
+
 
     }
 }

@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import "./modalWindow.scss";
 import { useDispatch, useSelector } from "react-redux";
-import Product from './basket';
+import { CardProduct } from './cardProduct'
 
 const styleBox = {
     position: 'absolute',
@@ -32,7 +32,6 @@ export function KeepMountedModal() {
         dispatch({ type: 'BASKET' })
 
     })
-    console.log(basket);
 
     const sumTo = () => {
         let i = []
@@ -47,6 +46,7 @@ export function KeepMountedModal() {
         return sum
 
     }
+    const [saveAllPrice, setSaveAllPrice] = useState(0)
     return (
         <div>
             <Modal
@@ -63,17 +63,21 @@ export function KeepMountedModal() {
                         <div className='main'>
 
                             <div className='basket-product'>
+                                {basket.map(({ name, id, price, img_url, color, materials }) => {
 
-                                <Product basket={basket} />
+                                    return (
+                                        <CardProduct id={id} name={name} price={price} img_url={img_url} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} />
+                                    )
+                                })}
                             </div>
 
                             <hr style={{ background: '#007042', height: 2, border: 'none' }}></hr>
                             <div className='sum'>
-                                <p>Всього у кошику {basket.length} товари на суму <span>{sumTo()} грн</span></p>
+                                <p>Всього у кошику {basket.length} товари на суму <span>{saveAllPrice} грн</span></p>
 
                             </div>
                         </div>
-                        <div className='button-order'><h3>продовжити покупки</h3> <Button>Оформити замовлення</Button></div>
+                        <div className='button-order'><a href='#'>продовжити покупки</a> <Button>Оформити замовлення</Button></div>
                     </div> : <h1 style={{ margin: '0 auto', width: 200, fontSize: 30 }}> товарів немає </h1>}
                 </Box>
             </Modal>

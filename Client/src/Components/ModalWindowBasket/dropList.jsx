@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './dropListStyle.css'
 function DropList({ nameType, upholstery }) {
-
+// console.log(nameType);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState({ text: 'оберіть колір', color: '' });
 
@@ -24,7 +24,7 @@ function DropList({ nameType, upholstery }) {
             </div>
             {isOpen ? <ul className={`select_ul ${isOpen ? 'active' : ''}`}>
 
-                <li onClick={handleItemClick}><div style={{ background: selectedItem.color ? selectedItem.color : 'red' }}></div>option</li>
+                <li onClick={handleItemClick}><div style={{ background: selectedItem.color ? selectedItem.color : 'red' }}></div>open</li>
             </ul> : ''}
 
         </div>
