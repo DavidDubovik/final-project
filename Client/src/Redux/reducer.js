@@ -51,11 +51,17 @@ const initialState = {
     isModal: false
 }
 export default function reducer(state = initialState, action) {
-    switch (action.type) {
+    const {type,payload} = action;
+
+    switch (type) {
         case 'OPEN_MODAL':
             return { ...state, isModal: !state.isModal }
         case 'BASKET':
             return { ...state, basket: state.products }
+        case 'ADD_TO_BASKET':
+            return { ...state, basket: [...state.basket, payload] }
+        default:
+            return state
     }
     return { ...state }
 }
