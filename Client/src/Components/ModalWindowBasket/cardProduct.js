@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DropList from './dropList';
-export const CardProduct = ({ name, id, price, img_url, allPrice, setAllPrice }) => {
-    const [count, setCount] = useState(1)
+export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, color, item, quantiy }) => {
+    const [count, setCount] = useState(quantiy ? quantiy : 1)
 
     const inc = () => {
         if (count <= 9) {
@@ -21,19 +21,22 @@ export const CardProduct = ({ name, id, price, img_url, allPrice, setAllPrice })
         // setAllPrice(allPrice + +price)
         setAllPrice(currentAllPrice => currentAllPrice + +price)
     }, [])
+    useEffect(() => {
+        setAllPrice(currentAllPrice => currentAllPrice + +price)
+    }, [quantiy])
     return (
         <div>
             <div className='cardProduct'>
                 <button className='dagger'>+</button>
-                <img src={img_url} alt="#" width="100" height="100" />
+                <img src={imageUrls} alt="#" width="100" height="100" />
                 <div className='name-product'>
                     <h3>{name.substring(0, 25)}</h3>
                     <span>Код:{id}</span>
                 </div>
                 <div className='select'>
-                    <div>  <DropList nameType={''} /></div>
+                    <div>  <DropList colorType={color} /></div>
 
-                    <div>  <DropList upholstery={''} /></div>
+                    <div>  <DropList upholstery={item} /></div>
                 </div>
                 <div className='numberProduct'>
                     <button id='decrement' onClick={() => dec()}>-</button>
