@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './dropListStyle.css'
-function DropList({ nameType, upholstery }) {
-// console.log(nameType);
+function DropList({ colorType, upholstery, colorValue }) {
+    // console.log(nameType);
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState({ text: 'оберіть колір', color: '' });
+    const [selectedItem, setSelectedItem] = useState({ text: 'оберіть колір', color: colorValue ? colorValue : '' });
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -15,19 +15,44 @@ function DropList({ nameType, upholstery }) {
         setSelectedItem({ text: clickedItem, color: div.style.background });
         setIsOpen(false);
     }
-
+    const Li = () => {
+        return (
+            colorType ? colorType.map((color) => {
+                return (
+                    <li onClick={handleItemClick}><div style={{ display: 'none' }}></div>{color}</li>
+                )
+            })
+                : ''
+        )
+    }
+    const LiUpholstery = () => {
+        return (
+            upholstery ? upholstery.map((color) => {
+                return (
+                    <li onClick={handleItemClick}><div style={{ display: 'none' }}></div>{color}</li>
+                )
+            })
+                : '-'
+        )
+    }
     return (
-        <div className={`dropdown ${isOpen ? 'active' : ''}`} >
-            <div className={`default_option ${isOpen ? 'active' : ''}`} onClick={toggleDropdown}>
-                <p>{selectedItem.color ? <div style={{ background: selectedItem.color }}></div> : ''} {selectedItem.text || selectedItem.text}</p>
+        <>
+            {colorType || upholstery ? <div className={`dropdown ${isOpen ? 'active' : ''}`} >
+                <div className={`default_option ${isOpen ? 'active' : ''}`} onClick={toggleDropdown}>
+                    <p>{selectedItem.color ? <div style={{ background: selectedItem.color }}></div> : ''} {selectedItem.text || selectedItem.text}</p>
 
-            </div>
-            {isOpen ? <ul className={`select_ul ${isOpen ? 'active' : ''}`}>
+                </div>
+                {
+                    isOpen ? <ul className={`select_ul ${isOpen ? 'active' : ''}`}>
 
-                <li onClick={handleItemClick}><div style={{ background: selectedItem.color ? selectedItem.color : 'red' }}></div>open</li>
-            </ul> : ''}
+                        {colorType ? <Li /> : <LiUpholstery />}
+                        {/* <li onClick={handleItemClick}><div style={{ background: selectedItem.color ? selectedItem.color : 'red' }}></div>few</li> */}
+                    </ul> : ''
+                }
 
-        </div>
+            </div > : <div className='line' > <p>____</p></div>}
+        </>
+
     );
 }
 export default DropList
