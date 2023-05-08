@@ -1,4 +1,5 @@
 const initialState = {
+
   products: [
     {
       name: "Стілець обідній Юля горіх темний/сірий",
@@ -58,4 +59,3 @@ export default function reducer(state = initialState, action) {
     default:
       return state;
   }
-}

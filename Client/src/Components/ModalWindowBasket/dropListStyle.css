@@ -6,6 +6,22 @@
     margin: 0 20px;
 }
 
+.line {
+    width: 199.1px;
+    margin: 0 21px;
+}
+
+.line p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    text-align: center;
+    color: #000000;
+
+}
+
 .dropdown.active {
     z-index: 3;
 }
