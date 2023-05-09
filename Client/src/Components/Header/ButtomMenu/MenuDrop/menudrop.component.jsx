@@ -18,9 +18,10 @@ const MenuDrop = ({mList}) => {
     const handleClose = () => {
       setAnchorEl(null);
     };
-  
+   
     return (
-        <Box onMouseEnter={handleClick}  component={NavLink} to={mList.path} >
+        <Box onMouseClick={handleClick}  
+        component={NavLink} to={mList.path}  >
           <Button
             id="fade-button"
             aria-controls={open ? 'fade-menu' : undefined}
@@ -28,9 +29,6 @@ const MenuDrop = ({mList}) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             
-            
-            
-
           ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
          
           </Button>
@@ -39,14 +37,13 @@ const MenuDrop = ({mList}) => {
             MenuListProps={{
               'aria-labelledby': 'fade-button'
             }}
-           
             anchorEl={anchorEl}
             open={open}
-            onClose={handleClose}
+            
             TransitionComponent={Fade} 
           >
           {submenues.map(el=><MenuItem sx={{'&:hover, active':{
-            color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} key={uuidv4()} component={NavLink} to={el.path} onMouseLeave={handleClose}>{el.title}</MenuItem>)}
+            color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} key={uuidv4()}  component={NavLink} to={el.path} >{el.title}</MenuItem>)}
          
           </Menu>
 
