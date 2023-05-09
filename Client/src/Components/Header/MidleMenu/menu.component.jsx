@@ -24,13 +24,15 @@ const MidleMenu = () => {
                     "fontFamily": 'Open Sans',
                     "fontWeight": "700",
                     "fontSize": "18px",
-                    "color": "#2E3438"
+                    "color": "#2E3438",
+                    display:{sm:'none',md:'block'}
                 }}>(093) 170-78-81</Typography>
                 <Typography sx={{
                     "fontFamily": 'Open Sans',
                     "fontWeight": "700",
                     "fontSize": "18px",
-                    "color": "#2E3438"
+                    "color": "#2E3438",
+                    display:{sm:'none',md:'block'}
                 }}>(093) 170-83-23</Typography>
                 <SearchBar />
                 <LoginButton />
