@@ -13,7 +13,7 @@ export class ChairsItem extends Component {
             <img src={this.props.chair.imageUrls[0]} alt="" />
         </div>
         <p className='chair__title'>
-            {this.props.chair.name}
+            {this.props.chair.name.substring(0,28) +"..."}
         </p>
         </Link>
         <p className='chair__price'>{this.props.chair.currentPrice} <span className='chair__currency'>грн</span></p>

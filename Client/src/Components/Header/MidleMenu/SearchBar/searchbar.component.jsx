@@ -25,8 +25,13 @@ const SearchBar = () => {
     >
       <InputBase
         onKeyPress={(ev) =>
-          {ev.code === "Enter" && ev.preventDefault()
-          navigate(`/search/${searchQuery}`)}
+          {if (ev.code === "Enter"){
+            ev.preventDefault()
+            navigate(`/search/${searchQuery}`)
+            ev.target.value =""
+          }
+
+        }
           
         }
         onSubmit={e => { e.preventDefault(); }}
