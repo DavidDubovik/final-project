@@ -32,7 +32,7 @@ const AllProducts = (props) => {
     else {
     fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))}
 
-  },[categorie]);
+  },[categorie,query]);
   return (
     <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <main>
