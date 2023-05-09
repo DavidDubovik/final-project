@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './PopularCategoriesItem.scss';
 import { NavLink } from "react-router-dom";
 
 const PopularCategoriesItem =({item})=> {
 
     return (
-      <div className='popular-categories__item'  component={NavLink} to={item.link}>
+      <div className='popular-categories__item'  >
         <img className='popular-categories__item-img' src={"./img/" + item.img} alt="" />
         <h2 className='popular-categories__item-title'>{item.title}</h2>
         <p className='popular-categories__item-description'>{item.desc}</p>
-        <button className='popular-categories__item-button' >{item.info}</button>
+        <NavLink className='popular-categories__item-button'  to={item.link}>{item.info}</NavLink>
       </div>
     )
 
