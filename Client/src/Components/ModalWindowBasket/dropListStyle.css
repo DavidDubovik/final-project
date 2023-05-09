@@ -24,6 +24,12 @@
 
 .dropdown.active {
     z-index: 3;
+    height: 115px;
+    overflow: auto;
+}
+
+.dropdown.active::-webkit-scrollbar {
+    width: 0;
 }
 
 .default_option {
@@ -31,6 +37,8 @@
     background: #fff;
     border-radius: 5px;
     cursor: pointer;
+    position: sticky;
+    top: 0;
 }
 
 .default_option p div {

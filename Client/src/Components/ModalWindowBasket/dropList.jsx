@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './dropListStyle.css'
-function DropList({ colorType, upholstery }) {
+function DropList({ colorType, upholstery, colorValue }) {
     // console.log(nameType);
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState({ text: 'оберіть колір', color: '' });
+    const [selectedItem, setSelectedItem] = useState({ text: 'оберіть колір', color: colorValue ? colorValue : '' });
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -25,7 +25,7 @@ function DropList({ colorType, upholstery }) {
                 : ''
         )
     }
-    const LiOr = () => {
+    const LiUpholstery = () => {
         return (
             upholstery ? upholstery.map((color) => {
                 return (
@@ -35,7 +35,6 @@ function DropList({ colorType, upholstery }) {
                 : '-'
         )
     }
-    console.log(colorType);
     return (
         <>
             {colorType || upholstery ? <div className={`dropdown ${isOpen ? 'active' : ''}`} >
@@ -46,7 +45,7 @@ function DropList({ colorType, upholstery }) {
                 {
                     isOpen ? <ul className={`select_ul ${isOpen ? 'active' : ''}`}>
 
-                        {colorType ? <Li /> : <LiOr />}
+                        {colorType ? <Li /> : <LiUpholstery />}
                         {/* <li onClick={handleItemClick}><div style={{ background: selectedItem.color ? selectedItem.color : 'red' }}></div>few</li> */}
                     </ul> : ''
                 }

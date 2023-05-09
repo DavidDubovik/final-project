@@ -24,28 +24,13 @@ export function KeepMountedModal() {
     const basket = useSelector(state => {
         return state.products.basket
     })
+    useEffect(() => {
+        localStorage.setItem('basket', JSON.stringify([basket]))
+    }, [basket])
+    console.log(basket);
     const modalOpen = useSelector(state => {
         return state.products.isModal
     })
-
-    useEffect(() => {
-        dispatch({ type: 'BASKET' })
-
-    })
-
-    const sumTo = () => {
-        let i = []
-        const numArry = basket.map(({ price }) => {
-            let n = Number(price)
-            i.push(n)
-        })
-        let initialValue = 0;
-        const sum = i.reduce((accumulator, currentValue) => accumulator + currentValue,
-            initialValue
-        );
-        return sum
-
-    }
     const [saveAllPrice, setSaveAllPrice] = useState(0)
     return (
         <div>
@@ -63,10 +48,10 @@ export function KeepMountedModal() {
                         <div className='main'>
 
                             <div className='basket-product'>
-                                {basket.map(({ name, id, currentPrice, imageUrls, colors, itemNo, selectedQuantiy }) => {
+                                {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, obivka, counter }) => {
 
                                     return (
-                                        <CardProduct id={id} name={name} price={currentPrice} imageUrls={imageUrls} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} color={colors} item={itemNo} quantiy={selectedQuantiy} />
+                                        <CardProduct id={itemNo} name={name} price={currentPrice} Obivka={obivka} imageUrls={imageUrls} defoltColor={color} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} colorsProduct={colors} item={itemNo} quantiy={counter} />
                                     )
                                 })}
                             </div>
