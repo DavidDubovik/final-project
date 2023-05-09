@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {useParams } from 'react-router-dom';
 import Slider from "@mui/material/Slider";
 import ChairsItems from "../ChairsItems/ChairsItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
@@ -6,12 +7,15 @@ import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import "./Chairs.scss";
 
 const AllProducts = () => {
-  
+  const { categorie } = useParams();
   const [products, setProduct] = useState(null);
+  console.log(categorie);
   useEffect(() => {
-    fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))
+    if (categorie) { fetch(`/api/products/filter?categories=${categorie}`).then(res=>res.json()).then(data=>setProduct(data.products))}
+    else {
+    fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))}
 
-  },"");
+  },[categorie]);
   return (
     <div className="wrapper">
       <main>
