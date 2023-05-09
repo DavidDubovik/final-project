@@ -24,6 +24,7 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
             <Route path="/products" element={<AllProducts />} />
             <Route path="/:categorie" element={<AllProducts />} />
+            <Route path="/search/:query" element={<AllProducts />} />
           </Route>
         </Routes>
       </Provider>

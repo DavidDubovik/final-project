@@ -8,10 +8,27 @@ import Box from '@mui/material/Box';
 import "./Chairs.scss";
 
 const AllProducts = (props) => {
-  const { categorie } = useParams();
+  const { categorie, query } = useParams();
+  
   const [products, setProduct] = useState(null);
+ 
   useEffect(() => {
     if (categorie) { fetch(`/api/products/filter?categories=${categorie}`).then(res=>res.json()).then(data=>setProduct(data.products))}
+    else if (query) { 
+       
+      const response = async () => {
+      const res = await fetch(`/api/products/search`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({query: query})
+    }).then(res=>res.json())
+    setProduct(res)
+    }
+    response()
+  }
     else {
     fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))}
 
