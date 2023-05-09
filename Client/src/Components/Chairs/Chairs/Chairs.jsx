@@ -7,10 +7,9 @@ import Box from '@mui/material/Box';
 
 import "./Chairs.scss";
 
-const AllProducts = () => {
+const AllProducts = (props) => {
   const { categorie } = useParams();
   const [products, setProduct] = useState(null);
-  console.log(categorie);
   useEffect(() => {
     if (categorie) { fetch(`/api/products/filter?categories=${categorie}`).then(res=>res.json()).then(data=>setProduct(data.products))}
     else {
