@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -59,7 +60,7 @@ export function KeepMountedModal() {
                 <Box sx={styleBox}>
 
                     {basket.length ? <div className='product'>
-                        <div className='header'><h1>Товар доданий у кошик</h1> <a href="/">Перейти у кошик</a></div>
+                        <div className='header'><h1>Товар доданий у кошик</h1> <Link to="/cart-page">Перейти у кошик</Link></div>
                         <div className='main'>
 
                             <div className='basket-product'>

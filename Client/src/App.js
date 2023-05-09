@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from './Components/Layout/layout.component';
 import Home from './Pages/Home/home.page';
@@ -9,6 +8,7 @@ import OneProduct from "./Pages/OneProduct/OneProduct.component";
 import store from './Redux/store';
 import './App.css';
 import { Provider } from "react-redux";
+import CartPage from "./Pages/Cart-page/CartPage";
 
 import AllProducts from "./Components/Chairs/Chairs/Chairs";
 function App() {
@@ -19,6 +19,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path='/aboutus' element={<AboutUs />} />
+            <Route path='/cart-page' element={<CartPage />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/products/:id" element={<OneProduct />} />
             <Route path="*" element={<PageNotFound />} />
