@@ -3,6 +3,7 @@ import {useParams } from 'react-router-dom';
 import Slider from "@mui/material/Slider";
 import ChairsItems from "../ChairsItems/ChairsItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
+import Box from '@mui/material/Box';
 
 import "./Chairs.scss";
 
@@ -17,7 +18,7 @@ const AllProducts = () => {
 
   },[categorie]);
   return (
-    <div className="wrapper">
+    <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <main>
         <div className="pageCategories, left">
           <h2>Cтільці кухонні</h2>
@@ -153,7 +154,7 @@ const AllProducts = () => {
           
         </div>
       </main>
-    </div>
+    </Box>
   );
 };
 export default AllProducts;
