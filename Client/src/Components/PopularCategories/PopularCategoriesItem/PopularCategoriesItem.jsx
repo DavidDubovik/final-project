@@ -1,23 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './PopularCategoriesItem.scss';
+import { NavLink } from "react-router-dom";
 
-export class PopularCategoriesItem extends Component {
+const PopularCategoriesItem =({item})=> {
 
-    info() {
-        console.log('info')
-    }
-
-  
-  render() {
     return (
-      <div className='popular-categories__item'>
-        <img className='popular-categories__item-img' src={"./img/" + this.props.item.img} alt="" />
-        <h2 className='popular-categories__item-title'>{this.props.item.title}</h2>
-        <p className='popular-categories__item-description'>{this.props.item.desc}</p>
-        <button className='popular-categories__item-button' onClick={() => this.info()}>{this.props.item.info}</button>
+      <div className='popular-categories__item'  >
+        <img className='popular-categories__item-img' src={"./img/" + item.img} alt="" />
+        <h2 className='popular-categories__item-title'>{item.title}</h2>
+        <p className='popular-categories__item-description'>{item.desc}</p>
+        <NavLink className='popular-categories__item-button'  to={item.link}>{item.info}</NavLink>
       </div>
     )
-  }
+
 }
 
 export default PopularCategoriesItem

@@ -23,6 +23,7 @@ function App() {
             <Route path="/products/:id" element={<OneProduct />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/products" element={<AllProducts />} />
+            <Route path="/:categorie" element={<AllProducts />} />
           </Route>
         </Routes>
       </Provider>
