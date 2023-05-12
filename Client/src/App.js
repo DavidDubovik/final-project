@@ -10,7 +10,7 @@ import './App.css';
 import { Provider } from "react-redux";
 import CartPage from "./Pages/Cart-page/CartPage";
 
-import AllProducts from "./Components/Chairs/Chairs/Chairs";
+import AllProducts from "./Components/Furniture/Furniture/Furniture";
 function App() {
   return (
     <div className="App">

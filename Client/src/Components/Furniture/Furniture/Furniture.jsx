@@ -1,38 +1,76 @@
 import React, { useEffect, useState } from "react";
 import {useParams } from 'react-router-dom';
 import Slider from "@mui/material/Slider";
-import ChairsItems from "../ChairsItems/ChairsItems";
+import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import Box from '@mui/material/Box';
 
-import "./Chairs.scss";
+import "./Furniture.scss";
+import Filter from "../Filter/Filter";
+import Pagination from "../Pagination/Pagination";
 
 const AllProducts = (props) => {
   const { categorie, query } = useParams();
-  
-  const [products, setProduct] = useState(null);
+
+  const [products, setProduct] = useState([]);
+  const [sortType] = useState({});
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(3)
+
+  const lastIndex = currentPage * productsPerPage;
+  const firstIndex = lastIndex - productsPerPage;
+  const currentFurniture = products.slice(firstIndex, lastIndex)
+
+
+  const sortAscending = () => {
+    const sortedProducts = [...products].sort((a, b) => a.currentPrice - b.currentPrice);
+    setProduct(sortedProducts);
+  };
+
+  const sortDescending = () => {
+    const sortedProducts = [...products].sort((a, b) => b.currentPrice - a.currentPrice);
+    setProduct(sortedProducts);
+  };
+
+  const sortName = () => {
+    const sortedProducts = [...products].sort((a, b) => {
+      return a.name.localeCompare(b.name);
+    });
+    setProduct(sortedProducts);
+  };
+
+  const paginate = (pageNumber) =>  setCurrentPage(pageNumber)
+  const prevPage = () =>  setCurrentPage(prev => prev -1)
+  const nextPage = () =>  setCurrentPage(next => next +1)
  
   useEffect(() => {
-    if (categorie) { fetch(`/api/products/filter?categories=${categorie}`).then(res=>res.json()).then(data=>setProduct(data.products))}
-    else if (query) { 
-       
+    if (categorie) { 
+      fetch(`/api/products/filter?categories=${categorie}`)
+        .then(res=>res.json())
+        .then(data=>setProduct(data.products))
+    } 
+
+    if (query) { 
       const response = async () => {
       const res = await fetch(`/api/products/search`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({query: query})
-    }).then(res=>res.json())
-    setProduct(res)
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({query: query})
+      }).then(res=>res.json())
+      setProduct(res)
+      }
+      response()
     }
-    response()
-  }
     else {
-    fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))}
+      fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))
+    }
 
-  },[categorie,query]);
+  },[categorie, sortType]);
+  
   return (
     <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <main>
@@ -84,13 +122,16 @@ const AllProducts = (props) => {
             <h3>Матеріал</h3>
 
             <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
+              <input type="checkbox"></input>
               <span className="filters-checkbox__info">
                 Із суцільного дерева
               </span>
             </label>
             <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
+              <input 
+              type="checkbox"
+              name="name"
+              ></input>
               <span className="filters-checkbox__info">
                 Комбіновані (дерево + метал)
               </span>
@@ -152,25 +193,35 @@ const AllProducts = (props) => {
         <div className="pageCategories, right">
           <br />
           <div className="filter-box">
-            <label className="filter-box__title">Сортувати по: </label>
-            <select className="filter">
-              <option value="1">Filter_1</option>
-              <option value="2">Filter_2</option>
-              <option value="3">Filter_3</option>
-              <option value="4">Filter_4</option>
-            </select>
+            <Filter 
+              value={sortType} 
+              onChangeSortAscending={(i) => sortAscending(i)} 
+              onChangeSortDescending={(i) => sortDescending(i)}
+              onChangeSortName={(i) => sortName(i)}
+              />  
           </div>
-          <br />
           <br />
           {!products ? (
               <LoadingSpinner />
             ) : (
-              <ChairsItems chairs={products} />
+              <FurnitureItems furniture={currentFurniture} />
             )}
-          
+          <Pagination 
+            productsPerPage={productsPerPage}
+            totalProducts={products.length}
+            paginate={paginate}
+            prevPage={prevPage}
+            nextPage={nextPage}
+          />
+                         
         </div>
       </main>
+      
     </Box>
   );
 };
 export default AllProducts;
+
+
+
+
