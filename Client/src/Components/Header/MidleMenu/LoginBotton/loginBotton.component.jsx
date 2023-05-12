@@ -1,21 +1,21 @@
-import Box from '@mui/material/Box';
-import React from 'react';
+import Box from "@mui/material/Box";
+import React from "react";
 import { Link } from "react-router-dom";
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import { useFormik } from 'formik';
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import { useFormik } from "formik";
 
 import "./login.scss";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 387,
-  background: '#fff',
+  background: "#fff",
   p: 2,
 };
 
@@ -23,66 +23,92 @@ const LoginButton = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const myLoginFunc = async () => {
+    const userData = {
+      loginOrEmail: "customer@gmail.com",
+      password: "11112111",
+    };
+    try {
+      const res = await fetch(`api/customers/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
 
-  const validate = values => {
+      const logINres = await res.json();
+      console.log(logINres);
+    } catch (error) {
+      console.log('There was an error', error)
+    }
+  };
+
+  const validate = (values) => {
     const errors = {};
 
     if (!values.firstName) {
-      errors.firstName = 'Ви повинні заповнити це поле';
+      errors.firstName = "Ви повинні заповнити це поле";
     } else if (values.firstName.length > 15) {
-      errors.firstName = 'Має бути 15 символів або менше';
+      errors.firstName = "Має бути 15 символів або менше";
     }
- 
+
     if (!values.lastName) {
-      errors.lastName = 'Ви повинні заповнити це поле'; 
-    } else if (values.lastName.length > 20) { 
-      errors.lastName = 'Має бути 20 символів або менше!'; 
-    }
- 
-    if (!values.email) { 
-      const social = document.querySelector(".social-icons").classList.add("autologin-error");
-      errors.email = 'Ви повинні заповнити це поле'; 
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) { 
-      errors.email = 'Невірна адреса електронної пошти!'; 
+      errors.lastName = "Ви повинні заповнити це поле";
+    } else if (values.lastName.length > 20) {
+      errors.lastName = "Має бути 20 символів або менше!";
     }
 
-    if (!values.emailConfirm) { 
-      errors.emailConfirm = 'Ви повинні заповнити це поле'; 
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.emailConfirm)) { 
-      errors.emailConfirm = 'Невірна адреса електронної пошти!'; 
+    if (!values.email) {
+      const social = document
+        .querySelector(".social-icons")
+        .classList.add("autologin-error");
+      errors.email = "Ви повинні заповнити це поле";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.passwordLogin) { 
-      const social = document.querySelector(".social-icons").classList.add("autologin-error");
-      errors.passwordLogin = 'Ви повинні заповнити це поле'; 
-    } else if (values.passwordLogin.length > 8) { 
-      errors.passwordLogin = 'Пароль може містити максимум 8 символів!'; 
+    if (!values.emailConfirm) {
+      errors.emailConfirm = "Ви повинні заповнити це поле";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.emailConfirm)
+    ) {
+      errors.emailConfirm = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.pass) { 
-      errors.pass = 'Ви повинні заповнити це поле'; 
-    } else if (values.pass.length > 8) { 
-      errors.pass = 'Пароль може містити максимум 8 символів!'; 
+    if (!values.passwordLogin) {
+      const social = document
+        .querySelector(".social-icons")
+        .classList.add("autologin-error");
+      errors.passwordLogin = "Ви повинні заповнити це поле";
+    } else if (values.passwordLogin.length > 8) {
+      errors.passwordLogin = "Пароль може містити максимум 8 символів!";
+    }
+
+    if (!values.pass) {
+      errors.pass = "Ви повинні заповнити це поле";
+    } else if (values.pass.length > 8) {
+      errors.pass = "Пароль може містити максимум 8 символів!";
     }
 
     if (!values.passConfirm) {
-      errors.passConfirm = 'Ви повинні заповнити це поле'; 
+      errors.passConfirm = "Ви повинні заповнити це поле";
     } else if (values.passConfirm !== values.pass) {
-      errors.passConfirm = 'Паролі не співпадають!';
+      errors.passConfirm = "Паролі не співпадають!";
     }
 
     return errors;
   };
 
   function switchTab() {
-
     const tabs = document.querySelectorAll(".tab");
 
     const contents = document.querySelectorAll(".content");
 
     for (let i = 0; i < tabs.length; i++) {
-      tabs[i].addEventListener("click", ( event ) => {
-
+      tabs[i].addEventListener("click", (event) => {
         let tabsChildren = event.target.parentElement.children;
         for (let t = 0; t < tabsChildren.length; t++) {
           tabsChildren[t].classList.remove("tab--active");
@@ -90,299 +116,314 @@ const LoginButton = () => {
 
         tabs[i].classList.add("tab--active");
 
-        let tabContentChildren = event.target.parentElement.nextElementSibling.children;
+        let tabContentChildren =
+          event.target.parentElement.nextElementSibling.children;
         for (let c = 0; c < tabContentChildren.length; c++) {
           tabContentChildren[c].classList.remove("content--active");
         }
 
         contents[i].classList.add("content--active");
       });
-  } }
+    }
+  }
 
   const formik = useFormik({
-
     initialValues: {
+      firstName: "",
 
-      firstName: '',
+      lastName: "",
 
-      lastName: '',
+      email: "",
 
-      email: '',
+      emailConfirm: "",
 
-      emailConfirm: '',
+      passwordLogin: "",
 
-      passwordLogin: '',
+      pass: "",
 
-      pass: '',
-
-      passConfirm: ''
-
+      passConfirm: "",
     },
 
     validate,
 
-    onSubmit: values => {
-
+    onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-
     },
-
   });
-  
-    return (
-      <>
-         
-               <Box          
-               component={Link}  to='#'
-               sx={{display:"flex",
-                 height: 57,
-                 width: 122,alignItems: 'center'
-               }} alignItems="stretch">
-                
-                  <Avatar sx={{ width: 36, height: 36,border:"2px solid #57646E",backgroundColor:"white",color:"#57646E"}}></Avatar>
-                  <Button onClick={handleOpen} sx={{'&:hover, active':{
-                    color: '#007042'}}}>
-                    <Typography sx={{ minWidth: 100,color: "#57646E",fontSize: "14px",textTransform:"capitalize",'&:hover, active':{
-                      color: '#007042'}}}>Увійти</Typography>
-                  </Button>
-               </Box>
-    
-              <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
 
+  return (
+    <>
+      <Box
+        component={Link}
+        to="#"
+        sx={{ display: "flex", height: 57, width: 122, alignItems: "center" }}
+        alignItems="stretch"
+      >
+        <Avatar
+          sx={{
+            width: 36,
+            height: 36,
+            border: "2px solid #57646E",
+            backgroundColor: "white",
+            color: "#57646E",
+          }}
+        ></Avatar>
+        <Button
+          onClick={handleOpen}
+          sx={{
+            "&:hover, active": {
+              color: "#007042",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              minWidth: 100,
+              color: "#57646E",
+              fontSize: "14px",
+              textTransform: "capitalize",
+              "&:hover, active": {
+                color: "#007042",
+              },
+            }}
+          >
+            Увійти
+          </Typography>
+        </Button>
+      </Box>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
           <div class="container">
             <ul class="container--tabs">
-              <li onClick={switchTab} class="tab tab--active">Увійти</li>
-              <li onClick={switchTab} class="tab">Реєстрація</li>
+              <li onClick={switchTab} class="tab tab--active">
+                Увійти
+              </li>
+              <li onClick={switchTab} class="tab">
+                Реєстрація
+              </li>
             </ul>
 
             <div class="container--content">
-
-              <div className='border'>
-                  <hr className='border-line'/>
+              <div className="border">
+                <hr className="border-line" />
               </div>
-            
-                <div class="content content--active">
-                  <form id='login' className="input-group" onSubmit={formik.handleSubmit}>
-                      <p className='text-notice'>Будь ласка, введіть дані свого <br /> облікового запису, щоб увійти</p>
 
-                      <p className='text-title'>E-mail</p>
-
-                      <input
-
-                        className='input-field'
-
-                        id="email"
-
-                        name="email"
-
-                        type="email"
-
-                        placeholder='E-mail'
-
-                        onChange={formik.handleChange}
-
-                        onBlur={formik.handleBlur}
-
-                        value={formik.values.email}
-
-                      />
-
-                      {formik.errors.email ? <div className='Error'>
-                        <img src="../../img/icons/Error.png" alt="error" />
-                        {formik.errors.email}
-                      </div> : null}
-
-                      <p className='text-title'>Пароль</p>
-
-                            <input
-
-                              className='input-field'
-
-                              id="passwordLogin"
-
-                              name="passwordLogin"
-
-                              type="password"
-
-                              placeholder='Пароль'
-
-                              onChange={formik.handleChange}
-
-                              onBlur={formik.handleBlur}
-
-                              value={formik.values.passwordLogin}
-
-                            />
-
-                            {formik.errors.passwordLogin ? <div className='Error'>
-                              <img src="../../img/icons/Error.png" alt="error" />
-                              {formik.errors.passwordLogin}
-                            </div> : null}
-
-                      <Link to="#"><p className='text-remember'>Нагадати пароль</p></Link>
-
-                      <button type='submit' className="submit-btn">УВІЙТИ</button>
-
-                      <div className="social-icons">
-                        <div className='choice'>
-                          <div className='line'></div>
-                          <p className='text'>або</p>
-                          <div className='line'></div>
-                        </div>
-
-                        <button type='submit' className='facebook social-btn submit-btn'><img className='picture' src='../../img/icons/facebook.png'></img>Увійти через Facebook</button>
-                        <button type='submit' className='instagram social-btn submit-btn'><img className='picture' src='../../img/icons/instagram.png'></img>Увійти через Instagram</button>
-                      </div>
-                  </form>
-                </div>
-
-                <div className="content">
-                  <form id='register' className="input-group_2" onSubmit={formik.handleSubmit} >
-
-                <p className='text-title'>Ім’я</p>
-
-                <input
-
-                  className='input-field'
-
-                  id="firstName"
-
-                  name="firstName"
-
-                  type="text"
-
-                  placeholder='Ваше ім’я'
-
-                  onChange={formik.handleChange}
-
-                  value={formik.values.firstName}
-
-                />
-
-                {formik.errors.firstName ? <div className='Error'>
-                  <img src="../../img/icons/Error.png" alt="error" />
-                  {formik.errors.firstName}
-                </div> : null}
-
-                <p className='text-title'>Прізвище</p>
-
-                <input
-
-                  className='input-field'
-
-                  id="lastName"
-
-                  name="lastName"
-
-                  type="text"
-
-                  placeholder='Ваше прізвище'
-
-                  onChange={formik.handleChange}
-
-                  value={formik.values.lastName}
-
-                />
-
-                {formik.errors.lastName ? <div className='Error'>
-                  <img src="../../img/icons/Error.png" alt="error" />
-                  {formik.errors.lastName}
-                </div> : null}
-
-                <p className='text-title'>E-mail</p>
-
-                <input
-
-                  className='input-field'
-
-                  id="emailConfirm"
-
-                  name="emailConfirm"
-
-                  type="email"
-
-                  placeholder='E-mail'
-
-                  onChange={formik.handleChange}
-
-                  value={formik.values.emailConfirm}
-
-                />
-
-                {formik.errors.emailConfirm ? <div className='Error'>
-                  <img src="../../img/icons/Error.png" alt="error" />
-                  {formik.errors.emailConfirm}
-                </div> : null}
-
-                <p className='text-title'>Пароль</p>
-
-                      <input
-
-                        className='input-field'
-
-                        id="pass"
-
-                        name="pass"
-
-                        type="password"
-
-                        placeholder='Пароль'
-
-                        onChange={formik.handleChange}
-
-                        value={formik.values.pass}
-
-                      />
-
-                      {formik.errors.pass ? <div className='Error'>
-                        <img src="../../img/icons/Error.png" alt="error" />
-                        {formik.errors.pass}
-                      </div> : null}
-
-                <p className='text-title'>Підтвердження пароля</p>
-
-                      <input
-
-                        className='input-field'
-
-                        id="passConfirm"
-
-                        name="passConfirm"
-
-                        type="password"
-
-                        placeholder='Пароль'
-
-                        onChange={formik.handleChange}
-
-                        value={formik.values.passConfirm}
-
-                      />
-
-                      {formik.errors.passConfirm ? <div className='Error'>
-                        <img src="../../img/icons/Error.png" alt="error" />
-                        {formik.errors.passConfirm}
-                      </div> : null}
-
-                      <br />
-
-                      <button type='submit' className="submit-btn btn-2">ЗАРЕЄСТРУВАТИСЯ</button>
-                  </form>
-                </div>
+              <div class="content content--active">
+                <form
+                  id="login"
+                  className="input-group"
+                  onSubmit={formik.handleSubmit}
+                >
+                  <p className="text-notice">
+                    Будь ласка, введіть дані свого <br /> облікового запису, щоб
+                    увійти
+                  </p>
+
+                  <p className="text-title">E-mail</p>
+
+                  <input
+                    className="input-field"
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="E-mail"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                  />
+
+                  {formik.errors.email ? (
+                    <div className="Error">
+                      <img src="../../img/icons/Error.png" alt="error" />
+                      {formik.errors.email}
+                    </div>
+                  ) : null}
+
+                  <p className="text-title">Пароль</p>
+
+                  <input
+                    className="input-field"
+                    id="passwordLogin"
+                    name="passwordLogin"
+                    type="password"
+                    placeholder="Пароль"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.passwordLogin}
+                  />
+
+                  {formik.errors.passwordLogin ? (
+                    <div className="Error">
+                      <img src="../../img/icons/Error.png" alt="error" />
+                      {formik.errors.passwordLogin}
+                    </div>
+                  ) : null}
+
+                  <Link to="#">
+                    <p className="text-remember">Нагадати пароль</p>
+                  </Link>
+
+                  <button
+                    type="submit"
+                    className="submit-btn"
+                    onClick={myLoginFunc}
+                  >
+                    УВІЙТИ
+                  </button>
+
+                  <div className="social-icons">
+                    <div className="choice">
+                      <div className="line"></div>
+                      <p className="text">або</p>
+                      <div className="line"></div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="facebook social-btn submit-btn"
+                    >
+                      <img
+                        className="picture"
+                        src="../../img/icons/facebook.png"
+                      ></img>
+                      Увійти через Facebook
+                    </button>
+                    <button
+                      type="submit"
+                      className="instagram social-btn submit-btn"
+                    >
+                      <img
+                        className="picture"
+                        src="../../img/icons/instagram.png"
+                      ></img>
+                      Увійти через Instagram
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div className="content">
+                <form
+                  id="register"
+                  className="input-group_2"
+                  onSubmit={formik.onSubmitLogin}
+                >
+                  <p className="text-title">Ім’я</p>
+
+                  <input
+                    className="input-field"
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    placeholder="Ваше ім’я"
+                    onChange={formik.handleChange}
+                    value={formik.values.firstName}
+                  />
+
+                  {formik.errors.firstName ? (
+                    <div className="Error">
+                      <img src="../../img/icons/Error.png" alt="error" />
+                      {formik.errors.firstName}
+                    </div>
+                  ) : null}
+
+                  <p className="text-title">Прізвище</p>
+
+                  <input
+                    className="input-field"
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    placeholder="Ваше прізвище"
+                    onChange={formik.handleChange}
+                    value={formik.values.lastName}
+                  />
+
+                  {formik.errors.lastName ? (
+                    <div className="Error">
+                      <img src="../../img/icons/Error.png" alt="error" />
+                      {formik.errors.lastName}
+                    </div>
+                  ) : null}
+
+                  <p className="text-title">E-mail</p>
+
+                  <input
+                    className="input-field"
+                    id="emailConfirm"
+                    name="emailConfirm"
+                    type="email"
+                    placeholder="E-mail"
+                    onChange={formik.handleChange}
+                    value={formik.values.emailConfirm}
+                  />
+
+                  {formik.errors.emailConfirm ? (
+                    <div className="Error">
+                      <img src="../../img/icons/Error.png" alt="error" />
+                      {formik.errors.emailConfirm}
+                    </div>
+                  ) : null}
+
+                  <p className="text-title">Пароль</p>
+
+                  <input
+                    className="input-field"
+                    id="pass"
+                    name="pass"
+                    type="password"
+                    placeholder="Пароль"
+                    onChange={formik.handleChange}
+                    value={formik.values.pass}
+                  />
+
+                  {formik.errors.pass ? (
+                    <div className="Error">
+                      <img src="../../img/icons/Error.png" alt="error" />
+                      {formik.errors.pass}
+                    </div>
+                  ) : null}
+
+                  <p className="text-title">Підтвердження пароля</p>
+
+                  <input
+                    className="input-field"
+                    id="passConfirm"
+                    name="passConfirm"
+                    type="password"
+                    placeholder="Пароль"
+                    onChange={formik.handleChange}
+                    value={formik.values.passConfirm}
+                  />
+
+                  {formik.errors.passConfirm ? (
+                    <div className="Error">
+                      <img src="../../img/icons/Error.png" alt="error" />
+                      {formik.errors.passConfirm}
+                    </div>
+                  ) : null}
+
+                  <br />
+
+                  <button type="submit" className="submit-btn btn-2">
+                    ЗАРЕЄСТРУВАТИСЯ
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
 
           <div onClick={handleClose} className="btn-close"></div>
-              </Box>
-            </Modal>
-      </>
-    );
-}
+        </Box>
+      </Modal>
+    </>
+  );
+};
 
 export default LoginButton;
