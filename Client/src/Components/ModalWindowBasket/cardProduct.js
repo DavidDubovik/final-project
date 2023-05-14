@@ -25,16 +25,17 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
             setAllPrice(currentAllPrice => currentAllPrice + (count * +price))
         }
         else {
-            console.log('fefe');
+            // console.log('fefe');
         }
     }, [quantiy])
+    // console.log(imageUrls);
     return (
         <div>
             <div className='cardProduct'>
                 <button className='dagger'>+</button>
                 <div style={{ width: 100, height: 100 }}>
                     <img src={imageUrls[0]} alt="#" width="100" height="100" style={{ objectFit: "contain" }} />
-                </div>
+                </div>  
                 <div className='name-product'>
                     <h3>{name.substring(0, 25)}</h3>
                     <span>Код:{id}</span>

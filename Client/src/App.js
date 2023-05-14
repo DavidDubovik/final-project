@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from './Components/Layout/layout.component';
 import Home from './Pages/Home/home.page';
 import AboutUs from './Components/About/Aboutus';
@@ -9,8 +9,8 @@ import store from './Redux/store';
 import './App.css';
 import { Provider } from "react-redux";
 import CartPage from "./Pages/Cart-page/CartPage";
-
 import AllProducts from "./Components/Chairs/Chairs/Chairs";
+
 function App() {
   return (
     <div className="App">
