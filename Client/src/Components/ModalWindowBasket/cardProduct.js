@@ -25,9 +25,10 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
             setAllPrice(currentAllPrice => currentAllPrice + (count * +price))
         }
         else {
-            console.log('fefe');
+            // console.log('fefe');
         }
     }, [quantiy])
+    // console.log(imageUrls);
     return (
         <div>
             <div className='cardProduct'>

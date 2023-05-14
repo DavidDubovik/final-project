@@ -112,3 +112,36 @@
       padding-bottom: 5px;
     }
   }
+
+  .pagination{
+    display: flex;
+    justify-content: center;
+    & > button {
+      border: none;
+      border-radius: 50%;
+      background-color: #FFF;
+      color: #007042;
+      cursor: pointer;
+    }
+  }
+  .page {
+    display: flex;
+    &-item{
+      border: 1px solid #007042;
+      display: flex;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin: 5px;
+      background-color: #fff;
+    }
+    &-link {
+      color: #007042;
+      border: none;
+      background-color: #fff;
+    }
+  }

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -25,14 +25,13 @@ export function KeepMountedModal() {
     const basket = useSelector(state => {
         return state.products.basket
     })
-    useEffect(() => {
-        localStorage.setItem('basket', JSON.stringify([basket]))
-    }, [basket])
-    console.log(basket);
+
     const modalOpen = useSelector(state => {
         return state.products.isModal
     })
     const [saveAllPrice, setSaveAllPrice] = useState(0)
+    // console.log(basket[0].length);
+    console.log(basket);
     return (
         <div>
             <Modal
@@ -49,8 +48,7 @@ export function KeepMountedModal() {
                         <div className='main'>
 
                             <div className='basket-product'>
-                                {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, obivka, counter }) => {
-
+                                {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, obivka, counter }) => {   
                                     return (
                                         <CardProduct id={itemNo} name={name} price={currentPrice} Obivka={obivka} imageUrls={imageUrls} defoltColor={color} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} colorsProduct={colors} item={itemNo} quantiy={counter} />
                                     )
@@ -60,7 +58,6 @@ export function KeepMountedModal() {
                             <hr style={{ background: '#007042', height: 2, border: 'none' }}></hr>
                             <div className='sum'>
                                 <p>Всього у кошику {basket.length} товари на суму <span>{saveAllPrice} грн</span></p>
-
                             </div>
                         </div>
                         <div className='button-order'><Link to="/products">Продовжити покупки</Link><Button>Оформити замовлення</Button></div>

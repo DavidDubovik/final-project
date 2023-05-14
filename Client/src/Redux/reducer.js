@@ -15,13 +15,16 @@ export default function reducer(state = initialState, action) {
             return { ...state, basket: [...state.basket, payload] };
         case "CLEAR_BASKET": 
             return {...state, basket: []};
+        case "ASYNC_LOAD":
+            const productsBasket = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
+            return { ...state, basket: productsBasket };
         default:
             return state;
     }
 }
 export const loadProductsAsync = () => {
     return async (dispatch) => {
-        // dispatch({ type: 'PRODUCTS', payload: { product: products } })
+        dispatch({ type: 'ASYNC_LOAD' })
 
     }
 }

@@ -8,14 +8,14 @@ const NavigationMain = ({navList}) => {
 
     return(
         <Box sx={{borderBottom:"1px solid #E0E1E2"}}>
-            <Box sx={{ display: 'flex', alignItems: 'left', textAlign: 'center' ,fontFamily:'Open Sans',mx:'auto',maxWidth: 'lg',h:"41px"}}>
+            <Box sx={{ display: 'flex', alignItems: 'left',fontFamily:'Open Sans',mx:'auto',maxWidth: 'lg',h:"41px"}}>
 
                 {navList.map(mitem=>(
                     <MenuItem 
                     key={mitem.title}
                     component={NavLink}
                     to={mitem.path}
-                    sx={{ color:"#000000",pr:4.5,pl:0,minWidth: 100 ,'&:hover, active':{
+                    sx={{ color:"#000000",minWidth: 100,'&:hover, active':{
                         color: '#007042'}}}
                     >
                     {mitem.title}
