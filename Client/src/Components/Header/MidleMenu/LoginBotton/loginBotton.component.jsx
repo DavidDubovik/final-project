@@ -21,26 +21,37 @@ const style = {
 
 const LoginButton = () => {
   const [open, setOpen] = React.useState(false);
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [loginRes, setRes] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleOpenLogin = () => setOpenLogin(true);
+  const handleClose2Login = () => setOpenLogin(false);
   const myLoginFunc = async () => {
     const userData = {
-      loginOrEmail: "customer@gmail.com",
-      password: "11112111",
+      loginOrEmail: formik.values.email,
+      password: formik.values.passwordLogin,
     };
     try {
+      handleClose()
       const res = await fetch(`api/customers/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
-      });
-
+      })
+      
+      handleOpenLogin();
       const logINres = await res.json();
-      console.log(logINres);
+     
+      if (logINres.success){
+        setRes("Login Succses")
+      } else{
+        setRes(Object.values(logINres))
+      }
     } catch (error) {
-      console.log('There was an error', error)
+      console.log("There was an error", error);
     }
   };
 
@@ -159,6 +170,19 @@ const LoginButton = () => {
         sx={{ display: "flex", height: 57, width: 122, alignItems: "center" }}
         alignItems="stretch"
       >
+        <Modal
+          open={openLogin}
+          onClose={handleClose2Login}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {loginRes}
+            </Typography>
+          </Box>
+        </Modal>
         <Avatar
           sx={{
             width: 36,
