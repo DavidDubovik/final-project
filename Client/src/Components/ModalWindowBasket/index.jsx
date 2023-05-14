@@ -63,7 +63,7 @@ export function KeepMountedModal() {
 
                             </div>
                         </div>
-                        <div className='button-order'><a href='#'>продовжити покупки</a> <Button>Оформити замовлення</Button></div>
+                        <div className='button-order'><Link to="/products">Продовжити покупки</Link><Button>Оформити замовлення</Button></div>
                     </div> : <h1 style={{ margin: '0 auto', width: 200, fontSize: 30 }}> товарів немає </h1>}
                 </Box>
             </Modal>

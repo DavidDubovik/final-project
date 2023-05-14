@@ -13,6 +13,8 @@ export default function reducer(state = initialState, action) {
         case "ADD_TO_BASKET":
             // const defaultFavorite = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
             return { ...state, basket: [...state.basket, payload] };
+        case "CLEAR_BASKET": 
+            return {...state, basket: []};
         default:
             return state;
     }

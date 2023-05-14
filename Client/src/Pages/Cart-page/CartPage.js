@@ -1,31 +1,81 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { CardProduct } from '../../Components/ModalWindowBasket/cardProduct.js';
+import { useDispatch, useSelector } from "react-redux";
+import {Link} from 'react-router-dom';
 
 import StyllePage from "./StyllePage.scss";
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 600,
+  backgroundColor: '#F9F9FB',
+  p: 2
+};
+
 function CartPage() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const dispatch = useDispatch()
+
+    const basket = useSelector(state => {
+        return state.products.basket
+    })
+
+    useEffect(() => {
+        localStorage.setItem('basket', JSON.stringify([basket]))
+    }, [basket])
+
+    console.log(basket);
+
+    const modalOpen = useSelector(state => {
+        return state.products.isModal
+    })
+
+    const [saveAllPrice, setSaveAllPrice] = useState(0)
+
+  function DataCleansing() {
+    const btn = document.querySelector(".btn-continue");
+
+    btn.addEventListener("click", () => {
+      let item = 0;
+
+      if (basket.length > item.length) {
+        localStorage.removeItem('basket');
+        dispatch({type: 'CLEAR_BASKET'});
+      }
+    });
+  };
 
   const validate = values => {
     const errors = {};
 
     if (!values.Name) {
       errors.Name = 'Ви повинні заповнити це поле';
+      setOpen(false);
     } else if (values.Name.length > 15) {
       errors.Name = 'Має бути 15 символів або менше';
-    }
+    } 
 
     if (!values.Number) {
       errors.Number = 'Ви повинні заповнити це поле';
+      setOpen(false);
     } else if (values.Number.length > 15) {
       errors.Number = 'Телефон мае містити лише цифри';
     }
  
     if (!values.Email) { 
       errors.Email = 'Ви повинні заповнити це поле'; 
+      setOpen(false);
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email)) { 
       errors.Email = 'Невірна адреса електронної пошти!'; 
     }
@@ -47,12 +97,6 @@ function CartPage() {
 
     validate,
 
-    onSubmit: values => {
-
-      alert(JSON.stringify(values, null, 2));
-
-    },
-
   });
 
   return (
@@ -68,6 +112,9 @@ function CartPage() {
           <h1 className='contact-info'>Контактні дані</h1>
 
           <div className="input-fields">
+
+         <form onSubmit={formik.handleSubmit} >
+
           <p className='text-title-field'>Ім’я одержувача*</p>
 
           <input
@@ -83,8 +130,6 @@ function CartPage() {
             placeholder='Ім’я одержувача'
 
             onChange={formik.handleChange}
-
-            onBlur={formik.handleBlur}
 
             value={formik.values.Name}
 
@@ -105,15 +150,11 @@ function CartPage() {
 
             name="Number"
 
-            type="tel"
+            type="text"
 
             placeholder='+380 (...)'
 
-            pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
-
             onChange={formik.handleChange}
-
-            onBlur={formik.handleBlur}
 
             value={formik.values.Number}
 
@@ -140,8 +181,6 @@ function CartPage() {
 
             onChange={formik.handleChange}
 
-            onBlur={formik.handleBlur}
-
             value={formik.values.Email}
 
           />
@@ -150,6 +189,9 @@ function CartPage() {
             <img src="../../img/icons/Error.png" alt="error" />
             {formik.errors.Email}
           </div> : null}
+
+          {/* <button type='submit' className='confirm-pay'>підтвердити замовлення</button> */}
+         </form>
 
           </div>
         </div>
@@ -162,7 +204,7 @@ function CartPage() {
 
             <div class="tabs">
               <label className='text-title-block'>Спосіб доставки</label>
-              <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked/>
+              <input type="radio" name="tab-btn" id="tab-btn-1" value="" />
               <label id='delivery' for="tab-btn-1">Кур’єром додому</label>
               <input type="radio" name="tab-btn" id="tab-btn-2" value="" />
               <label id='delivery' for="tab-btn-2">Самовивіз</label>
@@ -170,7 +212,11 @@ function CartPage() {
               <div id="content-1">
                 <div className="adress-block">
                   <h1 className='adress'>Адреса</h1>
-                  <input className='adress-input' type="text" placeholder='Місто, вулиця, будинок, квартира'/>
+                  <input className='adress-input' type="text" placeholder='Місто, вулиця, будинок, квартира' />
+                </div>
+
+                <div className='title-delivery-block'>
+                  <p className='title-delivery'>Доставка <span className='title-delivery'>150 грн</span></p>
                 </div>
               </div>
 
@@ -186,9 +232,9 @@ function CartPage() {
     
             <div class="tabs-2">
               <label className='text-title-block'>Спосіб розрахунку</label>
-              <input type="radio" name="tab-btn-2" id="tab-btn-3" value="" />
+              <input type="radio" name="tab-btn-2" id="tab-btn-3" value="" required />
               <label id='pay-select' for="tab-btn-3">Банківською карткою онлайн</label>
-              <input type="radio" name="tab-btn-2" id="tab-btn-4" value="" />
+              <input type="radio" name="tab-btn-2" id="tab-btn-4" value="" required />
               <label id='pay-select' for="tab-btn-4">Готівкою або карткою при отриманні</label>
 
               <div id="content-3">
@@ -200,17 +246,60 @@ function CartPage() {
             </div>
 
             <p className='field-required'>*Поля, обяв’язкові до заповнення</p>
-
-          </div>
-
-          <div className="checkout-select-delivery">
           </div>
 
         </div>
 
       </div>
+
+      <div className="selected-products-basket">
+       <form onSubmit={formik.handleSubmit} >
+
+        {basket.length ? <div className='product'>
+                        <div className='header'><h1 className='title-header-products'>Товари у кошику</h1></div>
+                        <div className='main'>
+
+                            <div className='basket-product'>
+                                {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, counter, count }) => {
+
+                                    return (
+                                        <CardProduct id={itemNo} name={name} price={currentPrice} imageUrls={imageUrls} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} item={itemNo} quantiy={counter} />
+                                    )
+                                })}
+                            </div>
+
+                            <div className='sum'>
+                                <p>Сума замовлення <span className='title-price'>{saveAllPrice} грн</span></p>
+                            </div>
+
+                            <button type='submit' onClick={handleOpen} className='confirm-pay'>підтвердити замовлення</button>
+                        </div>
+                    </div> : <h1 style={{ margin: '0 auto', width: 200, fontSize: 30 }}> товарів немає </h1>}
+       </form>
+      </div>
+
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Дякуємо, що вибрали нас!
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Ваше замовлення №3265897 успішно оформлене. <br />
+              Чекайте на дзвінок від нашого фахівця.  
+            </Typography>
+            <Link to={"/products"}><button onClick={DataCleansing} className='btn-continue'>Продовжити покупки</button></Link>
+          </Box>
+        </Modal>
     </div>
-  )
+
+    </div>
+  );
 }
 
 export default CartPage;

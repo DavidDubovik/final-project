@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DropList from './dropList';
-export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, colorsProduct, item, quantiy, defoltColor, Obivka }) => {
+export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, colorsProduct, item, quantiy, defoltColor, Obivka}) => {
     const [count, setCount] = useState(quantiy ? quantiy : 1)
     const inc = () => {
         if (count <= 9) {
@@ -33,7 +33,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
             <div className='cardProduct'>
                 <button className='dagger'>+</button>
                 <div style={{ width: 100, height: 100 }}>
-                    <img src={imageUrls[0]} alt="#" width="100" height="100" style={{ objectFit: "contain" }} />
+                    <img className="picture-product" src={imageUrls[0]} alt="#" width="100" height="100" style={{ objectFit: "contain" }} />
                 </div>
                 <div className='name-product'>
                     <h3>{name.substring(0, 25)}</h3>
@@ -54,9 +54,6 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
                 </div>
                 <div className='text-price'>
                     {count > 1 ? <><span>{count * price + 'грн'}</span> <p>{count + 'x' + price + 'грн'}</p></> : count * price + 'грн'}
-
-
-
                 </div>
             </div>
             <hr style={{ background: '#D3D7DA', height: 2, border: 'none', width: '100%' }}></hr>
