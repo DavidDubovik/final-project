@@ -6,7 +6,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useFormik } from "formik";
-
+import {useDispatch, useSelector} from "react-redux";
+import { loginCustomerFetch } from "../../../../Redux/login.reducer";
 import "./login.scss";
 
 const style = {
@@ -27,34 +28,43 @@ const LoginButton = () => {
   const handleClose = () => setOpen(false);
   const handleOpenLogin = () => setOpenLogin(true);
   const handleClose2Login = () => setOpenLogin(false);
-  const myLoginFunc = async () => {
-    const userData = {
-      loginOrEmail: formik.values.email,
-      password: formik.values.passwordLogin,
-    };
-    try {
-      handleClose()
-      const res = await fetch(`api/customers/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      })
-      
-      handleOpenLogin();
-      const logINres = await res.json();
-     
-      if (logINres.success){
-        setRes("Login Succses")
-      } else{
-        setRes(Object.values(logINres))
-      }
-    } catch (error) {
-      console.log("There was an error", error);
-    }
-  };
+  const isLogged = useSelector(state => state.isLogged.isLogged.success)
+  const dispatch = useDispatch()
 
+  // const myLoginFunc = async () => {
+  //   const userData = {
+  //     loginOrEmail: formik.values.email,
+  //     password: formik.values.passwordLogin,
+  //   };
+  //   try {
+  //     handleClose()
+  //     const res = await fetch(`api/customers/login`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(userData),
+  //     })
+      
+  //     handleOpenLogin();
+  //     const logINres = await res.json();
+     
+  //     if (logINres.success){
+  //       setRes("Login Succses")
+  //     } else{
+  //       setRes(Object.values(logINres))
+  //     }
+  //   } catch (error) {
+  //     console.log("There was an error", error);
+  //   }
+  // };
+  const myLoginFunc = ({email, password}) => {
+    const data = {email: formik.values.email,
+      password: formik.values.passwordLogin}
+    dispatch(loginCustomerFetch(data))
+    handleClose()
+    
+  };
   const validate = (values) => {
     const errors = {};
 
@@ -161,7 +171,8 @@ const LoginButton = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-
+  const data = {email: formik.values.email,
+    password: formik.values.passwordLogin}
   return (
     <>
       <Box
@@ -296,7 +307,7 @@ const LoginButton = () => {
                   <button
                     type="submit"
                     className="submit-btn"
-                    onClick={myLoginFunc}
+                    onClick={()=>{myLoginFunc(data)}}
                   >
                     УВІЙТИ
                   </button>
