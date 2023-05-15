@@ -16,6 +16,7 @@ const MidleMenu = () => {
     const basket = useSelector(state => {
         return state.products.basket
     })
+   
     return (
         <>
             <Box sx={{ justifyContent: 'space-between', pt: 2.5, pb: 2.5, display: 'flex', alignItems: 'center', textAlign: 'center', fontFamily: 'Open Sans', mx: 'auto', maxWidth: 'lg', flexWrap: 'wrap' }}>
