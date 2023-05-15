@@ -13,7 +13,6 @@ export default function reducer(state = initialState, action) {
         case "OPEN_MODAL":
             return { ...state, isModal: !state.isModal };
         case "ADD_TO_BASKET":
-            // const defaultFavorite = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
             return { ...state, basket: [...state.basket, payload] };
         default:
             return state;
