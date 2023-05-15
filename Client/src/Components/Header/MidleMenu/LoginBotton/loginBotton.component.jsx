@@ -6,8 +6,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useFormik } from "formik";
-import {useDispatch, useSelector} from "react-redux";
-import { loginCustomerFetch,createAccountFetch } from "../../../../Redux/login.reducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginCustomerFetch,
+  createAccountFetch,
+} from "../../../../Redux/login.reducer";
 import "./login.scss";
 
 const style = {
@@ -28,23 +31,24 @@ const LoginButton = () => {
   const handleClose = () => setOpen(false);
   const handleOpenLogin = () => setOpenLogin(true);
   const handleClose2Login = () => setOpenLogin(false);
-  const isLogged = useSelector(state => state.isLogged.isLogged.success)
-  const dispatch = useDispatch()
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
+  const dispatch = useDispatch();
 
-
-  const myLoginFunc = ({email, password}) => {
-    const data = {email: formik.values.email,
-      password: formik.values.passwordLogin}
-    dispatch(loginCustomerFetch(data))
-    handleClose()
-    
+  const myLoginFunc = ({ email, password }) => {
+    const data = {
+      email: formik.values.email,
+      password: formik.values.passwordLogin,
+    };
+    dispatch(loginCustomerFetch(data));
+    handleClose();
   };
-  const myCreatFunc = ({firstName, lastName, email, password}) => {
-    const data = {email: formik.values.email,
-      password: formik.values.passwordLogin}
-    dispatch(loginCustomerFetch(data))
-    handleClose()
-    
+  const myCreatFunc = ({ firstName, lastName, email, password }) => {
+    const data = {
+      email: formik.values.email,
+      password: formik.values.passwordLogin,
+    };
+    dispatch(loginCustomerFetch(data));
+    handleClose();
   };
   const validate = (values) => {
     const errors = {};
@@ -148,14 +152,16 @@ const LoginButton = () => {
 
     validate,
 
-    onSubmit: (values,{ resetForm }) => {
-      alert("Formik submit",values);
-      resetForm()
+    onSubmit: (values) => {
+      console.log("Formik submit", values);
+      alert("aas");
       // dispatch(createAccountFetch)
     },
   });
-  const data = {email: formik.values.email,
-    password: formik.values.passwordLogin}
+  const data = {
+    email: formik.values.email,
+    password: formik.values.passwordLogin,
+  };
   return (
     <>
       <Box
@@ -171,7 +177,6 @@ const LoginButton = () => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {loginRes}
             </Typography>
@@ -290,7 +295,9 @@ const LoginButton = () => {
                   <button
                     type="submit"
                     className="submit-btn"
-                    onClick={()=>{myLoginFunc(data)}}
+                    onClick={() => {
+                      myLoginFunc(data);
+                    }}
                   >
                     УВІЙТИ
                   </button>
@@ -429,7 +436,21 @@ const LoginButton = () => {
 
                   <br />
 
-                  <button type="submit" className="submit-btn btn-2">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const dataZ = {
+                        firstName: formik.values.firstName,
+                        lastName: formik.values.lastName,
+                        email: formik.values.email,
+                        password: formik.values.passConfirm,
+                      };
+                      alert(dataZ)
+                      dispatch(createAccountFetch(dataZ));
+                    }}
+                    type="submit"
+                    className="submit-btn btn-2"
+                  >
                     ЗАРЕЄСТРУВАТИСЯ
                   </button>
                 </form>
