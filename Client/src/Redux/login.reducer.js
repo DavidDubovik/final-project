@@ -90,6 +90,18 @@ const loginReducer = createSlice({
   },
   extraReducers: builder => {
     builder
+    .addCase(createAccountFetch.pending, (state, action) => {        
+      state.isLogged.token = null
+      state.isLogged.success = false
+    })
+    .addCase(createAccountFetch.fulfilled, (state, action) => {       
+      state.isLogged.token = null
+      state.isLogged.success = false
+    })
+    .addCase(createAccountFetch.rejected, (state, action) => {        
+      state.token = null
+      state.success = false
+    })
       .addCase(loginCustomerFetch.pending, (state, action) => {       
         state.isLogged.token = null
         state.isLogged.success = false
