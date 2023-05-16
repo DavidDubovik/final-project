@@ -27,6 +27,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
     const clearProduct = (productId) => {
         const filterProduct = basket.filter(res => res.itemNo !== productId)
         dispatch({ type: 'ADD_TO_BASKET', payload: filterProduct })
+        setAllPrice(allPrice - +price * count);
         console.log(filterProduct);
     }
 
