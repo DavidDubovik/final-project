@@ -9,6 +9,7 @@ import { fetchAsyncProducts } from "../../../Redux/products.reducer";
 import "./Furniture.scss";
 import Filter from "../Filter/Filter";
 import Pagination from "../Pagination/Pagination";
+import { setMinPrice,setMaxPrice,setPage } from "../../../Redux/products.reducer";
 
 const AllProducts = (props) => {
   const { categorie, query } = useParams();
@@ -26,7 +27,7 @@ const AllProducts = (props) => {
   useEffect(()=>{
     dispatch(fetchAsyncProducts({page,categories,color,brand,sort,minPrice,maxPrice,pageSize})).then(setProduct(data))
   },[page,categories,color,brand,sort,minPrice,maxPrice,pageSize])
-  console.log("log1",data);
+  
   const [products, setProduct] = useState([]);
   const [sortType] = useState({});
 
@@ -80,34 +81,45 @@ const AllProducts = (props) => {
     }
 
   },[categorie, sortType]);
-  
+  //Price slider
+  const [valuePriceSlider, setValuePriceSlider] = useState([1, 50000]);
+  function valuetext(value) {
+    return `${value}грн`;
+  }
+  const handleChangePriceSlider = (event, newValue) => {
+    setValuePriceSlider(newValue);
+    dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }))
+    console.log(minPrice)
+    dispatch(setMaxPrice({ minPrice: valuePriceSlider[1] }))
+  };
   return (
     <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <main>
         <div className="pageCategories, left">
-          <h2>Cтільці кухонні</h2>
+          <h2>Усі товари</h2>
           <div className="fiters">
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Price</h3>
 
               <Slider
-                className="horizontal-slider"
-                thumbClassName="example-thumb"
-                trackClassName="example-track"
-                defaultValue={[20, 50]}
-                renderThumb={(props, state) => (
-                  <div {...props}>{state.valueNow}</div>
-                )}
-              />
+        getAriaLabel={() => 'Ціна товарів'}
+        value={valuePriceSlider}
+        onChange={handleChangePriceSlider}
+        min={1}
+        max="50000"
+        valueLabelDisplay="auto"
+        getAriaValueText={valuetext}
+      />
               <div className="filters-price__slider"></div>
               <br />
               <div className="filters-price__container">
                 <label className="filters-price__label">
                   <input
                     type="number"
-                    min="0"
-                    max="50000"
-                    placeholder="200"
+                    min={minPrice}
+                    max={maxPrice}
+                    onChange={(e)=>console.log(e.target.value)}
+                    placeholder={valuePriceSlider[0]}
                     className="filters-price__input filters-price__info"
                   />
                 </label>
@@ -115,9 +127,10 @@ const AllProducts = (props) => {
                 <label className="filters-price__label">
                   <input
                     type="number"
-                    min="0"
-                    max="50000"
-                    placeholder="1500"
+                    min={minPrice}
+                    max={maxPrice}
+                    placeholder={valuePriceSlider[1]}
+                    onChange={(e)=>console.log(e.target.value)}
                     className="filters-price__input filters-price__info"
                   />
                 </label>

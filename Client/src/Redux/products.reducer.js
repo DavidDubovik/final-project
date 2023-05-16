@@ -10,7 +10,7 @@ const initialState = {
     brand: "",
     sort: "",//-price,+price,+-name
     minPrice: 1,
-    maxPrice: 15000,
+    maxPrice: 50000,
   },
   status: null,
   error: "",
@@ -29,7 +29,7 @@ export const fetchAsyncProducts = createAsyncThunk(
       if (v.length === 0) delete queryParams[k];
   });
     const myQuery = queryString.stringify(queryParams);
-    console.log(myQuery);
+   
     
     try {
       const response = await fetch(
@@ -38,7 +38,7 @@ export const fetchAsyncProducts = createAsyncThunk(
 
      
       const dataZ = await response.json()
-      console.log(dataZ.data)
+ 
       return dataZ;
     } catch (error) {
       console.log(error)
