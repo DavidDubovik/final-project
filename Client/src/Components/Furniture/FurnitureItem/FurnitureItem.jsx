@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './FurnitureItem.scss';
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 export class FurnitureItem extends Component {
 
@@ -8,7 +9,7 @@ export class FurnitureItem extends Component {
   render() {
     return (
       <div className='chair'>
-      <Link to={`/products/`+this.props.furniture.itemNo} relative="path">
+      <Link to={`/products/`+this.props.furniture.itemNo} relative="path" key={uuidv4()}>
         <div className='chair-img__container'>
             <img src={this.props.furniture.imageUrls[0]} alt="" />
         </div>

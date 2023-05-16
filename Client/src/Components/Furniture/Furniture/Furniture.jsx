@@ -21,12 +21,11 @@ const AllProducts = (props) => {
   const {categories,color,brand,sort,minPrice,maxPrice} = useSelector(state => {
         return state.allProducts.filterBy
     })
-  const myParams = {
-    categories,color,brand,sort,minPrice,maxPrice
-  }
+
   useEffect(()=>{
-    dispatch(fetchAsyncProducts({page,categories,color,brand,sort,minPrice,maxPrice,pageSize})).then(setProduct(data))
-  },[page,categories,color,brand,sort,minPrice,maxPrice,pageSize])
+    dispatch(fetchAsyncProducts({page,categories,color,brand,sort,minPrice,maxPrice,pageSize})).then(data => setProduct(data))
+    
+  },[page, categories, color, brand, sort, minPrice, maxPrice, pageSize, dispatch])
   
   const [products, setProduct] = useState([]);
   const [sortType] = useState({});
@@ -55,32 +54,32 @@ const AllProducts = (props) => {
   const prevPage = () =>  setCurrentPage(prev => prev -1)
   const nextPage = () =>  setCurrentPage(next => next +1)
  
-  useEffect(() => {
-    if (categorie) { 
-      fetch(`/api/products/filter?categories=${categorie}`)
-        .then(res=>res.json())
-        .then(data=>setProduct(data.products))
-    } 
+  // useEffect(() => {
+  //   if (categorie) { 
+  //     fetch(`/api/products/filter?categories=${categorie}`)
+  //       .then(res=>res.json())
+  //       .then(data=>setProduct(data.products))
+  //   } 
 
-    if (query) { 
-      const response = async () => {
-      const res = await fetch(`/api/products/search`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({query: query})
-      }).then(res=>res.json())
-      setProduct(res)
-      }
-      response()
-    }
-    else {
-      fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))
-    }
+  //   if (query) { 
+  //     const response = async () => {
+  //     const res = await fetch(`/api/products/search`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({query: query})
+  //     }).then(res=>res.json())
+  //     setProduct(res)
+  //     }
+  //     response()
+  //   }
+  //   else {
+  //     fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))
+  //   }
 
-  },[categorie, sortType]);
+  // },[categorie, sortType]);
   //Price slider
   const [valuePriceSlider, setValuePriceSlider] = useState([1, 50000]);
   function valuetext(value) {
@@ -92,9 +91,10 @@ const AllProducts = (props) => {
 
   };
   const submitPriceFilter=()=> {
-    dispatch(setMinPrice(valuePriceSlider[0]));
-    dispatch(setMaxPrice(valuePriceSlider[1]));
-    console.log(minPrice,maxPrice)
+    
+    dispatch(setMinPrice({ minPrice:valuePriceSlider[0]}));
+    dispatch(setMaxPrice({ maxPrice:valuePriceSlider[1]}));
+    
   }
   return (
     <Box sx={{mx:'auto',maxWidth: 'lg'}}>
@@ -232,7 +232,7 @@ const AllProducts = (props) => {
               <LoadingSpinner />
             ) : (
               <FurnitureItems furniture={data.products} />
-             
+     
             )}
           <Pagination 
             totalProducts={data.products?data.products:0}
