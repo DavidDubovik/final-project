@@ -5,15 +5,18 @@ import AboutUs from './Components/About/Aboutus';
 import PageNotFound from './Pages/NotFoundPage/pageNotFound.page';
 import { Routes, Route } from 'react-router-dom';
 import OneProduct from "./Pages/OneProduct/OneProduct.component";
-import store from './Redux/store';
+import store,{persistor} from './Redux/store';
 import './App.css';
 import { Provider } from "react-redux";
 import CartPage from "./Pages/Cart-page/CartPage";
+import { PersistGate } from 'redux-persist/integration/react';
 import AllProducts from "./Components/Furniture/Furniture/Furniture";
+
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
+        <PersistGate  persistor={persistor}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -23,10 +26,11 @@ function App() {
             <Route path="/products/:id" element={<OneProduct />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/products" element={<AllProducts />} />
-            <Route path="/:categorie" element={<AllProducts />} />
+            <Route path="/categories/:categorie" element={<AllProducts />} />
             <Route path="/search/:query" element={<AllProducts />} />
           </Route>
         </Routes>
+        </PersistGate>
       </Provider>
     </div >
   );

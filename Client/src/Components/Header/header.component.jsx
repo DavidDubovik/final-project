@@ -45,7 +45,7 @@ const menuList = [
   },
   {
     title: "Столи",
-    path: "/tables",
+    path: "categories/tables",
     submenu: [
       { title: "Круглі столи", path: "/table/round" },
       {
@@ -64,7 +64,7 @@ const menuList = [
   },
   {
     title: "Стільці",
-    path: "/chairs",
+    path: "categories/chairs",
     submenu: [
       { title: "Круглі Стільці", path: "/chairs/round" },
       {
@@ -79,23 +79,23 @@ const menuList = [
   },
   {
     title: "Ліжка",
-    path: "/beds",
+    path: "categories/beds",
     submenu: [
       { title: "Ортопедичні", path: "/beds/round" },
       {
         title: "Круглі ліжка",
-        path: "/beds/square",
+        path: "/categories/square",
       },
     ],
   },
   {
     title: "Корпусні меблі",
-    path: "/housingfurniture",
+    path: "categories/housingfurniture",
     submenu: [
       { title: "Ортопедичні", path: "/beds/round" },
       {
         title: "Круглі ліжка",
-        path: "/beds/square",
+        path: "/categories/square",
       },
     ],
   }

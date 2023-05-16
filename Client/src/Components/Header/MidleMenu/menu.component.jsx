@@ -10,12 +10,14 @@ import Typography from '@mui/material/Typography';
 import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { KeepMountedModal } from "../../ModalWindowBasket";
-
+import { loguotCustomer } from "../../../Redux/login.reducer";
 const MidleMenu = () => {
+
     const dispatch = useDispatch()
     const basket = useSelector(state => {
         return state.products.basket
     })
+    const isLogged = useSelector(state => state.isLogged.isLogged.success)
     // let basketLength = basket[0].length
     // console.log(basketLength);
     return (
@@ -37,7 +39,7 @@ const MidleMenu = () => {
                     display: { sm: 'none', md: 'block' }
                 }}>(093) 170-83-23</Typography>
                 <SearchBar />
-                <LoginButton />
+                {isLogged?<Typography onClick={()=>dispatch(loguotCustomer())}>Вийти</Typography> : <LoginButton />}
                 <IconButton aria-label="add to shopping cart"  >
                     <Badge badgeContent={basket.length} color="primary">
                         <KeepMountedModal />

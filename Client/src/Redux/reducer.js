@@ -2,6 +2,8 @@ const initialState = {
 
     products: [],
     basket: [],
+    isLogged:false,
+    token:"",
     isModal: false,
 };
 export default function reducer(state = initialState, action) {
