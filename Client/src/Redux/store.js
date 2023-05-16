@@ -4,6 +4,8 @@ import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import loginReducer from "./login.reducer";
+import allProdReducer from "./products.reducer"
+
 
 const persistConfig = {
   key: "root",
@@ -16,6 +18,7 @@ const userPersistConfig = {
 
 const rootReducer = combineReducers({
     products: reducer,
+    allProducts: allProdReducer,
   isLogged: persistReducer(userPersistConfig, loginReducer),
 });
 

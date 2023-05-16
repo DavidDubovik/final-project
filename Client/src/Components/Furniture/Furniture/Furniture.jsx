@@ -4,40 +4,50 @@ import Slider from "@mui/material/Slider";
 import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import Box from '@mui/material/Box';
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAsyncProducts } from "../../../Redux/products.reducer";
 import "./Furniture.scss";
 import Filter from "../Filter/Filter";
 import Pagination from "../Pagination/Pagination";
 
 const AllProducts = (props) => {
   const { categorie, query } = useParams();
-
+  const dispatch = useDispatch()
+  const {data,status,error,page,pageSize} = useSelector(state => {
+        return state.allProducts
+    })
+ 
+  const {categories,color,brand,sort,minPrice,maxPrice} = useSelector(state => {
+        return state.allProducts.filterBy
+    })
+  const myParams = {
+    categories,color,brand,sort,minPrice,maxPrice
+  }
+  useEffect(()=>{
+    dispatch(fetchAsyncProducts({page,categories,color,brand,sort,minPrice,maxPrice,pageSize})).then(setProduct(data))
+  },[page,categories,color,brand,sort,minPrice,maxPrice,pageSize])
+  console.log("log1",data);
   const [products, setProduct] = useState([]);
   const [sortType] = useState({});
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(pageSize);
   const [productsPerPage, setProductsPerPage] = useState(3)
 
   const lastIndex = currentPage * productsPerPage;
   const firstIndex = lastIndex - productsPerPage;
-  const currentFurniture = products.slice(firstIndex, lastIndex)
+  // const currentFurniture = products.slice(firstIndex, lastIndex)
 
 
   const sortAscending = () => {
-    const sortedProducts = [...products].sort((a, b) => a.currentPrice - b.currentPrice);
-    setProduct(sortedProducts);
+    console.log("sort3")
   };
 
   const sortDescending = () => {
-    const sortedProducts = [...products].sort((a, b) => b.currentPrice - a.currentPrice);
-    setProduct(sortedProducts);
+    console.log("sort2")
   };
 
   const sortName = () => {
-    const sortedProducts = [...products].sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    });
-    setProduct(sortedProducts);
+    console.log("sort1")
   };
 
   const paginate = (pageNumber) =>  setCurrentPage(pageNumber)
@@ -204,11 +214,11 @@ const AllProducts = (props) => {
           {!products ? (
               <LoadingSpinner />
             ) : (
-              <FurnitureItems furniture={currentFurniture} />
+              <FurnitureItems furniture={data.products} />
+             
             )}
           <Pagination 
-            productsPerPage={productsPerPage}
-            totalProducts={products.length}
+            totalProducts={data.products?data.products:0}
             paginate={paginate}
             prevPage={prevPage}
             nextPage={nextPage}
