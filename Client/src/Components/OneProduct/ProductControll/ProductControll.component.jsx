@@ -23,11 +23,14 @@ const ProductControll = ({ myProps }) => {
   })
 
   const addProduct = (prod) => {
+    // debugger
     // let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
     let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
+    // console.log(filterBasket);
     if (filterBasket.length === basket.length || basket.length === 0) {
-      dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, ''] })
-      localStorage.setItem('basket', JSON.stringify([...basket, prod]))
+      // dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, ...filterBasket] })
+      dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, prod] })
+      // localStorage.setItem('basket', JSON.stringify([...basket, prod]))
     }
   }
 

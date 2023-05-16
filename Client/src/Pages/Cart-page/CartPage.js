@@ -35,7 +35,7 @@ function CartPage() {
   //   localStorage.setItem("basket", JSON.stringify([basket]));
   // }, [basket]);
 
-  console.log(basket);
+  // console.log(basket);
 
   const modalOpen = useSelector((state) => {
     return state.products.isModal;
