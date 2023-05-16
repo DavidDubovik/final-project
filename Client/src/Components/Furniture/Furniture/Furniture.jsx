@@ -86,12 +86,16 @@ const AllProducts = (props) => {
   function valuetext(value) {
     return `${value}грн`;
   }
+  
   const handleChangePriceSlider = (event, newValue) => {
     setValuePriceSlider(newValue);
-    dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }))
-    console.log(minPrice)
-    dispatch(setMaxPrice({ minPrice: valuePriceSlider[1] }))
+
   };
+  const submitPriceFilter=()=> {
+    dispatch(setMinPrice(valuePriceSlider[0]));
+    dispatch(setMaxPrice(valuePriceSlider[1]));
+    console.log(minPrice,maxPrice)
+  }
   return (
     <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <main>
@@ -134,7 +138,7 @@ const AllProducts = (props) => {
                     className="filters-price__input filters-price__info"
                   />
                 </label>
-                <button type="button" className="filters-price__button">
+                <button type="button" className="filters-price__button" onClick={submitPriceFilter}>
                   OK
                 </button>
               </div>

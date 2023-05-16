@@ -24,6 +24,7 @@ export const fetchAsyncProducts = createAsyncThunk(
     const queryParams = { ...queri, startPage: queri.page, perPage: queri.pageSize };
     delete queryParams.page
     delete queryParams.pageSize
+   
     //deleate empty filters
     Object.entries(queryParams).forEach(([k, v]) => {
       if (v.length === 0) delete queryParams[k];
