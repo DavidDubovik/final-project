@@ -55,14 +55,14 @@ const LoginButton = () => {
 
     if (!values.firstName) {
       errors.firstName = "Ви повинні заповнити це поле";
-    } else if (values.firstName.length > 15) {
-      errors.firstName = "Має бути 15 символів або менше";
+    } else if (values.firstName.length > 7) {
+      errors.firstName = "Має бути 7 символів або менше";
     }
 
     if (!values.lastName) {
       errors.lastName = "Ви повинні заповнити це поле";
-    } else if (values.lastName.length > 20) {
-      errors.lastName = "Має бути 20 символів або менше!";
+    } else if (values.lastName.length > 7) {
+      errors.lastName = "Має бути 7 символів або менше!";
     }
 
     if (!values.email) {
