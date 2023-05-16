@@ -31,7 +31,6 @@ const LoginButton = () => {
   const handleClose = () => setOpen(false);
   const handleOpenLogin = () => setOpenLogin(true);
   const handleClose2Login = () => setOpenLogin(false);
-  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const dispatch = useDispatch();
 
   const myLoginFunc = ({ email, password }) => {
@@ -39,17 +38,12 @@ const LoginButton = () => {
       email: formik.values.email,
       password: formik.values.passwordLogin,
     };
-    dispatch(loginCustomerFetch(data));
     handleClose();
+    dispatch(loginCustomerFetch(data)).then(res => setRes(JSON.stringify(res.payload.password))).then(()=>handleOpenLogin());
+    
+    
   };
-  const myCreatFunc = ({ firstName, lastName, email, password }) => {
-    const data = {
-      email: formik.values.email,
-      password: formik.values.passwordLogin,
-    };
-    dispatch(loginCustomerFetch(data));
-    handleClose();
-  };
+
   const validate = (values) => {
     const errors = {};
 
