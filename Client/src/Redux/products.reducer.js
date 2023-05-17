@@ -7,7 +7,7 @@ const initialState = {
     categories: "",
     color: "",
     trendingProduct: "",
-    brand: "",
+ 
     sort: "",//-price,+price,+-name
     minPrice: 1,
     maxPrice: 50000,
@@ -79,7 +79,6 @@ const allprodreducer = createSlice({
     setPage(state, action) {
       state.page = action.payload;
     },
- 
  
   },
   extraReducers: (builder) => {

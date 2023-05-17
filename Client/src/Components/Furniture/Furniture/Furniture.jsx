@@ -22,7 +22,7 @@ const AllProducts = (props) => {
     return state.allProducts;
   });
 
-  const { categories, color, brand, sort, minPrice, maxPrice } = useSelector(
+  const { categories, color,  sort, minPrice, maxPrice } = useSelector(
     (state) => {
       return state.allProducts.filterBy;
     }
@@ -35,14 +35,13 @@ const AllProducts = (props) => {
         page,
         categories,
         color,
-        brand,
         sort,
         minPrice,
         maxPrice,
         pageSize,
       })
     ).then((data) => setProduct(data));
-  }, [page, categories, color, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
+  }, [page, categories, color, sort, minPrice, maxPrice, pageSize, dispatch]);
 
   const [products, setProduct] = useState([]);
   const [sortType] = useState({});
@@ -88,6 +87,7 @@ const AllProducts = (props) => {
   //   }
 
   // },[categorie, sortType]);
+
   //Price slider
   const [valuePriceSlider, setValuePriceSlider] = useState([1, 50000]);
   function valuetext(value) {
