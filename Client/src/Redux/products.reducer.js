@@ -15,6 +15,7 @@ const initialState = {
   error: "",
   page: 1,
   pageSize: 5,
+  listOfColors:[]
 };
 
 export const fetchAsyncProducts = createAsyncThunk(
@@ -82,6 +83,10 @@ const allprodreducer = createSlice({
     setPage(state, action) {
       state.page = action.payload;
     },
+    //set list of colors 
+    setListColors(state,action){
+      state.listOfColors= action.payload;
+    }
  
   },
   extraReducers: (builder) => {
@@ -106,5 +111,6 @@ export const {
   setMaxPrice,
   sortingProducts,
   setPage,
+  setListColors
 } = allprodreducer.actions;
 export default allprodreducer.reducer;

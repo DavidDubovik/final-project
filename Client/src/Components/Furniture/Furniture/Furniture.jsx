@@ -13,13 +13,15 @@ import {
   setMinPrice,
   setMaxPrice,
   sortingProducts,
-  changeCategory
+  changeCategory,
+  setListColors
 } from "../../../Redux/products.reducer";
+import { uniqueId } from "lodash";
 
 const AllProducts = (props) => {
  
   const dispatch = useDispatch();
-  const { data, status, error, page, pageSize } = useSelector((state) => {
+  const { data, status, error, page, pageSize,listOfColors } = useSelector((state) => {
     return state.allProducts;
   });
 
@@ -42,7 +44,11 @@ const AllProducts = (props) => {
         pageSize,
       })
     ).then((data) => setProduct(data));
+    dispatch(setListColors(data.products.map(item=>item["colors"]).flat(1)))
   }, [page, categories, color, sort, minPrice, maxPrice, pageSize, dispatch]);
+  // получение масива цветов
+  // const myCollors = data.products.map(item=>item["colors"]).flat(1)
+  console.log("test",listOfColors);
 
   const [products, setProduct] = useState([]);
   const [sortType] = useState({});
@@ -107,8 +113,7 @@ const AllProducts = (props) => {
 
   }
   const submitCatFilter = () =>{
-    console.log(catfilter)
-    console.log(catfilter.join())
+   
     const testTest = catfilter.join()
     
     dispatch(changeCategory({categories:testTest}))
@@ -207,27 +212,13 @@ const AllProducts = (props) => {
 
           <div className="filters-checkbox__container">
             <h3>Колір</h3>
-
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">Дикий дуб</span>
-            </label>
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">Слонова кістка</span>
-            </label>
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">Медовий</span>
-            </label>
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">Ясен</span>
-            </label>
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">Морений</span>
-            </label>
+              {listOfColors.map(el=>{
+                return (<label className="filters-checkbox__item">
+                <input type="checkbox" name={el} key={(uniqueId())}></input>{" "}
+                <span className="filters-checkbox__info">{el}</span>
+              </label>)
+              })}
+            
           </div>
         </div>
 
