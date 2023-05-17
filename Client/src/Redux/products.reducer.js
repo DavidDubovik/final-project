@@ -30,7 +30,6 @@ export const fetchAsyncProducts = createAsyncThunk(
   });
     const myQuery = queryString.stringify(queryParams);
 
-    console.log(myQuery)
     try {
       const response = await fetch(
         `http://localhost:3000/api/products/filter?${myQuery}`
