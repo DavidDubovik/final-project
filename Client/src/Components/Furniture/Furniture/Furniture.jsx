@@ -219,7 +219,7 @@ const AllProducts = (props) => {
           <div className="filters-checkbox__container">
             <h3>Колір</h3>
               {listOfColors.map(el=>{
-                return (<label className="filters-checkbox__item">
+                return (<label className="filters-checkbox__item" key={uuidv4()}>
                 <input type="checkbox" name={el} ></input>
                 <span className="filters-checkbox__info">{el}</span>
               </label>)
