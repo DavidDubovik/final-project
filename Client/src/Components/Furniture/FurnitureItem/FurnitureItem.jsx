@@ -8,8 +8,8 @@ export class FurnitureItem extends Component {
 
   render() {
     return (
-      <div className='chair'>
-      <Link to={`/products/`+this.props.furniture.itemNo} relative="path" key={uuidv4()}>
+      <div className='chair' key={uuidv4()}>
+      <Link to={`/products/`+this.props.furniture.itemNo} relative="path" >
         <div className='chair-img__container'>
             <img src={this.props.furniture.imageUrls[0]} alt="" />
         </div>

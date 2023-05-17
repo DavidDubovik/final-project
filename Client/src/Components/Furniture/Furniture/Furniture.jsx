@@ -1,67 +1,74 @@
 import React, { useEffect, useState } from "react";
-import {useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncProducts } from "../../../Redux/products.reducer";
 import "./Furniture.scss";
 import Filter from "../Filter/Filter";
 import Pagination from "../Pagination/Pagination";
-import { setMinPrice,setMaxPrice,setPage } from "../../../Redux/products.reducer";
+import {
+  setMinPrice,
+  setMaxPrice,
+  setPage,
+} from "../../../Redux/products.reducer";
 
 const AllProducts = (props) => {
   const { categorie, query } = useParams();
-  const dispatch = useDispatch()
-  const {data,status,error,page,pageSize} = useSelector(state => {
-        return state.allProducts
-    })
- 
-  const {categories,color,brand,sort,minPrice,maxPrice} = useSelector(state => {
-        return state.allProducts.filterBy
-    })
+  const dispatch = useDispatch();
+  const { data, status, error, page, pageSize } = useSelector((state) => {
+    return state.allProducts;
+  });
 
-  useEffect(()=>{
-    dispatch(fetchAsyncProducts({page,categories,color,brand,sort,minPrice,maxPrice,pageSize})).then(data => setProduct(data))
-    
-  },[page, categories, color, brand, sort, minPrice, maxPrice, pageSize, dispatch])
+  const { categories, color, brand, sort, minPrice, maxPrice } = useSelector(
+    (state) => {
+      return state.allProducts.filterBy;
+    }
+  );
+
+  useEffect(() => {
   
+    dispatch(
+      fetchAsyncProducts({
+        page,
+        categories,
+        color,
+        brand,
+        sort,
+        minPrice,
+        maxPrice,
+        pageSize,
+      })
+    ).then((data) => setProduct(data));
+  }, [page, categories, color, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
+
   const [products, setProduct] = useState([]);
   const [sortType] = useState({});
 
-  const [currentPage, setCurrentPage] = useState(pageSize);
-  const [productsPerPage, setProductsPerPage] = useState(3)
-
-  const lastIndex = currentPage * productsPerPage;
-  const firstIndex = lastIndex - productsPerPage;
   // const currentFurniture = products.slice(firstIndex, lastIndex)
 
-
   const sortAscending = () => {
-    console.log("sort3")
+    console.log("sort3");
   };
 
   const sortDescending = () => {
-    console.log("sort2")
+    console.log("sort2");
   };
 
   const sortName = () => {
-    console.log("sort1")
+    console.log("sort1");
   };
 
-  const paginate = (pageNumber) =>  setCurrentPage(pageNumber)
-  const prevPage = () =>  setCurrentPage(prev => prev -1)
-  const nextPage = () =>  setCurrentPage(next => next +1)
- 
   // useEffect(() => {
-  //   if (categorie) { 
+  //   if (categorie) {
   //     fetch(`/api/products/filter?categories=${categorie}`)
   //       .then(res=>res.json())
   //       .then(data=>setProduct(data.products))
-  //   } 
+  //   }
 
-  //   if (query) { 
+  //   if (query) {
   //     const response = async () => {
   //     const res = await fetch(`/api/products/search`, {
   //       method: 'POST',
@@ -85,19 +92,16 @@ const AllProducts = (props) => {
   function valuetext(value) {
     return `${value}грн`;
   }
-  
+
   const handleChangePriceSlider = (event, newValue) => {
     setValuePriceSlider(newValue);
-
   };
-  const submitPriceFilter=()=> {
-    
-    dispatch(setMinPrice({ minPrice:valuePriceSlider[0]}));
-    dispatch(setMaxPrice({ maxPrice:valuePriceSlider[1]}));
-    
-  }
+  const submitPriceFilter = () => {
+    dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
+    dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
+  };
   return (
-    <Box sx={{mx:'auto',maxWidth: 'lg'}}>
+    <Box sx={{ mx: "auto", maxWidth: "lg" }}>
       <main>
         <div className="pageCategories, left">
           <h2>Усі товари</h2>
@@ -106,14 +110,14 @@ const AllProducts = (props) => {
               <h3 className="filters-price__price">Price</h3>
 
               <Slider
-        getAriaLabel={() => 'Ціна товарів'}
-        value={valuePriceSlider}
-        onChange={handleChangePriceSlider}
-        min={1}
-        max="50000"
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
-      />
+                getAriaLabel={() => "Ціна товарів"}
+                value={valuePriceSlider}
+                onChange={handleChangePriceSlider}
+                min={1}
+                max="50000"
+                valueLabelDisplay="auto"
+                getAriaValueText={valuetext}
+              />
               <div className="filters-price__slider"></div>
               <br />
               <div className="filters-price__container">
@@ -122,7 +126,6 @@ const AllProducts = (props) => {
                     type="number"
                     min={minPrice}
                     max={maxPrice}
-                    onChange={(e)=>console.log(e.target.value)}
                     placeholder={valuePriceSlider[0]}
                     className="filters-price__input filters-price__info"
                   />
@@ -134,11 +137,14 @@ const AllProducts = (props) => {
                     min={minPrice}
                     max={maxPrice}
                     placeholder={valuePriceSlider[1]}
-                    onChange={(e)=>console.log(e.target.value)}
                     className="filters-price__input filters-price__info"
                   />
                 </label>
-                <button type="button" className="filters-price__button" onClick={submitPriceFilter}>
+                <button
+                  type="button"
+                  className="filters-price__button"
+                  onClick={submitPriceFilter}
+                >
                   OK
                 </button>
               </div>
@@ -155,10 +161,7 @@ const AllProducts = (props) => {
               </span>
             </label>
             <label className="filters-checkbox__item">
-              <input 
-              type="checkbox"
-              name="name"
-              ></input>
+              <input type="checkbox" name="name"></input>
               <span className="filters-checkbox__info">
                 Комбіновані (дерево + метал)
               </span>
@@ -220,35 +223,25 @@ const AllProducts = (props) => {
         <div className="pageCategories, right">
           <br />
           <div className="filter-box">
-            <Filter 
-              value={sortType} 
-              onChangeSortAscending={(i) => sortAscending(i)} 
+            <Filter
+              value={sortType}
+              onChangeSortAscending={(i) => sortAscending(i)}
               onChangeSortDescending={(i) => sortDescending(i)}
               onChangeSortName={(i) => sortName(i)}
-              />  
+            />
           </div>
           <br />
-          {!products ? (
-              <LoadingSpinner />
-            ) : (
-              <FurnitureItems furniture={data.products} />
-     
-            )}
-          <Pagination 
-            totalProducts={data.products?data.products:0}
-            paginate={paginate}
-            prevPage={prevPage}
-            nextPage={nextPage}
+          {!data.products ? (
+            <LoadingSpinner />
+          ) : (
+            <FurnitureItems furniture={data.products} />
+          )}
+          <Pagination
+            totalProducts={data.productsQuantity}
           />
-                         
         </div>
       </main>
-      
     </Box>
   );
 };
 export default AllProducts;
-
-
-
-

@@ -14,7 +14,7 @@ const initialState = {
   },
   status: null,
   error: "",
-  page: "1",
+  page: 1,
   pageSize: 5,
 };
 
@@ -30,7 +30,7 @@ export const fetchAsyncProducts = createAsyncThunk(
       if (v.length === 0) delete queryParams[k];
   });
     const myQuery = queryString.stringify(queryParams);
-   
+   console.log(myQuery)
     
     try {
       const response = await fetch(
@@ -39,7 +39,7 @@ export const fetchAsyncProducts = createAsyncThunk(
 
      
       const dataZ = await response.json()
- 
+
       return dataZ;
     } catch (error) {
       console.log(error)
@@ -60,10 +60,7 @@ const allprodreducer = createSlice({
     changeColor(state, action) {
       state.filterBy.color = action.payload.color;
     },
-    // change Best products
-    changeBestSeller(state, action) {
-      state.filterBy.bestSeller = action.payload.bestSeller;
-    },
+
     //change Trending products
     changeTrending(state, action) {
       state.filterBy.trendingProduct = action.payload.trendingProduct;
@@ -80,10 +77,7 @@ const allprodreducer = createSlice({
     setMaxPrice: (state, action) => {
       state.filterBy.maxPrice = action.payload.maxPrice;
     },
-    //switch modal windows
-    toggleModal(state, action) {
-      state.isOpen = action.payload;
-    },
+
     //set page for pagination
     setPage(state, action) {
       state.page = action.payload;
@@ -92,10 +86,7 @@ const allprodreducer = createSlice({
     getElement(state, action) {
       state.selectedProduct = action.payload;
     },
-    // switch display card
-    toggleDisplayType(state, action) {
-      state.displayType = action.payload;
-    },
+ 
   },
   extraReducers: (builder) => {
     builder
@@ -120,8 +111,6 @@ export const {
   sortingProducts,
   changeBestSeller,
   changeTrending,
-  toggleDisplayType,
-  toggleModal,
   getElement,
   setPage,
 } = allprodreducer.actions;
