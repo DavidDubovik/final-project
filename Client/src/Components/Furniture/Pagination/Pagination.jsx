@@ -1,19 +1,32 @@
 import React from 'react'
+import { setPage } from '../../../Redux/products.reducer';
+import { useDispatch,useSelector} from "react-redux";
 
-const Pagination = ({ productsPerPage, totalProducts, paginate, prevPage, nextPage }) => {
+const Pagination = ({totalProducts}) => {
+    const dispatch = useDispatch()
     const pageNumbers = [];
-    
-    for(let i = 1; i <= Math.ceil(totalProducts/productsPerPage); i++){
+    const { page, pageSize } = useSelector((state) => {
+        return state.allProducts;
+      });
+    for(let i = 1; i <= Math.ceil(totalProducts/pageSize); i++){
         pageNumbers.push(i)
     }
 
     return (
         <div className='pagination'>   
-            <button type='button' onClick={prevPage}>prev</button>
+            <button type='button' onClick={()=>{
+                if (page>1){
+                    dispatch(setPage(page-1)) 
+                }
+               
+            }
+
+            }>prev</button>
             <div className='page'>
                 {   
                     pageNumbers.map(number => (
-                        <button key={number} className='page-item' onClick={() => paginate(number)}>
+                        <button key={number} className='page-item' onClick={() => {dispatch(setPage(number))
+                            }}>
                             <span 
                                 className='page-link'
                             >
@@ -23,7 +36,11 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, prevPage, nextPa
                     ))
                 }
             </div>
-            <button type='button' onClick={nextPage}>next</button>
+            <button type='button' onClick={()=>{
+               if (page <(totalProducts / pageSize))
+                    dispatch(setPage(page+1)) 
+            
+            }}>next</button>
         </div>
     )
 }

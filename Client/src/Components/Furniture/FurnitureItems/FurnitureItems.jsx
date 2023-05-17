@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FurnitureItem } from '../FurnitureItem/FurnitureItem'
 import './FurnitureItems.scss'
+import { v4 as uuidv4 } from 'uuid';
 
 export class FurnitureItems extends Component {
   
@@ -8,7 +9,7 @@ export class FurnitureItems extends Component {
     return (
       <>
         <div className='chairs'>
-        {this.props.furniture.map(el => <FurnitureItem  key={el.id} furniture={el}/>)}
+        {this.props.furniture.map(el => <FurnitureItem  key={uuidv4()} furniture={el}/>)}
         </div>
       </>
     )
