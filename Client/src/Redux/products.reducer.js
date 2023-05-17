@@ -35,7 +35,7 @@ export const fetchAsyncProducts = createAsyncThunk(
       const response = await fetch(
         `http://localhost:3000/api/products/filter?${myQuery}`
       )
-        console.log(myQuery)
+        
      
       const dataZ = await response.json()
      
