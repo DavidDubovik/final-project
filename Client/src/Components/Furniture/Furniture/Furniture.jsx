@@ -12,11 +12,12 @@ import Pagination from "../Pagination/Pagination";
 import {
   setMinPrice,
   setMaxPrice,
-  sortingProducts
+  sortingProducts,
+  changeCategory
 } from "../../../Redux/products.reducer";
 
 const AllProducts = (props) => {
-  const { categorie, query } = useParams();
+ 
   const dispatch = useDispatch();
   const { data, status, error, page, pageSize } = useSelector((state) => {
     return state.allProducts;
@@ -29,7 +30,7 @@ const AllProducts = (props) => {
   );
 
   useEffect(() => {
-  
+    
     dispatch(
       fetchAsyncProducts({
         page,
@@ -60,15 +61,10 @@ const AllProducts = (props) => {
   const sortName = () => {
     dispatch(sortingProducts({sort:"+ name"}))
   };
-
+ 
   // useEffect(() => {
-  //   if (categorie) {
-  //     fetch(`/api/products/filter?categories=${categorie}`)
-  //       .then(res=>res.json())
-  //       .then(data=>setProduct(data.products))
-  //   }
 
-  //   if (query) {
+  
   //     const response = async () => {
   //     const res = await fetch(`/api/products/search`, {
   //       method: 'POST',
@@ -79,14 +75,11 @@ const AllProducts = (props) => {
   //       body: JSON.stringify({query: query})
   //     }).then(res=>res.json())
   //     setProduct(res)
+  //     console.log(res)
   //     }
   //     response()
-  //   }
-  //   else {
-  //     fetch(`/api/products/`).then(res=>res.json()).then(data=>setProduct(data))
-  //   }
 
-  // },[categorie, sortType]);
+  // },[query]);
 
   //Price slider
   const [valuePriceSlider, setValuePriceSlider] = useState([1, 50000]);
@@ -97,10 +90,31 @@ const AllProducts = (props) => {
   const handleChangePriceSlider = (event, newValue) => {
     setValuePriceSlider(newValue);
   };
-  const submitPriceFilter = () => {
+
+  
+  const [catfilter,setCatFilter]=useState([])
+  const categoryFilter = (event)=>{
+    
+    if (!(catfilter.includes(event.target.name))){
+      setCatFilter([...catfilter,event.target.name])
+      
+      // catString.push(event.target.name)
+    } else if (catfilter.includes(event.target.name)){
+      // const test1 = catfilter.filter(el=>el!==event.target.name)
+      setCatFilter(catfilter.filter(el=>el!==event.target.name))
+
+    }
+
+  }
+  const submitCatFilter = () =>{
+    console.log(catfilter)
+    console.log(catfilter.join())
+    const testTest = catfilter.join()
+    
+    dispatch(changeCategory({categories:testTest}))
     dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
     dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
-  };
+  }
   return (
     <Box sx={{ mx: "auto", maxWidth: "lg" }}>
       <main>
@@ -144,7 +158,7 @@ const AllProducts = (props) => {
                 <button
                   type="button"
                   className="filters-price__button"
-                  onClick={submitPriceFilter}
+                  onClick={submitCatFilter}
                 >
                   OK
                 </button>
@@ -153,47 +167,43 @@ const AllProducts = (props) => {
           </div>
 
           <div className="filters-checkbox__container">
-            <h3>Матеріал</h3>
+            <h3>Категорії</h3>
+
 
             <label className="filters-checkbox__item">
-              <input type="checkbox"></input>
+              <input type="checkbox" name="tables" onChange={categoryFilter}></input>
               <span className="filters-checkbox__info">
-                Із суцільного дерева
+                Столи
               </span>
             </label>
             <label className="filters-checkbox__item">
-              <input type="checkbox" name="name"></input>
+              <input type="checkbox" name="chairs" onChange={categoryFilter}></input>
               <span className="filters-checkbox__info">
-                Комбіновані (дерево + метал)
+                Стільці
               </span>
             </label>
+            <label className="filters-checkbox__item">
+              <input type="checkbox" name="beds" onChange={categoryFilter}></input>
+              <span className="filters-checkbox__info">
+                Ліжка
+              </span>
+            </label>
+            <label className="filters-checkbox__item">
+              <input type="checkbox" name="housingfurniture" onChange={categoryFilter}></input>
+              <span className="filters-checkbox__info">
+                Корпусні меблі
+              </span>
+            </label>
+            <button
+            type="button"
+            className="filters-price__button"
+            onClick={submitCatFilter}
+          >
+            OK
+          </button>
           </div>
 
-          <div className="filters-checkbox__container">
-            <h3>Сидіння</h3>
-
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">З твердим сидінням</span>
-            </label>
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">З м’яким сидінням</span>
-            </label>
-          </div>
-
-          <div className="filters-checkbox__container">
-            <h3>Висота</h3>
-
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">60–85 mm</span>
-            </label>
-            <label className="filters-checkbox__item">
-              <input type="checkbox"></input>{" "}
-              <span className="filters-checkbox__info">більше 85 mm</span>
-            </label>
-          </div>
+ 
 
           <div className="filters-checkbox__container">
             <h3>Колір</h3>
@@ -236,10 +246,10 @@ const AllProducts = (props) => {
             <LoadingSpinner />
           ) : (
             <FurnitureItems furniture={data.products} />
+
           )}
-          <Pagination
-            totalProducts={data.productsQuantity}
-          />
+          
+          <Pagination  totalProducts={data.productsQuantity} />
         </div>
       </main>
     </Box>
