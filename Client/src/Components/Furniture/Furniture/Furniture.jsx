@@ -125,8 +125,8 @@ const AllProducts = (props) => {
                 <label className="filters-price__label">
                   <input
                     type="number"
-                    min={minPrice}
-                    max={maxPrice}
+                    min={Number(minPrice)}
+                    max={Number(maxPrice)}
                     placeholder={valuePriceSlider[0]}
                     className="filters-price__input filters-price__info"
                   />
@@ -135,8 +135,8 @@ const AllProducts = (props) => {
                 <label className="filters-price__label">
                   <input
                     type="number"
-                    min={minPrice}
-                    max={maxPrice}
+                    min={Number(minPrice)}
+                    max={Number(maxPrice)}
                     placeholder={valuePriceSlider[1]}
                     className="filters-price__input filters-price__info"
                   />

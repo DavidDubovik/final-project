@@ -25,7 +25,7 @@ export function ImgMediaCard() {
                             <CardMedia
                                 component="img"
                                 alt="Contemplative Reptile"
-                                max-height="200"
+                                
                                 image={imageUrls[0]}
                                 title="Contemplative Reptile"
                                 style={{ height: 200, width: 200, objectFit: 'contain' }}

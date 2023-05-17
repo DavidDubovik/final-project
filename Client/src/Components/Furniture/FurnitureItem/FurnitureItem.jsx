@@ -18,7 +18,7 @@ export class FurnitureItem extends Component {
         </p>
         </Link>
         <p className='chair__price'>{this.props.furniture.currentPrice} <span className='chair__currency'>грн</span></p>
-        <button type='button' className='chair__button'>У кошик <img src="./img/cart_icon.png" alt="" /></button>
+        <button type='button' className='chair__button'>У кошик <img src="/img/cart_icon.png" alt="cart" /></button>
       </div>
     )
   }
