@@ -7,7 +7,6 @@ const initialState = {
     categories: "",
     color: "",
     trendingProduct: "",
- 
     sort: "",//-price,+price,+-name
     minPrice: 1,
     maxPrice: 50000,
@@ -102,9 +101,6 @@ export const {
   setMinPrice,
   setMaxPrice,
   sortingProducts,
-  changeBestSeller,
-  changeTrending,
-  getElement,
   setPage,
 } = allprodreducer.actions;
 export default allprodreducer.reducer;
