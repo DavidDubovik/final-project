@@ -34,7 +34,7 @@ export const fetchAsyncProducts = createAsyncThunk(
       const response = await fetch(
         `http://localhost:3000/api/products/filter?${myQuery}`
       )
-
+        console.log(myQuery)
      
       const dataZ = await response.json()
      
@@ -46,6 +46,11 @@ export const fetchAsyncProducts = createAsyncThunk(
     }
   }
 );
+export const fetchAsyncSearch = createAsyncThunk("search/fetchAsyncSearch",
+  async (data,{rejectWithValue}) =>{
+
+  }
+)
 
 const allprodreducer = createSlice({
   name: "products",
