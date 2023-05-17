@@ -49,14 +49,14 @@ const LoginButton = () => {
 
     if (!values.firstName) {
       errors.firstName = "Ви повинні заповнити це поле";
-    } else if (values.firstName.length > 7) {
-      errors.firstName = "Має бути 7 символів або менше";
+    } else if (values.firstName.length < 3) {
+      errors.firstName = "Має бути більше 3 символів";
     }
 
     if (!values.lastName) {
       errors.lastName = "Ви повинні заповнити це поле";
-    } else if (values.lastName.length > 7) {
-      errors.lastName = "Має бути 7 символів або менше!";
+    } else if (values.lastName.length <3 ) {
+      errors.lastName = "Має бути більше 3 символів!";
     }
 
     if (!values.email) {
@@ -436,10 +436,10 @@ const LoginButton = () => {
                       const dataZ = {
                         firstName: formik.values.firstName,
                         lastName: formik.values.lastName,
-                        email: formik.values.email,
-                        password: formik.values.passConfirm,
+                        email: formik.values.emailConfirm,
+                        password: formik.values.pass,
                       };
-                      alert(dataZ)
+                      // alert(dataZ)
                       dispatch(createAccountFetch(dataZ));
                     }}
                     type="submit"
