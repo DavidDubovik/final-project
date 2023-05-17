@@ -30,8 +30,8 @@ export const fetchAsyncProducts = createAsyncThunk(
       if (v.length === 0) delete queryParams[k];
   });
     const myQuery = queryString.stringify(queryParams);
-   console.log(myQuery)
-    
+
+    console.log(myQuery)
     try {
       const response = await fetch(
         `http://localhost:3000/api/products/filter?${myQuery}`
@@ -39,8 +39,9 @@ export const fetchAsyncProducts = createAsyncThunk(
 
      
       const dataZ = await response.json()
-
+      console.log(dataZ)
       return dataZ;
+      
     } catch (error) {
       console.log(error)
       return rejectWithValue(error.response.data);
@@ -61,10 +62,6 @@ const allprodreducer = createSlice({
       state.filterBy.color = action.payload.color;
     },
 
-    //change Trending products
-    changeTrending(state, action) {
-      state.filterBy.trendingProduct = action.payload.trendingProduct;
-    },
     // sorting products
     sortingProducts(state, action) {
       state.filterBy.sort = action.payload.sort;
@@ -82,10 +79,7 @@ const allprodreducer = createSlice({
     setPage(state, action) {
       state.page = action.payload;
     },
-    //getting the right element
-    getElement(state, action) {
-      state.selectedProduct = action.payload;
-    },
+ 
  
   },
   extraReducers: (builder) => {

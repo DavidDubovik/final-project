@@ -12,7 +12,7 @@ import Pagination from "../Pagination/Pagination";
 import {
   setMinPrice,
   setMaxPrice,
-  setPage,
+  sortingProducts
 } from "../../../Redux/products.reducer";
 
 const AllProducts = (props) => {
@@ -50,15 +50,16 @@ const AllProducts = (props) => {
   // const currentFurniture = products.slice(firstIndex, lastIndex)
 
   const sortAscending = () => {
-    console.log("sort3");
+    dispatch(sortingProducts({sort:"-currentPrice"}))
+    
   };
 
   const sortDescending = () => {
-    console.log("sort2");
+    dispatch(sortingProducts({sort:"+ currentPrice"}))
   };
 
   const sortName = () => {
-    console.log("sort1");
+    dispatch(sortingProducts({sort:"+ name"}))
   };
 
   // useEffect(() => {
