@@ -122,7 +122,6 @@ const AllProducts = (props) => {
   const submitCatFilter = () =>{
    
     const testTest = catfilter.join()
-    
     dispatch(changeCategory({categories:testTest}))
     dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
     dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
