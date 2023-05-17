@@ -37,7 +37,7 @@ export const fetchAsyncProducts = createAsyncThunk(
 
      
       const dataZ = await response.json()
-      console.log(dataZ)
+     
       return dataZ;
       
     } catch (error) {
