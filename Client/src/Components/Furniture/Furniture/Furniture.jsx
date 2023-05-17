@@ -25,7 +25,7 @@ const AllProducts = (props) => {
   const { data, status, error, page, pageSize,listOfColors } = useSelector((state) => {
     return state.allProducts;
   });
-
+console.log(listOfColors.length)
   const { categories, color,  sort, minPrice, maxPrice } = useSelector(
     (state) => {
       return state.allProducts.filterBy;
@@ -45,15 +45,20 @@ const AllProducts = (props) => {
         pageSize,
       })
     ).then((data) => setProduct(data));
+
     // Запись списка цветов
   
   }, [page, categories, color, sort, minPrice, maxPrice, pageSize, dispatch]);
+  
   useEffect(() => {
     // Запись списка цветов
-    const mycolors = data.products.map(item=>item["colors"]).flat(1)
-    dispatch(setListColors([...new Set(mycolors)]))
-  }, []);
- 
+
+      const mycolors = data.products.map(item=>item["colors"]).flat(1)
+      dispatch(setListColors([...new Set(mycolors)]))
+
+
+  },[data.products, dispatch]);
+
   // const testing = [...new Set(data.products.map(item=>item["colors"]).flat(1))]
   // console.log("test",listOfColors)
 
