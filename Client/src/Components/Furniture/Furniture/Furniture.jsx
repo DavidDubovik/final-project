@@ -241,7 +241,7 @@ const AllProducts = (props) => {
           </div>
 
           <div className="filters-checkbox__container">
-            <h3>Колір</h3>
+            <h3>Бренд</h3>
             {listOfColors.length > 1 ? (
               listOfColors.map((el) => {
                 return (
