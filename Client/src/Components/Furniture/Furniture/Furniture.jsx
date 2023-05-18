@@ -142,7 +142,8 @@ const AllProducts = (props) => {
     <Box sx={{ mx: "auto", maxWidth: "lg" }}>
       <main>
         <div className="pageCategories, left">
-          <h2>Усі товари</h2>
+          <h2>Вибрані категорії</h2>
+          <p>{categories}</p>
           <div className="fiters">
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Price</h3>
