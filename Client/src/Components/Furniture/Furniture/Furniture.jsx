@@ -5,7 +5,7 @@ import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncProducts } from "../../../Redux/products.reducer";
+import { fetchAsyncProducts,fetchAsyncAllProducts } from "../../../Redux/products.reducer";
 import "./Furniture.scss";
 import Filter from "../Filter/Filter";
 import Pagination from "../Pagination/Pagination";
@@ -25,7 +25,7 @@ const AllProducts = (props) => {
   const { data, status, error, page, pageSize,listOfColors } = useSelector((state) => {
     return state.allProducts;
   });
-console.log(listOfColors.length)
+
   const { categories, color,  sort, minPrice, maxPrice } = useSelector(
     (state) => {
       return state.allProducts.filterBy;
@@ -53,11 +53,14 @@ console.log(listOfColors.length)
   useEffect(() => {
     // Запись списка цветов
 
-      const mycolors = data.products.map(item=>item["colors"]).flat(1)
-      dispatch(setListColors([...new Set(mycolors)]))
+      dispatch(fetchAsyncAllProducts("")).then((res)=>{
+    
+        dispatch(setListColors(res.payload));
+
+      })
 
 
-  },[data.products, dispatch]);
+  },[]);
 
   // const testing = [...new Set(data.products.map(item=>item["colors"]).flat(1))]
   // console.log("test",listOfColors)
@@ -66,7 +69,7 @@ console.log(listOfColors.length)
   const [sortType] = useState({});
 
   // const currentFurniture = products.slice(firstIndex, lastIndex)
-
+  
   const sortAscending = () => {
     dispatch(sortingProducts({sort:"-currentPrice"}))
     
@@ -223,13 +226,13 @@ console.log(listOfColors.length)
 
           <div className="filters-checkbox__container">
             <h3>Колір</h3>
-              {listOfColors.map(el=>{
-                return (<label className="filters-checkbox__item" key={uuidv4()}>
-                <input type="checkbox" name={el} ></input>
-                <span className="filters-checkbox__info">{el}</span>
-              </label>)
-              // <p>1</p>
-              })}
+            {listOfColors.length >1 ? listOfColors.map(el=>{
+              return (<label className="filters-checkbox__item" key={uuidv4()}>
+              <input type="checkbox" name={el} ></input>
+              <span className="filters-checkbox__info">{el}</span>
+            </label>)
+            // <p>1</p>
+            }) : <p>1</p>}
             
           </div>
         </div>

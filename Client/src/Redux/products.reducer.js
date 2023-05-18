@@ -37,9 +37,9 @@ export const fetchAsyncProducts = createAsyncThunk(
       )
         
      
-      const dataZ = await response.json()
-     
-      return dataZ;
+      const res = await response.json()
+
+      return res;
       
     } catch (error) {
       console.log(error)
@@ -47,9 +47,22 @@ export const fetchAsyncProducts = createAsyncThunk(
     }
   }
 );
-export const fetchAsyncSearch = createAsyncThunk("search/fetchAsyncSearch",
+export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProducts",
   async (data,{rejectWithValue}) =>{
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/`
+      )
+      
+      const dataZ = await response.json()
+      const mycolors =  [...new Set(dataZ.map(item=>item["colors"]).flat(1))]
 
+      return mycolors;
+      
+    } catch (error) {
+      console.log(error)
+      return rejectWithValue(error.response.data);
+    }
   }
 )
 
