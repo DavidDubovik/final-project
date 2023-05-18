@@ -113,9 +113,9 @@ const AllProducts = (props) => {
     newArray[index] = !newArray[index];
     setCheckedState(newArray);
 
-    console.log(colorFilter);
-    console.log(event.target.checked);
-    console.log(index);
+    // console.log(colorFilter);
+    // console.log(event.target.checked);
+    // console.log(index);
     if (!colorFilter.includes(event.target.name)) {
       setcolorFilter([...colorFilter, event.target.name]);
     } else if (colorFilter.includes(event.target.name)) {
