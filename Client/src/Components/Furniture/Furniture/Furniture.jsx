@@ -18,10 +18,9 @@ import {
   sortingProducts,
   changeCategory,
   setListColors,
-  changeColor
+  changeColor,
 } from "../../../Redux/products.reducer";
-import { v4 as uuidv4 } from "uuid";  
-
+import { v4 as uuidv4 } from "uuid";
 
 const AllProducts = (props) => {
   const dispatch = useDispatch();
@@ -52,14 +51,14 @@ const AllProducts = (props) => {
 
     // Запись списка цветов
   }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
-  
+
   useEffect(() => {
     // Запись списка цветов
 
     dispatch(fetchAsyncAllBrands("")).then((res) => {
       dispatch(setListColors(res.payload));
     });
-  }, []);
+  }, [dispatch]);
 
   // const testing = [...new Set(data.products.map(item=>item["colors"]).flat(1))]
   // console.log("test",listOfColors)
@@ -80,8 +79,6 @@ const AllProducts = (props) => {
   const sortName = () => {
     dispatch(sortingProducts({ sort: "+ name" }));
   };
-
-
 
   //Price slider
   const [valuePriceSlider, setValuePriceSlider] = useState([1, 50000]);
@@ -105,30 +102,42 @@ const AllProducts = (props) => {
     }
   };
   //color Filter State and function
+  const [checkedState, setCheckedState] = useState(
+    new Array(listOfColors.length).fill(false)
+  );
   const [colorFilter, setcolorFilter] = useState([]);
-  const setColorFilters = (event) => {
+  const setColorFilters = (event, index) => {
+    // const updatedCheckedState = checkedState.map((item, index) =>
+    //   index === position ? !item : item
+    const newArray = [...checkedState];
+    newArray[index] = !newArray[index];
+    setCheckedState(newArray);
+
+    console.log(colorFilter);
+    console.log(event.target.checked);
+    console.log(index);
     if (!colorFilter.includes(event.target.name)) {
       setcolorFilter([...colorFilter, event.target.name]);
     } else if (colorFilter.includes(event.target.name)) {
       setcolorFilter(colorFilter.filter((el) => el !== event.target.name));
     }
-
   };
 
   const submitCatFilter = () => {
     const testTest = catfilter.join();
     const colorFilterArray = colorFilter.join();
 
+    dispatch(changeColor({ brand: colorFilterArray }));
     dispatch(changeCategory({ categories: testTest }));
     dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
     dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
   };
-  const submitBrandFilter = () => {
-    const colorFilterArray = colorFilter.join();
- 
-    dispatch(changeColor({ brand: colorFilterArray }));
+  // const submitBrandFilter = () => {
+  //   const colorFilterArray = colorFilter.join();
 
-  };
+  //   dispatch(changeColor({ brand: colorFilterArray }));
+
+  // };
   return (
     <Box sx={{ mx: "auto", maxWidth: "lg" }}>
       <main>
@@ -227,10 +236,17 @@ const AllProducts = (props) => {
           <div className="filters-checkbox__container">
             <h3>Бренд</h3>
             {listOfColors.length > 1 ? (
-              listOfColors.map((el) => {
+              listOfColors.map((el, index) => {
                 return (
                   <label className="filters-checkbox__item" key={uuidv4()}>
-                    <input type="checkbox" name={el} onChange={setColorFilters}></input>
+                    <input
+                      type="checkbox"
+                      name={el}
+                      checked={checkedState[index]}
+                      onChange={(event) => {
+                        setColorFilters(event, index);
+                      }}
+                    ></input>
                     <span className="filters-checkbox__info">{el}</span>
                   </label>
                 );
@@ -240,12 +256,12 @@ const AllProducts = (props) => {
               <p>1</p>
             )}
             <button
-            type="button"
-            className="filters-price__button"
-            onClick={submitBrandFilter}
-          >
-            OK
-          </button>
+              type="button"
+              className="filters-price__button"
+              onClick={submitCatFilter}
+            >
+              OK
+            </button>
           </div>
         </div>
 
@@ -260,10 +276,12 @@ const AllProducts = (props) => {
             />
           </div>
           <br />
-          {!(status ==="loaded" )? (
+          {!(status === "loaded") ? (
             <LoadingSpinner />
-          ) : (
+          ) : data.products.length > 0 ? (
             <FurnitureItems furniture={data.products} />
+          ) : (
+            <p>С заданими фільтрами товарів не знайдено. Виберіть фільтри</p>
           )}
 
           <Pagination totalProducts={data.productsQuantity} />

@@ -2,7 +2,7 @@ import React, { useMemo, useEffect,useState } from "react";
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import useStyles from "./style";
 import styles from './index.module.css';
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";  
 
 import { fetchAsyncAllProducts } from "../../Redux/products.reducer";
@@ -64,6 +64,8 @@ export function ImgMediaCard() {
     
             )
 
+        } else {
+            return null
         }
     }, [products]) : '')
     return (
