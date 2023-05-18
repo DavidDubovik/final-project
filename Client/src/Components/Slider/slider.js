@@ -155,8 +155,7 @@ const Style = {
 export default function Slider() {
   return (
     <Box sx={{fontFamily:'Open Sans',mx:'auto',maxWidth: 'lg'}}>
-    <div>
-      <>
+
       <Swiper
         cssMode={true}
         navigation={true}
@@ -231,7 +230,6 @@ export default function Slider() {
         </SwiperSlide>
 
       </Swiper>
-      </>
-    </div></Box>
+  </Box>
   )
 }

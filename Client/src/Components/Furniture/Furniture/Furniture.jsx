@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAsyncProducts,
-  fetchAsyncAllProducts,
+  fetchAsyncAllBrands,
 } from "../../../Redux/products.reducer";
 import "./Furniture.scss";
 import Filter from "../Filter/Filter";
@@ -52,11 +52,11 @@ const AllProducts = (props) => {
 
     // Запись списка цветов
   }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
-  console.log(brand)
+  
   useEffect(() => {
     // Запись списка цветов
 
-    dispatch(fetchAsyncAllProducts("")).then((res) => {
+    dispatch(fetchAsyncAllBrands("")).then((res) => {
       dispatch(setListColors(res.payload));
     });
   }, []);
@@ -81,23 +81,7 @@ const AllProducts = (props) => {
     dispatch(sortingProducts({ sort: "+ name" }));
   };
 
-  // useEffect(() => {
 
-  //     const response = async () => {
-  //     const res = await fetch(`/api/products/search`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({query: query})
-  //     }).then(res=>res.json())
-  //     setProduct(res)
-  //     console.log(res)
-  //     }
-  //     response()
-
-  // },[query]);
 
   //Price slider
   const [valuePriceSlider, setValuePriceSlider] = useState([1, 50000]);
@@ -128,20 +112,20 @@ const AllProducts = (props) => {
     } else if (colorFilter.includes(event.target.name)) {
       setcolorFilter(colorFilter.filter((el) => el !== event.target.name));
     }
-    console.log(colorFilter)
+
   };
 
   const submitCatFilter = () => {
     const testTest = catfilter.join();
     const colorFilterArray = colorFilter.join();
-    console.log(colorFilterArray)
+
     dispatch(changeCategory({ categories: testTest }));
     dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
     dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
   };
   const submitBrandFilter = () => {
     const colorFilterArray = colorFilter.join();
-    console.log(colorFilterArray)
+ 
     dispatch(changeColor({ brand: colorFilterArray }));
 
   };

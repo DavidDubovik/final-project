@@ -1,19 +1,21 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect,useState } from "react";
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import useStyles from "./style";
 import styles from './index.module.css';
 import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";  
 
+import { fetchAsyncAllProducts } from "../../Redux/products.reducer";
 export function ImgMediaCard() {
-    const products = useSelector(state => {
-        return state.products.product
-    })
+    const [products,setProducts]=useState("")
     const dispatch = useDispatch()
-
+    useEffect(()=>{
+        dispatch(fetchAsyncAllProducts()).then(res=>res.payload).then((data)=>{setProducts(data)})
+    })
 
     const product = useMemo(() => products ? products.map(({ name, imageUrls, currentPrice, newProduct, discount, newPrice }) => {
         return (
-            <Card classes={{ root: styles.rootCard }} >
+            <Card classes={{ root: styles.rootCard }} key={uuidv4()} >
                 {discount ? <p style={useStyles.discount}>Знижка</p> : ''}
 
                 <Card style={useStyles.root}>

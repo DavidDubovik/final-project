@@ -37,8 +37,7 @@ export const fetchAsyncProducts = createAsyncThunk(
       )
         
       const res = await response.json()
-      console.log(myQuery)
-      console.log(res)
+
 
       return res;
       
@@ -48,7 +47,7 @@ export const fetchAsyncProducts = createAsyncThunk(
     }
   }
 );
-export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProducts",
+export const fetchAsyncAllBrands = createAsyncThunk("search/fetchAsyncAllProducts",
   async (data,{rejectWithValue}) =>{
     try {
       const response = await fetch(
@@ -59,6 +58,23 @@ export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProdu
       const mycolors =  [...new Set(dataZ.map(item=>item["brand"]).flat(1))]
 
       return mycolors;
+      
+    } catch (error) {
+      console.log(error)
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
+export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProducts",
+  async (data,{rejectWithValue}) =>{
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/products/`
+      )
+      
+      const dataZ = await response.json()
+
+      return dataZ;
       
     } catch (error) {
       console.log(error)
