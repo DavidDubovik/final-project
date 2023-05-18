@@ -20,7 +20,7 @@ const MenuDrop = ({mList}) => {
     };
    
     return (
-        <Box onMouseClick={handleClick}  
+        <Box 
         component={NavLink} to={mList.path}  >
           <Button
             id="fade-button"
