@@ -107,15 +107,11 @@ const AllProducts = (props) => {
   );
   const [colorFilter, setcolorFilter] = useState([]);
   const setColorFilters = (event, index) => {
-    // const updatedCheckedState = checkedState.map((item, index) =>
-    //   index === position ? !item : item
+
     const newArray = [...checkedState];
     newArray[index] = !newArray[index];
     setCheckedState(newArray);
 
-    // console.log(colorFilter);
-    // console.log(event.target.checked);
-    // console.log(index);
     if (!colorFilter.includes(event.target.name)) {
       setcolorFilter([...colorFilter, event.target.name]);
     } else if (colorFilter.includes(event.target.name)) {
@@ -144,6 +140,10 @@ const AllProducts = (props) => {
         <div className="pageCategories, left">
           <h2>Вибрані категорії</h2>
           <p>{categories}</p>
+          <h2>Вибрані Бренди</h2>
+          <p>{brand}</p>
+          <h2>Вибраний діапазон цін</h2>
+          <p>{minPrice}:{maxPrice}</p>
           <div className="fiters">
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Price</h3>
@@ -197,7 +197,6 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="tables"
-                defaultChecked={categories.includes("tables")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Столи</span>
@@ -206,7 +205,6 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="chairs"
-                defaultChecked={categories.includes("chairs")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Стільці</span>
@@ -215,7 +213,6 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="beds"
-                defaultChecked={categories.includes("beds")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Ліжка</span>
@@ -224,7 +221,6 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="housingfurniture"
-                defaultChecked={categories.includes("housingfurniture")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Корпусні меблі</span>
