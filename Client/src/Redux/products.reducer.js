@@ -14,7 +14,7 @@ const initialState = {
   status: null,
   error: "",
   page: 1,
-  pageSize: 5,
+  pageSize: 6,
   listOfColors:[]
 };
 
