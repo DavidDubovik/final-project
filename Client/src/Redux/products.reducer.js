@@ -5,7 +5,7 @@ const initialState = {
   data: [],
   filterBy: {
     categories: "",
-    color: "",
+    brand: "",
     trendingProduct: "",
     sort: "",//-price,+price,+-name
     minPrice: 1,
@@ -36,8 +36,9 @@ export const fetchAsyncProducts = createAsyncThunk(
         `http://localhost:3000/api/products/filter?${myQuery}`
       )
         
-     
       const res = await response.json()
+      console.log(myQuery)
+      console.log(res)
 
       return res;
       
@@ -55,7 +56,7 @@ export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProdu
       )
       
       const dataZ = await response.json()
-      const mycolors =  [...new Set(dataZ.map(item=>item["colors"]).flat(1))]
+      const mycolors =  [...new Set(dataZ.map(item=>item["brand"]).flat(1))]
 
       return mycolors;
       
@@ -76,7 +77,7 @@ const allprodreducer = createSlice({
     },
     // change color
     changeColor(state, action) {
-      state.filterBy.color = action.payload.color;
+      state.filterBy.brand = action.payload.brand;
     },
 
     // sorting products

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+
 import Slider from "@mui/material/Slider";
 import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAsyncProducts,fetchAsyncAllProducts } from "../../../Redux/products.reducer";
+import {
+  fetchAsyncProducts,
+  fetchAsyncAllProducts,
+} from "../../../Redux/products.reducer";
 import "./Furniture.scss";
 import Filter from "../Filter/Filter";
 import Pagination from "../Pagination/Pagination";
@@ -14,31 +17,32 @@ import {
   setMaxPrice,
   sortingProducts,
   changeCategory,
-  setListColors
+  setListColors,
+  changeColor
 } from "../../../Redux/products.reducer";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";  
 
 
 const AllProducts = (props) => {
- 
   const dispatch = useDispatch();
-  const { data, status, error, page, pageSize,listOfColors } = useSelector((state) => {
-    return state.allProducts;
-  });
+  const { data, status, error, page, pageSize, listOfColors } = useSelector(
+    (state) => {
+      return state.allProducts;
+    }
+  );
 
-  const { categories, color,  sort, minPrice, maxPrice } = useSelector(
+  const { categories, brand, sort, minPrice, maxPrice } = useSelector(
     (state) => {
       return state.allProducts.filterBy;
     }
   );
 
   useEffect(() => {
-    
     dispatch(
       fetchAsyncProducts({
         page,
         categories,
-        color,
+        brand,
         sort,
         minPrice,
         maxPrice,
@@ -47,20 +51,15 @@ const AllProducts = (props) => {
     ).then((data) => setProduct(data));
 
     // Запись списка цветов
-  
-  }, [page, categories, color, sort, minPrice, maxPrice, pageSize, dispatch]);
-  
+  }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
+  console.log(brand)
   useEffect(() => {
     // Запись списка цветов
 
-      dispatch(fetchAsyncAllProducts("")).then((res)=>{
-    
-        dispatch(setListColors(res.payload));
-
-      })
-
-
-  },[]);
+    dispatch(fetchAsyncAllProducts("")).then((res) => {
+      dispatch(setListColors(res.payload));
+    });
+  }, []);
 
   // const testing = [...new Set(data.products.map(item=>item["colors"]).flat(1))]
   // console.log("test",listOfColors)
@@ -69,23 +68,21 @@ const AllProducts = (props) => {
   const [sortType] = useState({});
 
   // const currentFurniture = products.slice(firstIndex, lastIndex)
-  
+
   const sortAscending = () => {
-    dispatch(sortingProducts({sort:"-currentPrice"}))
-    
+    dispatch(sortingProducts({ sort: "-currentPrice" }));
   };
 
   const sortDescending = () => {
-    dispatch(sortingProducts({sort:"+ currentPrice"}))
+    dispatch(sortingProducts({ sort: "+ currentPrice" }));
   };
 
   const sortName = () => {
-    dispatch(sortingProducts({sort:"+ name"}))
+    dispatch(sortingProducts({ sort: "+ name" }));
   };
- 
+
   // useEffect(() => {
 
-  
   //     const response = async () => {
   //     const res = await fetch(`/api/products/search`, {
   //       method: 'POST',
@@ -112,28 +109,42 @@ const AllProducts = (props) => {
     setValuePriceSlider(newValue);
   };
 
-  
-  const [catfilter,setCatFilter]=useState([])
-  const categoryFilter = (event)=>{
-    
-    if (!(catfilter.includes(event.target.name))){
-      setCatFilter([...catfilter,event.target.name])
-      
+  const [catfilter, setCatFilter] = useState([]);
+  const categoryFilter = (event) => {
+    if (!catfilter.includes(event.target.name)) {
+      setCatFilter([...catfilter, event.target.name]);
+
       // catString.push(event.target.name)
-    } else if (catfilter.includes(event.target.name)){
+    } else if (catfilter.includes(event.target.name)) {
       // const test1 = catfilter.filter(el=>el!==event.target.name)
-      setCatFilter(catfilter.filter(el=>el!==event.target.name))
-
+      setCatFilter(catfilter.filter((el) => el !== event.target.name));
     }
+  };
+  //color Filter State and function
+  const [colorFilter, setcolorFilter] = useState([]);
+  const setColorFilters = (event) => {
+    if (!colorFilter.includes(event.target.name)) {
+      setcolorFilter([...colorFilter, event.target.name]);
+    } else if (colorFilter.includes(event.target.name)) {
+      setcolorFilter(colorFilter.filter((el) => el !== event.target.name));
+    }
+    console.log(colorFilter)
+  };
 
-  }
-  const submitCatFilter = () =>{
-   
-    const testTest = catfilter.join()
-    dispatch(changeCategory({categories:testTest}))
+  const submitCatFilter = () => {
+    const testTest = catfilter.join();
+    const colorFilterArray = colorFilter.join();
+    console.log(colorFilterArray)
+    dispatch(changeCategory({ categories: testTest }));
     dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
     dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
-  }
+  };
+  const submitBrandFilter = () => {
+    const colorFilterArray = colorFilter.join();
+    console.log(colorFilterArray)
+    dispatch(changeColor({ brand: colorFilterArray }));
+
+  };
   return (
     <Box sx={{ mx: "auto", maxWidth: "lg" }}>
       <main>
@@ -188,52 +199,69 @@ const AllProducts = (props) => {
           <div className="filters-checkbox__container">
             <h3>Категорії</h3>
 
-
             <label className="filters-checkbox__item">
-              <input type="checkbox" name="tables" onChange={categoryFilter}></input>
-              <span className="filters-checkbox__info">
-                Столи
-              </span>
+              <input
+                type="checkbox"
+                name="tables"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Столи</span>
             </label>
             <label className="filters-checkbox__item">
-              <input type="checkbox" name="chairs" onChange={categoryFilter}></input>
-              <span className="filters-checkbox__info">
-                Стільці
-              </span>
+              <input
+                type="checkbox"
+                name="chairs"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Стільці</span>
             </label>
             <label className="filters-checkbox__item">
-              <input type="checkbox" name="beds" onChange={categoryFilter}></input>
-              <span className="filters-checkbox__info">
-                Ліжка
-              </span>
+              <input
+                type="checkbox"
+                name="beds"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Ліжка</span>
             </label>
             <label className="filters-checkbox__item">
-              <input type="checkbox" name="housingfurniture" onChange={categoryFilter}></input>
-              <span className="filters-checkbox__info">
-                Корпусні меблі
-              </span>
+              <input
+                type="checkbox"
+                name="housingfurniture"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Корпусні меблі</span>
             </label>
             <button
-            type="button"
-            className="filters-price__button"
-            onClick={submitCatFilter}
-          >
-            OK
-          </button>
+              type="button"
+              className="filters-price__button"
+              onClick={submitCatFilter}
+            >
+              OK
+            </button>
           </div>
-
- 
 
           <div className="filters-checkbox__container">
             <h3>Колір</h3>
-            {listOfColors.length >1 ? listOfColors.map(el=>{
-              return (<label className="filters-checkbox__item" key={uuidv4()}>
-              <input type="checkbox" name={el} ></input>
-              <span className="filters-checkbox__info">{el}</span>
-            </label>)
-            // <p>1</p>
-            }) : <p>1</p>}
-            
+            {listOfColors.length > 1 ? (
+              listOfColors.map((el) => {
+                return (
+                  <label className="filters-checkbox__item" key={uuidv4()}>
+                    <input type="checkbox" name={el} onChange={setColorFilters}></input>
+                    <span className="filters-checkbox__info">{el}</span>
+                  </label>
+                );
+                // <p>1</p>
+              })
+            ) : (
+              <p>1</p>
+            )}
+            <button
+            type="button"
+            className="filters-price__button"
+            onClick={submitBrandFilter}
+          >
+            OK
+          </button>
           </div>
         </div>
 
@@ -248,14 +276,13 @@ const AllProducts = (props) => {
             />
           </div>
           <br />
-          {!data.products ? (
+          {!(status ==="loaded" )? (
             <LoadingSpinner />
           ) : (
             <FurnitureItems furniture={data.products} />
-
           )}
-          
-          <Pagination  totalProducts={data.productsQuantity} />
+
+          <Pagination totalProducts={data.productsQuantity} />
         </div>
       </main>
     </Box>
