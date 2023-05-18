@@ -197,6 +197,7 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="tables"
+                defaultChecked={categories.includes("tables")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Столи</span>
@@ -205,6 +206,7 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="chairs"
+                defaultChecked={categories.includes("chairs")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Стільці</span>
@@ -213,6 +215,7 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="beds"
+                defaultChecked={categories.includes("beds")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Ліжка</span>
@@ -221,6 +224,7 @@ const AllProducts = (props) => {
               <input
                 type="checkbox"
                 name="housingfurniture"
+                defaultChecked={categories.includes("housingfurniture")&&true}
                 onChange={categoryFilter}
               ></input>
               <span className="filters-checkbox__info">Корпусні меблі</span>
