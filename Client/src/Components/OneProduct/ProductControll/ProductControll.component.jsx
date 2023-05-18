@@ -113,6 +113,29 @@ const ProductControll = ({ myProps }) => {
           >
             {myProps.sizez}
           </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Open Sans",
+              fontWeight: "800",
+              fontSize: "20px",
+              color: "secondary.dark",
+              lineHeight: "1",
+              mb: "14px",
+            }}
+          >
+            Бренд
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Open Sans",
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "secondary.dark",
+              lineHeight: "1.4",
+            }}
+          >
+            {myProps.brand}
+          </Typography>
         </Box>
 
         <>
