@@ -48,7 +48,7 @@ export const fetchAsyncProducts = createAsyncThunk(
   }
 );
 export const fetchAsyncAllBrands = createAsyncThunk("search/fetchAsyncAllProducts",
-  async (data,{rejectWithValue}) =>{
+  async (_,{rejectWithValue}) =>{
     try {
       const response = await fetch(
         `http://localhost:3000/api/products/`
