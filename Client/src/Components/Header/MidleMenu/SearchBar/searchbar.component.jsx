@@ -100,7 +100,7 @@ const SearchBar = () => {
       {filteredData.length != 0 && (<Paper sx={{width:"300px","maxHeight":"300px",position: "absolute",top:"48px",overflow:"hidden","zIndex": "1", "overflowY": "auto"}}>
         {filteredData.slice(0, 15).map((value, key) => {
           return (
-            <NavLink key={uuidv4()} className={styles.nav_link} to={`/products/${value.itemNo}`} >
+            <NavLink key={uuidv4()} className={styles.nav_link} onClick={clearInput} to={`/products/${value.itemNo}`} >
               <Typography color="secondary.dark">{value.name.slice(0, 55)} </Typography></NavLink>
            
           );
