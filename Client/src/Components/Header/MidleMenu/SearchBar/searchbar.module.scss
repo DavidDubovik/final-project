@@ -1,4 +1,10 @@
-a.NavLink:hover {
-  background-color: rebeccapurple;
-  color:red;
+
+
+// Почемуто не работает
+.nav {
+
+  a.nav_link:hover {
+  cursor: pointer;
+  color: red; 
+  }
 }

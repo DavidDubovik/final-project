@@ -10,7 +10,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { NavLink} from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { fetchAsyncAllProducts } from "../../../../Redux/products.reducer";
-import "./searchbar.module.scss";
+import styles from "./searchbar.module.scss";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -100,7 +100,7 @@ const SearchBar = () => {
       {filteredData.length != 0 && (<Paper sx={{width:"300px","maxHeight":"300px",position: "absolute",top:"48px",overflow:"hidden","zIndex": "1", "overflowY": "auto"}}>
         {filteredData.slice(0, 15).map((value, key) => {
           return (
-            <NavLink key={uuidv4()} className={NavLink} to={`/products/${value.itemNo}`} >
+            <NavLink key={uuidv4()} className={styles.nav_link} to={`/products/${value.itemNo}`} >
               <Typography color="secondary.dark">{value.name.slice(0, 55)} </Typography></NavLink>
            
           );
