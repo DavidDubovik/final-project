@@ -36,92 +36,41 @@ function CartPage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const product = useSelector(state => state.products.basket).map(({itemNo,counter}) => {
-  //   return ({"itemNo":itemNo,"cartQuantity":counter})
-  // })
+  const product = useSelector(state => state.products.basket).map(({itemNo,counter}) => {
+    return ({"itemNo":itemNo,"cartQuantity":counter})
+  })
 
-  // function SendProduct() {
-  //   const btn_send = document.querySelector(".confirm-pay");
+  function SendProduct() {
+    const btn_send = document.querySelector(".confirm-pay");
 
-  //   btn_send.addEventListener("click", () => {
-  //     async function NewCartOrder(itemNo,quantity) {
-  //       const backResponse = await fetch('/api/products/'+itemNo)
-  //       const data = await backResponse.json()
-  //       const myResult = {"_id":data._id,"product":data,"cartQuantity":quantity}
-  //       return myResult
-  //     }
-    
-  //     const myWholeList = product.map(el=>{NewCartOrder(el.itemNo,el.cartQuantity)})
-  //     console.log(myWholeList);
-  //   });
-  // }
-
-  const stateproducts = useSelector(state => state.products.nm_data)
-
-  const NewOrder = {
-    products: stateproducts,
-    email: values.Email,
-    mobile: values.Number,
-    letterSubject: "Thank you for order! You are welcome!",
-    letterHtml:
-      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
-    canceled: false,
-  }
-
-  async function SendOrder() {
-    const response = await fetch('/orders', {
-      method: "POST",
-      body: JSON.stringify({
-        NewOrder
-      }),
-      headers: {
-        Connection: 'keep-alive',
-        'Accept-Encoding': 'gzip, deflate, br',
-        Accept: '*/*',
-        'Content-Type': 'application/json'
+    btn_send.addEventListener("click", () => {
+      async function NewCartOrder(itemNo,quantity) {
+        const backResponse = await fetch('/api/products/'+itemNo)
+        const data = await backResponse.json()
+        const myResult = {"_id":data._id,"product":data,"cartQuantity":quantity}
+        return myResult
       }
-    })
     
-    if (!response.ok) {
-      throw new Error('Server Error!')
-    }
-    const result = await response.json()
-    return result
+      const myWholeList = product.map(el=>{NewCartOrder(el.itemNo,el.cartQuantity)})
+      console.log(myWholeList);
+    });
   }
 
-  SendOrder();
-
-  // try {
-  //   const response = await fetch(/orders, {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       NewOrder
-  //     }),
-  //     headers: {
-  //       Connection: 'keep-alive',
-  //       'Accept-Encoding': 'gzip, deflate, br',
-  //       Accept: '*/*',
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   if (!response.ok) {
-  //     throw new Error('Server Error!')
-  //   }
-  //   const result = await response.json()
-  //   return result
-  // } catch (error) {
-  //   return rejectWithValue(error.message)
-  // }
+  SendProduct();
 
   const dispatch = useDispatch();
 
   const basket = useSelector((state) => {
     return state.products.basket;
   });
+  
+  console.log(product)
 
-  useEffect(() => {
-    localStorage.setItem("basket", JSON.stringify([basket]));
-  }, [basket]);
+  // useEffect(() => {
+  //   localStorage.setItem("basket", JSON.stringify([basket]));
+  // }, [basket]);
+
+  // console.log(basket);
 
   const modalOpen = useSelector((state) => {
     return state.products.isModal;
