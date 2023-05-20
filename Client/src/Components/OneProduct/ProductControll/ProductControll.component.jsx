@@ -39,14 +39,14 @@ const ProductControll = ({ myProps }) => {
 
   const increase = () => {
     setCounter((count) => count + 1);
-    setOneProdData((state) => ({ ...state, counter }))
+    setOneProdData((state) => ({ ...state, counter:counter+1 }))
   }
 
   const decrease = () => {
     if (counter > 1) {
       setCounter((count) => count - 1);
     }
-    setOneProdData((state) => ({ ...state, counter }))
+    setOneProdData((state) => ({ ...state, counter:counter-1 }))
   };
   const handleChange = (event) => {
     setColor(event.target.value);
