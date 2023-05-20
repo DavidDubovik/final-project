@@ -12,7 +12,7 @@ export function ImgMediaCard() {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(fetchAsyncAllProducts()).then(res=>res.payload).then((data)=>{setProducts(data)})
-    })
+    },[dispatch])
 
     const product = useMemo(() => products ? products.map(({ name, imageUrls, currentPrice, newProduct, discount, newPrice },index) => {
         if (index <=3){
