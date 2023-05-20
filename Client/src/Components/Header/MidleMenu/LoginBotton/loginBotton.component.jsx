@@ -49,13 +49,13 @@ const LoginButton = () => {
 
     if (!values.firstName ) {
       errors.firstName = "Ви повинні заповнити це поле";
-    } else if (values.firstName.length < 3 && values.firstName.length>0) {
+    } else if (values.firstName.length < 3 ) {
       errors.firstName = "Має бути більше 3 символів";
     }
 
     if (!values.lastName) {
       errors.lastName = "Ви повинні заповнити це поле";
-    } else if (values.lastName.length <3 && values.lastName.length>0) {
+    } else if (values.lastName.length <3 ) {
       errors.lastName = "Має бути більше 3 символів!";
     }
 
@@ -83,19 +83,19 @@ const LoginButton = () => {
         .querySelector(".social-icons")
         .classList.add("autologin-error");
       errors.passwordLogin = "Ви повинні заповнити це поле";
-    } else if (values.passwordLogin.length > 8 && values.passwordLogin.length>0) {
-      errors.passwordLogin = "Пароль може містити максимум 8 символів!";
+    } else if (values.passwordLogin.length > 7 ) {
+      errors.passwordLogin = "Пароль меньше 7 символів!";
     }
 
     if (!values.pass ) {
       errors.pass = "Ви повинні заповнити це поле";
-    } else if (values.pass.length > 8 && values.pass.length>0) {
-      errors.pass = "Пароль може містити максимум 8 символів!";
+    } else if (values.pass.length <7 && values.pass.length>0) {
+      errors.pass = "Пароль може > 7 символів!";
     }
 
     if (!values.passConfirm ) {
       errors.passConfirm = "Ви повинні заповнити це поле";
-    } else if ((values.passConfirm !== values.pass) && values.passConfirm.length>0) {
+    } else if ((values.passConfirm !== values.pass) ) {
       errors.passConfirm = "Паролі не співпадають!";
     }
 
@@ -255,7 +255,7 @@ const LoginButton = () => {
                     value={formik.values.email}
                   />
 
-                  {formik.errors.email ? (
+                  {formik.errors.email && formik.touched.email ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.email}
@@ -275,7 +275,7 @@ const LoginButton = () => {
                     value={formik.values.passwordLogin}
                   />
 
-                  {formik.errors.passwordLogin ? (
+                  {formik.errors.passwordLogin && formik.touched.passwordLogin ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.passwordLogin}
@@ -296,34 +296,6 @@ const LoginButton = () => {
                     УВІЙТИ
                   </button>
 
-                  <div className="social-icons">
-                    <div className="choice">
-                      <div className="line"></div>
-                      <p className="text">або</p>
-                      <div className="line"></div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="facebook social-btn submit-btn"
-                    >
-                      <img
-                        className="picture"
-                        src="../../img/icons/facebook.png"
-                      ></img>
-                      Увійти через Facebook
-                    </button>
-                    <button
-                      type="submit"
-                      className="instagram social-btn submit-btn"
-                    >
-                      <img
-                        className="picture"
-                        src="../../img/icons/instagram.png"
-                      ></img>
-                      Увійти через Instagram
-                    </button>
-                  </div>
                 </form>
               </div>
 
@@ -343,9 +315,10 @@ const LoginButton = () => {
                     placeholder="Ваше ім’я"
                     onChange={formik.handleChange}
                     value={formik.values.firstName}
+                    onBlur={formik.handleBlur}
                   />
 
-                  {formik.errors.firstName ? (
+                  {formik.errors.firstName && formik.touched.firstName ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.firstName}
@@ -362,9 +335,10 @@ const LoginButton = () => {
                     placeholder="Ваше прізвище"
                     onChange={formik.handleChange}
                     value={formik.values.lastName}
+                    onBlur={formik.handleBlur}
                   />
 
-                  {formik.errors.lastName ? (
+                  {formik.errors.lastName  && formik.touched.lastName ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.lastName}
@@ -380,10 +354,11 @@ const LoginButton = () => {
                     type="email"
                     placeholder="E-mail"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     value={formik.values.emailConfirm}
                   />
 
-                  {formik.errors.emailConfirm ? (
+                  {formik.errors.emailConfirm && formik.touched.emailConfirm ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.emailConfirm}
@@ -399,10 +374,11 @@ const LoginButton = () => {
                     type="password"
                     placeholder="Пароль"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     value={formik.values.pass}
                   />
 
-                  {formik.errors.pass ? (
+                  {formik.errors.pass && formik.touched.pass ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.pass}
@@ -418,10 +394,11 @@ const LoginButton = () => {
                     type="password"
                     placeholder="Пароль"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     value={formik.values.passConfirm}
                   />
 
-                  {formik.errors.passConfirm ? (
+                  {formik.errors.passConfirm && formik.touched.passConfirm ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.passConfirm}
