@@ -54,22 +54,22 @@ function CartPage() {
     if (!values.Name) {
       errors.Name = "Ви повинні заповнити це поле";
       setOpen(false);
-    } else if (values.Name.length > 15) {
+    } else if (values.Name.length > 15 && values.Name.length>0) {
       errors.Name = "Має бути 15 символів або менше";
     }
 
-    if (!values.Number) {
+    if (!values.Number ) {
       errors.Number = "Ви повинні заповнити це поле";
       setOpen(false);
-    } else if (values.Number.length > 15) {
+    } else if (values.Number.length > 15 && values.Number.length>0) {
       errors.Number = "Телефон мае містити лише цифри";
     }
 
-    if (!values.Email) {
+    if (!values.Email ) {
       errors.Email = "Ви повинні заповнити це поле";
       setOpen(false);
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email) &&  values.Email.length>0
     ) {
       errors.Email = "Невірна адреса електронної пошти!";
     }
