@@ -10,6 +10,17 @@ import { Link } from "react-router-dom";
 
 import StyllePage from "./StyllePage.scss";
 
+const products = [
+
+  {
+  },
+
+  {
+    "itemNo": 945974,
+    "cartQuantity": 1
+  }
+]
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -25,11 +36,35 @@ function CartPage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const product = useSelector(state => state.products.basket).map(({itemNo,counter}) => {
+    return ({"itemNo":itemNo,"cartQuantity":counter})
+  })
+
+  function SendProduct() {
+    const btn_send = document.querySelector(".confirm-pay");
+
+    btn_send.addEventListener("click", () => {
+      async function NewCartOrder(itemNo,quantity) {
+        const backResponse = await fetch('/api/products/'+itemNo)
+        const data = await backResponse.json()
+        const myResult = {"_id":data._id,"product":data,"cartQuantity":quantity}
+        return myResult
+      }
+    
+      const myWholeList = product.map(el=>{NewCartOrder(el.itemNo,el.cartQuantity)})
+      console.log(myWholeList);
+    });
+  }
+
+  SendProduct();
+
   const dispatch = useDispatch();
 
   const basket = useSelector((state) => {
     return state.products.basket;
   });
+  
+  console.log(product)
 
   // useEffect(() => {
   //   localStorage.setItem("basket", JSON.stringify([basket]));
@@ -171,11 +206,11 @@ function CartPage() {
 
             <div class="tabs">
               <label className="text-title-block">Спосіб доставки</label>
-              <input type="radio" name="tab-btn" id="tab-btn-1" value="" />
+              <input type="radio" name="tab-btn" id="tab-btn-1 delivery_1" value="" />
               <label id="delivery" for="tab-btn-1">
                 Кур’єром додому
               </label>
-              <input type="radio" name="tab-btn" id="tab-btn-2" value="" />
+              <input type="radio" name="tab-btn" id="tab-btn-2 delivery_2" value="" />
               <label id="delivery" for="tab-btn-2">
                 Самовивіз
               </label>

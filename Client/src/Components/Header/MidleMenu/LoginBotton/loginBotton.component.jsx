@@ -302,7 +302,7 @@ const LoginButton = () => {
                     УВІЙТИ
                   </button>
 
-                  <div className="social-icons">
+                  {/* <div className="social-icons">
                     <div className="choice">
                       <div className="line"></div>
                       <p className="text">або</p>
@@ -329,7 +329,7 @@ const LoginButton = () => {
                       ></img>
                       Увійти через Instagram
                     </button>
-                  </div>
+                  </div> */}
                 </form>
               </div>
 

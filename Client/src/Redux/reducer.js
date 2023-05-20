@@ -1,7 +1,7 @@
 const initialState = {
-
     products: [],
     basket: [],
+    nm_data: [],
     isLogged:false,
     token:"",
     isModal: false,
@@ -15,8 +15,10 @@ export default function reducer(state = initialState, action) {
         case "ADD_TO_BASKET":
             // const defaultFavorite = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
             return { ...state, basket: payload };
+        case "ADD_TO_NM_BASKET":
+            return { ...state, nm_data: payload };
         case "CLEAR_BASKET":
-            return { ...state, basket: [] };
+            return { ...state, basket: []};
         case "ASYNC_LOAD":
             const productsBasket = localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
             return { ...state, basket: productsBasket };
