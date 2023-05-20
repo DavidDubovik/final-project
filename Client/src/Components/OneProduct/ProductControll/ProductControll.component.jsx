@@ -16,6 +16,7 @@ const ProductControll = ({ myProps }) => {
 
 
   const [counter, setCounter] = React.useState(1);
+  // console.log(counter)
   const [color, setColor] = React.useState(myProps.colors[0]);
   const [product, setOneProdData] = React.useState({ ...myProps, counter, color });
   const basket = useSelector(state => {
@@ -28,6 +29,7 @@ const ProductControll = ({ myProps }) => {
     let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
     // console.log(filterBasket);
     if (filterBasket.length === basket.length || basket.length === 0) {
+      console.log(prod)
       // dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, ...filterBasket] })
       dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, prod] })
       // localStorage.setItem('basket', JSON.stringify([...basket, prod]))

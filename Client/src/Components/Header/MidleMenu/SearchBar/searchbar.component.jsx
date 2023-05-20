@@ -97,7 +97,7 @@ const SearchBar = () => {
         
       </IconButton>
    
-      {filteredData.length != 0 && (<Paper sx={{width:"300px","maxHeight":"300px",position: "absolute",top:"48px",overflow:"hidden","zIndex": "1", "overflowY": "auto"}}>
+      {filteredData.length != 0 && (<Paper sx={{width:"300px","maxHeight":"300px",position: "absolute",top:"48px",overflow:"hidden","zIndex": "5", "overflowY": "auto"}}>
         {filteredData.slice(0, 15).map((value, key) => {
           return (
             <NavLink key={uuidv4()} className={styles.nav_link} onClick={clearInput} to={`/products/${value.itemNo}`} >
