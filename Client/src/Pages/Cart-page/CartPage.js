@@ -10,17 +10,6 @@ import { Link } from "react-router-dom";
 
 import StyllePage from "./StyllePage.scss";
 
-const products = [
-
-  {
-  },
-
-  {
-    "itemNo": 945974,
-    "cartQuantity": 1
-  }
-]
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -33,7 +22,12 @@ const style = {
 
 function CartPage() {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    SendOrder(NewOrder).then((res) => {
+      console.log(res);
+    });
+  };
   const handleClose = () => setOpen(false);
 
   // const product = useSelector(state => state.products.basket).map(({itemNo,counter}) => {
@@ -50,46 +44,90 @@ function CartPage() {
   //       const myResult = {"_id":data._id,"product":data,"cartQuantity":quantity}
   //       return myResult
   //     }
-    
+
   //     const myWholeList = product.map(el=>{NewCartOrder(el.itemNo,el.cartQuantity)})
   //     console.log(myWholeList);
   //   });
   // }
 
-  const stateproducts = useSelector(state => state.products.nm_data)
+  const stateproducts = useSelector((state) => state.products.nm_data);
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.Name) {
+      errors.Name = "Ви повинні заповнити це поле";
+      setOpen(false);
+    } else if (values.Name.length > 15) {
+      errors.Name = "Має бути 15 символів або менше";
+    }
+
+    if (!values.Number) {
+      errors.Number = "Ви повинні заповнити це поле";
+      setOpen(false);
+    } else if (values.Number.length > 15) {
+      errors.Number = "Телефон мае містити лише цифри";
+    }
+
+    if (!values.Email) {
+      errors.Email = "Ви повинні заповнити це поле";
+      setOpen(false);
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email)
+    ) {
+      errors.Email = "Невірна адреса електронної пошти!";
+    }
+
+    return errors;
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      Name: "",
+
+      Number: "",
+
+      Email: "",
+    },
+
+    validate,
+  });
 
   const NewOrder = {
     products: stateproducts,
-    email: values.Email,
-    mobile: values.Number,
+    email: formik.values.Email,
+    mobile: formik.values.Number,
     letterSubject: "Thank you for order! You are welcome!",
     letterHtml:
       "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
     canceled: false,
-  }
+  };
 
-  async function SendOrder() {
-    const response = await fetch('/orders', {
-      method: "POST",
-      body: JSON.stringify({
-        NewOrder
-      }),
-      headers: {
-        Connection: 'keep-alive',
-        'Accept-Encoding': 'gzip, deflate, br',
-        Accept: '*/*',
-        'Content-Type': 'application/json'
+  async function SendOrder(data) {
+    alert(data);
+    try {
+      const response = await fetch("api/orders", {
+        method: "POST",
+        body: JSON.stringify(NewOrder),
+        headers: {
+          Connection: "keep-alive",
+          "Accept-Encoding": "gzip, deflate, br",
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Server Error!");
       }
-    })
-    
-    if (!response.ok) {
-      throw new Error('Server Error!')
+      const result = await response.json();
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error.message;
     }
-    const result = await response.json()
-    return result
   }
-
-  SendOrder();
 
   // try {
   //   const response = await fetch(/orders, {
@@ -133,47 +171,6 @@ function CartPage() {
     localStorage.removeItem("basket");
     dispatch({ type: "CLEAR_BASKET" });
   }
-
-  const validate = (values) => {
-    const errors = {};
-
-    if (!values.Name) {
-      errors.Name = "Ви повинні заповнити це поле";
-      setOpen(false);
-    } else if (values.Name.length > 15) {
-      errors.Name = "Має бути 15 символів або менше";
-    }
-
-    if (!values.Number) {
-      errors.Number = "Ви повинні заповнити це поле";
-      setOpen(false);
-    } else if (values.Number.length > 15) {
-      errors.Number = "Телефон мае містити лише цифри";
-    }
-
-    if (!values.Email) {
-      errors.Email = "Ви повинні заповнити це поле";
-      setOpen(false);
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email)
-    ) {
-      errors.Email = "Невірна адреса електронної пошти!";
-    }
-
-    return errors;
-  };
-
-  const formik = useFormik({
-    initialValues: {
-      Name: "",
-
-      Number: "",
-
-      Email: "",
-    },
-
-    validate,
-  });
 
   return (
     <div className="Checkout-block">
@@ -257,11 +254,21 @@ function CartPage() {
 
             <div class="tabs">
               <label className="text-title-block">Спосіб доставки</label>
-              <input type="radio" name="tab-btn" id="tab-btn-1 delivery_1" value="" />
+              <input
+                type="radio"
+                name="tab-btn"
+                id="tab-btn-1 delivery_1"
+                value=""
+              />
               <label id="delivery" for="tab-btn-1">
                 Кур’єром додому
               </label>
-              <input type="radio" name="tab-btn" id="tab-btn-2 delivery_2" value="" />
+              <input
+                type="radio"
+                name="tab-btn"
+                id="tab-btn-2 delivery_2"
+                value=""
+              />
               <label id="delivery" for="tab-btn-2">
                 Самовивіз
               </label>
