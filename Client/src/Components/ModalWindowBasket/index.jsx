@@ -72,7 +72,9 @@ export function KeepMountedModal() {
                 <h1>Товар доданий у кошик</h1>{" "}
                 <Link
                   to="/cart-page"
-                  onClick={() => dispatch({ type: "OPEN_MODAL" })}
+                  onClick={() => {dispatch({ type: "OPEN_MODAL" })
+                  toOrderConfirm()}
+                }
                 >
                   Перейти у кошик
                 </Link>
