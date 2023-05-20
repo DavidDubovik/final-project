@@ -113,9 +113,10 @@ function CartPage() {
                 placeholder="Ім’я одержувача"
                 onChange={formik.handleChange}
                 value={formik.values.Name}
+                onBlur={formik.handleBlur}
               />
 
-              {formik.errors.Name ? (
+              {formik.errors.Name && formik.touched.Name ? (
                 <div className="Error">
                   <img src="../../img/icons/Error.png" alt="error" />
                   {formik.errors.Name}
@@ -132,14 +133,15 @@ function CartPage() {
                 placeholder="+380 (...)"
                 onChange={formik.handleChange}
                 value={formik.values.Number}
+                onBlur={formik.handleBlur}
               />
 
-              {formik.errors.Number ? (
+              {formik.errors.Number && formik.touched.Number && (
                 <div className="Error">
                   <img src="../../img/icons/Error.png" alt="error" />
                   {formik.errors.Number}
                 </div>
-              ) : null}
+              ) }
 
               <p className="text-title-field">E-mail</p>
 
@@ -151,9 +153,10 @@ function CartPage() {
                 placeholder="E-mail"
                 onChange={formik.handleChange}
                 value={formik.values.Email}
+                onBlur={formik.handleBlur}
               />
 
-              {formik.errors.Email ? (
+              {formik.errors.Email  && formik.touched.Email ? (
                 <div className="Error">
                   <img src="../../img/icons/Error.png" alt="error" />
                   {formik.errors.Email}
