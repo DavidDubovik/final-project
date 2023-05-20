@@ -47,19 +47,19 @@ const LoginButton = () => {
   const validate = (values) => {
     const errors = {};
 
-    if (!values.firstName && values.firstName.length>0) {
+    if (!values.firstName ) {
       errors.firstName = "Ви повинні заповнити це поле";
     } else if (values.firstName.length < 3 && values.firstName.length>0) {
       errors.firstName = "Має бути більше 3 символів";
     }
 
-    if (!values.lastName && values.lastName.length>0) {
+    if (!values.lastName) {
       errors.lastName = "Ви повинні заповнити це поле";
     } else if (values.lastName.length <3 && values.lastName.length>0) {
       errors.lastName = "Має бути більше 3 символів!";
     }
 
-    if (!values.email && values.email.length>0) {
+    if (!values.email) {
       const social = document
         .querySelector(".social-icons")
         .classList.add("autologin-error");
@@ -70,7 +70,7 @@ const LoginButton = () => {
       errors.email = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.emailConfirm && values.emailConfirm.length>0) {
+    if (!values.emailConfirm ) {
       errors.emailConfirm = "Ви повинні заповнити це поле";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.emailConfirm)
@@ -78,7 +78,7 @@ const LoginButton = () => {
       errors.emailConfirm = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.passwordLogin && values.passwordLogin.length>0) {
+    if (!values.passwordLogin ) {
       const social = document
         .querySelector(".social-icons")
         .classList.add("autologin-error");
@@ -87,13 +87,13 @@ const LoginButton = () => {
       errors.passwordLogin = "Пароль може містити максимум 8 символів!";
     }
 
-    if (!values.pass && values.pass.length>0) {
+    if (!values.pass ) {
       errors.pass = "Ви повинні заповнити це поле";
     } else if (values.pass.length > 8 && values.pass.length>0) {
       errors.pass = "Пароль може містити максимум 8 символів!";
     }
 
-    if (!values.passConfirm && values.passConfirm.length>0) {
+    if (!values.passConfirm ) {
       errors.passConfirm = "Ви повинні заповнити це поле";
     } else if ((values.passConfirm !== values.pass) && values.passConfirm.length>0) {
       errors.passConfirm = "Паролі не співпадають!";
