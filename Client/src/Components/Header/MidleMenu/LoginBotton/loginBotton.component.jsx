@@ -60,9 +60,7 @@ const LoginButton = () => {
     }
 
     if (!values.email) {
-      const social = document
-        .querySelector(".social-icons")
-        .classList.add("autologin-error");
+
       errors.email = "Ви повинні заповнити це поле";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email) && values.email.length>0
@@ -79,9 +77,7 @@ const LoginButton = () => {
     }
 
     if (!values.passwordLogin ) {
-      const social = document
-        .querySelector(".social-icons")
-        .classList.add("autologin-error");
+
       errors.passwordLogin = "Ви повинні заповнити це поле";
     } else if (values.passwordLogin.length > 7 ) {
       errors.passwordLogin = "Пароль меньше 7 символів!";
