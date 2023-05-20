@@ -212,22 +212,22 @@ const LoginButton = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div class="container">
-            <ul class="container--tabs">
-              <li onClick={switchTab} class="tab tab--active">
+          <div className="container">
+            <ul className="container--tabs">
+              <li onClick={switchTab} className="tab tab--active">
                 Увійти
               </li>
-              <li onClick={switchTab} class="tab">
+              <li onClick={switchTab} className="tab">
                 Реєстрація
               </li>
             </ul>
 
-            <div class="container--content">
+            <div className="container--content">
               <div className="border">
                 <hr className="border-line" />
               </div>
 
-              <div class="content content--active">
+              <div className="content content--active">
                 <form
                   id="login"
                   className="input-group"
