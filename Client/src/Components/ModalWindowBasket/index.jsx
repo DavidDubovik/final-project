@@ -43,16 +43,17 @@ export function KeepMountedModal() {
   async function NewCartOrder(itemNo, quantity) {
     const backResponse = await fetch("/api/products/" + itemNo);
     const data = await backResponse.json();
-    const myResult = { _id: data._id, product: data, cartQuantity: quantity };
-    return myResult;
+    const myResult =  { _id: data._id, product: data, cartQuantity: quantity };
+    return  myResult;
   }
   const toOrderConfirm = async () => {
-    const myWholeList = await product.map((el) => {
-    const mydamyWholeListta = NewCartOrder(el.itemNo, el.cartQuantity).then(el=>console.log("elZ",el));
-    return mydamyWholeListta
-    })
+    const myWholeList = await Promise.all(product.map((el) => {
+        return NewCartOrder(el.itemNo, el.cartQuantity)
+   
+    }))
     const dataNew = await myWholeList
     console.log(dataNew);
+    dispatch({ type: "ADD_TO_NM_BASKET",  payload: dataNew})
     // Потом в стей пишемы
   };
   return (
