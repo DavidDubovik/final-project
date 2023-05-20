@@ -47,30 +47,30 @@ const LoginButton = () => {
   const validate = (values) => {
     const errors = {};
 
-    if (!values.firstName) {
+    if (!values.firstName && values.firstName.length>0) {
       errors.firstName = "Ви повинні заповнити це поле";
-    } else if (values.firstName.length < 3) {
+    } else if (values.firstName.length < 3 && values.firstName.length>0) {
       errors.firstName = "Має бути більше 3 символів";
     }
 
-    if (!values.lastName) {
+    if (!values.lastName && values.lastName.length>0) {
       errors.lastName = "Ви повинні заповнити це поле";
-    } else if (values.lastName.length <3 ) {
+    } else if (values.lastName.length <3 && values.lastName.length>0) {
       errors.lastName = "Має бути більше 3 символів!";
     }
 
-    if (!values.email) {
+    if (!values.email && values.email.length>0) {
       const social = document
         .querySelector(".social-icons")
         .classList.add("autologin-error");
       errors.email = "Ви повинні заповнити це поле";
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email) && values.email.length>0
     ) {
       errors.email = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.emailConfirm) {
+    if (!values.emailConfirm && values.emailConfirm.length>0) {
       errors.emailConfirm = "Ви повинні заповнити це поле";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.emailConfirm)
@@ -78,24 +78,24 @@ const LoginButton = () => {
       errors.emailConfirm = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.passwordLogin) {
+    if (!values.passwordLogin && values.passwordLogin.length>0) {
       const social = document
         .querySelector(".social-icons")
         .classList.add("autologin-error");
       errors.passwordLogin = "Ви повинні заповнити це поле";
-    } else if (values.passwordLogin.length > 8) {
+    } else if (values.passwordLogin.length > 8 && values.passwordLogin.length>0) {
       errors.passwordLogin = "Пароль може містити максимум 8 символів!";
     }
 
-    if (!values.pass) {
+    if (!values.pass && values.pass.length>0) {
       errors.pass = "Ви повинні заповнити це поле";
-    } else if (values.pass.length > 8) {
+    } else if (values.pass.length > 8 && values.pass.length>0) {
       errors.pass = "Пароль може містити максимум 8 символів!";
     }
 
-    if (!values.passConfirm) {
+    if (!values.passConfirm && values.passConfirm.length>0) {
       errors.passConfirm = "Ви повинні заповнити це поле";
-    } else if (values.passConfirm !== values.pass) {
+    } else if ((values.passConfirm !== values.pass) && values.passConfirm.length>0) {
       errors.passConfirm = "Паролі не співпадають!";
     }
 
