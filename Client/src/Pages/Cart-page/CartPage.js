@@ -96,20 +96,20 @@ function CartPage() {
 
   const NewOrder = {
     products: stateproducts,
+    canceled: false,
     email: formik.values.Email,
     mobile: formik.values.Number,
     letterSubject: "Thank you for order! You are welcome!",
     letterHtml:
       "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
-    canceled: false,
   };
 
   async function SendOrder(data) {
-    alert(data);
+    console.log("my data",JSON.stringify(data))
     try {
       const response = await fetch("api/orders", {
         method: "POST",
-        body: JSON.stringify(NewOrder),
+        body: JSON.stringify(data),
         headers: {
           Connection: "keep-alive",
           "Accept-Encoding": "gzip, deflate, br",
@@ -119,13 +119,14 @@ function CartPage() {
       });
 
       if (!response.ok) {
+        console.log("error",response)
         throw new Error("Server Error!");
       }
       const result = await response.json();
       console.log(result);
       return result;
     } catch (error) {
-      console.log(error);
+      alert(error.message);
       return error.message;
     }
   }
