@@ -1,6 +1,5 @@
 const useStyles = {
     root: {
-        margin: '55px 11.5px 77px',
         maxWidth: 282,
         width: 282,
         height: '300px',
@@ -15,8 +14,20 @@ const useStyles = {
         padding: '5px 20px',
         position: 'absolute',
         right: -14,
-        top: -7
+        top: -10,
+
     },
+    discount: {
+        color: '#FFFFFF',
+        transform: 'translate(10px, 20px) rotate(45deg)',
+        background: '#E03737',
+        zIndex: 2,
+        padding: '5px 20px',
+        position: 'absolute',
+        right: -14,
+        top: -10
+    },
+
     imgProduct: {
         width: 280,
         height: 180

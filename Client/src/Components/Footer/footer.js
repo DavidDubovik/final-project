@@ -8,6 +8,9 @@ import insta from "./img/insta.png"
 import facebook from "./img/facebook.png"
 import Box from '@mui/material/Box';
 
+import {Link} from 'react-router-dom';
+
+
 export default function Footer() {
     return (
         
@@ -19,21 +22,28 @@ export default function Footer() {
                             <img src={logo} alt=""/>
                             <p className="row-text">Фабрика «LORI» – український виробник, європейська якість!</p>
                         </div>
-                        <div className="row">
-                            <h4 className="row-info">Інформація</h4>
+                        <div className="row row_none">
+                            <h4 className="row-info row-info-media">Інформація</h4>
                             <ul className="row-list">
-                                <li><a href="/#">Про нас</a></li>
-                                <li><a href="/#">Партнерам</a></li>
-                                <li><a href="/#">Вакансії</a></li>
+                                <li><Link to="#">Про нас</Link></li>
+                                <li><Link to="#">Партнерам</Link></li>
+                                <li><Link to="#">Вакансії</Link></li>
+                                <li><Link to="/#">Про нас</Link></li>
+                                <li><Link to="/#">Партнерам</Link></li>
+                                <li><Link to="/#">Вакансії</Link></li>
                             </ul>
                         </div>
-                        <div className="">
+                        <div className="row">
                             <h4 className="row-info">Покупцям</h4>
                             <ul className="">
-                                <li><a href="/#">Гарантія</a></li>
-                                <li><a href="/#">Оплата та доставка</a></li>
-                                <li><a href="/#">Обмін та повернення</a></li>
-                                <li><a href="/#">Кредит та оплата частинами</a></li>
+                                <li><Link to="#">Гарантія</Link></li>
+                                <li><Link to="#">Оплата та доставка</Link></li>
+                                <li><Link to="#">Обмін та повернення</Link></li>
+                                <li><Link to="#">Кредит та оплата частинами</Link></li>
+                                <li><Link to="/#">Гарантія</Link></li>
+                                <li><Link to="/#">Оплата та доставка</Link></li>
+                                <li><Link to="/#">Обмін та повернення</Link></li>
+                                <li><Link to="/#">Кредит та оплата частинами</Link></li>
                             </ul>
                         </div>
                         <div className="row">
@@ -41,7 +51,7 @@ export default function Footer() {
                             <p className="row-text">м. Полтава, вул. Визволення, 26 info@lori.com.ua</p>
                         </div>
                         <div className="">
-                            <div className="row-info">
+                            <div className="row-info row-media">
                                 <h4 className="row-info-text">Підписка на розсилку</h4>
                                 <div className="gmail-img"><img src={gmail} alt=""/></div>
                             </div>
@@ -55,9 +65,10 @@ export default function Footer() {
                             </div>
                             <div className="row-social row-info">
                                 <h4 className="row-info-text">Стежте за нами</h4>
-                                <a href="/#"><img className="img-insta" src={insta} alt=""/></a>
-                                <a href="/#"> <img src={facebook} alt=""/></a>
-
+                                <Link to="#"><img className="img-insta" src={insta} alt=""/></Link>
+                                <Link to="#"> <img src={facebook} alt=""/></Link>
+                                <Link to="/#"><img className="img-insta" src={insta} alt=""/></Link>
+                                <Link to="/#"> <img src={facebook} alt=""/></Link>
                             </div>
                         </div>
                     </div>

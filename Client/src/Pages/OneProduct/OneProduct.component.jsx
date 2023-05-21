@@ -3,10 +3,13 @@ import {useParams } from 'react-router-dom';
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import ImgMediaCard from "../../Components/PopularProducts";
+import {ImgMediaCard} from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
 import LoadingSpinner from "../../Components/LoadingSpiner/LoadingSpiner.component";
+import { NavLink } from "react-router-dom";
+
+
 const OneProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -29,6 +32,13 @@ const OneProduct = () => {
           maxWidth: "lg",
         }}
       >
+        <Box display="flex" sx={{
+          "fontSize": "14px",
+          fontFamily: "Open Sans",
+          mt:"25px",
+          gap:"15px",
+          textTransform:"capitalize"
+        }}><Typography  component={NavLink} to={"/"} sx={{color:"black"}}>Main</Typography><Typography color="primary">{">"}</Typography><Typography>{product.categories}</Typography></Box>
         <Typography
           sx={{
             mt: 4,

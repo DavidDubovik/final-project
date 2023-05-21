@@ -2,21 +2,65 @@ import React from "react";
 
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useDispatch, useSelector } from "react-redux";
 
-import OneProdCounter from "../OneProductCounter/OneProdCounter.component";
-import DropMenu01 from "../dropMenu01/dropMenu01.component";
-const ProductControll = ({myProps}) => {
+
+const ProductControll = ({ myProps }) => {
+  const dispatch = useDispatch()
+
+
+  const [counter, setCounter] = React.useState(1);
+  // console.log(counter)
+  const [color, setColor] = React.useState(myProps.colors[0]);
+  const [product, setOneProdData] = React.useState({ ...myProps, counter, color });
+  const basket = useSelector(state => {
+    return state.products.basket
+  })
+
+  const addProduct = (prod) => {
+    // debugger
+    // let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
+    let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
+    // console.log(filterBasket);
+    if (filterBasket.length === basket.length || basket.length === 0) {
+      console.log(prod)
+      // dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, ...filterBasket] })
+      dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, prod] })
+      // localStorage.setItem('basket', JSON.stringify([...basket, prod]))
+    }
+  }
+
+
+  const increase = () => {
+    setCounter((count) => count + 1);
+    setOneProdData((state) => ({ ...state, counter:counter+1 }))
+  }
+
+  const decrease = () => {
+    if (counter > 1) {
+      setCounter((count) => count - 1);
+    }
+    setOneProdData((state) => ({ ...state, counter:counter-1 }))
+  };
+  const handleChange = (event) => {
+    setColor(event.target.value);
+    setOneProdData((state) => ({ ...state, color }))
+  };
   return (
     <>
       <Box display="flex" sx={{ flexDirection: "column" }}>
         <Box display="flex" sx={{ justifyContent: " space-between" }}>
           <Typography
             sx={{
-              "fontFamily": "Montserrat",
-              "fontWeight": "800",
-              "fontSize": "40px",
+              fontFamily: "Montserrat",
+              fontWeight: "800",
+              fontSize: "40px",
               color: "primary.main",
             }}
           >
@@ -24,37 +68,37 @@ const ProductControll = ({myProps}) => {
           </Typography>{" "}
           <Typography
             sx={{
-              "fontFamily": "Open Sans",
-              "fontWeight": "400",
-              "fontSize": "19px",
+              fontFamily: "Open Sans",
+              fontWeight: "400",
+              fontSize: "19px",
               color: "secondary.main",
-              "lineHeight": "3.5",
+              lineHeight: "3.5",
             }}
           >
-            Код: {myProps.itemNo} 
+            Код: {myProps.itemNo}
           </Typography>
         </Box>
         <Box pb="40px">
           <Typography
             sx={{
-              "fontFamily": "Open Sans",
-              "fontWeight": "400",
-              "fontSize": "14px",
+              fontFamily: "Open Sans",
+              fontWeight: "400",
+              fontSize: "14px",
               color: "secondary.dark",
-              "lineHeight": "1.6",
+              lineHeight: "1.6",
             }}
           >
-          {myProps.description} 
+            {myProps.description}
           </Typography>
         </Box>
         <Box mb="25px">
           <Typography
             sx={{
-              "fontFamily": "Open Sans",
-              "fontWeight": "800",
-              "fontSize": "20px",
+              fontFamily: "Open Sans",
+              fontWeight: "800",
+              fontSize: "20px",
               color: "secondary.dark",
-              "lineHeight": "1",
+              lineHeight: "1",
               mb: "14px",
             }}
           >
@@ -62,45 +106,141 @@ const ProductControll = ({myProps}) => {
           </Typography>
           <Typography
             sx={{
-              "fontFamily": "Open Sans",
-              "fontWeight": "400",
-              "fontSize": "20px",
+              fontFamily: "Open Sans",
+              fontWeight: "400",
+              fontSize: "20px",
               color: "secondary.dark",
-              "lineHeight": "1.4",
+              lineHeight: "1.4",
             }}
           >
-          {myProps.sizez}
+            {myProps.sizez}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Open Sans",
+              fontWeight: "800",
+              fontSize: "20px",
+              color: "secondary.dark",
+              lineHeight: "1",
+              mb: "14px",
+            }}
+          >
+            Бренд
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Open Sans",
+              fontWeight: "400",
+              fontSize: "20px",
+              color: "secondary.dark",
+              lineHeight: "1.4",
+            }}
+          >
+            {myProps.brand}
           </Typography>
         </Box>
-        <DropMenu01 props={myProps.colors}/>
 
+        <>
+          <Typography
+            sx={{
+              "fontFamily": "Open Sans",
+              fontWeight: "700",
+              fontSize: "20px",
+              pb: "21px",
+            }}
+          >
+            Обрати колір
+          </Typography>
+          <FormControl >
+            <Select
+              labelId="color-select"
+              inputProps={{ 'aria-label': 'Without label' }}
+
+              value={color}
+              onChange={handleChange}
+              sx={{ maxWidth: "150px" }}
+            >
+              {myProps.colors.map(el => <MenuItem key={uuidv4()} value={el}>{el}</MenuItem>)}
+
+            </Select>
+          </FormControl>
+        </>
         <Box display="flex" justifyContent={"space-between"} mt={6}>
           <Box display="flex" justifyContent={"space-between"}>
-
             <Typography
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "400",
-                "fontSize": "14px",
-                "lineHeight": "160%",
+                fontSize: "14px",
+                lineHeight: "160%",
                 mt: "18px",
               }}
             >
               Кількість
             </Typography>
-            <OneProdCounter />
+            <>
+              <Box
+                ml="17px"
+                borderRadius={"5px"}
+                sx={{ backgroundColor: "secondary.lightest" }}
+                display={"flex"}
+              >
+                <Button
+                  onClick={increase}
+                  size="small"
+                  sx={{ fontSize: "25px", color: "secondaty.dark", p: "0" }}
+                >
+                  +
+                </Button>
+                <Box backgroundColor="white" display={"flex"}>
+                  <Typography
+                    pl={"18px"}
+                    sx={{
+                      fontWeight: "600",
+                      fontSize: "20px",
+                      mt: "auto",
+                      mb: "auto",
+                      pr: "5px",
+                    }}
+                  >
+                    {counter}
+                  </Typography>
+                  <Typography
+                    pr={"10px"}
+                    sx={{
+                      fontWeight: "600",
+                      fontSize: "15px",
+                      color: "secondary.lightest",
+                      mt: "auto",
+                      mb: "auto",
+                    }}
+                  >
+                    шт
+                  </Typography>
+                </Box>
+
+                <Button
+                  size="small"
+                  onClick={decrease}
+                  sx={{ fontSize: "25px", color: "secondaty.dark" }}
+                >
+                  -
+                </Button>
+              </Box>
+            </>
           </Box>
           <Button
             variant="contained"
             color="primary"
             href="#contained-buttons"
             sx={{ p: "12px 25px 12px 25px", borderRadius: "3px" }}
+            onClick={() => addProduct(product)}
           >
             <Typography
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "700",
-                "fontSize": "20px",
+                fontSize: "20px",
               }}
             >
               У кошик
