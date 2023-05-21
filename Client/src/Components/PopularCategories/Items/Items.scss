@@ -1,0 +1,27 @@
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.popular-categories__title {
+    display: flex;
+    margin-bottom: 25px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 96.5%;
+    /* identical to box height, or 29px */
+
+    letter-spacing: 0.02em;
+
+    /* Black-1 */
+
+    color: #2E3438;
+
+}
