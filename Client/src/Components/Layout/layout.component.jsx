@@ -4,6 +4,7 @@ import Header from '../Header/header.component.jsx';
 import Footer from '../Footer/footer.js';
 import { useDispatch } from "react-redux";
 import { loadProductsAsync } from '../../Redux/reducer.js';
+import UserRequest from '../UserRequest/UserRequest.jsx';
 function Layout(props) {
     const dispatch = useDispatch()
     useEffect(() => {
@@ -13,6 +14,8 @@ function Layout(props) {
     return (
         <>
             <Header />
+            {/* Test? */}
+            <UserRequest />
             <Outlet />
             <Footer />
         </>
