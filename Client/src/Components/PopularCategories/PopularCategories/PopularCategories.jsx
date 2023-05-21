@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './PopularCategories.scss'
 import PopularCategoriesItems from '../PopularCategoriesItems/PopularCategoriesItems'
 
+
 export default class PopularCategories extends Component {
 
     constructor(props) {
@@ -43,9 +44,11 @@ export default class PopularCategories extends Component {
   
     render() {
       return (
+        <Box>
         <div className='popular-categories__wrapper'>
           <PopularCategoriesItems items={this.state.items}/>
         </div>
+
         </Box>
       )
     }
