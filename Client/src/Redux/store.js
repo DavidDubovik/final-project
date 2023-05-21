@@ -12,14 +12,14 @@ const persistConfig = {
   storage,
 };
 const userPersistConfig = {
-  key: "isLogged",
+  key: "root",
   storage,
 };
 
 const rootReducer = combineReducers({
     products: reducer,
     allProducts: allProdReducer,
-  isLogged: persistReducer(userPersistConfig, loginReducer),
+    isLogged: loginReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
