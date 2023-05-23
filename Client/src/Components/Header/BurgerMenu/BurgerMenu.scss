@@ -1,0 +1,40 @@
+.burger {
+    &-nav{
+        height: 50px;
+        width: 100%;
+        background-color: blueviolet;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+    }
+    &-btn{
+        position: relative;
+        width: 20px;
+        height: 20px;
+        margin-left: 20px;
+        cursor: pointer;
+        & > span {
+            position: absolute;
+            top: 9px;
+            width: 20px;
+            background-color: black;
+            height: 2.2px;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 20px;
+            background-color: black;
+            height: 2.1px;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            background-color: black;
+            height: 2.1px;
+        }
+    }
+}

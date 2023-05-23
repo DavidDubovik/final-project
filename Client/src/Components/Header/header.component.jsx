@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 
 import MidleMenu from "./MidleMenu/menu.component";
 import ButtomMenu from "./ButtomMenu/ButtomMenu.component";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 const navList = [
   {
     title: "Головна",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./footer.scss";
 import "./reset.scss";
 import logo from "./img/LORI.png"
@@ -8,12 +8,40 @@ import insta from "./img/insta.png"
 import facebook from "./img/facebook.png"
 import Box from '@mui/material/Box';
 
+
+
 import {Link} from 'react-router-dom';
 
 
-export default function Footer() {
+const Footer = () => {
+    
+    const [email, setEmail] = useState('');
+    const [subscriptionStatus   , setSubscriptionStatus] = useState(null);
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        try{
+            const response = await fetch('api/products/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+              });
+
+            if(response.status === 401) {
+                setSubscriptionStatus('success');
+            }
+             else {
+                setSubscriptionStatus('error');
+            }
+        } catch(error) {
+            setSubscriptionStatus('error')
+        }
+    };
+
     return (
-        
             <>
                 <footer className="footer">
                     <Box sx={{mx:'auto',maxWidth: 'lg'}}>
@@ -56,12 +84,29 @@ export default function Footer() {
                                 <div className="gmail-img"><img src={gmail} alt=""/></div>
                             </div>
                             <div>
-                                <div className="input-button">
-                                    <input className="input" id="name" type="text" placeholder="E-mail"/>
-                                    <button className="button-arr"><img src={arrow} alt=""/></button>
-
-
-                                </div>
+                                <form onSubmit={handleSubmit} className="input-button">
+                                    <input 
+                                        className="input" 
+                                        id="name" 
+                                        type="email"
+                                        value={email}
+                                        placeholder="E-mail"
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    <button className="button-arr" type="submit"><img src={arrow} alt=""/></button>
+                                </form>
+                                <p>
+                                    {subscriptionStatus === 'success' && (
+                                        <div>
+                                            <p>Ви успішно підписалися!!!</p>
+                                        </div>
+                                    )}
+                                    {subscriptionStatus === 'error' && (
+                                        <div>
+                                            <p>Сталася помилка. Будь-ласка спробуйте ще</p>
+                                        </div>
+                                    )}
+                                </p>
                             </div>
                             <div className="row-social row-info">
                                 <h4 className="row-info-text">Стежте за нами</h4>
@@ -82,3 +127,5 @@ export default function Footer() {
         
     )
 }
+
+export default Footer
