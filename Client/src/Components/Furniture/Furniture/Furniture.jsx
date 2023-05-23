@@ -138,15 +138,15 @@ const AllProducts = (props) => {
     <Box sx={{ mx: "auto", maxWidth: "lg" }}>
       <main>
         <div className="pageCategories, left">
-          <h2>Вибрані категорії</h2>
-          <p>{categories}</p>
-          <h2>Вибрані Бренди</h2>
-          <p>{brand}</p>
-          <h2>Вибраний діапазон цін</h2>
-          <p>{minPrice}:{maxPrice}</p>
+          <h2 className="filters_selected">Вибрані категорії:</h2>
+          <p className="filters_categories">{categories}</p>
+          <h2 className="filters_selected">Вибрані бренди:</h2>
+          <p className="filters_categories">{brand}</p>
+          <h2 className="filters_selected">Вибраний діапазон цін:</h2>
+          <p className="filters_categories">{minPrice}:{maxPrice}</p>
           <div className="fiters">
             <div className="fiters__item filters__price">
-              <h3 className="filters-price__price">Price</h3>
+              <h3 className="filters-price__price">Ціна:</h3>
 
               <Slider
                 getAriaLabel={() => "Ціна товарів"}
@@ -189,11 +189,41 @@ const AllProducts = (props) => {
               </div>
             </div>
           </div>
-
+<div className="filters_filter-brand">
+  <div className="filters-checkbox__container">
+    <h3 className="filters_selected">Бренд</h3>
+    {listOfColors.length > 1 ? (
+        listOfColors.map((el, index) => {
+          return (
+              <label className="filters_categories filters-checkbox__item" key={uuidv4()}>
+                <input
+                    type="checkbox"
+                    name={el}
+                    checked={checkedState[index]}
+                    onChange={(event) => {
+                      setColorFilters(event, index);
+                    }}
+                ></input>
+                <span className="filters-checkbox__info">{el}</span>
+              </label>
+          );
+          // <p>1</p>
+        })
+    ) : (
+        <p>1</p>
+    )}
+    <button
+        type="button"
+        className="filters-price__button"
+        onClick={submitCatFilter}
+    >
+      OK
+    </button>
+  </div>
           <div className="filters-checkbox__container">
-            <h3>Категорії</h3>
+            <h3 className="filters_selected">Категорії</h3>
 
-            <label className="filters-checkbox__item">
+            <label className="filters_categories filters-checkbox__item">
               <input
                 type="checkbox"
                 name="tables"
@@ -201,7 +231,7 @@ const AllProducts = (props) => {
               ></input>
               <span className="filters-checkbox__info">Столи</span>
             </label>
-            <label className="filters-checkbox__item">
+            <label className="filters_categories filters-checkbox__item">
               <input
                 type="checkbox"
                 name="chairs"
@@ -209,7 +239,7 @@ const AllProducts = (props) => {
               ></input>
               <span className="filters-checkbox__info">Стільці</span>
             </label>
-            <label className="filters-checkbox__item">
+            <label className="filters_categories filters-checkbox__item">
               <input
                 type="checkbox"
                 name="beds"
@@ -217,7 +247,7 @@ const AllProducts = (props) => {
               ></input>
               <span className="filters-checkbox__info">Ліжка</span>
             </label>
-            <label className="filters-checkbox__item">
+            <label className="filters_categories filters-checkbox__item">
               <input
                 type="checkbox"
                 name="housingfurniture"
@@ -234,41 +264,13 @@ const AllProducts = (props) => {
             </button>
           </div>
 
-          <div className="filters-checkbox__container">
-            <h3>Бренд</h3>
-            {listOfColors.length > 1 ? (
-              listOfColors.map((el, index) => {
-                return (
-                  <label className="filters-checkbox__item" key={uuidv4()}>
-                    <input
-                      type="checkbox"
-                      name={el}
-                      checked={checkedState[index]}
-                      onChange={(event) => {
-                        setColorFilters(event, index);
-                      }}
-                    ></input>
-                    <span className="filters-checkbox__info">{el}</span>
-                  </label>
-                );
-                // <p>1</p>
-              })
-            ) : (
-              <p>1</p>
-            )}
-            <button
-              type="button"
-              className="filters-price__button"
-              onClick={submitCatFilter}
-            >
-              OK
-            </button>
-          </div>
-        </div>
 
+        </div>
+      </div>
         <div className="pageCategories, right">
           <br />
-          <div className="filter-box">
+          <div className="filters_selected filter-box">
+
             <Filter
               value={sortType}
               onChangeSortAscending={(i) => sortAscending(i)}

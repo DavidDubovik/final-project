@@ -1,4 +1,5 @@
 import React from 'react'
+import "./Filter.scss";
 
 function Filter({ onChangeSortAscending, onChangeSortDescending, onChangeSortName }) {
 
@@ -23,12 +24,12 @@ function Filter({ onChangeSortAscending, onChangeSortDescending, onChangeSortNam
 
 
     return (
-        <div>
+        <div className="button-sort">
             <label className="filter-box__title">Сортувати по: </label>
             <div className="filter">
-                <button type="button" onClick={() => SortAscending()}>От дорогим к дешевых</button>
-                <button type="button" onClick={() => SortDescending()}>От дешевых к дорогим </button>
-                <button type="button" onClick={() => SortName()}>По имени </button>
+                <button className="button-of-filter" type="button" onClick={() => SortAscending()}>От дорогим к дешевых</button>
+                <button className="button-of-filter" type="button" onClick={() => SortDescending()}>От дешевых к дорогим </button>
+                <button className="button-of-filter" type="button" onClick={() => SortName()}>По имени </button>
             </div>
         </div>
   )
