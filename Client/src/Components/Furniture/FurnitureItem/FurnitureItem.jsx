@@ -7,7 +7,6 @@ export class FurnitureItem extends Component {
   
 
   render() {
-    console.log(this.props.furniture)
     return (
       <div className='chair' key={uuidv4()}>
       <Link to={`/products/`+this.props.furniture.itemNo} relative="path" >

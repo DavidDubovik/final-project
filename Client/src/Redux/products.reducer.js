@@ -130,7 +130,7 @@ const allprodreducer = createSlice({
       })
       .addCase(fetchAsyncProducts.rejected, (state, action) => {
         state.error = action.payload;
-        state.status = "loaded";
+        state.status = "rejected";
       });
   },
 });

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import Slider from "@mui/material/Slider";
 import FurnitureItems from "../FurnitureItems/FurnitureItems";
@@ -18,26 +19,86 @@ import {
   sortingProducts,
   changeCategory,
   setListColors,
+  setPage,
   changeColor,
 } from "../../../Redux/products.reducer";
 import { v4 as uuidv4 } from "uuid";
 
 const AllProducts = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  
   const dispatch = useDispatch();
   const { data, status, error, page, pageSize, listOfColors } = useSelector(
     (state) => {
       return state.allProducts;
     }
-  );
-
+    );
+    
+    console.log(status,data)
   const { categories, brand, sort, minPrice, maxPrice } = useSelector(
     (state) => {
       return state.allProducts.filterBy;
     }
   );
+    // useEffect(()=>{
+    //   const params = {};
+
+    //   searchParams.forEach((value, key) => {
+    //     params[key] = value;
+    //   });
+    //   console.log("new",params)
+    //   try {
+    //     dispatch(setMinPrice({ minPrice: params.minPrice }))
+    //     dispatch(setMaxPrice({ minPrice: params.maxPrice }))
+    //     dispatch(changeCategory({ categories: params.categories }));
+    //     dispatch(changeCategory(params.pageSize ));
+    //     console.log("categories",categories)
+    //     dispatch(changeColor({ brand: params.brand }))
+    //     console.log("state",categories, brand, sort, minPrice, maxPrice,page)
+    //   } catch {
+    //     console.log("error")
+    //   }
+    //   dispatch(
+    //     fetchAsyncProducts({
+    //       page,
+    //       categories,
+    //       brand,
+    //       sort,
+    //       minPrice,
+    //       maxPrice,
+    //       pageSize,
+    //     }))
+    // },[brand, categories, dispatch, maxPrice, minPrice, page, searchParams, sort])
 
   useEffect(() => {
-    dispatch(
+
+    //Назначение строки со стейта
+    const queryParams = {
+        page,
+        categories,
+        brand,
+        sort,
+        minPrice,
+        maxPrice,
+        pageSize,
+  };
+ 
+  Object.keys(queryParams).forEach(key => {
+    if (!queryParams[key]) {
+        delete queryParams[key];
+    }
+  });
+  const paramsFromState = new URLSearchParams(queryParams)
+  
+  
+  setSearchParams(paramsFromState);
+  
+
+
+  }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
+  useEffect(()=>{
+        dispatch(
       fetchAsyncProducts({
         page,
         categories,
@@ -47,15 +108,14 @@ const AllProducts = (props) => {
         maxPrice,
         pageSize,
       })
-    ).then((data) => setProduct(data));
+    )
+  },[brand, categories, dispatch, maxPrice, minPrice, page, pageSize, sort,searchParams])
 
-    // Запись списка цветов
-  }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
 
   useEffect(() => {
     // Запись списка цветов
 
-    dispatch(fetchAsyncAllBrands("")).then((res) => {
+    dispatch(fetchAsyncAllBrands()).then((res) => {
       dispatch(setListColors(res.payload));
     });
   }, [dispatch]);
@@ -63,7 +123,7 @@ const AllProducts = (props) => {
   // const testing = [...new Set(data.products.map(item=>item["colors"]).flat(1))]
   // console.log("test",listOfColors)
 
-  const [products, setProduct] = useState([]);
+  // const [products, setProduct] = useState([]);
   const [sortType] = useState({});
 
   // const currentFurniture = products.slice(firstIndex, lastIndex)
@@ -103,7 +163,7 @@ const AllProducts = (props) => {
   };
   //color Filter State and function
   const [checkedState, setCheckedState] = useState(
-    new Array(listOfColors.length).fill(false)
+    new Array(listOfColors && listOfColors.length).fill(false)
   );
   const [colorFilter, setcolorFilter] = useState([]);
   const setColorFilters = (event, index) => {
@@ -192,7 +252,7 @@ const AllProducts = (props) => {
 <div className="filters_filter-brand">
   <div className="filters-checkbox__container">
     <h3 className="filters_selected">Бренд</h3>
-    {listOfColors.length > 1 ? (
+    {listOfColors && listOfColors.length > 1 ? (
         listOfColors.map((el, index) => {
           return (
               <label className="filters_categories filters-checkbox__item" key={uuidv4()}>
