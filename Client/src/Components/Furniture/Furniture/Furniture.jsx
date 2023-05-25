@@ -29,18 +29,31 @@ const AllProducts = (props) => {
   
   
   const dispatch = useDispatch();
-  const { data, status, error, page, pageSize, listOfColors } = useSelector(
+  const { data, status, error, page, pageSize, listOfColors,statusData } = useSelector(
     (state) => {
       return state.allProducts;
     }
     );
     
-    console.log(status,data)
+    console.log("->status,data,errror",status,error)
   const { categories, brand, sort, minPrice, maxPrice } = useSelector(
     (state) => {
       return state.allProducts.filterBy;
     }
   );
+  useEffect(()=>{
+    dispatch(
+  fetchAsyncProducts({
+    page,
+    categories,
+    brand,
+    sort,
+    minPrice,
+    maxPrice,
+    pageSize,
+  })
+)
+},[brand, categories, dispatch, maxPrice, minPrice, page, pageSize, sort,searchParams])
     // useEffect(()=>{
     //   const params = {};
 
@@ -96,20 +109,8 @@ const AllProducts = (props) => {
   
 
 
-  }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
-  useEffect(()=>{
-        dispatch(
-      fetchAsyncProducts({
-        page,
-        categories,
-        brand,
-        sort,
-        minPrice,
-        maxPrice,
-        pageSize,
-      })
-    )
-  },[brand, categories, dispatch, maxPrice, minPrice, page, pageSize, sort,searchParams])
+  }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch, setSearchParams]);
+
 
 
   useEffect(() => {
@@ -162,8 +163,10 @@ const AllProducts = (props) => {
     }
   };
   //color Filter State and function
+  console.log("data2",statusData)
+  console.log("data data.products",data)
   const [checkedState, setCheckedState] = useState(
-    new Array(listOfColors && listOfColors.length).fill(false)
+    new Array( listOfColors && listOfColors.length).fill(false)
   );
   const [colorFilter, setcolorFilter] = useState([]);
   const setColorFilters = (event, index) => {
@@ -339,7 +342,7 @@ const AllProducts = (props) => {
             />
           </div>
           <br />
-          {!(status === "loaded") ? (
+          {!(status === "loaded")  ? (
             <LoadingSpinner />
           ) : data.products.length > 0 ? (
             <FurnitureItems furniture={data.products} />

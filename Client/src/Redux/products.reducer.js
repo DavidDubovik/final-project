@@ -12,6 +12,7 @@ const initialState = {
     maxPrice: 50000,
   },
   status: null,
+  statusData: null,
   error: "",
   page: 1,
   pageSize: 6,
@@ -38,7 +39,7 @@ export const fetchAsyncProducts = createAsyncThunk(
         
       const res = await response.json()
 
-
+        console.log(res)
       return res;
       
     } catch (error) {

@@ -10,10 +10,12 @@ import allProdReducer from "./products.reducer"
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ['modal']
 };
 const userPersistConfig = {
-  key: "root",
+  key: "modal",
   storage,
+  blacklist:['reducer.isModal']
 };
 
 const rootReducer = combineReducers({
