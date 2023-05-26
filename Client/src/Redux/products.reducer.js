@@ -33,6 +33,7 @@ export const fetchAsyncProducts = createAsyncThunk(
     //   const myQuery = queryString.stringify(queryParams);
    
       dispatch(setParamsLink(queri));
+      console.log(queri)
     try {
       const response = await fetch(
         `/api/products/filter?${queri}`

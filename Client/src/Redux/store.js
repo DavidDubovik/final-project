@@ -12,11 +12,7 @@ const persistConfig = {
   storage,
   blacklist: ['modal']
 };
-const userPersistConfig = {
-  key: "modal",
-  storage,
-  blacklist:['reducer.isModal']
-};
+
 
 const rootReducer = combineReducers({
     products: reducer,

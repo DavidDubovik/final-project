@@ -46,7 +46,7 @@ const AllProducts = (props) => {
   );
 
   const dispatch = useDispatch();
-  //отправка запросов по парамтрам и запись в стейт
+  //отправка запросов по парамтрам и запись в стейт первая загрузка
   useEffect(() => {
     const paramsN = {};
 
@@ -58,6 +58,11 @@ const AllProducts = (props) => {
     dispatch(fetchAsyncProducts(myQuery));
   }, [dispatch, searchParams]);
 
+  // useEffect(() => {
+  //   dispatch(fetchAsyncProducts(paramsLink))
+  //   setSearchParams(paramsLink);
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [paramsLink]);
   //сохраняем линк со стейта
   useEffect(() => {
     const queryParams = {
@@ -84,12 +89,12 @@ const AllProducts = (props) => {
     perPage,
     dispatch,
   ]);
-  // console.log(paramsLink);
+  console.log(paramsLink);
 
-  useEffect(() => {
-    setSearchParams(paramsLink);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paramsLink]);
+  // useEffect(() => {
+  //   setSearchParams(paramsLink);
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [paramsLink]);
 
 
 
@@ -106,16 +111,64 @@ const AllProducts = (props) => {
   const sortAscending = () => {
     dispatch(sortingProducts({ sort: "-currentPrice" }));
     dispatch(setPage(1));
+    const queryParams2 = {
+      categories,
+      brand,
+      sort: "-currentPrice",
+      minPrice,
+      maxPrice,
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
 
   const sortDescending = () => {
     dispatch(sortingProducts({ sort: "+ currentPrice" }));
     dispatch(setPage(1));
+    const queryParams2 = {
+      categories,
+      brand,
+      sort: "+ currentPrice",
+      minPrice,
+      maxPrice,
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
 
   const sortName = () => {
     dispatch(sortingProducts({ sort: "+ name" }));
     dispatch(setPage(1));
+    const queryParams2 = {
+      categories,
+      brand,
+      sort: "+ name",
+      minPrice,
+      maxPrice,
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
 
   //Price slider
@@ -162,6 +215,23 @@ const AllProducts = (props) => {
     dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
     dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
     dispatch(setPage(1));
+
+    const queryParams2 = {
+      categories: testTest,
+      brand: colorFilterArray,
+      sort,
+      minPrice: valuePriceSlider[0],
+      maxPrice: valuePriceSlider[1],
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
 
   return (
