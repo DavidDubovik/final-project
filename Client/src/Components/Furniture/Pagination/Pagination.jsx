@@ -5,27 +5,32 @@ import { useDispatch,useSelector} from "react-redux";
 const Pagination = ({totalProducts}) => {
     const dispatch = useDispatch()
     const pageNumbers = [];
-    const { page, pageSize } = useSelector((state) => {
+    const { startPage, perPage } = useSelector((state) => {
         return state.allProducts;
       });
-    for(let i = 1; i <= Math.ceil(totalProducts/pageSize); i++){
+
+    for(let i = 1; i <= Math.ceil(totalProducts/perPage); i++){
         pageNumbers.push(i)
     }
 
     return (
         <div className='pagination'>   
             <button type='button' onClick={()=>{
-                if (page>1){
-                    dispatch(setPage(page-1)) 
+                if (startPage>1){
+                    dispatch(setPage(startPage-1)) 
+                   
                 }
                
             }
 
-            }>prev</button>
+            }>⬅</button>
             <div className='page'>
                 {   
                     pageNumbers.map(number => (
-                        <button key={number} className='page-item' onClick={() => {dispatch(setPage(number))
+                        <button key={number} className='page-item' onClick={() => {
+                            console.log(number)
+                            dispatch(setPage(number))
+                            
                             }}>
                             <span 
                                 className='page-link'
@@ -37,10 +42,12 @@ const Pagination = ({totalProducts}) => {
                 }
             </div>
             <button type='button' onClick={()=>{
-               if (page <(totalProducts / pageSize))
-                    dispatch(setPage(page+1)) 
+              
+               if (startPage <(totalProducts / perPage))
+                   { dispatch(setPage(startPage+1)) 
+                    }
             
-            }}>next</button>
+            }}>➡</button>
         </div>
     )
 }

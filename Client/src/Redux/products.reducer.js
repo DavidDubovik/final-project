@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import queryString from "query-string";
+
 
 const initialState = {
   data: [],
@@ -12,34 +12,34 @@ const initialState = {
     maxPrice: 50000,
   },
   status: null,
-  statusData: null,
   error: "",
-  page: 1,
-  pageSize: 6,
-  listOfColors:[]
+  startPage: 1,
+  perPage: 6,
+  listOfColors:[],
+  paramsLink: "",
 };
 
 export const fetchAsyncProducts = createAsyncThunk(
   "products/fetchAsyncProducts",
-  async (queri, { rejectWithValue }) => {
-    const queryParams = { ...queri, startPage: queri.page, perPage: queri.pageSize };
-    delete queryParams.page
-    delete queryParams.pageSize
+  async (queri, { rejectWithValue, dispatch }) => {
+    //   const queryParams = { ...queri, startPage: queri.page, perPage: queri.pageSize };
+    //   delete queryParams.page
+    //   delete queryParams.pageSize
+    
+    //   //deleate empty filters
+    //   Object.entries(queryParams).forEach(([k, v]) => {
+    //     if (v.length === 0) delete queryParams[k];
+    // });
+    //   const myQuery = queryString.stringify(queryParams);
    
-    //deleate empty filters
-    Object.entries(queryParams).forEach(([k, v]) => {
-      if (v.length === 0) delete queryParams[k];
-  });
-    const myQuery = queryString.stringify(queryParams);
-
+      dispatch(setParamsLink(queri));
     try {
       const response = await fetch(
-        `http://localhost:3000/api/products/filter?${myQuery}`
+        `/api/products/filter?${queri}`
       )
         
       const res = await response.json()
 
-        console.log(res)
       return res;
       
     } catch (error) {
@@ -112,11 +112,15 @@ const allprodreducer = createSlice({
 
     //set page for pagination
     setPage(state, action) {
-      state.page = action.payload;
+      state.startPage = action.payload;
     },
     //set list of colors 
     setListColors(state,action){
       state.listOfColors= action.payload;
+    },
+    //set params
+    setParamsLink(state,action){
+      state.paramsLink = action.payload;
     }
  
   },
@@ -126,6 +130,7 @@ const allprodreducer = createSlice({
         state.status = "loading";
       })
       .addCase(fetchAsyncProducts.fulfilled, (state, action) => {
+        state.params = action.payload;
         state.data = action.payload;
         state.status = "loaded";
       })
@@ -136,6 +141,7 @@ const allprodreducer = createSlice({
   },
 });
 export const {
+  setParamsLink,
   changeCategory,
   changeColor,
   setMinPrice,
