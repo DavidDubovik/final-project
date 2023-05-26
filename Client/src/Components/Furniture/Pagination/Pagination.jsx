@@ -35,18 +35,18 @@ const Pagination = ({totalProducts}) => {
         <div className='pagination'>   
             <button type='button' onClick={()=>{
                 if (startPage>1){
-                    dispatch(setPage(startPage-1)) 
+                    dispatch(setPage(Number(startPage)-1)) 
                     const queryParams2 = {
                         categories,
                         brand,
                         sort,
                         minPrice,
                         maxPrice,
-                        startPage:startPage-1,
+                        startPage:Number(startPage)-1,
                         perPage,
                       };
                       Object.entries(queryParams2).forEach(([k, v]) => {
-                        if (v.length === 0) delete queryParams2[k];
+                        if (!v || v.length === 0) delete queryParams2[k];
                       });
                       const myQuery = queryString.stringify(queryParams2);
                   
@@ -73,7 +73,7 @@ const Pagination = ({totalProducts}) => {
                                 perPage,
                               };
                               Object.entries(queryParams2).forEach(([k, v]) => {
-                                if (v.length === 0) delete queryParams2[k];
+                                if (!v || v.length === 0) delete queryParams2[k];
                               });
                               const myQuery = queryString.stringify(queryParams2);
                           
@@ -92,18 +92,18 @@ const Pagination = ({totalProducts}) => {
             <button type='button' onClick={()=>{
               
                if (startPage <(totalProducts / perPage))
-                   { dispatch(setPage(startPage+1))
+                   { dispatch(setPage(Number(startPage)+Number(1)))
                     const queryParams2 = {
                         categories,
                         brand,
                         sort,
                         minPrice,
                         maxPrice,
-                        startPage:startPage+1,
+                        startPage:Number(startPage)+1,
                         perPage,
                       };
                       Object.entries(queryParams2).forEach(([k, v]) => {
-                        if (v.length === 0) delete queryParams2[k];
+                        if (!v || v.length === 0) delete queryParams2[k];
                       });
                       const myQuery = queryString.stringify(queryParams2);
                   

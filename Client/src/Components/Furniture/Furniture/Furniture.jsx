@@ -28,16 +28,10 @@ import queryString from "query-string";
 const AllProducts = (props) => {
   const [searchParams, setSearchParams] = useSearchParams("");
 
-  const {
-    data,
-    status,
-    startPage,
-    perPage,
-    listOfColors,
-    paramsLink,
-  } = useSelector((state) => {
-    return state.allProducts;
-  });
+  const { data, status, startPage, perPage, listOfColors, paramsLink } =
+    useSelector((state) => {
+      return state.allProducts;
+    });
 
   const { categories, brand, sort, minPrice, maxPrice } = useSelector(
     (state) => {
@@ -56,8 +50,20 @@ const AllProducts = (props) => {
     const myQuery = queryString.stringify(paramsN);
 
     dispatch(fetchAsyncProducts(myQuery));
+    console.log(categories);
+    if (paramsLink) {
+    const parsedLink = queryString.parse(paramsLink);
+    console.log(parsedLink);
+    dispatch(changeCategory({ categories: parsedLink.categories }));
+    // dispatch(changeColor({ brand: parsedLink.brand }))
+    // dispatch(sortingProducts({ sort: parsedLink.sort }))
+    // dispatch(setMinPrice({ minPrice: parsedLink.minPrice }))
+    // dispatch(setMaxPrice({ maxPrice: parsedLink.maxPrice }))
+    dispatch(setPage(parsedLink.startPage))
+  } else{
+console.log("test")  }
   }, [dispatch, searchParams]);
-
+  
   // useEffect(() => {
   //   dispatch(fetchAsyncProducts(paramsLink))
   //   setSearchParams(paramsLink);
@@ -75,7 +81,7 @@ const AllProducts = (props) => {
       perPage,
     };
     Object.entries(queryParams).forEach(([k, v]) => {
-      if (v.length === 0) delete queryParams[k];
+      if (!v || v.length === 0) delete queryParams[k];
     });
     const myQuery = queryString.stringify(queryParams);
     dispatch(setParamsLink(myQuery));
@@ -90,13 +96,10 @@ const AllProducts = (props) => {
     dispatch,
   ]);
 
-
   // useEffect(() => {
   //   setSearchParams(paramsLink);
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [paramsLink]);
-
-
 
   useEffect(() => {
     // Запись списка цветов
@@ -121,12 +124,11 @@ const AllProducts = (props) => {
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (v.length === 0) delete queryParams2[k];
+      if (!v && v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
-
-    setSearchParams(myQuery)
+    setSearchParams(myQuery);
   };
 
   const sortDescending = () => {
@@ -142,12 +144,11 @@ const AllProducts = (props) => {
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (v.length === 0) delete queryParams2[k];
+      if (!v && v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
-
-    setSearchParams(myQuery)
+    setSearchParams(myQuery);
   };
 
   const sortName = () => {
@@ -163,12 +164,11 @@ const AllProducts = (props) => {
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (v.length === 0) delete queryParams2[k];
+      if (!v && v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
-
-    setSearchParams(myQuery)
+    setSearchParams(myQuery);
   };
 
   //Price slider
@@ -185,7 +185,6 @@ const AllProducts = (props) => {
   const categoryFilter = (event) => {
     if (!catfilter.includes(event.target.name)) {
       setCatFilter([...catfilter, event.target.name]);
-
     } else if (catfilter.includes(event.target.name)) {
       setCatFilter(catfilter.filter((el) => el !== event.target.name));
     }
@@ -226,12 +225,11 @@ const AllProducts = (props) => {
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (v.length === 0) delete queryParams2[k];
+      if (!v && v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
-
-    setSearchParams(myQuery)
+    setSearchParams(myQuery);
   };
 
   return (
