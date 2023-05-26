@@ -89,7 +89,7 @@ const AllProducts = (props) => {
     perPage,
     dispatch,
   ]);
-  console.log(paramsLink);
+
 
   // useEffect(() => {
   //   setSearchParams(paramsLink);
