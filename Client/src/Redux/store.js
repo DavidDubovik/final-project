@@ -11,7 +11,7 @@ import allProdReducer from "./products.reducer"
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ['modal']
+  blacklist: ['Modal']
 };
 
 
