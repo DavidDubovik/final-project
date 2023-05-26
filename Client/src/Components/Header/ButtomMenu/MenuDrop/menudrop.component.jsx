@@ -12,12 +12,12 @@ const MenuDrop = ({mList}) => {
     const submenues=mList.submenu
     const [anchorEl, setAnchorEl] = useState(0);
     const open = Boolean(anchorEl);
-    // const handleClick = (event) => {
-    //   setAnchorEl(event.currentTarget);
-    // };
-    // const handleClose = () => {
-    //   setAnchorEl(null);
-    // };
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
    
     return (
           <Box 
@@ -30,8 +30,7 @@ const MenuDrop = ({mList}) => {
                 aria-expanded={open ? 'true' : undefined}
                 
               ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
-            
-              </Button>
+        
               <Menu 
                 id="fade-menu"
                 MenuListProps={{

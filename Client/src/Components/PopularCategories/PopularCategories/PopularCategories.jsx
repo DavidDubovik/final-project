@@ -15,7 +15,7 @@ export default class PopularCategories extends Component {
             desc: "Вирізняються міцною та надійною конструкцією. Матеріал – дуб.",
             info: "Детальніше",
             img: "1.png",
-            link:"tables"
+            link:"/tables"
           },
           {
             id: 2,
@@ -31,7 +31,7 @@ export default class PopularCategories extends Component {
             desc: "Дубові етажерки, комоди, серванти на будь-який смак.",
             info: "Детальніше",
             img: "3.png",
-            link:"housingfurniture"
+            link:"/housingfurniture"
           },
           {
             id: 4,

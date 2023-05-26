@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -22,17 +22,17 @@ const styleBox = {
 export function KeepMountedModal() {
 
     const dispatch = useDispatch()
-    
     const basket = useSelector(state => {
         return state.products.basket
     })
-
+    useEffect(() => {
+        localStorage.setItem('basket', JSON.stringify([basket]))
+    }, [basket])
+    console.log(basket);
     const modalOpen = useSelector(state => {
         return state.products.isModal
     })
     const [saveAllPrice, setSaveAllPrice] = useState(0)
-    // console.log(basket[0].length);
-    // console.log(basket);
     return (
         <div>
             <Modal
@@ -45,11 +45,12 @@ export function KeepMountedModal() {
                 <Box sx={styleBox}>
 
                     {basket.length ? <div className='product'>
-                        <div className='header'><h1>Товар доданий у кошик</h1> <Link to="/cart-page" onClick={() => dispatch({ type: 'OPEN_MODAL' })}>Перейти у кошик</Link></div>
+                        <div className='header'><h1>Товар доданий у кошик</h1> <Link to="/cart-page">Перейти у кошик</Link></div>
                         <div className='main'>
 
                             <div className='basket-product'>
                                 {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, obivka, counter }) => {
+
                                     return (
                                         <CardProduct id={itemNo} name={name} price={currentPrice} Obivka={obivka} imageUrls={imageUrls} defoltColor={color} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} colorsProduct={colors} item={itemNo} quantiy={counter} />
                                     )
@@ -59,10 +60,11 @@ export function KeepMountedModal() {
                             <hr style={{ background: '#007042', height: 2, border: 'none' }}></hr>
                             <div className='sum'>
                                 <p>Всього у кошику {basket.length} товари на суму <span>{saveAllPrice} грн</span></p>
+
                             </div>
                         </div>
-                        <div className='button-order'><Link to="/products">Продовжити покупки</Link><Button>Оформити замовлення</Button></div>
-                    </div> : <h1 style={{ margin: 'auto', width: 200, fontSize: 30 }}> товарів немає </h1>}
+                        <div className='button-order'><a href='#'>продовжити покупки</a> <Button>Оформити замовлення</Button></div>
+                    </div> : <h1 style={{ margin: '0 auto', width: 200, fontSize: 30 }}> товарів немає </h1>}
                 </Box>
             </Modal>
         </div >

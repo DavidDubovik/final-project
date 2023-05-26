@@ -8,49 +8,29 @@ import Select from "@mui/material/Select";
 import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch} from "react-redux";
 
 const ProductControll = ({ myProps }) => {
   const dispatch = useDispatch()
 
-
   const [counter, setCounter] = React.useState(1);
-  // console.log(counter)
   const [color, setColor] = React.useState(myProps.colors[0]);
-  const [product, setOneProdData] = React.useState({ ...myProps, counter, color });
-  const basket = useSelector(state => {
-    return state.products.basket
-  })
-
-  const addProduct = (prod) => {
-    // debugger
-    // let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
-    let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
-    // console.log(filterBasket);
-    if (filterBasket.length === basket.length || basket.length === 0) {
-      console.log(prod)
-      // dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, ...filterBasket] })
-      dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, prod] })
-      // localStorage.setItem('basket', JSON.stringify([...basket, prod]))
-    }
-  }
-
-
+  const [product, setOneProdData] = React.useState({...myProps,counter,color});
+  
   const increase = () => {
     setCounter((count) => count + 1);
-    setOneProdData((state) => ({ ...state, counter:counter+1 }))
+    setOneProdData((state)=>({...state,counter}))
   }
 
   const decrease = () => {
     if (counter > 1) {
       setCounter((count) => count - 1);
     }
-    setOneProdData((state) => ({ ...state, counter:counter-1 }))
+    setOneProdData((state)=>({...state,counter}))
   };
   const handleChange = (event) => {
     setColor(event.target.value);
-    setOneProdData((state) => ({ ...state, color }))
+    setOneProdData((state)=>({...state,color}))
   };
   return (
     <>
@@ -115,56 +95,33 @@ const ProductControll = ({ myProps }) => {
           >
             {myProps.sizez}
           </Typography>
-          <Typography
-            sx={{
-              fontFamily: "Open Sans",
-              fontWeight: "800",
-              fontSize: "20px",
-              color: "secondary.dark",
-              lineHeight: "1",
-              mb: "14px",
-            }}
-          >
-            Бренд
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: "Open Sans",
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "secondary.dark",
-              lineHeight: "1.4",
-            }}
-          >
-            {myProps.brand}
-          </Typography>
         </Box>
-
+        
         <>
-          <Typography
-            sx={{
-              "fontFamily": "Open Sans",
-              fontWeight: "700",
-              fontSize: "20px",
-              pb: "21px",
-            }}
-          >
-            Обрати колір
-          </Typography>
-          <FormControl >
-            <Select
-              labelId="color-select"
+        <Typography
+          sx={{
+            "fontFamily": "Open Sans",
+            fontWeight: "700",
+            fontSize: "20px",
+            pb: "21px",
+          }}
+        >
+          Обрати колір 
+        </Typography>
+        <FormControl >
+          <Select
+            labelId="color-select"
               inputProps={{ 'aria-label': 'Without label' }}
-
-              value={color}
-              onChange={handleChange}
-              sx={{ maxWidth: "150px" }}
-            >
-              {myProps.colors.map(el => <MenuItem key={uuidv4()} value={el}>{el}</MenuItem>)}
-
-            </Select>
-          </FormControl>
-        </>
+  
+            value={color}
+            onChange={handleChange}
+            sx={{ maxWidth: "150px" }} 
+          >
+          {myProps.colors.map(el=><MenuItem key={uuidv4()} value={el}>{el}</MenuItem>)}
+            
+          </Select>
+        </FormControl>
+      </>
         <Box display="flex" justifyContent={"space-between"} mt={6}>
           <Box display="flex" justifyContent={"space-between"}>
             <Typography
@@ -234,7 +191,7 @@ const ProductControll = ({ myProps }) => {
             color="primary"
             href="#contained-buttons"
             sx={{ p: "12px 25px 12px 25px", borderRadius: "3px" }}
-            onClick={() => addProduct(product)}
+            onClick={() => dispatch({ type: 'ADD_TO_BASKET',payload:product })}
           >
             <Typography
               sx={{
