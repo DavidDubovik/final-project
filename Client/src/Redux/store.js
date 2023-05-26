@@ -11,11 +11,9 @@ import allProdReducer from "./products.reducer"
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ['modal']
 };
-const userPersistConfig = {
-  key: "root",
-  storage,
-};
+
 
 const rootReducer = combineReducers({
   products: logicBasket,

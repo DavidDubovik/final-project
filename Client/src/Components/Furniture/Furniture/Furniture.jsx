@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { useSearchParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
@@ -18,17 +18,26 @@ import {
   sortingProducts,
   changeCategory,
   setListColors,
+  setParamsLink,
   changeColor,
+  setPage,
 } from "../../../Redux/products.reducer";
 import { v4 as uuidv4 } from "uuid";
+import queryString from "query-string";
 
 const AllProducts = (props) => {
-  const dispatch = useDispatch();
-  const { data, status, error, page, pageSize, listOfColors } = useSelector(
-    (state) => {
-      return state.allProducts;
-    }
-  );
+  const [searchParams, setSearchParams] = useSearchParams("");
+
+  const {
+    data,
+    status,
+    startPage,
+    perPage,
+    listOfColors,
+    paramsLink,
+  } = useSelector((state) => {
+    return state.allProducts;
+  });
 
   const { categories, brand, sort, minPrice, maxPrice } = useSelector(
     (state) => {
@@ -36,48 +45,130 @@ const AllProducts = (props) => {
     }
   );
 
+  const dispatch = useDispatch();
+  //отправка запросов по парамтрам и запись в стейт первая загрузка
   useEffect(() => {
-    dispatch(
-      fetchAsyncProducts({
-        page,
-        categories,
-        brand,
-        sort,
-        minPrice,
-        maxPrice,
-        pageSize,
-      })
-    ).then((data) => setProduct(data));
+    const paramsN = {};
 
-    // Запись списка цветов
-  }, [page, categories, brand, sort, minPrice, maxPrice, pageSize, dispatch]);
+    searchParams.forEach((value, key) => {
+      paramsN[key] = value;
+    });
+    const myQuery = queryString.stringify(paramsN);
+
+    dispatch(fetchAsyncProducts(myQuery));
+  }, [dispatch, searchParams]);
+
+  // useEffect(() => {
+  //   dispatch(fetchAsyncProducts(paramsLink))
+  //   setSearchParams(paramsLink);
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [paramsLink]);
+  //сохраняем линк со стейта
+  useEffect(() => {
+    const queryParams = {
+      categories,
+      brand,
+      sort,
+      minPrice,
+      maxPrice,
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams[k];
+    });
+    const myQuery = queryString.stringify(queryParams);
+    dispatch(setParamsLink(myQuery));
+  }, [
+    categories,
+    brand,
+    sort,
+    minPrice,
+    maxPrice,
+    startPage,
+    perPage,
+    dispatch,
+  ]);
+
+
+  // useEffect(() => {
+  //   setSearchParams(paramsLink);
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [paramsLink]);
+
+
 
   useEffect(() => {
     // Запись списка цветов
 
-    dispatch(fetchAsyncAllBrands("")).then((res) => {
+    dispatch(fetchAsyncAllBrands()).then((res) => {
       dispatch(setListColors(res.payload));
     });
   }, [dispatch]);
 
-  // const testing = [...new Set(data.products.map(item=>item["colors"]).flat(1))]
-  // console.log("test",listOfColors)
-
-  const [products, setProduct] = useState([]);
   const [sortType] = useState({});
-
-  // const currentFurniture = products.slice(firstIndex, lastIndex)
 
   const sortAscending = () => {
     dispatch(sortingProducts({ sort: "-currentPrice" }));
+    dispatch(setPage(1));
+    const queryParams2 = {
+      categories,
+      brand,
+      sort: "-currentPrice",
+      minPrice,
+      maxPrice,
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
 
   const sortDescending = () => {
     dispatch(sortingProducts({ sort: "+ currentPrice" }));
+    dispatch(setPage(1));
+    const queryParams2 = {
+      categories,
+      brand,
+      sort: "+ currentPrice",
+      minPrice,
+      maxPrice,
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
 
   const sortName = () => {
     dispatch(sortingProducts({ sort: "+ name" }));
+    dispatch(setPage(1));
+    const queryParams2 = {
+      categories,
+      brand,
+      sort: "+ name",
+      minPrice,
+      maxPrice,
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
 
   //Price slider
@@ -95,19 +186,16 @@ const AllProducts = (props) => {
     if (!catfilter.includes(event.target.name)) {
       setCatFilter([...catfilter, event.target.name]);
 
-      // catString.push(event.target.name)
     } else if (catfilter.includes(event.target.name)) {
-      // const test1 = catfilter.filter(el=>el!==event.target.name)
       setCatFilter(catfilter.filter((el) => el !== event.target.name));
     }
   };
-  //color Filter State and function
+
   const [checkedState, setCheckedState] = useState(
-    new Array(listOfColors.length).fill(false)
+    new Array(listOfColors && listOfColors.length).fill(false)
   );
   const [colorFilter, setcolorFilter] = useState([]);
   const setColorFilters = (event, index) => {
-
     const newArray = [...checkedState];
     newArray[index] = !newArray[index];
     setCheckedState(newArray);
@@ -122,18 +210,30 @@ const AllProducts = (props) => {
   const submitCatFilter = () => {
     const testTest = catfilter.join();
     const colorFilterArray = colorFilter.join();
-
     dispatch(changeColor({ brand: colorFilterArray }));
     dispatch(changeCategory({ categories: testTest }));
     dispatch(setMinPrice({ minPrice: valuePriceSlider[0] }));
     dispatch(setMaxPrice({ maxPrice: valuePriceSlider[1] }));
+    dispatch(setPage(1));
+
+    const queryParams2 = {
+      categories: testTest,
+      brand: colorFilterArray,
+      sort,
+      minPrice: valuePriceSlider[0],
+      maxPrice: valuePriceSlider[1],
+      startPage,
+      perPage,
+    };
+    Object.entries(queryParams2).forEach(([k, v]) => {
+      if (v.length === 0) delete queryParams2[k];
+    });
+    const myQuery = queryString.stringify(queryParams2);
+
+
+    setSearchParams(myQuery)
   };
-  // const submitBrandFilter = () => {
-  //   const colorFilterArray = colorFilter.join();
 
-  //   dispatch(changeColor({ brand: colorFilterArray }));
-
-  // };
   return (
     <Box sx={{ mx: "auto", maxWidth: "lg" }}>
       <main>
@@ -143,7 +243,9 @@ const AllProducts = (props) => {
           <h2 className="filters_selected">Вибрані бренди:</h2>
           <p className="filters_categories">{brand}</p>
           <h2 className="filters_selected">Вибраний діапазон цін:</h2>
-          <p className="filters_categories">{minPrice}:{maxPrice}</p>
+          <p className="filters_categories">
+            {minPrice}:{maxPrice}
+          </p>
           <div className="fiters">
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Ціна:</h3>
@@ -189,88 +291,90 @@ const AllProducts = (props) => {
               </div>
             </div>
           </div>
-<div className="filters_filter-brand">
-  <div className="filters-checkbox__container">
-    <h3 className="filters_selected">Бренд</h3>
-    {listOfColors.length > 1 ? (
-        listOfColors.map((el, index) => {
-          return (
-              <label className="filters_categories filters-checkbox__item" key={uuidv4()}>
+          <div className="filters_filter-brand">
+            <div className="filters-checkbox__container">
+              <h3 className="filters_selected">Бренд</h3>
+              {listOfColors && listOfColors.length > 1 ? (
+                listOfColors.map((el, index) => {
+                  return (
+                    <label
+                      className="filters_categories filters-checkbox__item"
+                      key={uuidv4()}
+                    >
+                      <input
+                        type="checkbox"
+                        name={el}
+                        checked={checkedState[index]}
+                        onChange={(event) => {
+                          setColorFilters(event, index);
+                        }}
+                      ></input>
+                      <span className="filters-checkbox__info">{el}</span>
+                    </label>
+                  );
+                  // <p>1</p>
+                })
+              ) : (
+                <p>1</p>
+              )}
+              <button
+                type="button"
+                className="filters-price__button"
+                onClick={() => {
+                  submitCatFilter();
+                }}
+              >
+                OK
+              </button>
+            </div>
+            <div className="filters-checkbox__container">
+              <h3 className="filters_selected">Категорії</h3>
+
+              <label className="filters_categories filters-checkbox__item">
                 <input
-                    type="checkbox"
-                    name={el}
-                    checked={checkedState[index]}
-                    onChange={(event) => {
-                      setColorFilters(event, index);
-                    }}
+                  type="checkbox"
+                  name="tables"
+                  onChange={categoryFilter}
                 ></input>
-                <span className="filters-checkbox__info">{el}</span>
+                <span className="filters-checkbox__info">Столи</span>
               </label>
-          );
-          // <p>1</p>
-        })
-    ) : (
-        <p>1</p>
-    )}
-    <button
-        type="button"
-        className="filters-price__button"
-        onClick={submitCatFilter}
-    >
-      OK
-    </button>
-  </div>
-          <div className="filters-checkbox__container">
-            <h3 className="filters_selected">Категорії</h3>
-
-            <label className="filters_categories filters-checkbox__item">
-              <input
-                type="checkbox"
-                name="tables"
-                onChange={categoryFilter}
-              ></input>
-              <span className="filters-checkbox__info">Столи</span>
-            </label>
-            <label className="filters_categories filters-checkbox__item">
-              <input
-                type="checkbox"
-                name="chairs"
-                onChange={categoryFilter}
-              ></input>
-              <span className="filters-checkbox__info">Стільці</span>
-            </label>
-            <label className="filters_categories filters-checkbox__item">
-              <input
-                type="checkbox"
-                name="beds"
-                onChange={categoryFilter}
-              ></input>
-              <span className="filters-checkbox__info">Ліжка</span>
-            </label>
-            <label className="filters_categories filters-checkbox__item">
-              <input
-                type="checkbox"
-                name="housingfurniture"
-                onChange={categoryFilter}
-              ></input>
-              <span className="filters-checkbox__info">Корпусні меблі</span>
-            </label>
-            <button
-              type="button"
-              className="filters-price__button"
-              onClick={submitCatFilter}
-            >
-              OK
-            </button>
+              <label className="filters_categories filters-checkbox__item">
+                <input
+                  type="checkbox"
+                  name="chairs"
+                  onChange={categoryFilter}
+                ></input>
+                <span className="filters-checkbox__info">Стільці</span>
+              </label>
+              <label className="filters_categories filters-checkbox__item">
+                <input
+                  type="checkbox"
+                  name="beds"
+                  onChange={categoryFilter}
+                ></input>
+                <span className="filters-checkbox__info">Ліжка</span>
+              </label>
+              <label className="filters_categories filters-checkbox__item">
+                <input
+                  type="checkbox"
+                  name="housingfurniture"
+                  onChange={categoryFilter}
+                ></input>
+                <span className="filters-checkbox__info">Корпусні меблі</span>
+              </label>
+              <button
+                type="button"
+                className="filters-price__button"
+                onClick={submitCatFilter}
+              >
+                OK
+              </button>
+            </div>
           </div>
-
-
         </div>
-      </div>
         <div className="pageCategories, right">
           <br />
           <div className="filters_selected filter-box">
-
             <Filter
               value={sortType}
               onChangeSortAscending={(i) => sortAscending(i)}

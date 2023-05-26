@@ -6,10 +6,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 function FurnitureItem(props) {
 
+
   const dispatch = useDispatch()
   return (
     <div className='chair' key={uuidv4()}>
       <Link to={`/products/` + props.furniture.itemNo} relative="path" >
+
         <div className='chair-img__container'>
           <img src={props.furniture.imageUrls[0]} alt="" />
         </div>
