@@ -30,6 +30,7 @@ const MenuDrop = ({mList}) => {
                 aria-expanded={open ? 'true' : undefined}
                 
               ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
+              </Button>
         
               <Menu 
                 id="fade-menu"
