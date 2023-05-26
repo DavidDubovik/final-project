@@ -1,4 +1,5 @@
-import reducer from "./reducer";
+import logicBasket from "./basket.reducer";
+import modal from "./modal.reducer";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
@@ -17,9 +18,10 @@ const userPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-    products: reducer,
-    allProducts: allProdReducer,
-    isLogged: loginReducer,
+  products: logicBasket,
+  allProducts: allProdReducer,
+  isLogged: loginReducer,
+  Modal: modal
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

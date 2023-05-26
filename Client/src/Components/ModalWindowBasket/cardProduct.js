@@ -5,13 +5,11 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
     const [count, setCount] = useState(quantiy ? quantiy : 1)
 
     const dispatch = useDispatch()
-
     const basket = useSelector(state => {
         return state.products.basket
     })
-
     const inc = () => {
-        if (count <= 9) {
+        if (count <= 39) {
             setCount(count + 1)
             setAllPrice(allPrice + +price);
         }
@@ -22,13 +20,13 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
             setCount(count - 1)
             setAllPrice(allPrice - +price);
         }
+
     }
 
     const clearProduct = (productId) => {
-        const filterProduct = basket.filter(res => res.itemNo !== productId)
-        dispatch({ type: 'ADD_TO_BASKET', payload: filterProduct })
+        dispatch({ type: 'CLEAR_BASKET', payload: productId })
         setAllPrice(allPrice - +price * count);
-        console.log(filterProduct);
+        console.log(basket.length);
     }
 
     useEffect(() => {
@@ -37,14 +35,13 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
         }
     }, [])
     useEffect(() => {
-        if (quantiy > 1) {
-            setAllPrice(currentAllPrice => currentAllPrice + (count * +price))
+        if (quantiy >= 1) {
+            setAllPrice(currentAllPrice => currentAllPrice + (+price * count))
+            setCount(quantiy)
         }
-        else {
-            // console.log('fefe');
-        }
+
     }, [quantiy])
-    // console.log(imageUrls);
+
     return (
         <div>
             <div className='cardProduct'>
@@ -59,12 +56,12 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
                 <div className='select'>
                     <div>  <DropList colorType={colorsProduct} colorValue={defoltColor} /></div>
 
-                    <div>  <DropList upholstery={Obivka} /></div>
+                    <div className="line">  </div>
                 </div>
                 <div className='numberProduct'>
                     <button id='decrement' onClick={() => dec()}>-</button>
                     <lable>
-                        <input type='text' id={id} value={count} readOnly />
+                        <input type='text' value={count} readOnly />
                         <span>шт</span>
                     </lable>
                     <button id='increment' onClick={() => inc()}>+</button>
