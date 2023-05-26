@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
@@ -8,49 +8,34 @@ import Select from "@mui/material/Select";
 import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 const ProductControll = ({ myProps }) => {
   const dispatch = useDispatch()
 
-
   const [counter, setCounter] = React.useState(1);
-  // console.log(counter)
   const [color, setColor] = React.useState(myProps.colors[0]);
   const [product, setOneProdData] = React.useState({ ...myProps, counter, color });
-  const basket = useSelector(state => {
-    return state.products.basket
-  })
-
-  const addProduct = (prod) => {
-    // debugger
-    // let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
-    let filterBasket = basket.filter(res => prod.itemNo !== res.itemNo)
-    // console.log(filterBasket);
-    if (filterBasket.length === basket.length || basket.length === 0) {
-      console.log(prod)
-      // dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, ...filterBasket] })
-      dispatch({ type: 'ADD_TO_BASKET', payload: [...basket, prod] })
-      // localStorage.setItem('basket', JSON.stringify([...basket, prod]))
-    }
-  }
-
 
   const increase = () => {
     setCounter((count) => count + 1);
-    setOneProdData((state) => ({ ...state, counter:counter+1 }))
+    setOneProdData((state) => ({ ...state, counter: counter + 1 }))
   }
 
   const decrease = () => {
     if (counter > 1) {
       setCounter((count) => count - 1);
     }
-    setOneProdData((state) => ({ ...state, counter:counter-1 }))
+    setOneProdData((state) => ({ ...state, counter: counter - 1 }))
   };
+
+  useEffect(() => {
+    setOneProdData((state) => ({ ...state, color }))
+  }, [color])
+
   const handleChange = (event) => {
     setColor(event.target.value);
-    setOneProdData((state) => ({ ...state, color }))
   };
   return (
     <>
@@ -234,7 +219,7 @@ const ProductControll = ({ myProps }) => {
             color="primary"
             href="#contained-buttons"
             sx={{ p: "12px 25px 12px 25px", borderRadius: "3px" }}
-            onClick={() => addProduct(product)}
+            onClick={() => dispatch({ type: 'ADD_TO_BASKET', payload: product })}
           >
             <Typography
               sx={{

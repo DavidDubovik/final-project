@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+
 import "./modalWindow.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { CardProduct } from './cardProduct'
@@ -22,17 +23,21 @@ const styleBox = {
 export function KeepMountedModal() {
 
     const dispatch = useDispatch()
-    
+
     const basket = useSelector(state => {
         return state.products.basket
     })
 
     const modalOpen = useSelector(state => {
-        return state.products.isModal
+        return state.Modal.isModal
     })
+  
+    // const Open = useSelector(state => {
+    //     return state.Modal.isModal
+    // })
     const [saveAllPrice, setSaveAllPrice] = useState(0)
-    // console.log(basket[0].length);
-    // console.log(basket);
+    //   console.log(basket);
+    console.log(saveAllPrice);
     return (
         <div>
             <Modal
@@ -51,7 +56,7 @@ export function KeepMountedModal() {
                             <div className='basket-product'>
                                 {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, obivka, counter }) => {
                                     return (
-                                        <CardProduct id={itemNo} name={name} price={currentPrice} Obivka={obivka} imageUrls={imageUrls} defoltColor={color} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} colorsProduct={colors} item={itemNo} quantiy={counter} />
+                                        <CardProduct key={itemNo} id={itemNo} name={name} price={currentPrice} Obivka={obivka} imageUrls={imageUrls} defoltColor={color} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} colorsProduct={colors} item={itemNo} quantiy={counter} />
                                     )
                                 })}
                             </div>
