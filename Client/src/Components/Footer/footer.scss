@@ -36,6 +36,7 @@
 
 .input-button {
   display: flex;
+  position: relative;
 }
 
 .input {
@@ -43,7 +44,7 @@
   width: 272.67px;
   height: 32px;
   border: none;
-  position: relative;
+  // position: relative;
 }
 
 .input::placeholder {
@@ -51,11 +52,12 @@
 }
 
 .button-arr {
-  position: absolute;
+  position: relative;
   padding: 8px 12px;
   border: none;
   border-radius: 0 3px 3px 0;
-  right: 120px;
+  right: 32px;
+  right: 0;
   background-color: #B0B6C0;
 }
 
@@ -73,4 +75,34 @@
 .footer-row-text {
   padding-bottom: 80px;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+.row-list{
+  display: none;
+}
+  .row-info-media{
+    display: none;
+  }
+  .row_none{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+.row-media{
+  display: none;
+}
+  .input-button{
+    display: none;
+  }
+
+  .row-social{
+    display: none;
+  }
+
+  .footer-information {
+
+    padding: 54px 100px 64px 100px;
+  }
 }

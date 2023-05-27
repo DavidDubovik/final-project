@@ -1,119 +1,114 @@
 import React from "react";
 import NavigationMain from "./NavigationMain/NavigationMain.component";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 import MidleMenu from "./MidleMenu/menu.component";
 import ButtomMenu from "./ButtomMenu/ButtomMenu.component";
-const navList =[
-    {
-        title: "Головна",
-        path: "/",
-    },
-    {
-        title: "Партнерам",
-        path: "/partners",
-    },
-
-    {
-        title: "Наші магазини",
-        path: "/shops",
-    },
-    {
-        title: "Про нас",
-        path: "/aboutus",
-    },
-    {
-        title: "Акції",
-        path: "/disconts",
-    }
-]
-const menuList =[
-    {
-        title: "Столи",
-        path: "/table",
-        submenu:
-            [{"title":"Круглі столи",
-            "path" :"/table/round"},{
-            "title":"Квадратні столи",
-            "path" :"/table/square"
-            },{
-                "title":"Ексклюзивні",
-                "path" :"/table/ekslkuzivni"
-                },{
-                    "title":"Люкс",
-                    "path" :"/table/luxuries"
-                    }]
-    },
-    {
-        title: "Стільці",
-        path: "/chairs",
-        submenu:
-            [{"title":"Круглі Стільці",
-            "path" :"/chairs/round"},{
-            "title":"Квадратні Стільці",
-            "path" :"/chairs/square"
-            },{
-                "title":"Металеві Стільці",
-                "path" :"/chairs/metal"
-                }]
-    },    {
-        title: "Лавки",
-        path: "/bench",
-        submenu:
-            [{"title":"Лавки столи",
-            "path" :"/bench/round"},{
-            "title":"Лавки столи",
-            "path" :"/bench/square"
-            }]
-    },    {
-        title: "Корпусні меблі",
-        path: "/corpusni",
-        submenu:
-            [{"title":"Вбудовані",
-            "path" :"/corpusni/round"},{
-            "title":"Летучі",
-            "path" :"/corpusni/square"
-            }]
-    } ,{
+const navList = [
+  {
+    title: "Головна",
+    path: "/",
+  },
+  {
+    title: "Усі продукти",
+    path: "/products",
+  },
+  {
+    title: "Про нас",
+    path: "/aboutus",
+  },
+  {
+    title: "Акції",
+    path: "/disconts",
+  },
+];
+const menuList = [
+  {
+    title: "Усі товари",
+    path: "products?categories=tables%2Cchairs%2Cbeds%2Chousingfurniture&maxPrice=50000&minPrice=1&perPage=6&startPage=1",
+    submenu: [
+        {
+          title: "Стільці",
+          path: "/chairs",
+        },
+      { title: "Столи", path: "/tables" },
+      {
         title: "Ліжка",
         path: "/beds",
-        submenu:
-            [{"title":"Ортопедичні",
-            "path" :"/beds/round"},{
-            "title":"Круглі ліжка",
-            "path" :"/beds/square"
-            }]
-    },{
-        title: "Аксесуари",
-        path: "/acsesuaries",
-        submenu:
-            [{"title":"Постіль",
-            "path" :"/acsesuaries/round"},{
-            "title":"Лампи",
-            "path" :"/acsesuaries/square"
-            }]
-    },{
-        title: "Вироби з металу",
-        path: "/metal",
-        submenu:
-            [{"title":"Ліжка",
-            "path" :"/metal/round"},{
-            "title":"Стільці",
-            "path" :"/metal/square"
-            }]
-    }
-]
+      }
+      ,
+      {
+        title: "Корпусні меблі",
+        path: "/housingfurniture",
+      }
+    ],
+  },
+  {
+    title: "Столи",
+    path: "products?categories=tables&perPage=6&startPage=1",
+    submenu: [
+      { title: "Круглі столи", path: "/table/round" },
+      {
+        title: "Квадратні столи",
+        path: "/table/square",
+      },
+      {
+        title: "Ексклюзивні",
+        path: "/table/ekslkuzivni",
+      },
+      {
+        title: "Люкс",
+        path: "/table/luxuries",
+      },
+    ],
+  },
+  {
+    title: "Стільці",
+    path: "products?categories=chairs&perPage=6&startPage=1",
+    submenu: [
+      { title: "Круглі Стільці", path: "/chairs/round" },
+      {
+        title: "Квадратні Стільці",
+        path: "/chairs/square",
+      },
+      {
+        title: "Металеві Стільці",
+        path: "/chairs/metal",
+      },
+    ],
+  },
+  {
+    title: "Ліжка",
+    path: "products?categories=beds&perPage=6&startPage=1",
+    submenu: [
+      { title: "Ортопедичні", path: "/beds/round" },
+      {
+        title: "Круглі ліжка",
+        path: "/categories/square",
+      },
+    ],
+  },
+  {
+    title: "Корпусні меблі",
+    path: "products?categories=housingfurniture&perPage=6&startPage=1",
+    submenu: [
+      { title: "Ортопедичні", path: "/beds/round" },
+      {
+        title: "Круглі ліжка",
+        path: "/categories/square",
+      },
+    ],
+  }
+];
 const Header = (props) => {
-
-    return(
-        <>
-   
-            <Box sx={{fontFamily:'Open Sans',mx:'auto'}}>
-                <NavigationMain navList={navList}/>
-                <MidleMenu/>
-                <ButtomMenu menuList={menuList}/>
-            </Box>
-
-    </>);
-    }
+  return (
+    <>
+      <Box sx={{ fontFamily: "Open Sans", mx: "auto" }}>
+        <NavigationMain navList={navList} />
+        <MidleMenu />
+        <ButtomMenu menuList={menuList} />
+      </Box>
+    </>
+  );
+};
 export default Header;

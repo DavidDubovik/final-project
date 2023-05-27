@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { Swiper, SwiperSlide } from "swiper/react";
 import {Autoplay, Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+import Box from '@mui/material/Box';
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -84,8 +85,6 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#2E3438',
-    whiteSpace: 'nowrap',
-    marginBottom: '7%',
   },
 
   text_5: {
@@ -96,7 +95,6 @@ const Style = {
     color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#fff',
   },
 
   persent: {
@@ -156,8 +154,8 @@ const Style = {
 
 export default function Slider() {
   return (
-    <div>
-      <>
+    <Box sx={{fontFamily:'Open Sans',mx:'auto',maxWidth: 'lg'}}>
+
       <Swiper
         cssMode={true}
         navigation={true}
@@ -165,8 +163,8 @@ export default function Slider() {
         keyboard={true}
         loop={true}
         autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
+           delay: 2500,
+           disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
@@ -232,7 +230,6 @@ export default function Slider() {
         </SwiperSlide>
 
       </Swiper>
-      </>
-    </div>
+  </Box>
   )
 }
