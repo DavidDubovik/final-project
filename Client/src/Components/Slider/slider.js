@@ -16,7 +16,7 @@ const Style = {
     alignItems: 'center',
     justifyContent: 'right',
     margin: '38px auto',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   slideContent: {
@@ -41,7 +41,6 @@ const Style = {
     fontSize: 'calc(54px + 4 * (100vw - 5000px) / 880)',
     color: '#fff',
     marginBottom: 22,
-    wordWrap: 'break-word'
   },
 
   mainText_3: {
@@ -51,7 +50,6 @@ const Style = {
     fontSize: 'calc(52px + 4 * (100vw - 5000px) / 880)',
     color: '#2E3438',
     marginBottom: 22,
-    wordWrap: 'break-word'
   },
 
   mainText_4: {
@@ -61,7 +59,6 @@ const Style = {
     fontSize: 'calc(54px + 4 * (100vw - 6000px) / 880)',
     color: '#fff',
     marginBottom: 5,
-    wordWrap: 'break-word'
   },
 
   mainText_5: {
@@ -71,7 +68,6 @@ const Style = {
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#fff',
     marginBottom: 5,
-    wordWrap: 'break-word'
   },
 
   textDesc: {
@@ -80,7 +76,6 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#E03737',
-    wordWrap: 'break-word'
   },
 
   text: {
@@ -91,8 +86,6 @@ const Style = {
     color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#2E3438',
-    wordWrap: 'break-word'
   },
 
   text_5: {
@@ -103,7 +96,7 @@ const Style = {
     color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#fff'
+    color: '#fff',
   },
 
   persent: {
@@ -111,7 +104,7 @@ const Style = {
     fontStyle: 'normal',
     fontWeight: 800,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_1: {
@@ -122,7 +115,6 @@ const Style = {
     color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#2E3438'
   },
 
   textSlide_2: {
@@ -131,7 +123,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#FFC740'
+    color: '#FFC740',
   },
 
   textSlide_3: {
@@ -140,7 +132,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_4: {
@@ -149,7 +141,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_5: {
@@ -158,7 +150,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   }
 }
 
@@ -172,15 +164,15 @@ export default function Slider() {
         mousewheel={true}
         keyboard={true}
         loop={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
           pagination: true
         }}
-        modules={[ Navigation, Pagination, Mousewheel, Keyboard]}
+        modules={[Autoplay, Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper">
 
         <SwiperSlide>
