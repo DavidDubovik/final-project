@@ -17,7 +17,7 @@ const Style = {
     alignItems: 'center',
     justifyContent: 'right',
     margin: '38px auto',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   slideContent: {
@@ -77,7 +77,6 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#E03737',
-    wordWrap: 'break-word'
   },
 
   text: {
@@ -88,7 +87,6 @@ const Style = {
     color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#2E3438',
   },
 
   text_5: {
@@ -96,9 +94,9 @@ const Style = {
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
+    color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#fff'
   },
 
   persent: {
@@ -106,7 +104,7 @@ const Style = {
     fontStyle: 'normal',
     fontWeight: 800,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_1: {
@@ -125,7 +123,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#FFC740'
+    color: '#FFC740',
   },
 
   textSlide_3: {
@@ -134,7 +132,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_4: {
@@ -143,7 +141,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_5: {
@@ -152,7 +150,7 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   }
 }
 
@@ -180,9 +178,9 @@ export default function Slider() {
         <SwiperSlide>
           <div style={Style.slideBlock}>
             <div style={Style.slideContent}>
-              <h1 style={Style.mainText} className='mainText'>Відчуй себе <br /> аристократом!</h1>
-              <p style={Style.textDesc} className='textDesc'>Знижка до <span style={Style.persent}>25%</span></p>
-              <p style={Style.textSlide_1} className='textSlide_1'>на усі дубові крісла</p>
+              <h1 style={Style.mainText}>Відчуй себе <br /> аристократом!</h1>
+              <p style={Style.textDesc}>Знижка до <span style={Style.persent}>25%</span></p>
+              <p style={Style.textSlide_1}>на усі дубові крісла</p>
               <Link to="#"><button className='btnMore'>Детальніше</button></Link>
             </div>
             <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1681387746/SliderImg/Banner-1_1_ddlxrr.png" alt="" />
