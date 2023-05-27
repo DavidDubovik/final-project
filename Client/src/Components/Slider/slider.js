@@ -33,9 +33,6 @@ const Style = {
     fontSize: 'calc(54px + 4 * (100vw - 5000px) / 880)',
     color: '#2E3438',
     marginBottom: 22,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
-    marginBottom: 22,
-    color: '#2E3438'
   },
 
   mainText_2: {
@@ -45,9 +42,6 @@ const Style = {
     fontSize: 'calc(54px + 4 * (100vw - 5000px) / 880)',
     color: '#fff',
     marginBottom: 22,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
-    marginBottom: 22,
-    color: '#fff'
   },
 
   mainText_3: {
@@ -57,9 +51,6 @@ const Style = {
     fontSize: 'calc(52px + 4 * (100vw - 5000px) / 880)',
     color: '#2E3438',
     marginBottom: 22,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
-    marginBottom: 22,
-    color: '#2E3438'
   },
 
   mainText_4: {
@@ -69,9 +60,6 @@ const Style = {
     fontSize: 'calc(54px + 4 * (100vw - 6000px) / 880)',
     color: '#fff',
     marginBottom: 5,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
-    marginBottom: 5,
-    color: '#fff'
   },
 
   mainText_5: {
@@ -81,9 +69,6 @@ const Style = {
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#fff',
     marginBottom: 5,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
-    marginBottom: 5,
-    color: '#fff'
   },
 
   textDesc: {
@@ -101,11 +86,9 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#2E3438',
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
     color: '#2E3438',
-    wordWrap: 'break-word'
   },
 
   text_5: {
@@ -113,8 +96,6 @@ const Style = {
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
-    color: '#2E3438',
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
     color: '#fff'
@@ -134,10 +115,8 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#2E3438',
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#2E3438'
   },
 
   textSlide_2: {
