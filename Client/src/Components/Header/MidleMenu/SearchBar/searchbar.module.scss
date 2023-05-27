@@ -1,0 +1,14 @@
+
+
+// Почемуто не работает
+.nav {
+  
+  a.nav_link:hover {
+  cursor: pointer;
+  color: rgb(143, 61, 61); 
+    
+  .active {
+    background-color: red;
+  }
+  }
+}
