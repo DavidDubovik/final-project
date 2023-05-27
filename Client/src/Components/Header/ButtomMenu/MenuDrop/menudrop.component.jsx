@@ -25,11 +25,11 @@ const MenuDrop = ({mList}) => {
               <Button
                 id="fade-button"
                 aria-controls={open ? 'fade-menu' : undefined}
-                sx={{height:"45px",borderRadius:"0",pl:"32px",pr:"32px",backgroundColor: open ? "white": "#57646E"}}
+                sx={{height:"45px",borderRadius:"0",pl:"32px",pr:"32px",backgroundColor: open ? "white": "rgb(44,44,44)"}}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 
-              ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
+              ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "rgb(44,44,44)":"white"}}>{mList.title}</Typography>
               </Button>
         
               <Menu 
@@ -43,7 +43,7 @@ const MenuDrop = ({mList}) => {
                 TransitionComponent={Fade} 
               >
               {submenues.map(el=><MenuItem sx={{'&:hover, active':{
-                color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} key={uuidv4()}  component={NavLink} to={el.path} >{el.title}</MenuItem>)}
+                color: '#007042',fontWeight:"700",background: "rgb(44,44,44)"}}} key={uuidv4()}  component={NavLink} to={el.path} >{el.title}</MenuItem>)}
             
               </Menu>
 

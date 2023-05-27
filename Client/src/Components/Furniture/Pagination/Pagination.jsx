@@ -1,21 +1,25 @@
-import React from 'react'
+import React from 'react';
+import './Pagination.scss'
 
-const Pagination = ({ productsPerPage, totalProducts, paginate, prevPage, nextPage }) => {
+    const Pagination = ({ productsPerPage, totalProducts, paginate, prevPage, nextPage }) => {
     const pageNumbers = [];
     
     for(let i = 1; i <= Math.ceil(totalProducts/productsPerPage); i++){
         pageNumbers.push(i)
     }
 
+    const next = ">>";
+    const prev = "<<";
+
     return (
         <div className='pagination'>   
-            <button type='button' onClick={prevPage}>prev</button>
-            <div className='page'>
+            <button type='button' className='pagination-button pagination-button__prev' onClick={prevPage}>{prev}</button>
+            <div className='pagination__numbers'>
                 {   
                     pageNumbers.map(number => (
-                        <button key={number} className='page-item' onClick={() => paginate(number)}>
+                        <button key={number} className='pagination__number' onClick={() => paginate(number)}>
                             <span 
-                                className='page-link'
+                                className='pagination__number-item'
                             >
                                 {number}
                             </span>
@@ -23,7 +27,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, prevPage, nextPa
                     ))
                 }
             </div>
-            <button type='button' onClick={nextPage}>next</button>
+            <button type='button' className='pagination-button pagination-button__next' onClick={nextPage}>{next}</button>
         </div>
     )
 }
