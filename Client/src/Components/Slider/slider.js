@@ -85,6 +85,8 @@ const Style = {
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     color: '#2E3438',
+    whiteSpace: 'nowrap',
+    marginBottom: '7%',
   },
 
   text_5: {
@@ -176,9 +178,9 @@ export default function Slider() {
         <SwiperSlide>
           <div style={Style.slideBlock}>
             <div style={Style.slideContent}>
-              <h1 style={Style.mainText} className='mainText'>Відчуй себе <br /> аристократом!</h1>
-              <p style={Style.textDesc} className='textDesc'>Знижка до <span style={Style.persent}>25%</span></p>
-              <p style={Style.textSlide_1} className='textSlide_1'>на усі дубові крісла</p>
+              <h1 style={Style.mainText}>Відчуй себе <br /> аристократом!</h1>
+              <p style={Style.textDesc}>Знижка до <span style={Style.persent}>25%</span></p>
+              <p style={Style.textSlide_1}>на усі дубові крісла</p>
               <Link to="#"><button className='btnMore'>Детальніше</button></Link>
             </div>
             <img src="https://res.cloudinary.com/do1ybce55/image/upload/v1681387746/SliderImg/Banner-1_1_ddlxrr.png" alt="" />
