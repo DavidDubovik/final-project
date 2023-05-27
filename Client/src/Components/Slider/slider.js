@@ -94,7 +94,7 @@ const Style = {
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
-    color: '#2E3438',
+    color: '#fff',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
   },
