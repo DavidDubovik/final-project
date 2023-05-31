@@ -27,9 +27,9 @@ function Filter({ onChangeSortAscending, onChangeSortDescending, onChangeSortNam
         <div className="button-sort">
             <label className="filter-box__title">Сортувати по: </label>
             <div className="filter">
-                <button className="button-of-filter" type="button" onClick={() => SortAscending()}>От дорогим к дешевых</button>
-                <button className="button-of-filter" type="button" onClick={() => SortDescending()}>От дешевых к дорогим </button>
-                <button className="button-of-filter" type="button" onClick={() => SortName()}>По имени </button>
+                <button type="button" onClick={() => SortAscending()}>От дешевых к дорогим</button>
+                <button type="button" onClick={() => SortDescending()}>От дорогим к дешевых </button>
+                <button type="button" onClick={() => SortName()}>По имени </button>
             </div>
         </div>
   )

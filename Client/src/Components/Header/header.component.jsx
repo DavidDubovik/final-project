@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 
 import MidleMenu from "./MidleMenu/menu.component";
 import ButtomMenu from "./ButtomMenu/ButtomMenu.component";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 const navList = [
   {
     title: "Головна",
@@ -84,7 +85,7 @@ const menuList = [
       { title: "Ортопедичні", path: "/beds/round" },
       {
         title: "Круглі ліжка",
-        path: "/categories/square",
+        path: "/beds/square",
       },
     ],
   },
@@ -95,7 +96,7 @@ const menuList = [
       { title: "Ортопедичні", path: "/beds/round" },
       {
         title: "Круглі ліжка",
-        path: "/categories/square",
+        path: "/beds/square",
       },
     ],
   }
@@ -106,7 +107,8 @@ const Header = (props) => {
       <Box sx={{ fontFamily: "Open Sans", mx: "auto" }}>
         <NavigationMain navList={navList} />
         <MidleMenu />
-        <ButtomMenu menuList={menuList} />
+        <BurgerMenu menuList={menuList}/>
+        {/* <ButtomMenu menuList={menuList} /> */}
       </Box>
     </>
   );

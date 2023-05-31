@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    &-button {
+        padding: 0 15px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    &__number {
+        border: none;
+        cursor: pointer;
+        background-color: #fff;
+        font-size: 20px;
+        color: #007042;
+        &-item {
+            padding: 0 10px;
+        }
+    }
+}

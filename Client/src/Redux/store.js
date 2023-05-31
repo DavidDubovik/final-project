@@ -7,6 +7,9 @@ import thunk from "redux-thunk";
 import loginReducer from "./login.reducer";
 import allProdReducer from "./products.reducer"
 
+const store = configureStore({
+    reducer: { products: reducer }
+})
 
 const persistConfig = {
   key: "root",
@@ -22,11 +25,5 @@ const rootReducer = combineReducers({
   Modal: modal
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
-  reducer: persistedReducer,
-  middleware: [thunk],
-});
-export const persistor = persistStore(store);
-export default store;
+export default store

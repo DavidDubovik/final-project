@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import FurnitureItem from '../FurnitureItem/FurnitureItem'
 import './FurnitureItems.scss'
-import { v4 as uuidv4 } from 'uuid';
 
 export class FurnitureItems extends Component {
 
