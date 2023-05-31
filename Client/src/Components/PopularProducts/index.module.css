@@ -6,8 +6,3 @@
     position: relative;
     background: red;
 }
-
-.card-box::-webkit-scrollbar {
-    width: 0;
-    height: 1px;
-}

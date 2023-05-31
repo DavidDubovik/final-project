@@ -100,56 +100,33 @@ const ProductControll = ({ myProps }) => {
           >
             {myProps.sizez}
           </Typography>
-          <Typography
-            sx={{
-              fontFamily: "Open Sans",
-              fontWeight: "800",
-              fontSize: "20px",
-              color: "secondary.dark",
-              lineHeight: "1",
-              mb: "14px",
-            }}
-          >
-            Бренд
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: "Open Sans",
-              fontWeight: "400",
-              fontSize: "20px",
-              color: "secondary.dark",
-              lineHeight: "1.4",
-            }}
-          >
-            {myProps.brand}
-          </Typography>
         </Box>
-
+        
         <>
-          <Typography
-            sx={{
-              "fontFamily": "Open Sans",
-              fontWeight: "700",
-              fontSize: "20px",
-              pb: "21px",
-            }}
-          >
-            Обрати колір
-          </Typography>
-          <FormControl >
-            <Select
-              labelId="color-select"
+        <Typography
+          sx={{
+            "fontFamily": "Open Sans",
+            fontWeight: "700",
+            fontSize: "20px",
+            pb: "21px",
+          }}
+        >
+          Обрати колір 
+        </Typography>
+        <FormControl >
+          <Select
+            labelId="color-select"
               inputProps={{ 'aria-label': 'Without label' }}
-
-              value={color}
-              onChange={handleChange}
-              sx={{ maxWidth: "150px" }}
-            >
-              {myProps.colors.map(el => <MenuItem key={uuidv4()} value={el}>{el}</MenuItem>)}
-
-            </Select>
-          </FormControl>
-        </>
+  
+            value={color}
+            onChange={handleChange}
+            sx={{ maxWidth: "150px" }} 
+          >
+          {myProps.colors.map(el=><MenuItem key={uuidv4()} value={el}>{el}</MenuItem>)}
+            
+          </Select>
+        </FormControl>
+      </>
         <Box display="flex" justifyContent={"space-between"} mt={6}>
           <Box display="flex" justifyContent={"space-between"}>
             <Typography

@@ -2,7 +2,6 @@ import React from 'react';
 import './PopularCategoriesItem.scss';
 import { NavLink } from "react-router-dom";
 
-
 const PopularCategoriesItem =({item})=> {
 
     return (

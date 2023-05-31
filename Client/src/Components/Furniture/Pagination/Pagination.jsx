@@ -31,6 +31,9 @@ const Pagination = ({totalProducts}) => {
         pageNumbers.push(i)
     }
 
+    const next = ">>";
+    const prev = "<<";
+
     return (
         <div className='pagination'>   
             <button type='button' onClick={()=>{
@@ -81,7 +84,7 @@ const Pagination = ({totalProducts}) => {
                               setSearchParams(myQuery)
                             }}>
                             <span 
-                                className='page-link'
+                                className='pagination__number-item'
                             >
                                 {number}
                             </span>

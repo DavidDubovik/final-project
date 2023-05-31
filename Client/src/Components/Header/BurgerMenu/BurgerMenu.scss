@@ -1,0 +1,184 @@
+// .burger {
+//     &-nav{
+//         height: 50px;
+//         width: 100%;
+//         background-color: blueviolet;
+//         z-index: 50;
+//         display: flex;
+//         align-items: center;
+//     }
+//     &-btn{
+//         position: relative;
+//         width: 20px;
+//         height: 20px;
+//         margin-left: 20px;
+//         cursor: pointer;
+//         & > span {
+//             position: absolute;
+//             top: 9px;
+//             width: 20px;
+//             background-color: black;
+//             height: 2.2px;
+//         }
+//         &:after {
+//             content: '';
+//             position: absolute;
+//             top: 0;
+//             width: 20px;
+//             background-color: black;
+//             height: 2.1px;
+//         }
+//         &:before {
+//             content: '';
+//             position: absolute;
+//             bottom: 0;
+//             width: 20px;
+//             background-color: black;
+//             height: 2.1px;
+//         }
+//     }
+// }
+
+.header {
+    width: 100%;
+    background-color: rgb(44, 44, 44);
+    justify-content: center;
+}
+.nav {
+    &-mobile {
+        display: none;
+    }
+    &__list {
+        display: flex;
+        height: 60px;
+        align-items: center;
+        &-item {
+            padding: 0 10px;
+            &:last-child,
+            &:first-child {
+            padding: 0;
+            }
+        }
+        
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        & > div {
+            width: 80%;
+        }
+    }
+   
+    .nav {
+        display: none;
+    }
+    .nav-mobile {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__menu {
+            display: flex;
+            overflow: hidden;
+        }
+        &__menu > .nav__list-item {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            & > a {
+                font-size: 1rem;
+                text-transform: uppercase;
+                cursor: pointer;
+                color: #fff;
+            }
+        }
+    
+    &__container-menu {
+        display: none;
+        height: 100%;
+        width: 30px;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__button,
+    &__button::before,
+    &__button::after {
+        display: block;
+        background-color: #fff;
+        position: absolute;
+        height: 4px;
+        width: 30px;
+        transition: transform 700ms cubic-bezier(0.23, 1, 0.32, 1);
+        border-radius: 2px;
+    }
+    &__button::before {
+        content: '';
+        margin-top: -8px;
+    }
+    &__button::after {
+        content: '';
+        margin-top: 8px;
+    }
+    
+    }
+    #menu-toggle {
+        display: none;
+        &:checked + .nav-mobile__container-menu .menu-button {
+            background-color: transparent;
+        }
+        &:checked + .nav-mobile__container-menu .menu-button::before {
+            margin-top: 0px;
+            transform: rotate(405deg);
+        }
+        &:checked + .nav-mobile__container-menu .menu-button::after {
+            margin-top: 0px;
+            transform: rotate(-405deg);
+        }
+    }
+    #menu-toggle {
+        & ~ .menu li {
+            height: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;    
+            transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        &:checked ~ .menu li {
+            background: rgb(44, 44, 44);
+            border-bottom: 1px solid rgb(255, 255, 255);
+            height: 2em;
+            padding: 0.5em;
+            transition: all 0.35s ease-out;
+        }
+        &:checked ~ .menu li:last-child {
+            border-bottom: none;
+        }
+    }
+    .nav-mobile {
+        &__container-menu {
+        display: flex;
+        justify-content: center;
+        }
+        &__menu {
+        position: absolute;
+        z-index: 666;
+        top: 0;
+        margin-top: 215px;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        & > li {
+            justify-content: center;
+            margin: 0;
+            padding: 0.5em 0;
+            width: 100%;
+        }
+        }
+    }    
+}
+

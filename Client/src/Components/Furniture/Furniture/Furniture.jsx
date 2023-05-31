@@ -3,12 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
-import Box from "@mui/material/Box";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchAsyncProducts,
-  fetchAsyncAllBrands,
-} from "../../../Redux/products.reducer";
+import Box from '@mui/material/Box';
+
 import "./Furniture.scss";
 import Filter from "../Filter/Filter";
 import Pagination from "../Pagination/Pagination";
@@ -233,7 +229,7 @@ console.log("test")  }
   };
 
   return (
-    <Box sx={{ mx: "auto", maxWidth: "lg" }}>
+    <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <main>
         <div className="pageCategories, left">
           <h2 className="filters_selected">Вибрані категорії:</h2>
@@ -249,13 +245,13 @@ console.log("test")  }
               <h3 className="filters-price__price">Ціна:</h3>
 
               <Slider
-                getAriaLabel={() => "Ціна товарів"}
-                value={valuePriceSlider}
-                onChange={handleChangePriceSlider}
-                min={1}
-                max="50000"
-                valueLabelDisplay="auto"
-                getAriaValueText={valuetext}
+                className="horizontal-slider"
+                thumbClassName="example-thumb"
+                trackClassName="example-track"
+                defaultValue={[20, 50]}
+                renderThumb={(props, state) => (
+                  <div {...props}>{state.valueNow}</div>
+                )}
               />
               <div className="filters-price__slider"></div>
               <br />
@@ -263,9 +259,9 @@ console.log("test")  }
                 <label className="filters-price__label">
                   <input
                     type="number"
-                    min={Number(minPrice)}
-                    max={Number(maxPrice)}
-                    placeholder={valuePriceSlider[0]}
+                    min="0"
+                    max="50000"
+                    placeholder="200"
                     className="filters-price__input filters-price__info"
                   />
                 </label>
@@ -273,17 +269,13 @@ console.log("test")  }
                 <label className="filters-price__label">
                   <input
                     type="number"
-                    min={Number(minPrice)}
-                    max={Number(maxPrice)}
-                    placeholder={valuePriceSlider[1]}
+                    min="0"
+                    max="50000"
+                    placeholder="1500"
                     className="filters-price__input filters-price__info"
                   />
                 </label>
-                <button
-                  type="button"
-                  className="filters-price__button"
-                  onClick={submitCatFilter}
-                >
+                <button type="button" className="filters-price__button">
                   OK
                 </button>
               </div>
@@ -378,21 +370,30 @@ console.log("test")  }
               onChangeSortAscending={(i) => sortAscending(i)}
               onChangeSortDescending={(i) => sortDescending(i)}
               onChangeSortName={(i) => sortName(i)}
-            />
+              />  
           </div>
           <br />
-          {!(status === "loaded") ? (
-            <LoadingSpinner />
-          ) : data.products.length > 0 ? (
-            <FurnitureItems furniture={data.products} />
-          ) : (
-            <p>С заданими фільтрами товарів не знайдено. Виберіть фільтри</p>
-          )}
-
-          <Pagination totalProducts={data.productsQuantity} />
+          {!products ? (
+              <LoadingSpinner />
+            ) : (
+              <FurnitureItems furniture={currentFurniture} />
+            )}
+          <Pagination 
+            productsPerPage={productsPerPage}
+            totalProducts={products.length}
+            paginate={paginate}
+            prevPage={prevPage}
+            nextPage={nextPage}
+          />
+                         
         </div>
       </main>
+      
     </Box>
   );
 };
 export default AllProducts;
+
+
+
+
