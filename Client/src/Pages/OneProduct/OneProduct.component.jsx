@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
@@ -13,14 +13,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 const OneProduct = () => {
   const { id } = useParams();
+  const [product,setProd] = useState("")
   const dispatch = useDispatch();
   const { oneproduct, status1 } = useSelector((state) => {
     return state.allProducts;
   });
   useEffect(() => {
-    dispatch(fetchAsyncOneProduct(id));
+    dispatch(fetchAsyncOneProduct(id)).then(res=>res.payload).then(res=>setProd(res));
   }, [dispatch, id]);
-  if (status1 !== "loaded") {
+  if (!product) {
     return <LoadingSpinner />;
   }
   return (
