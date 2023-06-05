@@ -1,28 +1,26 @@
-import React, { useEffect} from "react";
-import {useParams } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import {ImgMediaCard} from "../../Components/PopularProducts";
+import { ImgMediaCard } from "../../Components/PopularProducts";
 import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.component";
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
 import LoadingSpinner from "../../Components/LoadingSpiner/LoadingSpiner.component";
 import { NavLink } from "react-router-dom";
 import { fetchAsyncOneProduct } from "../../Redux/products.reducer";
-import { useDispatch,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const OneProduct = () => {
   const { id } = useParams();
-  const dispatch = useDispatch()
-  const {oneproduct,status1} = useSelector(state => {
-    return state.allProducts
-})
+  const dispatch = useDispatch();
+  const { oneproduct, status1 } = useSelector((state) => {
+    return state.allProducts;
+  });
   useEffect(() => {
-    
-    dispatch(fetchAsyncOneProduct(id))
-    
-  },[dispatch, id]);
-  if (status1!=="loaded") {
+    dispatch(fetchAsyncOneProduct(id));
+  }, [dispatch, id]);
+  if (status1 !== "loaded") {
     return <LoadingSpinner />;
   }
   return (
@@ -36,21 +34,30 @@ const OneProduct = () => {
           maxWidth: "lg",
         }}
       >
-        <Box display="flex" sx={{
-          "fontSize": "14px",
-          fontFamily: "Open Sans",
-          mt:"25px",
-          gap:"15px",
-          textTransform:"capitalize"
-        }}><Typography  component={NavLink} to={"/"} sx={{color:"black"}}>Main</Typography><Typography color="primary">{">"}</Typography><Typography>{oneproduct.categories}</Typography></Box>
+        <Box
+          display="flex"
+          sx={{
+            fontSize: "14px",
+            fontFamily: "Open Sans",
+            mt: "25px",
+            gap: "15px",
+            textTransform: "capitalize",
+          }}
+        >
+          <Typography component={NavLink} to={"/"} sx={{ color: "black" }}>
+            Main
+          </Typography>
+          <Typography color="primary">{">"}</Typography>
+          <Typography>{oneproduct.categories}</Typography>
+        </Box>
         <Typography
           sx={{
             mt: 4,
             mb: 4,
-            "fontFamily": "Montserrat",
-            "fontWeight": 700,
-            "fontSize": "30px",
-            "letterSpacing": "0.02em",
+            fontFamily: "Montserrat",
+            fontWeight: 700,
+            fontSize: "30px",
+            letterSpacing: "0.02em",
             color: "#2E3438",
           }}
         >
@@ -59,14 +66,14 @@ const OneProduct = () => {
         <Grid
           container
           columnGap={5}
-          sx={{ "borderBottom": "1px solid #D3D7DA", pb: "40px" }}
+          sx={{ borderBottom: "1px solid #D3D7DA", pb: "40px" }}
         >
           <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
-            <VerticalTabs  imagesProps={oneproduct.imageUrls} />
+            <VerticalTabs imagesProps={oneproduct.imageUrls} />
           </Grid>
 
           <Grid xs={9} sm={9} md={5} lg={5} xl={5}>
-            <ProductControll myProps={oneproduct}/>
+            <ProductControll myProps={oneproduct} />
           </Grid>
 
           <Grid xs={6} sm={6} md={6} lg={6} xl={6}>
@@ -74,23 +81,23 @@ const OneProduct = () => {
               sx={{
                 pt: "40px",
                 pb: "20px",
-                "fontWeight": 700,
-                "fontSize": "20px",
+                fontWeight: 700,
+                fontSize: "20px",
               }}
             >
               Опис
             </Typography>
             <Typography
               sx={{
-                "fontWeight": 400,
-                "fontSize": "14px",
+                fontWeight: 400,
+                fontSize: "14px",
               }}
             >
               {oneproduct.shortDescription}
             </Typography>
           </Grid>
         </Grid>
-        <ImgMediaCard/>
+        <ImgMediaCard />
       </Box>
     </>
   );
