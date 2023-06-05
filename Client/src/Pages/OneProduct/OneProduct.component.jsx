@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import {useParams } from 'react-router-dom';
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Box from "@mui/material/Box";
@@ -21,7 +21,7 @@ const OneProduct = () => {
     
     dispatch(fetchAsyncOneProduct(id))
     
-  },[id]);
+  },[dispatch, id]);
   if (status1!=="loaded") {
     return <LoadingSpinner />;
   }
