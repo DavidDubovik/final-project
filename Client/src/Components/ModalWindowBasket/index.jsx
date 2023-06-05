@@ -37,7 +37,7 @@ export function KeepMountedModal() {
     // })
     const [saveAllPrice, setSaveAllPrice] = useState(0)
     //   console.log(basket);
-    console.log(saveAllPrice);
+ 
     return (
         <div>
             <Modal

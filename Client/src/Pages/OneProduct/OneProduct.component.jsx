@@ -8,17 +8,21 @@ import VerticalTabs from "../../Components/OneProduct/ImgSwiper/VerticalTabs.com
 import ProductControll from "../../Components/OneProduct/ProductControll/ProductControll.component";
 import LoadingSpinner from "../../Components/LoadingSpiner/LoadingSpiner.component";
 import { NavLink } from "react-router-dom";
-
+import { fetchAsyncOneProduct } from "../../Redux/products.reducer";
+import { useDispatch,useSelector} from "react-redux";
 
 const OneProduct = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-
+  const dispatch = useDispatch()
+  const {oneproduct,status1} = useSelector(state => {
+    return state.allProducts
+})
   useEffect(() => {
-    fetch(`/api/products/`+id).then(res=>res.json()).then(data=>setProduct(data))
-
+    
+    dispatch(fetchAsyncOneProduct(id))
+    
   },[id]);
-  if (!product) {
+  if (status1!=="loaded") {
     return <LoadingSpinner />;
   }
   return (
@@ -38,7 +42,7 @@ const OneProduct = () => {
           mt:"25px",
           gap:"15px",
           textTransform:"capitalize"
-        }}><Typography  component={NavLink} to={"/"} sx={{color:"black"}}>Main</Typography><Typography color="primary">{">"}</Typography><Typography>{product.categories}</Typography></Box>
+        }}><Typography  component={NavLink} to={"/"} sx={{color:"black"}}>Main</Typography><Typography color="primary">{">"}</Typography><Typography>{oneproduct.categories}</Typography></Box>
         <Typography
           sx={{
             mt: 4,
@@ -50,7 +54,7 @@ const OneProduct = () => {
             color: "#2E3438",
           }}
         >
-          {product.name}
+          {oneproduct.name}
         </Typography>
         <Grid
           container
@@ -58,11 +62,11 @@ const OneProduct = () => {
           sx={{ "borderBottom": "1px solid #D3D7DA", pb: "40px" }}
         >
           <Grid xs={12} sm={12} md={6} lg={6} xl={6}>
-            <VerticalTabs  imagesProps={product.imageUrls} />
+            <VerticalTabs  imagesProps={oneproduct.imageUrls} />
           </Grid>
 
           <Grid xs={9} sm={9} md={5} lg={5} xl={5}>
-            <ProductControll myProps={product}/>
+            <ProductControll myProps={oneproduct}/>
           </Grid>
 
           <Grid xs={6} sm={6} md={6} lg={6} xl={6}>
@@ -82,7 +86,7 @@ const OneProduct = () => {
                 "fontSize": "14px",
               }}
             >
-              {product.shortDescription}
+              {oneproduct.shortDescription}
             </Typography>
           </Grid>
         </Grid>
