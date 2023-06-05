@@ -41,10 +41,10 @@ export const createAccountFetch = createAsyncThunk(
 
 // login fetch
 export const loginCustomerFetch = createAsyncThunk(
-  "login/loginCustomerFetch ",
+  "customers/loginCustomerFetch ",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const loggedIn = await fetch(`api/customers/login`, {
+      const loggedIn = await fetch(`/api/customers/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
