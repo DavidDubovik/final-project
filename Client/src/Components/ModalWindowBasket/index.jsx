@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-
-import "./modalWindow.scss";
 import { useDispatch, useSelector } from "react-redux";
+import "./modalWindow.scss";
+import axios from 'axios';
+import { getRequest, putRequest, deletRequest } from "../../Redux/basket.reducer";
+import { BASE_URL } from 'constants/api'
 import { CardProduct } from './cardProduct'
+
 
 const styleBox = {
     position: 'absolute',
@@ -24,6 +27,26 @@ export function KeepMountedModal() {
 
     const dispatch = useDispatch()
 
+    const setAuthToken = token => {
+
+        if (token) {
+            // Apply to every request
+            axios.defaults.baseURL = BASE_URL;
+            axios.defaults.headers.common['Authorization'] = token;
+            // deletRequest("5da463678cca382250dd7bc7")
+            // getRequest(token.token)
+            // putRequest(updatedCart)
+        } else {
+            // Delete auth header
+
+            delete axios.defaults.headers.common['Authorization'];
+        }
+    };
+
+    const tokenUser = useSelector(state => {
+        return state.isLogged.isLogged
+    })
+
     const basket = useSelector(state => {
         return state.products.basket
     })
@@ -31,13 +54,13 @@ export function KeepMountedModal() {
     const modalOpen = useSelector(state => {
         return state.Modal.isModal
     })
-  
-    // const Open = useSelector(state => {
-    //     return state.Modal.isModal
-    // })
+    useEffect(() => {
+        setAuthToken(tokenUser?.token)
+    }, [tokenUser?.token])
+
+
     const [saveAllPrice, setSaveAllPrice] = useState(0)
-    //   console.log(basket);
-    console.log(saveAllPrice);
+
     return (
         <div>
             <Modal
@@ -54,9 +77,9 @@ export function KeepMountedModal() {
                         <div className='main'>
 
                             <div className='basket-product'>
-                                {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, obivka, counter }) => {
+                                {basket.map(({ name, currentPrice, imageUrls, colors, itemNo, selectedQuantiy, color, obivka, counter, _id }) => {
                                     return (
-                                        <CardProduct key={itemNo} id={itemNo} name={name} price={currentPrice} Obivka={obivka} imageUrls={imageUrls} defoltColor={color} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} colorsProduct={colors} item={itemNo} quantiy={counter} />
+                                        <CardProduct key={itemNo} id={itemNo} name={name} price={currentPrice} Obivka={obivka} imageUrls={imageUrls} defoltColor={color} allPrice={saveAllPrice} setAllPrice={setSaveAllPrice} colorsProduct={colors} item={_id} quantiy={counter} />
                                     )
                                 })}
                             </div>

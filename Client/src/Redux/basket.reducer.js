@@ -1,11 +1,14 @@
+import axios from 'axios';
+
 const initialState = {
     basket: [],
 };
-export default function logicBasket (state = initialState, action) {
+
+export default function logicBasket(state = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
-     
+
         case "ADD_TO_BASKET":
 
             let filterBasket = state.basket.filter(res => payload.itemNo !== res.itemNo)
@@ -23,10 +26,31 @@ export default function logicBasket (state = initialState, action) {
 
             return { ...state, basket: state.basket };
         case "CLEAR_BASKET":
-            const filterProduct = state.basket.filter(res => res.itemNo !== payload)
+            const filterProduct = state.basket.filter(res => res._id !== payload)
             return { ...state, basket: filterProduct };
 
         default:
             return state;
     }
 }
+
+export const getRequest = () => {
+    // if (token) {
+    // Apply to every request
+    // axios.defaults.headers.common['Authorization'] = token;
+    axios
+        .get("/cart")
+        .then(cart => {
+            console.log(cart.datae);
+        })
+        .catch(err => {
+            console.log(err, 'err')
+            /*Do something with error, e.g. show error to user*/
+        });
+    // } else {
+    // Delete auth header
+    // delete axios.defaults.headers.common['Authorization'];
+    // }
+};
+
+

@@ -1,46 +1,75 @@
 import React, { useState, useEffect } from "react";
-import DropList from './dropList';
 import { useDispatch, useSelector } from "react-redux";
-export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, colorsProduct, item, quantiy, defoltColor, Obivka }) => {
+import DropList from './dropList';
+import axios from 'axios';
+export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, colorsProduct, item, quantiy, defoltColor }) => {
     const [count, setCount] = useState(quantiy ? quantiy : 1)
-
     const dispatch = useDispatch()
     const basket = useSelector(state => {
         return state.products.basket
     })
+    const tokenUser = useSelector(state => {
+        return state.isLogged.isLogged
+    })
+
     const inc = () => {
         if (count <= 39) {
             setCount(count + 1)
             setAllPrice(allPrice + +price);
+
         }
     }
 
-    const dec = () => {
+    const dec = (id) => {
         if (count >= 2) {
             setCount(count - 1)
             setAllPrice(allPrice - +price);
+            axios
+                .delete("/cart/" + id )
+                .then(updatedCart => {
+                    console.log(updatedCart);
+                })
+                .catch(err => {
+                    /*Do something with error, e.g. show error to user*/
+                });
         }
 
     }
 
     const clearProduct = (productId) => {
-        dispatch({ type: 'CLEAR_BASKET', payload: productId })
-        setAllPrice(allPrice - +price * count);
-        console.log(basket.length);
+        if (tokenUser.token) {
+            axios
+                .delete("/cart/" + productId)
+                .then(result => {
+                    dispatch({ type: 'CLEAR_BASKET', payload: productId })
+                    setAllPrice(allPrice - +price * count);
+                    console.log(result);
+                })
+                .catch(err => {
+                    /*Do something with error, e.g. show error to user*/
+                });
+        } else {
+            dispatch({ type: 'CLEAR_BASKET', payload: productId })
+            setAllPrice(allPrice - +price * count);
+        }
+
     }
 
     useEffect(() => {
         if (quantiy <= 1) {
             setAllPrice(currentAllPrice => currentAllPrice + +price)
         }
+
     }, [])
     useEffect(() => {
-        if (quantiy >= 1) {
-            setAllPrice(currentAllPrice => currentAllPrice + (+price * count))
+        if (quantiy > 1) {
+            setAllPrice(allPrice + +price * count)
             setCount(quantiy)
+
         }
 
     }, [quantiy])
+
 
     return (
         <div>
@@ -59,7 +88,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
                     <div className="line">  </div>
                 </div>
                 <div className='numberProduct'>
-                    <button id='decrement' onClick={() => dec()}>-</button>
+                    <button id='decrement' onClick={() => dec(item)}>-</button>
                     <lable>
                         <input type='text' value={count} readOnly />
                         <span>шт</span>
