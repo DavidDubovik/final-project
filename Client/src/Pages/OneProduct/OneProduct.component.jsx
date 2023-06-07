@@ -46,7 +46,7 @@ const OneProduct = () => {
             textTransform: "capitalize",
           }}
         >
-          <Typography m={"2"} component={NavLink} to={"/"} sx={{ color: "black" }}>
+          <Typography pl={2} m={"2"} component={NavLink} to={"/"} sx={{ color: "black" }}>
             Main
           </Typography>
           <Typography color="primary">{">"}</Typography>

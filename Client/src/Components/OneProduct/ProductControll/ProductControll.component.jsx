@@ -39,8 +39,8 @@ const ProductControll = ({ myProps }) => {
   };
   return (
     <>
-      <Box display="flex" sx={{ flexDirection: "column" }} pl={2}>
-        <Box display="flex" sx={{ justifyContent: " space-between" }}>
+      <Box display="flex" sx={{ flexDirection: "column" }} >
+        <Box display="flex" sx={{ justifyContent: " space-between" }} >
           <Typography
             sx={{
               fontFamily: "Montserrat",
