@@ -58,15 +58,7 @@ const SearchBar = () => {
       }}
     >
       <InputBase
-        onKeyPress={(ev) =>
-          {if (ev.code === "Enter"){
-            ev.preventDefault()
-            ev.target.value =""
-          }
-
-        }
-          
-        }
+        value={wordEntered}
         onSubmit={e => { e.preventDefault(); }}
         sx={{ ml: 1, flex: 1 }}
         placeholder="Пошук меблів"
