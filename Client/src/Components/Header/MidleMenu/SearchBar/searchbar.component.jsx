@@ -109,7 +109,7 @@ const SearchBar = () => {
               mt:"auto",
               mb:"auto"
             }} src={value.imageUrls[0]}
-            ></Box><Typography color="secondary.dark">{value.name.slice(0, 55)} </Typography></Box></NavLink>
+            ></Box><Typography color="secondary.dark">{value.name.slice(0, 29)}... </Typography></Box></NavLink>
               
            
           );
