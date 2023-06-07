@@ -39,7 +39,7 @@ const ProductControll = ({ myProps }) => {
   };
   return (
     <>
-      <Box display="flex" sx={{ flexDirection: "column" }}>
+      <Box display="flex" sx={{ flexDirection: "column" }} pl={2}>
         <Box display="flex" sx={{ justifyContent: " space-between" }}>
           <Typography
             sx={{
@@ -150,22 +150,22 @@ const ProductControll = ({ myProps }) => {
             </Select>
           </FormControl>
         </>
-        <Box display="flex" justifyContent={"space-between"} mt={6}>
-          <Box display="flex" justifyContent={"space-between"}>
+        <Box display="flex" justifyContent={"space-between"} mt={6}  flexWrap={"wrap"} rowGap={"15px"}>
+          <Box display="flex" justifyContent={"space-between"} height={"50px"}>
             <Typography
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "400",
-                fontSize: "14px",
+                fontSize: "1.5vw",
                 lineHeight: "160%",
-                mt: "18px",
+                mt: "auto",
+                mb:"auto"
               }}
             >
               Кількість
             </Typography>
-            <>
               <Box
-                ml="17px"
+                ml="1vw"
                 borderRadius={"5px"}
                 sx={{ backgroundColor: "secondary.lightest" }}
                 display={"flex"}
@@ -173,28 +173,28 @@ const ProductControll = ({ myProps }) => {
                 <Button
                   onClick={increase}
                   size="small"
-                  sx={{ fontSize: "25px", color: "secondaty.dark", p: "0" }}
+                  sx={{ fontSize: "2vw", color: "secondaty.dark", p: "0" }}
                 >
                   +
                 </Button>
                 <Box backgroundColor="white" display={"flex"}>
                   <Typography
-                    pl={"18px"}
+                    pl={"1vw"}
                     sx={{
                       fontWeight: "600",
-                      fontSize: "20px",
+                      fontSize: "2vw",
                       mt: "auto",
                       mb: "auto",
-                      pr: "5px",
+                      pr: "0,5vw",
                     }}
                   >
                     {counter}
                   </Typography>
                   <Typography
-                    pr={"10px"}
+                    pr={"1vw"}
                     sx={{
                       fontWeight: "600",
-                      fontSize: "15px",
+                      fontSize: "1vw",
                       color: "secondary.lightest",
                       mt: "auto",
                       mb: "auto",
@@ -207,25 +207,28 @@ const ProductControll = ({ myProps }) => {
                 <Button
                   size="small"
                   onClick={decrease}
-                  sx={{ fontSize: "25px", color: "secondaty.dark" }}
+                  sx={{ fontSize: "2vw", color: "secondaty.dark" }}
                 >
                   -
                 </Button>
               </Box>
-            </>
+          
           </Box>
-          <Button
+          <Button 
+          
             variant="contained"
             color="primary"
             href="#contained-buttons"
-            sx={{ p: "12px 25px 12px 25px", borderRadius: "3px" }}
+            sx={{ borderRadius: "3px" }}
             onClick={() => dispatch({ type: 'ADD_TO_BASKET', payload: product })}
           >
             <Typography
+            
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "1,5vw",
+                
               }}
             >
               У кошик

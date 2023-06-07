@@ -27,6 +27,7 @@ const OneProduct = () => {
   return (
     <>
       <Box
+      pl={2}
         display="flex"
         sx={{
           flexDirection: "column",
@@ -45,13 +46,14 @@ const OneProduct = () => {
             textTransform: "capitalize",
           }}
         >
-          <Typography component={NavLink} to={"/"} sx={{ color: "black" }}>
+          <Typography m={"2"} component={NavLink} to={"/"} sx={{ color: "black" }}>
             Main
           </Typography>
           <Typography color="primary">{">"}</Typography>
           <Typography>{oneproduct.categories}</Typography>
         </Box>
         <Typography
+        pl={2}
           sx={{
             mt: 4,
             mb: 4,
@@ -77,7 +79,7 @@ const OneProduct = () => {
             <ProductControll myProps={oneproduct} />
           </Grid>
 
-          <Grid xs={6} sm={6} md={6} lg={6} xl={6}>
+          <Grid xs={6} sm={6} md={6} lg={6} xl={6} pl={2}>
             <Typography
               sx={{
                 pt: "40px",
@@ -89,6 +91,7 @@ const OneProduct = () => {
               Опис
             </Typography>
             <Typography
+            
               sx={{
                 fontWeight: 400,
                 fontSize: "14px",
