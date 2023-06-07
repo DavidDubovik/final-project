@@ -25,11 +25,11 @@ const MenuDrop = ({mList}) => {
           <Button
             id="fade-button"
             aria-controls={open ? 'fade-menu' : undefined}
-            sx={{height:"45px",borderRadius:"0",pl:"32px",pr:"32px",backgroundColor: open ? "white": "#57646E"}}
+            sx={{height:"45px",borderRadius:"0",pl:"32px",pr:"32px",backgroundColor: open ? "white": "#57646E",'&:hover':{background:"#007042"}}}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             
-          ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white"}}>{mList.title}</Typography>
+          ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white",}}>{mList.title}</Typography>
          
           </Button>
           <Menu 
