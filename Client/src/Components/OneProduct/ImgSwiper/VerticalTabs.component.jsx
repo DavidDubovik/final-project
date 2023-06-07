@@ -46,6 +46,7 @@ export default function VerticalTabs({imagesProps}) {
 
   return (
     <Box
+    pl={2}
       sx={{
         flexGrow: 1,
         bgcolor: "background.paper",
