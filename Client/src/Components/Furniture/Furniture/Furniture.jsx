@@ -275,13 +275,13 @@ console.log("test")  }
                
             
               </div>
-              <button
-              type="button"
-              className="filters-price__button"
-              onClick={submitCatFilter}
-            >
-              OK
-            </button>
+                  <button
+                  type="button"
+                  className="filters-price__button"
+                  onClick={submitCatFilter}
+                >
+                  OK
+                </button>
             </div>
           </div>
           <div className="filters_filter-brand">
