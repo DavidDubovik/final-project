@@ -12,12 +12,7 @@ const MenuDrop = ({mList}) => {
     const submenues=mList.submenu
     const [anchorEl, setAnchorEl] = useState(0);
     const open = Boolean(anchorEl);
-    // const handleClick = (event) => {
-    //   setAnchorEl(event.currentTarget);
-    // };
-    // const handleClose = () => {
-    //   setAnchorEl(null);
-    // };
+
    
     return (
         <Box 

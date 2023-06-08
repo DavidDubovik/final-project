@@ -3,11 +3,6 @@ import "./Filter.scss";
 
 function Filter({ onChangeSortAscending, onChangeSortDescending, onChangeSortName }) {
 
-    const list = [
-        {name: "От дешевых к дорогим", sortProperty: 'minPrice'},
-        {name: "От дорогих к дешевым", sortProperty: 'maxPrice'},
-        {name: "По алфавиту", sortProperty: 'name'}
-    ];
 
     const SortAscending = (i) => {
         onChangeSortAscending(i)

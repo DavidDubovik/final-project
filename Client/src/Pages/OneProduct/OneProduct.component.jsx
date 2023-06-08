@@ -15,7 +15,7 @@ const OneProduct = () => {
   const { id } = useParams();
   const [product,setProd] = useState("")
   const dispatch = useDispatch();
-  const { oneproduct, status1 } = useSelector((state) => {
+  const { oneproduct} = useSelector((state) => {
     return state.allProducts;
   });
   useEffect(() => {

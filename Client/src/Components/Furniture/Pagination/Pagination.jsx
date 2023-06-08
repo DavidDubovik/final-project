@@ -62,7 +62,7 @@ const Pagination = ({totalProducts}) => {
             <div className='page'>
                 {   
                     pageNumbers.map(number => (
-                        <button key={number} className={`page-item ${active == number && 'active'}`} onClick={() => {
+                        <button key={number} className={`page-item ${active === number && 'active'}`} onClick={() => {
                           setActive(number)
                             dispatch(setPage(number))
                             const queryParams2 = {
