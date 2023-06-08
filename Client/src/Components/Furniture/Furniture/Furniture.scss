@@ -11,6 +11,7 @@
   .left {
     width: 30%;
     margin-right: 30px;
+    margin-left: 30px;
   }
   
   .right {
@@ -19,7 +20,7 @@
   
   .filter-box {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     &__title {
       margin-right: 15px;
     }
@@ -30,7 +31,7 @@
       &__container {
         display: flex;
         align-items: center;
-        margin: 20px 0;
+        margin: 20px  0;
       }
       &__info {
         padding: 10px 20px;

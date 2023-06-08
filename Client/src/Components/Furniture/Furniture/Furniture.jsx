@@ -233,7 +233,7 @@ console.log("test")  }
   };
 
   return (
-    <Box sx={{ mx: "auto", maxWidth: "lg" }}>
+    <Box sx={{ mx: "auto", maxWidth: "lg" ,minHeight:"900px",mt:"40px"}}>
       <main>
         <div className="pageCategories, left">
           <h2 className="filters_selected">Вибрані категорії:</h2>
@@ -248,7 +248,7 @@ console.log("test")  }
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Ціна:</h3>
 
-              <Slider
+              <Slider sx={{width:"70%",ml:"20px"}} 
                 getAriaLabel={() => "Ціна товарів"}
                 value={valuePriceSlider}
                 onChange={handleChangePriceSlider}
