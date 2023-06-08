@@ -233,22 +233,15 @@ console.log("test")  }
   };
 
   return (
-    <Box sx={{ mx: "auto", maxWidth: "lg" }}>
+    <Box sx={{ mx: "auto", maxWidth: "lg" ,minHeight:"900px",mt:"20px"}}>
       <main>
         <div className="pageCategories, left">
-          <h2 className="filters_selected">Вибрані категорії:</h2>
-          <p className="filters_categories">{categories}</p>
-          <h2 className="filters_selected">Вибрані бренди:</h2>
-          <p className="filters_categories">{brand}</p>
-          <h2 className="filters_selected">Вибраний діапазон цін:</h2>
-          <p className="filters_categories">
-            {minPrice}:{maxPrice}
-          </p>
+
           <div className="fiters">
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Ціна:</h3>
 
-              <Slider
+              <Slider sx={{width:"70%",ml:"20px"}} 
                 getAriaLabel={() => "Ціна товарів"}
                 value={valuePriceSlider}
                 onChange={handleChangePriceSlider}
@@ -279,14 +272,16 @@ console.log("test")  }
                     className="filters-price__input filters-price__info"
                   />
                 </label>
-                <button
-                  type="button"
-                  className="filters-price__button"
-                  onClick={submitCatFilter}
-                >
-                  OK
-                </button>
+               
+            
               </div>
+              <button
+              type="button"
+              className="filters-price__button"
+              onClick={submitCatFilter}
+            >
+              OK
+            </button>
             </div>
           </div>
           <div className="filters_filter-brand">
