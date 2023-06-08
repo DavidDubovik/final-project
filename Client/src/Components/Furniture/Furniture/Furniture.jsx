@@ -233,17 +233,10 @@ console.log("test")  }
   };
 
   return (
-    <Box sx={{ mx: "auto", maxWidth: "lg" ,minHeight:"900px",mt:"40px"}}>
+    <Box sx={{ mx: "auto", maxWidth: "lg" ,minHeight:"900px",mt:"20px"}}>
       <main>
         <div className="pageCategories, left">
-          <h2 className="filters_selected">Вибрані категорії:</h2>
-          <p className="filters_categories">{categories}</p>
-          <h2 className="filters_selected">Вибрані бренди:</h2>
-          <p className="filters_categories">{brand}</p>
-          <h2 className="filters_selected">Вибраний діапазон цін:</h2>
-          <p className="filters_categories">
-            {minPrice}:{maxPrice}
-          </p>
+
           <div className="fiters">
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Ціна:</h3>
