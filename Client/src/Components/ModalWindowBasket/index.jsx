@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from "react-redux";
 import "./modalWindow.scss";
 import axios from 'axios';
-import { getRequest, putRequest, deletRequest } from "../../Redux/basket.reducer";
+
 import { BASE_URL } from 'constants/api'
 import { CardProduct } from './cardProduct'
 
@@ -28,14 +28,13 @@ export function KeepMountedModal() {
     const dispatch = useDispatch()
 
     const setAuthToken = token => {
-
         if (token) {
             // Apply to every request
             axios.defaults.baseURL = BASE_URL;
             axios.defaults.headers.common['Authorization'] = token;
             // deletRequest("5da463678cca382250dd7bc7")
-            // getRequest(token.token)
             // putRequest(updatedCart)
+            // console.log('login');
         } else {
             // Delete auth header
 
@@ -56,6 +55,25 @@ export function KeepMountedModal() {
     })
     useEffect(() => {
         setAuthToken(tokenUser?.token)
+        //    перенести получение продуктов кудись в друге місце 
+        if (tokenUser.token) {
+            axios
+                .get("/cart")
+                .then(cart => {
+
+                    console.log(cart.data.products);
+                    cart.data.products.map((item) => {
+                        let productObject = { ...item.product, counter: item.cartQuantity }
+                        dispatch({ type: 'ADD_TO_BASKET', payload: productObject })
+                    })
+                })
+                .catch(err => {
+                    console.log(err, 'err')
+                    /*Do something with error, e.g. show error to user*/
+                });
+        }
+
+
     }, [tokenUser?.token])
 
 

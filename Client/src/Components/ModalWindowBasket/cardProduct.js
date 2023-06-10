@@ -12,38 +12,59 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
         return state.isLogged.isLogged
     })
 
-    const inc = () => {
+    const inc = async (productId) => {
         if (count <= 39) {
-            setCount(count + 1)
-            setAllPrice(allPrice + +price);
+            if (tokenUser.token) {
+                setCount(count + 1)
+                setAllPrice(allPrice + +price);
+                await axios
+                    .put("/cart/" + productId)
+                    .then(updatedCart => {
+                        // console.log(updatedCart.data.products);
+                    })
+                    .catch(err => {
+                        /*Do something with error, e.g. show error to user*/
+                    });
+            } else {
+                setCount(count + 1)
+                setAllPrice(allPrice + +price);
+
+            }
 
         }
     }
 
-    const dec = (id) => {
+    const dec = async (productId) => {
         if (count >= 2) {
-            setCount(count - 1)
-            setAllPrice(allPrice - +price);
-            axios
-                .delete("/cart/" + id )
-                .then(updatedCart => {
-                    console.log(updatedCart);
-                })
-                .catch(err => {
-                    /*Do something with error, e.g. show error to user*/
-                });
+            if (tokenUser.token) {
+                setCount(count - 1)
+                setAllPrice(allPrice - +price);
+                await axios
+                    .delete("/cart/product/" + productId)
+                    .then(updatedCart => {
+                        // console.log(updatedCart.data.products);
+                    })
+                    .catch(err => {
+                        /*Do something with error, e.g. show error to user*/
+                    });
+            } else {
+                setCount(count - 1)
+                setAllPrice(allPrice - +price);
+            }
+
+
         }
 
     }
 
-    const clearProduct = (productId) => {
+    const clearProduct = async (productId) => {
         if (tokenUser.token) {
-            axios
+            dispatch({ type: 'CLEAR_BASKET', payload: productId })
+            setAllPrice(allPrice - +price * count);
+            await axios
                 .delete("/cart/" + productId)
                 .then(result => {
-                    dispatch({ type: 'CLEAR_BASKET', payload: productId })
-                    setAllPrice(allPrice - +price * count);
-                    console.log(result);
+                    // console.log(result.data);
                 })
                 .catch(err => {
                     /*Do something with error, e.g. show error to user*/
@@ -61,14 +82,34 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
         }
 
     }, [])
+
+    // useEffect(() => {
+    //     console.log(basket);
+
+    //     const object = basket.find(obj => obj._id === item)
+    //     const index = basket.findIndex(obj => obj._id === item)
+    //     // console.log(index);
+    //     let editProduct = { ...object, counter: count }
+    //     // console.log(editProduct);
+    //     basket.splice(index, 1, editProduct)
+    // }, [count])
+
     useEffect(() => {
+        console.log(basket);
         if (quantiy > 1) {
             setAllPrice(allPrice + +price * count)
             setCount(quantiy)
-
         }
-
     }, [quantiy])
+
+    // useEffect(() => {
+    //     if (quantiy > 1) {
+    //         setAllPrice(allPrice + +price * count)
+    //         setCount(quantiy)
+    //         console.log('number');
+    //     }
+
+    // }, [quantiy])
 
 
     return (
@@ -93,7 +134,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
                         <input type='text' value={count} readOnly />
                         <span>шт</span>
                     </lable>
-                    <button id='increment' onClick={() => inc()}>+</button>
+                    <button id='increment' onClick={() => inc(item)}>+</button>
                 </div>
                 <div className='text-price'>
                     {count > 1 ? <><span>{count * price + 'грн'}</span> <p>{count + 'x' + price + 'грн'}</p></> : count * price + 'грн'}

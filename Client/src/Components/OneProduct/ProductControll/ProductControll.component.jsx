@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,31 +9,23 @@ import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useDispatch, useSelector } from "react-redux";
-// import {addProduc}
+import { useAddProduct } from "Redux/basketBackEnd";
 
 
 
 const ProductControll = ({ myProps }) => {
   const dispatch = useDispatch()
-
+  const AddProduct = useAddProduct()
   const [counter, setCounter] = React.useState(1);
   const [color, setColor] = React.useState(myProps.colors[0]);
   const [product, setOneProdData] = React.useState({ ...myProps, counter, color });
+
   const tokenUser = useSelector(state => {
     return state.isLogged.isLogged
   })
-   const putRequest = (product) => {
-    console.log(product._id);
+  const putRequest = (product) => {
     if (tokenUser.token) {
-      axios
-        .put("/cart/" + product._id)
-        .then(updatedCart => {
-          dispatch({ type: 'ADD_TO_BASKET', payload: product })
-          console.log(updatedCart.data);
-        })
-        .catch(err => {
-          /*Do something with error, e.g. show error to user*/
-        });
+      AddProduct(product)
     } else {
       dispatch({ type: 'ADD_TO_BASKET', payload: product })
     }

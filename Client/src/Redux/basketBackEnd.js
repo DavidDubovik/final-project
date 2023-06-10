@@ -2,18 +2,23 @@
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 
-function AddProduct(product) {
+function useAddProduct() {
     const dispatch = useDispatch()
-    // console.log(product);
+    const add = async (product) => {
+        dispatch({ type: 'ADD_TO_BASKET', payload: product })
+        await axios
+            .put("/cart/" + product._id)
+            .then(updatedCart => {
 
-    axios
-        .put("/cart/" + product._id)
-        .then(updatedCart => {
-            dispatch({ type: 'ADD_TO_BASKET', payload: product })
-            console.log(updatedCart.data.products.cartQuantity);
-        })
-        .catch(err => {
-            /*Do something with error, e.g. show error to user*/
-        });
+                // console.log(updatedCart.data.products);
+            })
+            .catch(err => {
+                /*Do something with error, e.g. show error to user*/
+            });
+    }
+    return add
+
+
 }
-export { AddProduct }
+
+export { useAddProduct }

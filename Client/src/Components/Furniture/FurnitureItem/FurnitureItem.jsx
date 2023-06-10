@@ -5,24 +5,17 @@ import './FurnitureItem.scss';
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from "react-redux";
+import { useAddProduct } from "Redux/basketBackEnd";
 function FurnitureItem(props) {
 
   const tokenUser = useSelector(state => {
     return state.isLogged.isLogged
   })
   const dispatch = useDispatch()
+  const AddProduct = useAddProduct()
   const putRequest = (product) => {
-    console.log(product._id);
     if (tokenUser.token) {
-      axios
-        .put("/cart/" + product._id)
-        .then(updatedCart => {
-          dispatch({ type: 'ADD_TO_BASKET', payload: product })
-          console.log(updatedCart.data.products);
-        })
-        .catch(err => {
-          /*Do something with error, e.g. show error to user*/
-        });
+      AddProduct(product)
     } else {
       dispatch({ type: 'ADD_TO_BASKET', payload: product })
     }
