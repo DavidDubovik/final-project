@@ -2,13 +2,14 @@
 
 // Почемуто не работает
 .nav {
-  
-  a.nav_link:hover {
+
+  :hover {
   cursor: pointer;
-  color: rgb(143, 61, 61); 
-    
-  .active {
-    background-color: red;
+  color: #FFFFFF; 
+  background-color: #007042;
+ 
   }
-  }
+}
+.nav_link {
+  color:red;
 }

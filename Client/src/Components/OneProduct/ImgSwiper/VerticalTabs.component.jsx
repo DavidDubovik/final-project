@@ -46,6 +46,7 @@ export default function VerticalTabs({imagesProps}) {
 
   return (
     <Box
+    pl={2}
       sx={{
         flexGrow: 1,
         bgcolor: "background.paper",
@@ -62,7 +63,7 @@ export default function VerticalTabs({imagesProps}) {
         aria-label="Vertical tabs example"
         sx={{ mr: 5, borderColor: "white" }}
       >
-        {imagesProps.map((el, index) => (
+        {imagesProps && imagesProps.map((el, index) => (
           <Tab key={uuidv4()}
             icon={
               <Avatar
@@ -77,7 +78,7 @@ export default function VerticalTabs({imagesProps}) {
           />
         ))}
       </Tabs>
-      {imagesProps.map((el, index) => {
+      {imagesProps &&  imagesProps.map((el, index) => {
         return (
           <TabPanel key={uuidv4()} value={value} index={index}  >
           <Box component="img" src={el} sx={{maxHeight:"485px",maxWidth:"375px"}} />

@@ -32,9 +32,7 @@ export function KeepMountedModal() {
             // Apply to every request
             axios.defaults.baseURL = BASE_URL;
             axios.defaults.headers.common['Authorization'] = token;
-            // deletRequest("5da463678cca382250dd7bc7")
-            // putRequest(updatedCart)
-            // console.log('login');
+            
         } else {
             // Delete auth header
 

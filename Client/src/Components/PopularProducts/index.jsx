@@ -69,14 +69,15 @@ export function ImgMediaCard() {
         }
     }, [products]) : '')
     return (
-        <div style={{ margin: '50px 0px 80px' }}>  {/* overflow: "hidden", , height: 400  */}
-            <h1 style={useStyles.p}>Популярні товари</h1>
+        <div style={{ margin: '40px 0px 40px' }}>  {/* overflow: "hidden", , height: 400  */}
+            <h1 style={useStyles.p} >Популярні товари</h1>
             <div className="card-box" style={{
                 display: "grid",
                 justifyContent: 'center',
                 gridTemplateColumns: 'repeat(auto-fill, 300px)',
                 maxWidth: 1499,
-                margin: '0 auto',
+                margin: 'auto',
+
                 // overflowX: 'scroll',
             }}>
                 {product}
