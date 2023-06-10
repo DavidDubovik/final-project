@@ -35,7 +35,7 @@ function DropList({ colorType, upholstery, colorValue }) {
         return (
             colorType ? colorType.map((color) => {
                 return (
-                    <li onClick={handleItemClick}><div style={{ background: color }}></div>{color}</li>
+                    <li onClick={handleItemClick}><div style={{ background: color, border: '0.5px solid rgba(0, 0, 0, 0.5)' }}></div>{color}</li>
                 )
             })
                 : ''
@@ -57,7 +57,7 @@ function DropList({ colorType, upholstery, colorValue }) {
             {/* {TestElement()} */}
             {colorType || upholstery ? <div className={`dropdown ${isOpen ? 'active' : ''}`} >
                 <div className={`default_option ${isOpen ? 'active' : ''}`} onClick={toggleDropdown}>
-                    <p>{selectedItem.color ? <div style={{ background: selectedItem.color }}></div> : ''} {selectedItem.text || selectedItem.text}</p>
+                    <p>{selectedItem.color ? <div style={{ background: selectedItem.color, border: '0.5px solid rgba(0, 0, 0, 0.5)' }}></div> : ''} {selectedItem.text || selectedItem.text}</p>
 
                 </div>
                 {

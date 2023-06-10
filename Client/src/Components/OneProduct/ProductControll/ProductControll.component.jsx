@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+// import axios from 'axios';
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,15 +8,29 @@ import Select from "@mui/material/Select";
 import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useAddProduct } from "Redux/basketBackEnd";
+
 
 
 const ProductControll = ({ myProps }) => {
   const dispatch = useDispatch()
-
+  const AddProduct = useAddProduct()
   const [counter, setCounter] = React.useState(1);
   const [color, setColor] = React.useState(myProps.colors[0]);
   const [product, setOneProdData] = React.useState({ ...myProps, counter, color });
+
+  const tokenUser = useSelector(state => {
+    return state.isLogged.isLogged
+  })
+  const putRequest = (product) => {
+    if (tokenUser.token) {
+      AddProduct(product)
+    } else {
+      dispatch({ type: 'ADD_TO_BASKET', payload: product })
+    }
+
+  }
 
   const increase = () => {
     setCounter((count) => count + 1);
@@ -219,8 +233,9 @@ const ProductControll = ({ myProps }) => {
             variant="contained"
             color="primary"
             href="#contained-buttons"
-            sx={{ borderRadius: "3px" }}
-            onClick={() => dispatch({ type: 'ADD_TO_BASKET', payload: product })}
+
+            sx={{ p: "12px 25px 12px 25px", borderRadius: "3px" }}
+            onClick={() => putRequest(product)}
           >
             <Typography
             

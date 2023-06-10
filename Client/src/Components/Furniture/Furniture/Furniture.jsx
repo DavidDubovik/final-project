@@ -50,10 +50,10 @@ const AllProducts = (props) => {
     const myQuery = queryString.stringify(paramsN);
 
     dispatch(fetchAsyncProducts(myQuery));
-    console.log(categories);
+    // console.log(categories);
     if (paramsLink) {
     const parsedLink = queryString.parse(paramsLink);
-    console.log(parsedLink);
+    // console.log(parsedLink);
     dispatch(changeCategory({ categories: parsedLink.categories }));
     // dispatch(changeColor({ brand: parsedLink.brand }))
     // dispatch(sortingProducts({ sort: parsedLink.sort }))
