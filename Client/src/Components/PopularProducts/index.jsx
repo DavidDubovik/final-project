@@ -4,6 +4,7 @@ import useStyles from "./style";
 import styles from './index.module.css';
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 import { fetchAsyncAllProducts } from "../../Redux/products.reducer";
 
@@ -14,11 +15,12 @@ export function ImgMediaCard() {
         dispatch(fetchAsyncAllProducts()).then(res => res.payload).then((data) => { setProducts(data) })
     }, [dispatch])
 
-    const product = useMemo(() => products ? products.map(({ name, imageUrls, currentPrice, newProduct, discount, newPrice }, index) => {
+    const product = useMemo(() => products ? products.map(({ name, imageUrls, currentPrice, newProduct, discount, newPrice, itemNo }, index) => {
         if (index <= 3) {
             return (
                 <Card classes={{ root: styles.rootCard }} key={uuidv4()} >
                     {discount ? <p style={useStyles.discount}>Знижка</p> : ''}
+                    <Link to={"products/" + itemNo}>
 
                     <Card style={useStyles.root}>
 
@@ -60,6 +62,7 @@ export function ImgMediaCard() {
                             </CardContent>
                         </CardActionArea>
                     </Card>
+                    </Link>
                 </Card >
 
             )
