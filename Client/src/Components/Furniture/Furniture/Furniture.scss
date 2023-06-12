@@ -35,11 +35,14 @@
       &__container {
         display: flex;
         align-items: center;
-        margin: 20px  0;
+        justify-content: center;
+        margin-bottom: 15px;
+      
       }
       &__info {
-        padding: 10px 20px;
-        width: 60px;
+        padding: 10px 10px;
+        width: 100px;
+     
       }
       &__line {
         display: inline-block;

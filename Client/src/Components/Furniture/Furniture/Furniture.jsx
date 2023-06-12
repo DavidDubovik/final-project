@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
-import FurnitureItems from "../FurnitureItems/FurnitureItems";
+import Paper from "@mui/material/Paper";
+import List from "@mui/material/List";
+import TextField from '@mui/material/TextField';import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
@@ -238,11 +240,13 @@ const AllProducts = (props) => {
       <main>
         <div className="pageCategories, left">
 
-          <div className="fiters">
+         
+          <Paper sx={{marginBottom:"15px",padding:"10px"}}>
             <div className="fiters__item filters__price">
+              
               <h3 className="filters-price__price">Ціна:</h3>
-
-              <Slider sx={{ width: "70%", ml: "20px" }}
+              <Box sx={{display:"flex",justifyContent:"center"}}>
+              <Slider sx={{ width: "80%"}}
                 getAriaLabel={() => "Ціна товарів"}
                 value={valuePriceSlider}
                 onChange={handleChangePriceSlider}
@@ -251,28 +255,28 @@ const AllProducts = (props) => {
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
               />
+              </Box>
               <div className="filters-price__slider"></div>
               <br />
               <div className="filters-price__container">
-                <label className="filters-price__label">
-                  <input
+               
+                  <TextField
                     type="number"
                     min={Number(minPrice)}
                     max={Number(maxPrice)}
                     placeholder={valuePriceSlider[0]}
                     className="filters-price__input filters-price__info"
                   />
-                </label>
+             
                 <span className="filters-price__line"></span>
-                <label className="filters-price__label">
-                  <input
+                  <TextField
                     type="number"
                     min={Number(minPrice)}
                     max={Number(maxPrice)}
                     placeholder={valuePriceSlider[1]}
                     className="filters-price__input filters-price__info"
                   />
-                </label>
+         
 
 
               </div>
@@ -284,10 +288,14 @@ const AllProducts = (props) => {
                 OK
               </button>
             </div>
-          </div>
-          <div className="filters_filter-brand">
+            </Paper>
+         
+          
+          <Paper sx={{marginBottom:"15px",padding:"10px"}}>
+          <h3 className="filters_selected">Бренд</h3>
+          <List style={{maxHeight: 200, overflow: 'auto'}}>
             <div className="filters-checkbox__container">
-              <h3 className="filters_selected">Бренд</h3>
+              
               {listOfColors && listOfColors.length > 1 ? (
                 listOfColors.map((el, index) => {
                   return (
@@ -311,17 +319,21 @@ const AllProducts = (props) => {
               ) : (
                 <p>1</p>
               )}
-              <button
-                type="button"
-                className="filters-price__button"
-                onClick={() => {
-                  submitCatFilter();
-                }}
-              >
-                OK
-              </button>
+
             </div>
-            <div className="filters-checkbox__container">
+            </List>
+            <button
+            type="button"
+            className="filters-price__button"
+            onClick={() => {
+              submitCatFilter();
+            }}
+          >
+            OK
+          </button>
+            </Paper>
+          
+            <Paper sx={{marginBottom:"15px",padding:"10px"}}>
               <h3 className="filters_selected">Категорії</h3>
 
               <label className="filters_categories filters-checkbox__item">
@@ -363,9 +375,9 @@ const AllProducts = (props) => {
               >
                 OK
               </button>
-            </div>
+            </Paper>
           </div>
-        </div>
+   
         <div className="pageCategories, right">
           <br />
           <div className="filters_selected filter-box">
