@@ -11,7 +11,7 @@ const navList = [
   },
   {
     title: "Усі продукти",
-    path: "/products",
+    path: "/products?categories=tables%2Cchairs%2Cbeds%2Chousingfurniture&maxPrice=50000&minPrice=1&perPage=6&startPage=1",
   },
   {
     title: "Про нас",

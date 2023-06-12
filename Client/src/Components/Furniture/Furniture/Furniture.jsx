@@ -261,20 +261,31 @@ const AllProducts = (props) => {
               <div className="filters-price__container">
                
                   <TextField
+                  sx={{maxWidth:"100px"}}
+                  inputProps={{
+                    style: {
+                      padding: 5
+                    }
+                 }}
                     type="number"
                     min={Number(minPrice)}
                     max={Number(maxPrice)}
                     placeholder={valuePriceSlider[0]}
-                    className="filters-price__input filters-price__info"
+                
                   />
              
                 <span className="filters-price__line"></span>
                   <TextField
+                  sx={{maxWidth:"100px"}}
+                  inputProps={{
+                    style: {
+                      padding: 5
+                    }
+                 }}
                     type="number"
                     min={Number(minPrice)}
                     max={Number(maxPrice)}
                     placeholder={valuePriceSlider[1]}
-                    className="filters-price__input filters-price__info"
                   />
          
 

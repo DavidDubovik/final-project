@@ -37,11 +37,12 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 15px;
+        flex-wrap: wrap;
       
       }
       &__info {
-        padding: 10px 10px;
         width: 100px;
+        padding: 0;
      
       }
       &__line {
