@@ -32,10 +32,9 @@ export default function logicBasket(state = initialState, action) {
         //не потрібно {
         case "EDIT_OBJECT":
             const index = state.basket.findIndex(obj => obj._id === payload.id)
-            return ({...state,basket:[state.basket[index]:{
-                    ...state.basket[index],
-                    counter:payload.productCounter
-                }]} )
+ 
+
+            return ({...state,basket:state.basket.map((basket,i)=>i === index ? {...basket,counter: payload.productCounter }:basket)})
     
         default:
             return state;

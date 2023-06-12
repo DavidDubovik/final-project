@@ -29,6 +29,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
             } else {
                 setCount(count + 1)
                 setAllPrice(allPrice + +price);
+                // dispatch({ type: 'EDIT_OBJECT', payload: { id: item, productCounter: count } })
             }
 
         }
@@ -50,7 +51,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
             } else {
                 setCount(count - 1)
                 setAllPrice(allPrice - +price);
-                dispatch({ type: 'EDIT_OBJECT', payload: { id: item, productCounter: count } })
+                // dispatch({ type: 'EDIT_OBJECT', payload: { id: item, productCounter: count } })
 
             }
 
