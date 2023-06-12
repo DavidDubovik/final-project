@@ -13,6 +13,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
     })
 
     const inc = async (productId) => {
+        // console.log(basket);
         if (count <= 39) {
             if (tokenUser.token) {
                 setCount(count + 1)
@@ -84,32 +85,17 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
     }, [])
 
     // useEffect(() => {
-    //     console.log(basket);
-
-    //     const object = basket.find(obj => obj._id === item)
-    //     const index = basket.findIndex(obj => obj._id === item)
-    //     // console.log(index);
-    //     let editProduct = { ...object, counter: count }
-    //     // console.log(editProduct);
-    //     basket.splice(index, 1, editProduct)
+    //     dispatch({ type: 'EDIT_OBJECT', payload: { id: item, productCounter: count } })
     // }, [count])
 
     useEffect(() => {
-        console.log(basket);
+
         if (quantiy > 1) {
             setAllPrice(allPrice + +price * count)
             setCount(quantiy)
         }
     }, [quantiy])
 
-    // useEffect(() => {
-    //     if (quantiy > 1) {
-    //         setAllPrice(allPrice + +price * count)
-    //         setCount(quantiy)
-    //         console.log('number');
-    //     }
-
-    // }, [quantiy])
 
 
     return (

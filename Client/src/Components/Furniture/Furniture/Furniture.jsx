@@ -52,18 +52,19 @@ const AllProducts = (props) => {
     dispatch(fetchAsyncProducts(myQuery));
     // console.log(categories);
     if (paramsLink) {
-    const parsedLink = queryString.parse(paramsLink);
-    // console.log(parsedLink);
-    dispatch(changeCategory({ categories: parsedLink.categories }));
-    // dispatch(changeColor({ brand: parsedLink.brand }))
-    // dispatch(sortingProducts({ sort: parsedLink.sort }))
-    // dispatch(setMinPrice({ minPrice: parsedLink.minPrice }))
-    // dispatch(setMaxPrice({ maxPrice: parsedLink.maxPrice }))
-    dispatch(setPage(parsedLink.startPage))
-  } else{
-console.log("test")  }
+      const parsedLink = queryString.parse(paramsLink);
+      // console.log(parsedLink);
+      dispatch(changeCategory({ categories: parsedLink.categories }));
+      // dispatch(changeColor({ brand: parsedLink.brand }))
+      // dispatch(sortingProducts({ sort: parsedLink.sort }))
+      // dispatch(setMinPrice({ minPrice: parsedLink.minPrice }))
+      // dispatch(setMaxPrice({ maxPrice: parsedLink.maxPrice }))
+      dispatch(setPage(parsedLink.startPage))
+    } else {
+      console.log("test")
+    }
   }, [dispatch, searchParams]);
-  
+
   // useEffect(() => {
   //   dispatch(fetchAsyncProducts(paramsLink))
   //   setSearchParams(paramsLink);
@@ -124,7 +125,7 @@ console.log("test")  }
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (!v && v.length === 0) delete queryParams2[k];
+      if (!v || v.length == 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
@@ -144,7 +145,7 @@ console.log("test")  }
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (!v && v.length === 0) delete queryParams2[k];
+      if (!v || v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
@@ -164,7 +165,7 @@ console.log("test")  }
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (!v && v.length === 0) delete queryParams2[k];
+      if (!v || v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
@@ -233,7 +234,7 @@ console.log("test")  }
   };
 
   return (
-    <Box sx={{ mx: "auto", maxWidth: "lg" ,minHeight:"900px",mt:"20px"}}>
+    <Box sx={{ mx: "auto", maxWidth: "lg", minHeight: "900px", mt: "20px" }}>
       <main>
         <div className="pageCategories, left">
 
@@ -241,7 +242,7 @@ console.log("test")  }
             <div className="fiters__item filters__price">
               <h3 className="filters-price__price">Ціна:</h3>
 
-              <Slider sx={{width:"70%",ml:"20px"}} 
+              <Slider sx={{ width: "70%", ml: "20px" }}
                 getAriaLabel={() => "Ціна товарів"}
                 value={valuePriceSlider}
                 onChange={handleChangePriceSlider}
@@ -272,16 +273,16 @@ console.log("test")  }
                     className="filters-price__input filters-price__info"
                   />
                 </label>
-               
-            
+
+
               </div>
-                  <button
-                  type="button"
-                  className="filters-price__button"
-                  onClick={submitCatFilter}
-                >
-                  OK
-                </button>
+              <button
+                type="button"
+                className="filters-price__button"
+                onClick={submitCatFilter}
+              >
+                OK
+              </button>
             </div>
           </div>
           <div className="filters_filter-brand">

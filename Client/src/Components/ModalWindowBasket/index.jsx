@@ -32,7 +32,7 @@ export function KeepMountedModal() {
             // Apply to every request
             axios.defaults.baseURL = BASE_URL;
             axios.defaults.headers.common['Authorization'] = token;
-            
+
         } else {
             // Delete auth header
 
@@ -72,7 +72,7 @@ export function KeepMountedModal() {
         }
 
 
-    }, [tokenUser?.token])
+    }, [tokenUser?.token, basket])
 
 
     const [saveAllPrice, setSaveAllPrice] = useState(0)
@@ -89,7 +89,7 @@ export function KeepMountedModal() {
                 <Box sx={styleBox}>
 
                     {basket.length ? <div className='product'>
-                        <div className='header'><h1>Товар доданий у кошик</h1> <Link to="/cart-page" onClick={() => dispatch({ type: 'OPEN_MODAL' })}>Перейти у кошик</Link></div>
+                        <div className='header'><h1>Товар доданий у кошик</h1> </div>
                         <div className='main'>
 
                             <div className='basket-product'>
@@ -105,7 +105,7 @@ export function KeepMountedModal() {
                                 <p>Всього у кошику {basket.length} товари на суму <span>{saveAllPrice} грн</span></p>
                             </div>
                         </div>
-                        <div className='button-order'><Link to="/products">Продовжити покупки</Link><Button>Оформити замовлення</Button></div>
+                        <div className='button-order'><Link to="/products" onClick={() => dispatch({ type: 'OPEN_MODAL' })}>Продовжити покупки</Link><Button> <Link to="/cart-page" onClick={() => dispatch({ type: 'OPEN_MODAL' })} style={{ color: '#FFFFFF' }}>Оформити замовлення</Link></Button></div>
                     </div> : <h1 style={{ margin: 'auto', width: 200, fontSize: 30 }}> товарів немає </h1>}
                 </Box>
             </Modal>

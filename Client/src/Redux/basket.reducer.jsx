@@ -29,7 +29,14 @@ export default function logicBasket(state = initialState, action) {
         case "CLEAR_BASKET":
             const filterProduct = state.basket.filter(res => res._id !== payload)
             return { ...state, basket: filterProduct };
+        //не потрібно {
+        // case "EDIT_OBJECT":
+        //     const object = state.basket.find(obj => obj._id === payload.id)
+        //     const index = state.basket.findIndex(obj => obj._id === payload.id)
+        //     let editProduct = { ...object, counter: payload.productCounter }
+        //     state.basket.splice(index, 1, editProduct)
 
+        //    }
         default:
             return state;
     }
