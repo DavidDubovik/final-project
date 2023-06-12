@@ -16,8 +16,7 @@ const styleBox = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    maxWidth: 1010,
-    width: 1010,
+    width:"80%",
     background: '#FFFFFF',
     border: '1px solid #000',
     boxShadow: 24,
@@ -79,6 +78,7 @@ export function KeepMountedModal() {
     return (
         <div>
             <Modal
+                width={"80%"}
                 keepMounted
                 open={modalOpen}
                 onClose={() => dispatch({ type: 'OPEN_MODAL' })}
