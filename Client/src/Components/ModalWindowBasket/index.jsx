@@ -74,7 +74,6 @@ export function KeepMountedModal() {
 
     }, [tokenUser?.token, basket])
 
-
     const [saveAllPrice, setSaveAllPrice] = useState(0)
 
     return (
@@ -102,7 +101,9 @@ export function KeepMountedModal() {
 
                             <hr style={{ background: '#007042', height: 2, border: 'none' }}></hr>
                             <div className='sum'>
-                                <p>Всього у кошику {basket.length} товари на суму <span>{saveAllPrice} грн</span></p>
+                                <p>Всього у кошику {basket.length} товари на суму <span>{
+                                   basket.reduce((total,item)=>total+(item.counter*item.currentPrice),0)
+                                } грн</span></p>
                             </div>
                         </div>
                         <div className='button-order'><Link to="/products" onClick={() => dispatch({ type: 'OPEN_MODAL' })}>Продовжити покупки</Link><Button> <Link to="/cart-page" onClick={() => dispatch({ type: 'OPEN_MODAL' })} style={{ color: '#FFFFFF' }}>Оформити замовлення</Link></Button></div>
