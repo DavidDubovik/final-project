@@ -2,13 +2,15 @@
     max-width: 240px;
     margin-left: auto;
     margin-right: auto;
+
     &-img__container {
         display: flex;
-        
+
         box-sizing: content-box;
         width: 240px;
-       height: 240px;
-        & > img {
+        height: 240px;
+
+        &>img {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,12 +20,14 @@
             object-fit: contain;
         }
     }
+
     &__title {
         font-family: 'Open Sans';
         font-weight: 400;
         font-size: 14px;
         color: #000000;
     }
+
     &__price {
         color: #57646E;
         font-family: 'Montserrat';
@@ -32,12 +36,14 @@
         font-size: 30px;
         margin: 10px 0 15px;
     }
+
     &__currency {
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 700;
         font-size: 18px;
     }
+
     &__button {
         border: none;
         border-radius: 3px;
@@ -52,9 +58,80 @@
         font-size: 14px;
         font-family: 'Open Sans';
         cursor: pointer;
-        & > img {
+
+        &>img {
             margin-left: 10px;
         }
     }
 }
 
+@media (max-width:1000px) {
+    .left {
+        display: none;
+    }
+
+    .chair {
+        max-width: 180px;
+    }
+
+    .chair-img__container {
+        width: 180px;
+        height: 180px;
+    }
+
+
+}
+
+@media (max-width:570px) {
+    .chair {
+        max-width: 110px;
+    }
+
+    .chair-img__container {
+        width: 110px;
+        height: 110px;
+    }
+
+    .chair__price {
+        font-size: 25px;
+    }
+
+    .chair__title {
+        font-size: 13px;
+    }
+
+    .chair__button {
+        font-size: 8px;
+
+        & img {
+            width: 20px;
+        }
+    }
+}
+@media (max-width:400px) {
+    .chair {
+        max-width: 90px;
+    }
+
+    .chair-img__container {
+        width: 90px;
+        height: 90px;
+    }
+
+    .chair__price {
+        font-size: 20px;
+    }
+
+    .chair__title {
+        font-size: 11px;
+    }
+
+    .chair__button {
+        font-size: 8px;
+
+        & img {
+            width: 15px;
+            margin-left: 4px;
+        }
+    }
+}

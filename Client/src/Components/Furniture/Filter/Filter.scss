@@ -1,10 +1,10 @@
-.button-sort{
+.button-sort {
   display: flex;
-  
+
 }
 
 
-.button-of-filter{
+.button-of-filter {
   padding: 10px 20px;
 
   background: #007042;
@@ -16,4 +16,44 @@
   margin: 0px 10px;
   font-weight: 700;
   font-size: 14px;
+}
+
+.filter {}
+
+@media (max-width:1000px) {
+
+  .filter-box__title {
+    font-size: 17px;
+    width: 100px;
+  }
+
+}
+
+@media (max-width:585px) {
+  .filter-box__title {
+    font-size: 14px;
+    width: 100px;
+    margin-right: 5px;
+  }
+
+  .button-of-filter {
+    margin: 0 6px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+}
+@media (max-width:400px) {
+  .filter-box__title {
+    font-size: 13px;
+    width: 90px;
+    margin-right: 2px;
+  }
+
+  .button-of-filter {
+    margin: 0 4px;
+    padding: 3px 4px;
+    font-size: 9px;
+  }
+
 }

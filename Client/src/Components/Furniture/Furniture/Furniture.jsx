@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
 import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
-import TextField from '@mui/material/TextField';import FurnitureItems from "../FurnitureItems/FurnitureItems";
+import TextField from '@mui/material/TextField'; import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
@@ -237,57 +237,57 @@ const AllProducts = (props) => {
 
   return (
     <Box sx={{ mx: "auto", maxWidth: "lg", minHeight: "900px", mt: "20px" }}>
-      <main>
+      <main style={{ justifyContent: 'center' }}>
         <div className="pageCategories, left">
 
-         
-          <Paper sx={{marginBottom:"15px",padding:"10px"}}>
+
+          <Paper sx={{ marginBottom: "15px", padding: "10px" }}>
             <div className="fiters__item filters__price">
-              
+
               <h3 className="filters-price__price">Ціна:</h3>
-              <Box sx={{display:"flex",justifyContent:"center"}}>
-              <Slider sx={{ width: "80%"}}
-                getAriaLabel={() => "Ціна товарів"}
-                value={valuePriceSlider}
-                onChange={handleChangePriceSlider}
-                min={1}
-                max="50000"
-                valueLabelDisplay="auto"
-                getAriaValueText={valuetext}
-              />
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Slider sx={{ width: "80%" }}
+                  getAriaLabel={() => "Ціна товарів"}
+                  value={valuePriceSlider}
+                  onChange={handleChangePriceSlider}
+                  min={1}
+                  max="50000"
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                />
               </Box>
               <div className="filters-price__slider"></div>
               <br />
               <div className="filters-price__container">
-               
-                  <TextField
-                  sx={{maxWidth:"100px"}}
+
+                <TextField
+                  sx={{ maxWidth: "100px" }}
                   inputProps={{
                     style: {
                       padding: 5
                     }
-                 }}
-                    type="number"
-                    min={Number(minPrice)}
-                    max={Number(maxPrice)}
-                    placeholder={valuePriceSlider[0]}
-                
-                  />
-             
+                  }}
+                  type="number"
+                  min={Number(minPrice)}
+                  max={Number(maxPrice)}
+                  placeholder={valuePriceSlider[0]}
+
+                />
+
                 <span className="filters-price__line"></span>
-                  <TextField
-                  sx={{maxWidth:"100px"}}
+                <TextField
+                  sx={{ maxWidth: "100px" }}
                   inputProps={{
                     style: {
                       padding: 5
                     }
-                 }}
-                    type="number"
-                    min={Number(minPrice)}
-                    max={Number(maxPrice)}
-                    placeholder={valuePriceSlider[1]}
-                  />
-         
+                  }}
+                  type="number"
+                  min={Number(minPrice)}
+                  max={Number(maxPrice)}
+                  placeholder={valuePriceSlider[1]}
+                />
+
 
 
               </div>
@@ -299,96 +299,96 @@ const AllProducts = (props) => {
                 OK
               </button>
             </div>
-            </Paper>
-         
-          
-          <Paper sx={{marginBottom:"15px",padding:"10px"}}>
-          <h3 className="filters_selected">Бренд</h3>
-          <List style={{maxHeight: 200, overflow: 'auto'}}>
-            <div className="filters-checkbox__container">
-              
-              {listOfColors && listOfColors.length > 1 ? (
-                listOfColors.map((el, index) => {
-                  return (
-                    <label
-                      className="filters_categories filters-checkbox__item"
-                      key={uuidv4()}
-                    >
-                      <input
-                        type="checkbox"
-                        name={el}
-                        checked={checkedState[index]}
-                        onChange={(event) => {
-                          setColorFilters(event, index);
-                        }}
-                      ></input>
-                      <span className="filters-checkbox__info">{el}</span>
-                    </label>
-                  );
-                  // <p>1</p>
-                })
-              ) : (
-                <p>1</p>
-              )}
+          </Paper>
 
-            </div>
+
+          <Paper sx={{ marginBottom: "15px", padding: "10px" }}>
+            <h3 className="filters_selected">Бренд</h3>
+            <List style={{ maxHeight: 200, overflow: 'auto' }}>
+              <div className="filters-checkbox__container">
+
+                {listOfColors && listOfColors.length > 1 ? (
+                  listOfColors.map((el, index) => {
+                    return (
+                      <label
+                        className="filters_categories filters-checkbox__item"
+                        key={uuidv4()}
+                      >
+                        <input
+                          type="checkbox"
+                          name={el}
+                          checked={checkedState[index]}
+                          onChange={(event) => {
+                            setColorFilters(event, index);
+                          }}
+                        ></input>
+                        <span className="filters-checkbox__info">{el}</span>
+                      </label>
+                    );
+                    // <p>1</p>
+                  })
+                ) : (
+                  <p>1</p>
+                )}
+
+              </div>
             </List>
             <button
-            type="button"
-            className="filters-price__button"
-            onClick={() => {
-              submitCatFilter();
-            }}
-          >
-            OK
-          </button>
-            </Paper>
-          
-            <Paper sx={{marginBottom:"15px",padding:"10px"}}>
-              <h3 className="filters_selected">Категорії</h3>
+              type="button"
+              className="filters-price__button"
+              onClick={() => {
+                submitCatFilter();
+              }}
+            >
+              OK
+            </button>
+          </Paper>
 
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="tables"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Столи</span>
-              </label>
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="chairs"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Стільці</span>
-              </label>
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="beds"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Ліжка</span>
-              </label>
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="housingfurniture"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Корпусні меблі</span>
-              </label>
-              <button
-                type="button"
-                className="filters-price__button"
-                onClick={submitCatFilter}
-              >
-                OK
-              </button>
-            </Paper>
-          </div>
-   
+          <Paper sx={{ marginBottom: "15px", padding: "10px" }}>
+            <h3 className="filters_selected">Категорії</h3>
+
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="tables"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Столи</span>
+            </label>
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="chairs"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Стільці</span>
+            </label>
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="beds"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Ліжка</span>
+            </label>
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="housingfurniture"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Корпусні меблі</span>
+            </label>
+            <button
+              type="button"
+              className="filters-price__button"
+              onClick={submitCatFilter}
+            >
+              OK
+            </button>
+          </Paper>
+        </div>
+
         <div className="pageCategories, right">
           <br />
           <div className="filters_selected filter-box">
