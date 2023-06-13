@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { BASE_URL } from "constants/api";
 
 const initialState = {
   data: [],
@@ -34,10 +34,10 @@ export const fetchAsyncProducts = createAsyncThunk(
     //   const myQuery = queryString.stringify(queryParams);
    
       dispatch(setParamsLink(queri));
-
+    
     try {
       const response = await fetch(
-        `/api/products/filter?${queri}`
+        `${BASE_URL}/api/products/filter?${queri}`
       )
         
       const res = await response.json()
@@ -46,6 +46,7 @@ export const fetchAsyncProducts = createAsyncThunk(
       
     } catch (error) {
       console.log(error)
+      console.log(BASE_URL)
       return rejectWithValue(error.response.data);
     }
   }
@@ -54,7 +55,7 @@ export const fetchAsyncAllBrands = createAsyncThunk("search/fetchAsyncAllProduct
   async (_,{rejectWithValue}) =>{
     try {
       const response = await fetch(
-        `/api/products/`
+        `${BASE_URL}/api/products/`
       )
       
       const dataZ = await response.json()
@@ -72,7 +73,7 @@ export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProdu
   async (_,{rejectWithValue}) =>{
     try {
       const response = await fetch(
-        `/api/products/`
+        `${BASE_URL}/api/products/`
       )
       
       const dataZ = await response.json()
@@ -81,6 +82,7 @@ export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProdu
       
     } catch (error) {
       console.log(error)
+      console.log(BASE_URL)
       return rejectWithValue(error.response.data);
     }
   }
@@ -89,7 +91,7 @@ export const fetchAsyncOneProduct = createAsyncThunk("products/fetchAsyncOneProd
   async (id,{rejectWithValue}) =>{
     try {
       const response = await fetch(
-        `/api/products/` + id
+        `${BASE_URL}/api/products/` + id
       )
       const dataZ = await response.json()
 

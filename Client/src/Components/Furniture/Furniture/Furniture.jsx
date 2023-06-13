@@ -127,7 +127,7 @@ const AllProducts = (props) => {
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (!v || v.length == 0) delete queryParams2[k];
+      if (!v || v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 

@@ -1,1 +1,1 @@
-export const BASE_URL = process.env.REACT_APP_BASE_URL; // base url api
+export const BASE_URL = `https://savory-marred-rhinoceros.glitch.me` // base url api

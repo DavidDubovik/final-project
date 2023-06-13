@@ -55,7 +55,7 @@ export function KeepMountedModal() {
         //    перенести получение продуктов кудись в друге місце 
         if (tokenUser.token) {
             axios
-                .get("/cart")
+                .get(BASE_URL+"/api/cart")
                 .then(cart => {
 
                     console.log(cart.data.products);

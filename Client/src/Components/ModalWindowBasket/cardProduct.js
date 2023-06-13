@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DropList from './dropList';
 import axios from 'axios';
+import { BASE_URL } from "constants/api";
 export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, colorsProduct, item, quantiy, defoltColor }) => {
     const [count, setCount] = useState(quantiy ? quantiy : 1)
     const dispatch = useDispatch()
@@ -19,7 +20,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
                 setCount(count + 1)
                 setAllPrice(allPrice + +price);
                 await axios
-                    .put("/cart/" + productId)
+                    .put(BASE_URL+"/api/cart/" + productId)
                     .then(updatedCart => {
                         // console.log(updatedCart.data.products);
                     })
@@ -41,7 +42,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
                 setCount(count - 1)
                 setAllPrice(allPrice - +price);
                 await axios
-                    .delete("/cart/product/" + productId)
+                    .delete(BASE_URL+"/api/cart/product/" + productId)
                     .then(updatedCart => {
                         // console.log(updatedCart.data.products);
                     })
@@ -65,7 +66,7 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
             dispatch({ type: 'CLEAR_BASKET', payload: productId })
             setAllPrice(allPrice - +price * count);
             await axios
-                .delete("/cart/" + productId)
+                .delete(BASE_URL+"/api/cart/" + productId)
                 .then(result => {
                     // console.log(result.data);
                 })
