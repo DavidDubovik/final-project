@@ -3,11 +3,6 @@ import "./Filter.scss";
 
 function Filter({ onChangeSortAscending, onChangeSortDescending, onChangeSortName }) {
 
-    const list = [
-        {name: "От дешевых к дорогим", sortProperty: 'minPrice'},
-        {name: "От дорогих к дешевым", sortProperty: 'maxPrice'},
-        {name: "По алфавиту", sortProperty: 'name'}
-    ];
 
     const SortAscending = (i) => {
         onChangeSortAscending(i)
@@ -27,9 +22,15 @@ function Filter({ onChangeSortAscending, onChangeSortDescending, onChangeSortNam
         <div className="button-sort">
             <label className="filter-box__title">Сортувати по: </label>
             <div className="filter">
+<<<<<<< HEAD
                 <button type="button" onClick={() => SortAscending()}>От дешевых к дорогим</button>
                 <button type="button" onClick={() => SortDescending()}>От дорогим к дешевых </button>
                 <button type="button" onClick={() => SortName()}>По имени </button>
+=======
+                <button className="button-of-filter" type="button" onClick={() => SortAscending()}>🠗 Ціна</button>
+                <button className="button-of-filter" type="button" onClick={() => SortDescending()}>🠕 Ціна</button>
+                <button className="button-of-filter" type="button" onClick={() => SortName()}>🠗 А-я </button>
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
             </div>
         </div>
   )

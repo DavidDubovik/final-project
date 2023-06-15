@@ -18,7 +18,7 @@ const MidleMenu = () => {
     })
     return (
         <>
-            <Box sx={{ justifyContent: 'space-between', pt: 2.5, pb: 2.5, display: 'flex', alignItems: 'center', textAlign: 'center', fontFamily: 'Open Sans', mx: 'auto', maxWidth: 'lg', flexWrap: 'wrap' }}>
+            <Box sx={{ justifyContent: 'space-between', p:2, display: 'flex', alignItems: 'center', textAlign: 'center', fontFamily: 'Open Sans', mx: 'auto', maxWidth: 'lg', flexWrap: 'wrap' }}>
                 <Logo />
                 <Typography sx={{
                     "fontFamily": 'Open Sans',

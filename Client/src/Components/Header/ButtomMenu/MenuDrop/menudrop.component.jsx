@@ -12,6 +12,7 @@ const MenuDrop = ({mList}) => {
     const submenues=mList.submenu
     const [anchorEl, setAnchorEl] = useState(0);
     const open = Boolean(anchorEl);
+<<<<<<< HEAD
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -46,6 +47,37 @@ const MenuDrop = ({mList}) => {
                 color: '#007042',fontWeight:"700",background: "rgb(44,44,44)"}}} key={uuidv4()}  component={NavLink} to={el.path} >{el.title}</MenuItem>)}
             
               </Menu>
+=======
+
+   
+    return (
+        <Box 
+        component={NavLink} to={mList.path}  >
+          <Button
+            id="fade-button"
+            aria-controls={open ? 'fade-menu' : undefined}
+            sx={{height:"45px",borderRadius:"0",pl:"32px",pr:"32px",backgroundColor: open ? "white": "#57646E",'&:hover':{background:"#007042"}}}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            
+          ><Typography sx={{fontWeight:"700",fontSize:"15px",textTransfor:"uppercase", color: open ? "#57646E":"white",}}>{mList.title}</Typography>
+         
+          </Button>
+          <Menu 
+            id="fade-menu"
+            MenuListProps={{
+              'aria-labelledby': 'fade-button'
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            
+            TransitionComponent={Fade} 
+          >
+          {submenues.map(el=><MenuItem sx={{'&:hover, active':{
+            color: '#007042',fontWeight:"700",background: "#E0E1E2"}}} key={uuidv4()}  component={NavLink} to={el.path} >{el.title}</MenuItem>)}
+         
+          </Menu>
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
 
           </Box>
       );

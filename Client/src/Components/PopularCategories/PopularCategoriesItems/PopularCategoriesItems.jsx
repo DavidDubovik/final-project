@@ -9,7 +9,7 @@ export class PopularCategoriesItems extends Component {
       <>
         <h2 className='popular-categories__title'>Популярні категорії</h2>
       
-        <Box sx={{mx:'auto',maxWidth: 'lg',display:"flex",flexWrap:"wrap"}}>
+        <Box sx={{mx:'auto',maxWidth: 'lg',display:"flex",flexWrap:"wrap", gap:1,justifyContent:"center"}}>
           {this.props.items.map(el => <PopularCategoriesItem key={el.id} item={el}/>)}
         </Box>
       </>

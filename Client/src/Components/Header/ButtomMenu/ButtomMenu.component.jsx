@@ -8,8 +8,13 @@ const ButtomMenu = ({menuList}) => {
 
     return (
         <Box sx={{background:"#57646E"}}>
+<<<<<<< HEAD
             <Box  display="flex" sx={{maxWidth: 'lg',flexWrap: 'nowrap',mx:'auto',height:"45px",alignItems: "center",justifyContent:"center"}}>
                 {menuList.map(el=><MenuDrop key={uuidv4()} mList={el} />)}
+=======
+            <Box  display="flex" sx={{maxWidth: 'lg',flexWrap: 'nowrap',mx:'auto',height:"45px",alignItems: "center",justifyContent:"center",}}>
+            {menuList.map(el=><MenuDrop key={uuidv4()} mList={el} />)}
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
             </Box>
         </Box>
 

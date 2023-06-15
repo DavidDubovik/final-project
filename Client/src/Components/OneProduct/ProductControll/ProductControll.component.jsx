@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+// import axios from 'axios';
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,15 +8,29 @@ import Select from "@mui/material/Select";
 import { v4 as uuidv4 } from 'uuid';
 import Box from "@mui/material/Box";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useAddProduct } from "Redux/basketBackEnd";
+
 
 
 const ProductControll = ({ myProps }) => {
   const dispatch = useDispatch()
-
+  const AddProduct = useAddProduct()
   const [counter, setCounter] = React.useState(1);
   const [color, setColor] = React.useState(myProps.colors[0]);
   const [product, setOneProdData] = React.useState({ ...myProps, counter, color });
+
+  const tokenUser = useSelector(state => {
+    return state.isLogged.isLogged
+  })
+  const putRequest = (product) => {
+    if (tokenUser.token) {
+      AddProduct(product)
+    } else {
+      dispatch({ type: 'ADD_TO_BASKET', payload: product })
+    }
+
+  }
 
   const increase = () => {
     setCounter((count) => count + 1);
@@ -39,8 +53,8 @@ const ProductControll = ({ myProps }) => {
   };
   return (
     <>
-      <Box display="flex" sx={{ flexDirection: "column" }}>
-        <Box display="flex" sx={{ justifyContent: " space-between" }}>
+      <Box display="flex" sx={{ flexDirection: "column" }} >
+        <Box display="flex" sx={{ justifyContent: " space-between" }} >
           <Typography
             sx={{
               fontFamily: "Montserrat",
@@ -117,6 +131,7 @@ const ProductControll = ({ myProps }) => {
           <Select
             labelId="color-select"
               inputProps={{ 'aria-label': 'Without label' }}
+<<<<<<< HEAD
   
             value={color}
             onChange={handleChange}
@@ -129,20 +144,34 @@ const ProductControll = ({ myProps }) => {
       </>
         <Box display="flex" justifyContent={"space-between"} mt={6}>
           <Box display="flex" justifyContent={"space-between"}>
+=======
+
+              value={color}
+              onChange={handleChange}
+              sx={{ maxWidth: "150px" }}
+            >
+              {myProps.colors.map(el => <MenuItem key={uuidv4()} value={el}>{el}</MenuItem>)}
+
+            </Select>
+          </FormControl>
+        </>
+        <Box display="flex" justifyContent={"space-between"} mt={6}  flexWrap={"wrap"} rowGap={"15px"}>
+          <Box display="flex" justifyContent={"space-between"} height={"50px"}>
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
             <Typography
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "400",
-                fontSize: "14px",
+                fontSize: "1.5vw",
                 lineHeight: "160%",
-                mt: "18px",
+                mt: "auto",
+                mb:"auto"
               }}
             >
               Кількість
             </Typography>
-            <>
               <Box
-                ml="17px"
+                ml="1vw"
                 borderRadius={"5px"}
                 sx={{ backgroundColor: "secondary.lightest" }}
                 display={"flex"}
@@ -150,28 +179,28 @@ const ProductControll = ({ myProps }) => {
                 <Button
                   onClick={increase}
                   size="small"
-                  sx={{ fontSize: "25px", color: "secondaty.dark", p: "0" }}
+                  sx={{ fontSize: "2vw", color: "secondaty.dark", p: "0" }}
                 >
                   +
                 </Button>
                 <Box backgroundColor="white" display={"flex"}>
                   <Typography
-                    pl={"18px"}
+                    pl={"1vw"}
                     sx={{
                       fontWeight: "600",
-                      fontSize: "20px",
+                      fontSize: "2vw",
                       mt: "auto",
                       mb: "auto",
-                      pr: "5px",
+                      pr: "0,5vw",
                     }}
                   >
                     {counter}
                   </Typography>
                   <Typography
-                    pr={"10px"}
+                    pr={"1vw"}
                     sx={{
                       fontWeight: "600",
-                      fontSize: "15px",
+                      fontSize: "1vw",
                       color: "secondary.lightest",
                       mt: "auto",
                       mb: "auto",
@@ -184,25 +213,29 @@ const ProductControll = ({ myProps }) => {
                 <Button
                   size="small"
                   onClick={decrease}
-                  sx={{ fontSize: "25px", color: "secondaty.dark" }}
+                  sx={{ fontSize: "2vw", color: "secondaty.dark" }}
                 >
                   -
                 </Button>
               </Box>
-            </>
+          
           </Box>
-          <Button
+          <Button 
+          
             variant="contained"
             color="primary"
             href="#contained-buttons"
+
             sx={{ p: "12px 25px 12px 25px", borderRadius: "3px" }}
-            onClick={() => dispatch({ type: 'ADD_TO_BASKET', payload: product })}
+            onClick={() => putRequest(product)}
           >
             <Typography
+            
               sx={{
                 fontFamily: "Open Sans",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "1,5vw",
+                
               }}
             >
               У кошик

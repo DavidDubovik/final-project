@@ -17,6 +17,7 @@ const initialState = {
   perPage: 6,
   listOfColors:[],
   paramsLink: "",
+  oneproduct: null,status1:""
 };
 
 export const fetchAsyncProducts = createAsyncThunk(
@@ -53,7 +54,7 @@ export const fetchAsyncAllBrands = createAsyncThunk("search/fetchAsyncAllProduct
   async (_,{rejectWithValue}) =>{
     try {
       const response = await fetch(
-        `http://localhost:3000/api/products/`
+        `/api/products/`
       )
       
       const dataZ = await response.json()
@@ -71,9 +72,25 @@ export const fetchAsyncAllProducts = createAsyncThunk("search/fetchAsyncAllProdu
   async (_,{rejectWithValue}) =>{
     try {
       const response = await fetch(
-        `http://localhost:3000/api/products/`
+        `/api/products/`
       )
       
+      const dataZ = await response.json()
+
+      return dataZ;
+      
+    } catch (error) {
+      console.log(error)
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
+export const fetchAsyncOneProduct = createAsyncThunk("products/fetchAsyncOneProduct",
+  async (id,{rejectWithValue}) =>{
+    try {
+      const response = await fetch(
+        `/api/products/` + id
+      )
       const dataZ = await response.json()
 
       return dataZ;
@@ -138,6 +155,10 @@ const allprodreducer = createSlice({
       .addCase(fetchAsyncProducts.rejected, (state, action) => {
         state.error = action.payload;
         state.status = "rejected";
+      })
+      .addCase(fetchAsyncOneProduct.fulfilled, (state, action) => {
+        state.oneproduct = action.payload;
+        state.status1 = "loaded";
       });
   },
 });

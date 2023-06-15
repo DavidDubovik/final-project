@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import queryString from "query-string";
 import { useDispatch,useSelector} from "react-redux";
 import {
@@ -6,9 +6,11 @@ import {
     setPage,
   } from "../../../Redux/products.reducer";
   import { useSearchParams } from "react-router-dom";
+  import "./pagination.styles.scss"
 
 const Pagination = ({totalProducts}) => {
     const [, setSearchParams] = useSearchParams("");
+    const [active, setActive] = useState("1")
 
     const dispatch = useDispatch()
     const pageNumbers = [];
@@ -63,8 +65,8 @@ const Pagination = ({totalProducts}) => {
             <div className='page'>
                 {   
                     pageNumbers.map(number => (
-                        <button key={number} className='page-item' onClick={() => {
-                            console.log(number)
+                        <button key={number} className={`page-item ${active === number && 'active'}`} onClick={() => {
+                          setActive(number)
                             dispatch(setPage(number))
                             const queryParams2 = {
                                 categories,
@@ -83,11 +85,15 @@ const Pagination = ({totalProducts}) => {
                           
                               setSearchParams(myQuery)
                             }}>
+<<<<<<< HEAD
                             <span 
                                 className='pagination__number-item'
                             >
+=======
+                           
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
                                 {number}
-                            </span>
+                            
                         </button>
                     ))
                 }

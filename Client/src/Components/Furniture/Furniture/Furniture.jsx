@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Slider from "@mui/material/Slider";
-import FurnitureItems from "../FurnitureItems/FurnitureItems";
+import Paper from "@mui/material/Paper";
+import List from "@mui/material/List";
+import TextField from '@mui/material/TextField'; import FurnitureItems from "../FurnitureItems/FurnitureItems";
 import LoadingSpinner from "../../LoadingSpiner/LoadingSpiner.component";
 import Box from '@mui/material/Box';
 
@@ -46,20 +48,21 @@ const AllProducts = (props) => {
     const myQuery = queryString.stringify(paramsN);
 
     dispatch(fetchAsyncProducts(myQuery));
-    console.log(categories);
+    // console.log(categories);
     if (paramsLink) {
-    const parsedLink = queryString.parse(paramsLink);
-    console.log(parsedLink);
-    dispatch(changeCategory({ categories: parsedLink.categories }));
-    // dispatch(changeColor({ brand: parsedLink.brand }))
-    // dispatch(sortingProducts({ sort: parsedLink.sort }))
-    // dispatch(setMinPrice({ minPrice: parsedLink.minPrice }))
-    // dispatch(setMaxPrice({ maxPrice: parsedLink.maxPrice }))
-    dispatch(setPage(parsedLink.startPage))
-  } else{
-console.log("test")  }
+      const parsedLink = queryString.parse(paramsLink);
+      // console.log(parsedLink);
+      dispatch(changeCategory({ categories: parsedLink.categories }));
+      // dispatch(changeColor({ brand: parsedLink.brand }))
+      // dispatch(sortingProducts({ sort: parsedLink.sort }))
+      // dispatch(setMinPrice({ minPrice: parsedLink.minPrice }))
+      // dispatch(setMaxPrice({ maxPrice: parsedLink.maxPrice }))
+      dispatch(setPage(parsedLink.startPage))
+    } else {
+      console.log("test")
+    }
   }, [dispatch, searchParams]);
-  
+
   // useEffect(() => {
   //   dispatch(fetchAsyncProducts(paramsLink))
   //   setSearchParams(paramsLink);
@@ -120,7 +123,7 @@ console.log("test")  }
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (!v && v.length === 0) delete queryParams2[k];
+      if (!v || v.length == 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
@@ -140,7 +143,7 @@ console.log("test")  }
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (!v && v.length === 0) delete queryParams2[k];
+      if (!v || v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
@@ -160,7 +163,7 @@ console.log("test")  }
       perPage,
     };
     Object.entries(queryParams2).forEach(([k, v]) => {
-      if (!v && v.length === 0) delete queryParams2[k];
+      if (!v || v.length === 0) delete queryParams2[k];
     });
     const myQuery = queryString.stringify(queryParams2);
 
@@ -229,21 +232,16 @@ console.log("test")  }
   };
 
   return (
+<<<<<<< HEAD
     <Box sx={{mx:'auto',maxWidth: 'lg'}}>
       <main>
+=======
+    <Box sx={{ mx: "auto", maxWidth: "lg", minHeight: "900px", mt: "20px" }}>
+      <main style={{ justifyContent: 'center' }}>
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
         <div className="pageCategories, left">
-          <h2 className="filters_selected">Вибрані категорії:</h2>
-          <p className="filters_categories">{categories}</p>
-          <h2 className="filters_selected">Вибрані бренди:</h2>
-          <p className="filters_categories">{brand}</p>
-          <h2 className="filters_selected">Вибраний діапазон цін:</h2>
-          <p className="filters_categories">
-            {minPrice}:{maxPrice}
-          </p>
-          <div className="fiters">
-            <div className="fiters__item filters__price">
-              <h3 className="filters-price__price">Ціна:</h3>
 
+<<<<<<< HEAD
               <Slider
                 className="horizontal-slider"
                 thumbClassName="example-thumb"
@@ -319,39 +317,59 @@ console.log("test")  }
             </div>
             <div className="filters-checkbox__container">
               <h3 className="filters_selected">Категорії</h3>
+=======
 
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="tables"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Столи</span>
-              </label>
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="chairs"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Стільці</span>
-              </label>
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="beds"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Ліжка</span>
-              </label>
-              <label className="filters_categories filters-checkbox__item">
-                <input
-                  type="checkbox"
-                  name="housingfurniture"
-                  onChange={categoryFilter}
-                ></input>
-                <span className="filters-checkbox__info">Корпусні меблі</span>
-              </label>
+          <Paper sx={{ marginBottom: "15px", padding: "10px" }}>
+            <div className="fiters__item filters__price">
+
+              <h3 className="filters-price__price">Ціна:</h3>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Slider sx={{ width: "80%" }}
+                  getAriaLabel={() => "Ціна товарів"}
+                  value={valuePriceSlider}
+                  onChange={handleChangePriceSlider}
+                  min={1}
+                  max="50000"
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
+                />
+              </Box>
+              <div className="filters-price__slider"></div>
+              <br />
+              <div className="filters-price__container">
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
+
+                <TextField
+                  sx={{ maxWidth: "100px" }}
+                  inputProps={{
+                    style: {
+                      padding: 5
+                    }
+                  }}
+                  type="number"
+                  min={Number(minPrice)}
+                  max={Number(maxPrice)}
+                  placeholder={valuePriceSlider[0]}
+
+                />
+
+                <span className="filters-price__line"></span>
+                <TextField
+                  sx={{ maxWidth: "100px" }}
+                  inputProps={{
+                    style: {
+                      padding: 5
+                    }
+                  }}
+                  type="number"
+                  min={Number(minPrice)}
+                  max={Number(maxPrice)}
+                  placeholder={valuePriceSlider[1]}
+                />
+
+
+
+              </div>
               <button
                 type="button"
                 className="filters-price__button"
@@ -360,8 +378,96 @@ console.log("test")  }
                 OK
               </button>
             </div>
-          </div>
+          </Paper>
+
+
+          <Paper sx={{ marginBottom: "15px", padding: "10px" }}>
+            <h3 className="filters_selected">Бренд</h3>
+            <List style={{ maxHeight: 200, overflow: 'auto' }}>
+              <div className="filters-checkbox__container">
+
+                {listOfColors && listOfColors.length > 1 ? (
+                  listOfColors.map((el, index) => {
+                    return (
+                      <label
+                        className="filters_categories filters-checkbox__item"
+                        key={uuidv4()}
+                      >
+                        <input
+                          type="checkbox"
+                          name={el}
+                          checked={checkedState[index]}
+                          onChange={(event) => {
+                            setColorFilters(event, index);
+                          }}
+                        ></input>
+                        <span className="filters-checkbox__info">{el}</span>
+                      </label>
+                    );
+                    // <p>1</p>
+                  })
+                ) : (
+                  <p>1</p>
+                )}
+
+              </div>
+            </List>
+            <button
+              type="button"
+              className="filters-price__button"
+              onClick={() => {
+                submitCatFilter();
+              }}
+            >
+              OK
+            </button>
+          </Paper>
+
+          <Paper sx={{ marginBottom: "15px", padding: "10px" }}>
+            <h3 className="filters_selected">Категорії</h3>
+
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="tables"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Столи</span>
+            </label>
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="chairs"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Стільці</span>
+            </label>
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="beds"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Ліжка</span>
+            </label>
+            <label className="filters_categories filters-checkbox__item">
+              <input
+                type="checkbox"
+                name="housingfurniture"
+                onChange={categoryFilter}
+              ></input>
+              <span className="filters-checkbox__info">Корпусні меблі</span>
+            </label>
+            <button
+              type="button"
+              className="filters-price__button"
+              onClick={submitCatFilter}
+            >
+              OK
+            </button>
+          </Paper>
         </div>
+
         <div className="pageCategories, right">
           <br />
           <div className="filters_selected filter-box">

@@ -1,8 +1,18 @@
 .rootCard {
-    margin: 55px 11px 77px;
-    max-width: 282px;
+    
+    margin: 15px;
+    max-width: 272px;
     width: 282px;
     height: 300px;
-    position: relative;
     background: red;
+<<<<<<< HEAD
 }
+=======
+}
+
+.card-box::-webkit-scrollbar {
+ 
+    width: 0;
+    height: 1px;
+}
+>>>>>>> 86d0924afd98915f589a29dcd7b3e6cdc65cacfb
