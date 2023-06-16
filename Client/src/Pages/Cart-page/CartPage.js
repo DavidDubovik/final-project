@@ -22,31 +22,36 @@ const style = {
 
 function CartPage() {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    SendOrder(NewOrder).then((res) => {
+      console.log(res);
+    });
+  };
   const handleClose = () => setOpen(false);
 
-  const dispatch = useDispatch();
+  const product = useSelector(state => state.products.basket).map(({itemNo,counter}) => {
+    return ({"itemNo":itemNo,"cartQuantity":counter})
+  })
 
-  const basket = useSelector((state) => {
-    return state.products.basket;
-  });
-
-  // useEffect(() => {
-  //   localStorage.setItem("basket", JSON.stringify([basket]));
-  // }, [basket]);
-
-  // console.log(basket);
-
-  const modalOpen = useSelector((state) => {
-    return state.products.isModal;
-  });
-
-  const [saveAllPrice, setSaveAllPrice] = useState(0);
-
-  function DataCleansing() {
-    localStorage.removeItem("basket");
-    dispatch({ type: "CLEAR_BASKET" });
+  function SendProduct() {
+    const btn_send = document.querySelector(".confirm-pay");
+    btn_send.addEventListener("click", () => {
+      async function NewCartOrder(itemNo,quantity) {
+        const backResponse = await fetch('/api/products/'+itemNo)
+        const data = await backResponse.json()
+        const myResult = {"_id":data._id,"product":data,"cartQuantity":quantity}
+        return myResult
+      }
+    
+      const myWholeList = product.map(el=>{NewCartOrder(el.itemNo,el.cartQuantity)})
+      console.log(myWholeList);
+    });
   }
+
+  SendProduct();
+
+  const stateproducts = useSelector((state) => state.products.nm_data);
 
   const validate = (values) => {
     const errors = {};
@@ -88,6 +93,90 @@ function CartPage() {
 
     validate,
   });
+
+  const NewOrder = {
+    products: stateproducts,
+    canceled: false,
+    email: formik.values.Email,
+    mobile: formik.values.Number,
+    letterSubject: "Thank you for order! You are welcome!",
+    letterHtml:
+      "<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>",
+  };
+
+  async function SendOrder(data) {
+    console.log("my data",JSON.stringify(data))
+    try {
+      const response = await fetch("api/orders", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          Connection: "keep-alive",
+          "Accept-Encoding": "gzip, deflate, br",
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        console.log("error",response)
+        throw new Error("Server Error!");
+      }
+      const result = await response.json();
+      console.log(result);
+      return result;
+    } catch (error) {
+      alert(error.message);
+      return error.message;
+    }
+  }
+
+  // try {
+  //   const response = await fetch(/orders, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       NewOrder
+  //     }),
+  //     headers: {
+  //       Connection: 'keep-alive',
+  //       'Accept-Encoding': 'gzip, deflate, br',
+  //       Accept: '*/*',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   if (!response.ok) {
+  //     throw new Error('Server Error!')
+  //   }
+  //   const result = await response.json()
+  //   return result
+  // } catch (error) {
+  //   return rejectWithValue(error.message)
+  // }
+
+  const dispatch = useDispatch();
+
+  const basket = useSelector((state) => {
+    return state.products.basket;
+  });
+  
+  console.log(product)
+
+  // useEffect(() => {
+  //   localStorage.setItem("basket", JSON.stringify([basket]));
+  // }, [basket]);
+
+  // console.log(basket);
+
+  const modalOpen = useSelector((state) => {
+    return state.products.isModal;
+  });
+
+  const [saveAllPrice, setSaveAllPrice] = useState(0);
+
+  function DataCleansing() {
+    localStorage.removeItem("basket");
+    dispatch({ type: "CLEAR_BASKET" });
+  }
 
   return (
     <div className="Checkout-block">
@@ -174,11 +263,21 @@ function CartPage() {
 
             <div class="tabs">
               <label className="text-title-block">Спосіб доставки</label>
-              <input type="radio" name="tab-btn" id="tab-btn-1" value="" />
+              <input
+                type="radio"
+                name="tab-btn"
+                id="tab-btn-1 delivery_1"
+                value=""
+              />
               <label id="delivery" for="tab-btn-1">
                 Кур’єром додому
               </label>
-              <input type="radio" name="tab-btn" id="tab-btn-2" value="" />
+              <input
+                type="radio"
+                name="tab-btn"
+                id="tab-btn-2 delivery_2"
+                value=""
+              />
               <label id="delivery" for="tab-btn-2">
                 Самовивіз
               </label>

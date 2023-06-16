@@ -23,6 +23,7 @@ const styleBox = {
     p: 4,
 }
 export function KeepMountedModal() {
+  const dispatch = useDispatch();
 
     const dispatch = useDispatch()
 
@@ -113,4 +114,3 @@ export function KeepMountedModal() {
         </div >
     );
 }
-;
