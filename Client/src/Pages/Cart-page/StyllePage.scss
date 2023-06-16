@@ -1,0 +1,380 @@
+.Checkout-block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+    flex-wrap: wrap;
+    max-width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .checkout-contact {
+        margin-left: auto;
+        margin-right: auto;
+        .text-confirm {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 30px;
+            color: #2E3438;
+            margin-bottom: 19px;
+        }
+
+        .text-warn {
+            font-family: 'Open Sans';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 160%;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .checkout-contact-fileds {
+            .contact-info {
+                font-family: 'Open Sans';
+                font-weight: 700;
+                font-size: 20px;
+                color: #000;
+                margin-bottom: -20px;
+            }
+
+            .input-fields {
+                padding-top: 40px;
+
+                .text-title-field {
+                    font-family: 'Open Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    padding: 20px 0px 20px 0px;
+                    color: #000;
+                }
+                
+                .input-field-contact {
+                    width: 80%;
+                    height: 44px;
+                  
+                    background: #FFFFFF;
+                    box-sizing: border-box;
+                    border: 1px solid #A0A9AF;
+                    border-radius: 2px;
+                    padding-left: 15px;
+                    margin-top: -15px;
+                    margin-bottom: 8px;
+                    outline: none;
+                }
+            }
+        }    
+    }
+
+    .checkout-delivery {
+        .checkout-delivery-fileds {
+            .text-delivery {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                color: #000;
+                margin-top: 26px;
+            }
+
+            .field-required {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                margin-top: 30px;
+                margin-bottom: 81px;
+                color: #000;
+            }
+        }
+    }
+}
+
+.tabs {
+    font-size: 0;
+
+    .text-title-block {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        color: #000;
+        margin-top: 12px;
+        margin-left: -8px;
+        margin-bottom: 23px;
+    }
+}
+
+.tabs-2 {
+    font-size: 0;
+
+    .text-title-block {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        color: #000;
+        margin-top: 12px;
+        margin-left: 1px;
+        margin-bottom: 23px;
+    }
+}
+
+.tabs>input[type="radio"] {
+    width: 16.9px;
+    height: 16.9px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.tabs-2>input[type="radio"] {
+    width: 16.9px;
+    height: 16.9px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#delivery {
+    display: inline-block;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+}
+
+#pay-select {
+    display: inline-block;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+}
+
+#tab-btn-1 {
+    margin-left: 1px;
+}
+
+#tab-btn-3 {
+    margin-left: 1px;
+}
+
+.tabs>div {
+    display: none;
+    padding: 25px 0px;
+    font-size: 16px;
+}
+
+  #tab-btn-1:checked~#content-1,
+  #tab-btn-2:checked~#content-2,
+  #tab-btn-3:checked~#content-3,
+  #tab-btn-4:checked~#content-4 {
+    display: block;
+}
+
+.tabs>label {
+    text-align: center;
+    padding: 2px 8px;
+    font-size: 16px;
+    line-height: 1.5;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+
+.tabs>label:not(:first-of-type) {
+    border-left: none;
+}
+
+.tabs>input[type="radio"]:checked+label {
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+#content-1 {
+    .adress-block {
+        .adress {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .adress-input {
+            width: 486px;
+            height: 44px;
+            background: #FFFFFF;
+            border: 1px solid #A0A9AF;
+            box-sizing: border-box;
+            border-radius: 2px;
+            padding-left: 17px;
+            outline: none;
+            color: #9EA6B2;
+            margin-top: 7px;
+        }
+    }
+
+    .title-delivery-block {
+        margin-top: 20px;
+        .title-delivery {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 23px;
+            color: #57646E;
+        }
+    }
+}
+
+#content-2 {
+    .point-delivery {
+        #select-delivery {
+            width: 486px;
+            height: 82px;
+            background: #FFFFFF;
+            border: 1px solid #A0A9AF;
+            border-radius: 2px;
+            padding: 20px;
+            margin-top: 7px;
+        }
+    }
+}
+
+.selected-products-basket {
+   margin-left: auto;
+   margin-right: auto;
+   
+
+    .line {
+        display: none;
+    }
+
+    .dagger {
+        display: none;
+    }
+
+    .product {
+        width: 512px;
+        margin: 0 auto;
+        background-color: #F5F5F5;
+        padding: 25px;
+        .header {
+            background: #A0A9AF;
+            padding-left: 42px;
+            margin-bottom: 7px;
+
+            .title-header-products {
+                color: #fff;
+            }
+        }
+
+        .sum {
+            width: 967px;
+            margin-top: 25px;
+
+            .title-price {
+                padding: 152px;
+            }
+        
+            & p {
+                text-align: left;
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 24px;
+                color: #007042;
+        
+                & span {
+                    font-family: 'Open Sans';
+                    font-style: normal;
+                    font-size: 32px;
+                    font-weight: 700;
+                    font-size: 26px;
+                    color: #007042;
+                }
+            }
+        }
+    }
+
+    .text-price {
+        padding-right: 10px;
+        text-align: right;
+    }
+
+    .picture-product {
+        margin-left: 10px;
+    }
+
+    .name-product {
+        margin-left: 50px;
+    }
+
+    .numberProduct {
+        margin-left: 10px;
+    }
+
+    .confirm-pay {
+        width: 318px;
+        height: 56px;
+        text-align: center;
+        background: #007042;
+        border-radius: 3px;
+        padding: 15px;
+        color: #fff;
+        border: none;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 17px;
+        text-transform: uppercase;
+        margin-top: 60px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+#modal-modal-title {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #007042;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#modal-modal-description {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 180%;
+    text-align: center;
+    color: #000;
+}
+
+.btn-continue {
+    display: block;
+    width: 265px;
+    height: 56px;
+    margin: 57px auto;
+    background: #007042;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

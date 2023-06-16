@@ -5,18 +5,29 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.16",
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "formik": "^2.2.9",
+    "http-proxy-middleware": "^2.0.6",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
+    "mongodb": "^5.6.0",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.60.0",
+    "swiper": "^9.2.4",
+    "uuid": "^9.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -25,7 +36,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --color"
+    "lint:fix": "eslint ./src --color",
+    "prepare": "cd .. && husky install Client/.husky"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +67,15 @@
       "npm run lint:fix",
       "git add"
     ]
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  },
+  "options": {
+    "allowedHosts": [
+      "localhost",
+      ".localhost"
+    ],
+    "proxy": "https://localhost:4000/" 
   }
 }
