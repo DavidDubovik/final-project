@@ -15,7 +15,7 @@ export default class PopularCategories extends Component {
             desc: "Вирізняються міцною та надійною конструкцією. Матеріал – дуб.",
             info: "Детальніше",
             img: "1.png",
-            link:"categories/tables"
+            link:"products?categories=tables&maxPrice=50000&minPrice=1&perPage=6&sort=-currentPrice&startPage=1"
           },
           {
             id: 2,
@@ -23,7 +23,7 @@ export default class PopularCategories extends Component {
             desc: "Матеріал – масив дуба. Комплектуються ортопедичною основою під матрац.",
             info: "Детальніше",
             img: "2.png",
-            link:"categories/beds"
+            link:"products?categories=beds&maxPrice=50000&minPrice=1&perPage=6&sort=-currentPrice&startPage=1"
           },
           {
             id: 3,
@@ -31,7 +31,7 @@ export default class PopularCategories extends Component {
             desc: "Дубові етажерки, комоди, серванти на будь-який смак.",
             info: "Детальніше",
             img: "3.png",
-            link:"categories/housingfurniture"
+            link:"products?categories=housingfurniture&maxPrice=50000&minPrice=1&perPage=6&sort=-currentPrice&startPage=1"
           },
           {
             id: 4,
@@ -39,7 +39,7 @@ export default class PopularCategories extends Component {
             desc: "Виготовлені з високоякісного масиву дуба. Комплектуються твердим або м’яким сидінням.",
             info: "Детальніше",
             img: "4.png",
-            link:"categories/chairs"
+            link:"products?categories=chairs&maxPrice=50000&minPrice=1&perPage=6&sort=-currentPrice&startPage=1"
           }
         ]
       }

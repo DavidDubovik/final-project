@@ -3,8 +3,24 @@ import './dropListStyle.css'
 function DropList({ colorType, upholstery, colorValue }) {
     // console.log(nameType);
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState({ text: 'оберіть колір', color: colorValue ? colorValue : '' });
+    const [selectedItem, setSelectedItem] = useState({ text: colorValue ? colorValue : 'оберіть колір ', color: colorValue ? colorValue : '' });
 
+    // const obj = {
+    //     green: 'зелений',
+    //     yellow: 'жовтий',
+    //     red: 'червоний '
+    // }
+    // const TestElement = () => {
+
+    //     for (let key in obj) {
+    //         if (obj.hasOwnProperty(key)) {
+    //             console.log(key);
+    //             console.log(obj[key]);
+    //             // console.log(key + ': ' + obj[key]);
+    //         }
+    //     }
+
+    // }
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     }
@@ -19,7 +35,7 @@ function DropList({ colorType, upholstery, colorValue }) {
         return (
             colorType ? colorType.map((color) => {
                 return (
-                    <li onClick={handleItemClick}><div style={{ display: 'none' }}></div>{color}</li>
+                    <li onClick={handleItemClick}><div style={{ background: color, border: '0.5px solid rgba(0, 0, 0, 0.5)' }}></div>{color}</li>
                 )
             })
                 : ''
@@ -35,17 +51,20 @@ function DropList({ colorType, upholstery, colorValue }) {
                 : '-'
         )
     }
+
     return (
         <>
+            {/* {TestElement()} */}
             {colorType || upholstery ? <div className={`dropdown ${isOpen ? 'active' : ''}`} >
                 <div className={`default_option ${isOpen ? 'active' : ''}`} onClick={toggleDropdown}>
-                    <p>{selectedItem.color ? <div style={{ background: selectedItem.color }}></div> : ''} {selectedItem.text || selectedItem.text}</p>
+                    <p>{selectedItem.color ? <div style={{ background: selectedItem.color, border: '0.5px solid rgba(0, 0, 0, 0.5)' }}></div> : ''} {selectedItem.text || selectedItem.text}</p>
 
                 </div>
                 {
                     isOpen ? <ul className={`select_ul ${isOpen ? 'active' : ''}`}>
 
                         {colorType ? <Li /> : <LiUpholstery />}
+
                         {/* <li onClick={handleItemClick}><div style={{ background: selectedItem.color ? selectedItem.color : 'red' }}></div>few</li> */}
                     </ul> : ''
                 }

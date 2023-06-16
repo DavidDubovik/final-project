@@ -16,147 +16,148 @@ const Style = {
     maxWidth: 1000,
     alignItems: 'center',
     justifyContent: 'right',
-    margin: '38px auto'
+    margin: '38px auto',
+    overflow: 'hidden',
   },
 
   slideContent: {
     position: 'absolute',
-    margin: '0 16px auto'
+    margin: '0 16px auto',
+    maxHeight: 300,
   },
 
   mainText: { 
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 800,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
+    fontSize: 'calc(54px + 4 * (100vw - 5000px) / 880)',
+    color: '#2E3438',
     marginBottom: 22,
-    color: '#2E3438'
   },
 
   mainText_2: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 800,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
+    fontSize: 'calc(54px + 4 * (100vw - 5000px) / 880)',
+    color: '#fff',
     marginBottom: 22,
-    color: '#fff'
   },
 
   mainText_3: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 800,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
+    fontSize: 'calc(52px + 4 * (100vw - 5000px) / 880)',
+    color: '#2E3438',
     marginBottom: 22,
-    color: '#2E3438'
   },
 
   mainText_4: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 800,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
+    fontSize: 'calc(54px + 4 * (100vw - 6000px) / 880)',
+    color: '#fff',
     marginBottom: 5,
-    color: '#fff'
   },
 
   mainText_5: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 800,
-    fontSize: 'calc(20px + 22 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
+    color: '#fff',
     marginBottom: 5,
-    color: '#fff'
   },
 
   textDesc: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
-    color: '#E03737'
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
+    color: '#E03737',
   },
 
   text: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
+    color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#2E3438'
   },
 
   text_5: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
+    color: '#fff',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#fff'
   },
 
   persent: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 800,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
-    color: '#E03737'
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
+    color: '#E03737',
   },
 
   textSlide_1: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
+    color: '#2E3438',
     whiteSpace: 'nowrap',
     marginBottom: '7%',
-    color: '#2E3438'
   },
 
   textSlide_2: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#FFC740'
+    color: '#FFC740',
   },
 
   textSlide_3: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_4: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   },
 
   textSlide_5: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
-    fontSize: 'calc(13px + 15 * (100vw - 320px) / 880)',
+    fontSize: 'calc(44px + 4 * (100vw - 5000px) / 880)',
     marginBottom: '7%',
-    color: '#E03737'
+    color: '#E03737',
   }
 }
 
 export default function Slider() {
   return (
     <Box sx={{fontFamily:'Open Sans',mx:'auto',maxWidth: 'lg'}}>
-    <div>
-      <>
+
       <Swiper
         cssMode={true}
         navigation={true}
@@ -164,8 +165,8 @@ export default function Slider() {
         keyboard={true}
         loop={true}
         autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
+           delay: 2500,
+           disableOnInteraction: false,
         }}
         pagination={{
           clickable: true,
@@ -231,7 +232,6 @@ export default function Slider() {
         </SwiperSlide>
 
       </Swiper>
-      </>
-    </div></Box>
+  </Box>
   )
 }

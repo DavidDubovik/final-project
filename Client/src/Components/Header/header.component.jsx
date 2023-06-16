@@ -11,7 +11,7 @@ const navList = [
   },
   {
     title: "Усі продукти",
-    path: "/products",
+    path: "/products?categories=tables%2Cchairs%2Cbeds%2Chousingfurniture&maxPrice=50000&minPrice=1&perPage=6&startPage=1",
   },
   {
     title: "Про нас",
@@ -25,7 +25,7 @@ const navList = [
 const menuList = [
   {
     title: "Усі товари",
-    path: "/products",
+    path: "products?categories=tables%2Cchairs%2Cbeds%2Chousingfurniture&maxPrice=50000&minPrice=1&perPage=6&startPage=1",
     submenu: [
         {
           title: "Стільці",
@@ -45,7 +45,7 @@ const menuList = [
   },
   {
     title: "Столи",
-    path: "categories/tables",
+    path: "products?categories=tables&perPage=6&startPage=1",
     submenu: [
       { title: "Круглі столи", path: "/table/round" },
       {
@@ -64,7 +64,7 @@ const menuList = [
   },
   {
     title: "Стільці",
-    path: "categories/chairs",
+    path: "products?categories=chairs&perPage=6&startPage=1",
     submenu: [
       { title: "Круглі Стільці", path: "/chairs/round" },
       {
@@ -79,7 +79,7 @@ const menuList = [
   },
   {
     title: "Ліжка",
-    path: "categories/beds",
+    path: "products?categories=beds&perPage=6&startPage=1",
     submenu: [
       { title: "Ортопедичні", path: "/beds/round" },
       {
@@ -90,7 +90,7 @@ const menuList = [
   },
   {
     title: "Корпусні меблі",
-    path: "categories/housingfurniture",
+    path: "products?categories=housingfurniture&perPage=6&startPage=1",
     submenu: [
       { title: "Ортопедичні", path: "/beds/round" },
       {

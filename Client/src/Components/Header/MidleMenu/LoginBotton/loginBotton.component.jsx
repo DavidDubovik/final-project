@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import {
   loginCustomerFetch,
   createAccountFetch,
@@ -31,7 +31,6 @@ const LoginButton = () => {
   const handleClose = () => setOpen(false);
   const handleOpenLogin = () => setOpenLogin(true);
   const handleClose2Login = () => setOpenLogin(false);
-  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const dispatch = useDispatch();
 
   const myLoginFunc = ({ email, password }) => {
@@ -39,44 +38,37 @@ const LoginButton = () => {
       email: formik.values.email,
       password: formik.values.passwordLogin,
     };
-    dispatch(loginCustomerFetch(data));
     handleClose();
+    dispatch(loginCustomerFetch(data)).then(res => setRes(JSON.stringify(res.payload.password))).then(()=>handleOpenLogin());
+    
+    
   };
-  const myCreatFunc = ({ firstName, lastName, email, password }) => {
-    const data = {
-      email: formik.values.email,
-      password: formik.values.passwordLogin,
-    };
-    dispatch(loginCustomerFetch(data));
-    handleClose();
-  };
+
   const validate = (values) => {
     const errors = {};
 
-    if (!values.firstName) {
+    if (!values.firstName ) {
       errors.firstName = "Ви повинні заповнити це поле";
-    } else if (values.firstName.length > 7) {
-      errors.firstName = "Має бути 7 символів або менше";
+    } else if (values.firstName.length < 3 ) {
+      errors.firstName = "Має бути більше 3 символів";
     }
 
     if (!values.lastName) {
       errors.lastName = "Ви повинні заповнити це поле";
-    } else if (values.lastName.length > 7) {
-      errors.lastName = "Має бути 7 символів або менше!";
+    } else if (values.lastName.length <3 ) {
+      errors.lastName = "Має бути більше 3 символів!";
     }
 
     if (!values.email) {
-      const social = document
-        .querySelector(".social-icons")
-        .classList.add("autologin-error");
+
       errors.email = "Ви повинні заповнити це поле";
     } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email) && values.email.length>0
     ) {
       errors.email = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.emailConfirm) {
+    if (!values.emailConfirm ) {
       errors.emailConfirm = "Ви повинні заповнити це поле";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.emailConfirm)
@@ -84,24 +76,22 @@ const LoginButton = () => {
       errors.emailConfirm = "Невірна адреса електронної пошти!";
     }
 
-    if (!values.passwordLogin) {
-      const social = document
-        .querySelector(".social-icons")
-        .classList.add("autologin-error");
+    if (!values.passwordLogin ) {
+
       errors.passwordLogin = "Ви повинні заповнити це поле";
-    } else if (values.passwordLogin.length > 8) {
-      errors.passwordLogin = "Пароль може містити максимум 8 символів!";
+    } else if (values.passwordLogin.length > 7 ) {
+      errors.passwordLogin = "Пароль меньше 7 символів!";
     }
 
-    if (!values.pass) {
+    if (!values.pass ) {
       errors.pass = "Ви повинні заповнити це поле";
-    } else if (values.pass.length > 8) {
-      errors.pass = "Пароль може містити максимум 8 символів!";
+    } else if (values.pass.length <7 && values.pass.length>0) {
+      errors.pass = "Пароль може > 7 символів!";
     }
 
-    if (!values.passConfirm) {
+    if (!values.passConfirm ) {
       errors.passConfirm = "Ви повинні заповнити це поле";
-    } else if (values.passConfirm !== values.pass) {
+    } else if ((values.passConfirm !== values.pass) ) {
       errors.passConfirm = "Паролі не співпадають!";
     }
 
@@ -222,22 +212,22 @@ const LoginButton = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div class="container">
-            <ul class="container--tabs">
-              <li onClick={switchTab} class="tab tab--active">
+          <div className="container">
+            <ul className="container--tabs">
+              <li onClick={switchTab} className="tab tab--active">
                 Увійти
               </li>
-              <li onClick={switchTab} class="tab">
+              <li onClick={switchTab} className="tab">
                 Реєстрація
               </li>
             </ul>
 
-            <div class="container--content">
+            <div className="container--content">
               <div className="border">
                 <hr className="border-line" />
               </div>
 
-              <div class="content content--active">
+              <div className="content content--active">
                 <form
                   id="login"
                   className="input-group"
@@ -261,7 +251,7 @@ const LoginButton = () => {
                     value={formik.values.email}
                   />
 
-                  {formik.errors.email ? (
+                  {formik.errors.email && formik.touched.email ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.email}
@@ -281,7 +271,7 @@ const LoginButton = () => {
                     value={formik.values.passwordLogin}
                   />
 
-                  {formik.errors.passwordLogin ? (
+                  {formik.errors.passwordLogin && formik.touched.passwordLogin ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.passwordLogin}
@@ -302,34 +292,6 @@ const LoginButton = () => {
                     УВІЙТИ
                   </button>
 
-                  {/* <div className="social-icons">
-                    <div className="choice">
-                      <div className="line"></div>
-                      <p className="text">або</p>
-                      <div className="line"></div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="facebook social-btn submit-btn"
-                    >
-                      <img
-                        className="picture"
-                        src="../../img/icons/facebook.png"
-                      ></img>
-                      Увійти через Facebook
-                    </button>
-                    <button
-                      type="submit"
-                      className="instagram social-btn submit-btn"
-                    >
-                      <img
-                        className="picture"
-                        src="../../img/icons/instagram.png"
-                      ></img>
-                      Увійти через Instagram
-                    </button>
-                  </div> */}
                 </form>
               </div>
 
@@ -349,9 +311,10 @@ const LoginButton = () => {
                     placeholder="Ваше ім’я"
                     onChange={formik.handleChange}
                     value={formik.values.firstName}
+                    onBlur={formik.handleBlur}
                   />
 
-                  {formik.errors.firstName ? (
+                  {formik.errors.firstName && formik.touched.firstName ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.firstName}
@@ -368,9 +331,10 @@ const LoginButton = () => {
                     placeholder="Ваше прізвище"
                     onChange={formik.handleChange}
                     value={formik.values.lastName}
+                    onBlur={formik.handleBlur}
                   />
 
-                  {formik.errors.lastName ? (
+                  {formik.errors.lastName  && formik.touched.lastName ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.lastName}
@@ -386,10 +350,11 @@ const LoginButton = () => {
                     type="email"
                     placeholder="E-mail"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     value={formik.values.emailConfirm}
                   />
 
-                  {formik.errors.emailConfirm ? (
+                  {formik.errors.emailConfirm && formik.touched.emailConfirm ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.emailConfirm}
@@ -405,10 +370,11 @@ const LoginButton = () => {
                     type="password"
                     placeholder="Пароль"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     value={formik.values.pass}
                   />
 
-                  {formik.errors.pass ? (
+                  {formik.errors.pass && formik.touched.pass ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.pass}
@@ -424,10 +390,11 @@ const LoginButton = () => {
                     type="password"
                     placeholder="Пароль"
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     value={formik.values.passConfirm}
                   />
 
-                  {formik.errors.passConfirm ? (
+                  {formik.errors.passConfirm && formik.touched.passConfirm ? (
                     <div className="Error">
                       <img src="../../img/icons/Error.png" alt="error" />
                       {formik.errors.passConfirm}
@@ -442,10 +409,10 @@ const LoginButton = () => {
                       const dataZ = {
                         firstName: formik.values.firstName,
                         lastName: formik.values.lastName,
-                        email: formik.values.email,
-                        password: formik.values.passConfirm,
+                        email: formik.values.emailConfirm,
+                        password: formik.values.pass,
                       };
-                      alert(dataZ)
+                      // alert(dataZ)
                       dispatch(createAccountFetch(dataZ));
                     }}
                     type="submit"

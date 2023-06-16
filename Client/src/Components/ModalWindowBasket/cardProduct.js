@@ -1,50 +1,105 @@
 import React, { useState, useEffect } from "react";
-import DropList from './dropList';
 import { useDispatch, useSelector } from "react-redux";
-export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, colorsProduct, item, quantiy, defoltColor, Obivka }) => {
+import DropList from './dropList';
+import axios from 'axios';
+export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice, colorsProduct, item, quantiy, defoltColor }) => {
     const [count, setCount] = useState(quantiy ? quantiy : 1)
-
     const dispatch = useDispatch()
-
     const basket = useSelector(state => {
         return state.products.basket
     })
+    const tokenUser = useSelector(state => {
+        return state.isLogged.isLogged
+    })
 
-    const inc = () => {
-        if (count <= 9) {
-            setCount(count + 1)
-            setAllPrice(allPrice + +price);
+    const inc = async (productId) => {
+        // console.log(basket);
+        if (count <= 39) {
+            if (tokenUser.token) {
+                setCount(count + 1)
+                setAllPrice(allPrice + +price);
+                await axios
+                    .put("/cart/" + productId)
+                    .then(updatedCart => {
+                        // console.log(updatedCart.data.products);
+                    })
+                    .catch(err => {
+                        /*Do something with error, e.g. show error to user*/
+                    });
+            } else {
+                setCount(count + 1)
+                setAllPrice(allPrice + +price);
+                // dispatch({ type: 'EDIT_OBJECT', payload: { id: item, productCounter: count } })
+            }
+
         }
     }
 
-    const dec = () => {
+    const dec = async (productId) => {
         if (count >= 2) {
-            setCount(count - 1)
-            setAllPrice(allPrice - +price);
+            if (tokenUser.token) {
+                setCount(count - 1)
+                setAllPrice(allPrice - +price);
+                await axios
+                    .delete("/cart/product/" + productId)
+                    .then(updatedCart => {
+                        // console.log(updatedCart.data.products);
+                    })
+                    .catch(err => {
+                        /*Do something with error, e.g. show error to user*/
+                    });
+            } else {
+                setCount(count - 1)
+                setAllPrice(allPrice - +price);
+                // dispatch({ type: 'EDIT_OBJECT', payload: { id: item, productCounter: count } })
+
+            }
+
+
         }
+
     }
 
-    const clearProduct = (productId) => {
-        const filterProduct = basket.filter(res => res.itemNo !== productId)
-        dispatch({ type: 'ADD_TO_BASKET', payload: filterProduct })
-        setAllPrice(allPrice - +price * count);
-        console.log(filterProduct);
+    const clearProduct = async (productId) => {
+        if (tokenUser.token) {
+            dispatch({ type: 'CLEAR_BASKET', payload: productId })
+            setAllPrice(allPrice - +price * count);
+            await axios
+                .delete("/cart/" + productId)
+                .then(result => {
+                    // console.log(result.data);
+                })
+                .catch(err => {
+                    /*Do something with error, e.g. show error to user*/
+                });
+        } else {
+            dispatch({ type: 'CLEAR_BASKET', payload: productId })
+            setAllPrice(allPrice - +price * count);
+        }
+
     }
 
     useEffect(() => {
         if (quantiy <= 1) {
             setAllPrice(currentAllPrice => currentAllPrice + +price)
         }
+
     }, [])
+
     useEffect(() => {
+        dispatch({ type: 'EDIT_OBJECT', payload: { id: item, productCounter: count } })
+    }, [count])
+
+    useEffect(() => {
+
         if (quantiy > 1) {
-            setAllPrice(currentAllPrice => currentAllPrice + (count * +price))
-        }
-        else {
-            // console.log('fefe');
+            setAllPrice(allPrice + +price * count)
+            setCount(quantiy)
         }
     }, [quantiy])
-    // console.log(imageUrls);
+
+
+
     return (
         <div>
             <div className='cardProduct'>
@@ -59,15 +114,15 @@ export const CardProduct = ({ name, id, price, imageUrls, allPrice, setAllPrice,
                 <div className='select'>
                     <div>  <DropList colorType={colorsProduct} colorValue={defoltColor} /></div>
 
-                    <div>  <DropList upholstery={Obivka} /></div>
+                    <div className="line">  </div>
                 </div>
                 <div className='numberProduct'>
-                    <button id='decrement' onClick={() => dec()}>-</button>
+                    <button id='decrement' onClick={() => dec(item)}>-</button>
                     <lable>
-                        <input type='text' id={id} value={count} readOnly />
+                        <input type='text' value={count} readOnly />
                         <span>шт</span>
                     </lable>
-                    <button id='increment' onClick={() => inc()}>+</button>
+                    <button id='increment' onClick={() => inc(item)}>+</button>
                 </div>
                 <div className='text-price'>
                     {count > 1 ? <><span>{count * price + 'грн'}</span> <p>{count + 'x' + price + 'грн'}</p></> : count * price + 'грн'}
